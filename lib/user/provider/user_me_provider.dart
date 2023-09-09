@@ -68,16 +68,14 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
   }) async{
     try{
       state = UserModelLoading();
-
       final resp = await authRepository.login(username: username, password: password);
-
       await storage.write(key: ACCESS_TOKEN_KEY, value: resp.accessToken);
       await storage.write(key: REFRESH_TOKEN_KEY, value: resp.refreshToken);
 
       final userResponse = await userMeRepository.getMe();
 
       state = userResponse;
-
+      print(state.toString());
       return userResponse;
     }catch(e) {
       state = UserModelError(message: '로그인에 실패했습니다.');

@@ -6,12 +6,14 @@ class DefaultLayoutV2 extends ConsumerWidget {
   final Widget child;
   final AppBar? appBar;
   final FloatingActionButton? floatingActionButton;
+  final Widget? bottomNavagtionBar;
 
   const DefaultLayoutV2({
     this.appBar =null,
     this.backgroundColor,
     required this.child,
     this.floatingActionButton=null,
+    this.bottomNavagtionBar=null,
     Key? key
   }) : super(key: key);
 
@@ -20,9 +22,10 @@ class DefaultLayoutV2 extends ConsumerWidget {
     return Scaffold(
       appBar: appBar==null ? null
       : appBar,
-      body: child,
+      body: SafeArea(child: child),
       backgroundColor: backgroundColor ?? Colors.white,
       floatingActionButton: floatingActionButton,
+      bottomNavigationBar: bottomNavagtionBar,
     );
   }
 }

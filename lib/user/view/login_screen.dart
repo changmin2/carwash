@@ -24,58 +24,101 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(userMeProvider);
-    return MaterialApp(
-      home: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.only(left: 16,right: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center ,
-            children: [
-              SizedBox(
-                width: 800,
-                height: 350,
-                child: Image.asset(
-                  'asset/img/login.png',
-                  fit: BoxFit.contain,
+    return DefaultLayoutV2(
+      child:
+        SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(left: 16,right: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center ,
+              children: [
+                SizedBox(
+                  width: 800,
+                  height: 350,
+                  child: Image.asset(
+                    'asset/img/login.png',
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'ID'
-                  )
-              ),
-              SizedBox(
-                  height: 10
-              ),
-              TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password'
+                SizedBox(
+                  height: 25,
                 ),
-              ),
-              SizedBox(height: 30,),
-              SizedBox(
-                width: 400,
-                child: ElevatedButton(
-                    onPressed: (){},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-
+                Form(
+                  key: _idFormKey,
+                  child: TextFormField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'ID'
+                      ),
+                    onChanged: (String value){
+                      username = value;
+                    },
+                    validator: (value){
+                      if(value!.length<3){
+                        return "아이디를 3글자 이상 입력해주세요.";
+                      }else if(value!.length>15){
+                        return "아이디를 15자 이하로 입력해주세요.";
+                      }
+                      if(!isValidEmailFormat(value!)){
+                        return "영문과 숫자 조합으로 입력해주세요.";
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(
+                    height: 10
+                ),
+                Form(
+                  key: _psFormKey,
+                  child: TextFormField(
+                    onChanged: (String value){
+                      password = value;
+                    },
+                    validator: (value){
+                      if(value!.length<3){
+                        return "비밀번호를 3글자 이상 입력해주세요.";
+                      }else if(value!.length>15){
+                        return "비밀번호를 15자 이하로 입력해주세요.";
+                      }
+                      if(!isValidEmailFormat(value)){
+                        return "영문과 숫자 조합으로 입력해주세요.";
+                      }
+                    },
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Password'
                     ),
-                    child: Text(
-                        'login'
-                    )
+                  ),
                 ),
-              )
-            ],
+                SizedBox(height: 30,),
+                SizedBox(
+                  width: 400,
+                  child: ElevatedButton(
+                      onPressed: () async {
+                        if(_idFormKey.currentState!.validate() && _psFormKey.currentState!.validate()){
+                          await ref.read(userMeProvider.notifier)
+                              .login(username: username,password: password,context: context);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+
+                      ),
+                      child: Text(
+                          'login'
+                      )
+                  ),
+                )
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+  }
+  bool isValidEmailFormat(String word) {
+    return RegExp(
+        r"^(?=.*[a-zA-Z])(?=.*[0-9])")
+        .hasMatch(word);
   }
 }
