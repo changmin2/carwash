@@ -1,3 +1,5 @@
+import 'package:carwash/common/component/event_card.dart';
+import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
 
@@ -119,11 +121,82 @@ class MainScreen extends StatelessWidget {
                           ),
                         )
                       ],
+                    ),
+                    SizedBox(height: 16),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15,right: 15),
+                      child: Container(
+                        height: 170,
+                        child: ListView.builder(
+                          itemCount: 7,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context,int index){
+                            return Padding(
+                              padding: EdgeInsets.only(right: 8),
+                              child: Weather(
+                                  day: 0,
+                                  temperature: 0,
+                                  humidity: 0
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15,right: 15),
+                      child: Container(
+                        height: 120,
+                        child: ListView.builder(
+                          itemCount: 2,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context,int index){
+                            return Padding(
+                              padding: EdgeInsets.only(right: 8),
+                              child: EventCard(index:  index,),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Container(
+                      height: 1,
+                      width: 500,
+                      color: Colors.greenAccent,
+                    ),
+                    SizedBox(height: 8),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15,right: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '세차 라이프',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: (){},
+                              child: Text(
+                                'See all',
+                                style: TextStyle(
+                                  color: Colors.blue
+                                ),
+                              )
+                          )
+                        ],
+                      ),
                     )
                   ],
-                )
+                ),
               ),
-            )
+            ),
           ],
         ),
       )
