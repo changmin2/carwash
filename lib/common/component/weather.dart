@@ -35,6 +35,7 @@ class Weather extends StatelessWidget {
             SizedBox(height: 16),
             Icon(
               Icons.sunny,
+              color: Colors.red,
             ),
             SizedBox(height: 16),
             Text(

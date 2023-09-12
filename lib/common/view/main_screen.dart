@@ -1,4 +1,6 @@
+import 'package:carwash/common/component/carwash_life_card.dart';
 import 'package:carwash/common/component/event_card.dart';
+import 'package:carwash/common/component/recent_carwash_card.dart';
 import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +95,7 @@ class MainScreen extends StatelessWidget {
             SizedBox(height: 20),
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.height*2,
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -110,7 +112,7 @@ class MainScreen extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.handshake,
-
+                          color: Colors.red,
                         ),
                         SizedBox(width: 20),
                         Text(
@@ -192,7 +194,66 @@ class MainScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                    )
+                    ),
+                    SizedBox(height: 16,),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15,right: 15),
+                      child: Container(
+                        height: 270,
+                        child: ListView.builder(
+                          itemCount: 7,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context,int index){
+                            return Padding(
+                              padding: EdgeInsets.only(right: 8),
+                              child: CarWashLife()
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15,right: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '최근 세차',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: (){},
+                              child: Text(
+                                'See all',
+                                style: TextStyle(
+                                    color: Colors.blue
+                                ),
+                              )
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 16,),
+                    Padding(
+                      padding: EdgeInsets.only(left: 15,right: 15),
+                      child: Container(
+                        height: 270,
+                        child: ListView.builder(
+                          itemCount: 7,
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: (BuildContext context,int index){
+                            return Padding(
+                                padding: EdgeInsets.only(right: 8),
+                                child: RecentCarWashCard()
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
