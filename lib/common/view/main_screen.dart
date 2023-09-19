@@ -4,12 +4,29 @@ import 'package:carwash/common/component/recent_carwash_card.dart';
 import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MainScreen extends StatelessWidget {
+import '../../weather/provider/weather_provider.dart';
+
+class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   @override
+  ConsumerState<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends ConsumerState<MainScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ref.read(WeatherProvider.notifier).getWeather();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final state = ref.watch(WeatherProvider);
+
     return DefaultLayoutV2(
       backgroundColor: Color.fromRGBO(42, 157, 143,30),
       appBar: renderAppBar(context),
@@ -107,43 +124,62 @@ class MainScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    state.length!=0?Column(
                       children: [
-                        Icon(
-                          Icons.handshake,
-                          color: Colors.red,
-                        ),
-                        SizedBox(width: 20),
-                        Text(
-                          '오늘은 세차하기 좋은 날이에요!',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 20
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 16),
-                    Padding(
-                      padding: EdgeInsets.only(left: 15,right: 15),
-                      child: Container(
-                        height: 170,
-                        child: ListView.builder(
-                          itemCount: 7,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (BuildContext context,int index){
-                            return Padding(
-                              padding: EdgeInsets.only(right: 8),
-                              child: Weather(
-                                  day: 0,
-                                  temperature: 0,
-                                  humidity: 0
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.handshake,
+                              color: Colors.red,
+                            ),
+                            SizedBox(width: 20),
+                            Text(
+                              '오늘은 세차하기 좋은 날이에요!',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20
                               ),
-                            );
-                          },
+                            )
+                          ],
                         ),
-                      ),
+                        SizedBox(height: 16),
+                        Padding(
+                          padding: EdgeInsets.only(left: 15,right: 15),
+                          child: Container(
+                            height: 170,
+                            child: ListView.builder(
+                              itemCount: 7,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context,int index){
+                                return Padding(
+                                  padding: EdgeInsets.only(right: 8),
+                                  child: Weather(
+                                      day: 0,
+                                      temperature: 0,
+                                      humidity: 0
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ) : Container(
+                      height: 150,
+                      child: Column(
+                        children: [
+                          Text(
+                            '날씨 정보 불러오는중...',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 25
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          CircularProgressIndicator()
+                        ],
+                      )
                     ),
                     SizedBox(height: 30),
                     Padding(
