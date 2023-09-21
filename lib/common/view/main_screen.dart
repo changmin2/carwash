@@ -26,7 +26,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(WeatherProvider);
-
     return DefaultLayoutV2(
       backgroundColor: Color.fromRGBO(42, 157, 143,30),
       appBar: renderAppBar(context),
@@ -147,17 +146,15 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                         Padding(
                           padding: EdgeInsets.only(left: 15,right: 15),
                           child: Container(
-                            height: 170,
+                            height: 180,
                             child: ListView.builder(
-                              itemCount: 7,
+                              itemCount: state[0].list.length,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context,int index){
                                 return Padding(
                                   padding: EdgeInsets.only(right: 8),
                                   child: Weather(
-                                      day: 0,
-                                      temperature: 0,
-                                      humidity: 0
+                                      weatherInfo: state[0].list[index],
                                   ),
                                 );
                               },

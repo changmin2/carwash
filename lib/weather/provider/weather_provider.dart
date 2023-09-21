@@ -28,12 +28,16 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherModel>>{
 
 
   Future<void> getWeather()async {
+    var times = ['09','12','18'];
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-    final pstate = await repository.readWeather(lat: position.latitude,
+    var pstate = await repository.readWeather(lat: position.latitude,
         lon: position.longitude,
         appid: openWeatherApiKey);
+    pstate = pstate.copyWith(
+      list: pstate.list.where((e) => times.contains(e.dt_txt.split(" ")[1].split(":")[0])).toList()
+    );
     state = [pstate as WeatherModel];
   }
 }

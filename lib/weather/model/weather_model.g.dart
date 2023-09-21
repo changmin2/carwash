@@ -25,11 +25,17 @@ Map<String, dynamic> _$WeatherModelToJson(WeatherModel instance) =>
 
 WeatherInfo _$WeatherInfoFromJson(Map<String, dynamic> json) => WeatherInfo(
       main: WeatherMain.fromJson(json['main'] as Map<String, dynamic>),
+      weather: (json['weather'] as List<dynamic>)
+          .map((e) => Cloud.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dt_txt: json['dt_txt'] as String,
     );
 
 Map<String, dynamic> _$WeatherInfoToJson(WeatherInfo instance) =>
     <String, dynamic>{
       'main': instance.main,
+      'weather': instance.weather,
+      'dt_txt': instance.dt_txt,
     };
 
 WeatherMain _$WeatherMainFromJson(Map<String, dynamic> json) => WeatherMain(
@@ -37,6 +43,7 @@ WeatherMain _$WeatherMainFromJson(Map<String, dynamic> json) => WeatherMain(
       feels_like: (json['feels_like'] as num).toDouble(),
       temp_min: (json['temp_min'] as num).toDouble(),
       temp_max: (json['temp_max'] as num).toDouble(),
+      humidity: json['humidity'] as int,
     );
 
 Map<String, dynamic> _$WeatherMainToJson(WeatherMain instance) =>
@@ -45,4 +52,13 @@ Map<String, dynamic> _$WeatherMainToJson(WeatherMain instance) =>
       'feels_like': instance.feels_like,
       'temp_min': instance.temp_min,
       'temp_max': instance.temp_max,
+      'humidity': instance.humidity,
+    };
+
+Cloud _$CloudFromJson(Map<String, dynamic> json) => Cloud(
+      main: json['main'] as String,
+    );
+
+Map<String, dynamic> _$CloudToJson(Cloud instance) => <String, dynamic>{
+      'main': instance.main,
     };
