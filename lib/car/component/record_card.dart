@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class RecordCard extends StatelessWidget {
-  const RecordCard({Key? key}) : super(key: key);
+  const RecordCard({
+    Key? key
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

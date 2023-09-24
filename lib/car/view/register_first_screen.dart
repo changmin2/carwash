@@ -1,18 +1,22 @@
+import 'package:carwash/car/component/select_card.dart';
+import 'package:carwash/car/provider/select_provider.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RecordFirstScreen extends StatefulWidget {
+class RecordFirstScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordFirst';
 
   const RecordFirstScreen({Key? key}) : super(key: key);
 
   @override
-  State<RecordFirstScreen> createState() => _RecordFirstScreenState();
+  ConsumerState<RecordFirstScreen> createState() => _RecordFirstScreenState();
 }
 
-class _RecordFirstScreenState extends State<RecordFirstScreen> {
+class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(SelectProvider);
     return DefaultLayoutV2(
       appBar: _renderAppbar(context),
       child: Column(
@@ -27,7 +31,24 @@ class _RecordFirstScreenState extends State<RecordFirstScreen> {
                 fontSize: 20
               ),
             ),
-          )
+          ),
+          SizedBox(height: 20),
+          Container(
+            height: 100,
+            child: ListView.builder(
+              itemCount: 4,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (BuildContext context,int index){
+                return Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: SelectCard(
+                    index: index,
+                    select: state.selects[index],
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       )
     );

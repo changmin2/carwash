@@ -37,7 +37,7 @@ class AuthProviderNotifier extends ChangeNotifier{
         GoRoute(
             path: 'record/register',
             name: RecordFirstScreen.routeName,
-            builder: (_,__) => RecordFirstScreen()
+            builder: (_,state) => RecordFirstScreen()
         )
       ]
     ),
