@@ -1,3 +1,4 @@
+import 'package:carwash/car/view/carwash_record_screen.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/view/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller = TabController(length: 1, vsync: this);
+    controller = TabController(length: 2, vsync: this);
     controller.animateTo(index);
   }
 
@@ -41,7 +42,8 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
         physics: NeverScrollableScrollPhysics(),
         controller: controller,
         children: [
-          MainScreen()
+          MainScreen(),
+          CarWashRecordScreen()
         ],
       ),
       bottomNavagtionBar: BottomNavigationBar(
@@ -61,7 +63,7 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
-              label: '준비중'
+              label: '세차기록'
           ),
         ],
       ),
