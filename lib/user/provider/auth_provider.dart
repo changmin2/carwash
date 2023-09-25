@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:carwash/car/view/register_first_screen.dart';
+import 'package:carwash/car/view/register_two_screen.dart';
 import 'package:carwash/common/view/root_tap.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,7 +38,14 @@ class AuthProviderNotifier extends ChangeNotifier{
         GoRoute(
             path: 'record/register',
             name: RecordFirstScreen.routeName,
-            builder: (_,state) => RecordFirstScreen()
+            builder: (_,state) => RecordFirstScreen(),
+            routes: [
+              GoRoute(
+                path: 'record/register/two',
+                name: RecordTwoScreen.routeName,
+                builder: (_,state) => RecordTwoScreen()
+              )
+            ]
         )
       ]
     ),

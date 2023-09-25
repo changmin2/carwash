@@ -24,10 +24,16 @@ class _SelectCardState extends ConsumerState<SelectCard> {
       onTap: (){
         ref.read(SelectProvider.notifier).select(widget.index);
       },
-      child: Card(
-        color: widget.select == 0 ? Colors.white : Colors.green,
-        child: Text(
-          'hi'
+      child: SizedBox(
+
+        child: Card(
+          elevation: 1,
+          color: widget.select == 0 ? Colors.white : Colors.green,
+          child: Center(
+            child: Text(
+              'hi'
+            ),
+          ),
         ),
       ),
     );
