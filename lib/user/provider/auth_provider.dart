@@ -43,7 +43,9 @@ class AuthProviderNotifier extends ChangeNotifier{
               GoRoute(
                 path: 'record/register/two',
                 name: RecordTwoScreen.routeName,
-                builder: (_,state) => RecordTwoScreen()
+                builder: (_,state) => RecordTwoScreen(
+                  query: state.queryParameters['query'],
+                )
               )
             ]
         )

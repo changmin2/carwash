@@ -16,49 +16,42 @@ class RecordFirstScreen extends ConsumerStatefulWidget {
 }
 
 class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
-
+  final washList = ['매트세척','시트세정','시트코팅','휠세척','고압수','프리워시','스노우폼','본세차'
+        ,'철분제거','페인트클렌저','클레잉','유막제거','발수코팅','폴리싱','탈지','실런트'
+        ,'고체왁스','물왁스','드라잉','타이어코팅','휠코팅','엔진룸세척','트렁크저리'];
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(SelectProvider);
     return DefaultLayoutV2(
       appBar: _renderAppbar(context),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 20),
-          Padding(
-            padding: EdgeInsets.only(left: 16),
-            child: Text(
-              '나만의 세차를 기록하고 공유해보세요!',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 20
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          
+          children: [
+            const SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.only(left: 16),
+              child: Text(
+                '나만의 세차를 기록하고 공유해보세요!',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 100),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                height: 50,
-                width:  MediaQuery.of(context).size.width,
-                  child: ListView.builder(
-                  itemCount: 4,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context,int index){
-                    return Padding(
-                        padding: EdgeInsets.only(right: 8),
-                        child: SelectCard(
-                          index: index,
-                          select: state.selects[index],
-                        ),
-                      );
-                    },
-                  ),
-              ),
-              SizedBox(height: 100),
-              ElevatedButton(
+            SizedBox(height: 30),
+            Wrap(
+                direction: Axis.horizontal, // 정렬 방향
+                alignment: WrapAlignment.center, // 정렬 방식
+                spacing: 10,  // 상하(좌우) 공간
+                runSpacing: 10, // 좌우(상하) 공간
+                children: List.generate(washList.length, (i)=> SelectCard(select: state.selects[i], index: i,))
+              // WsmBoxWidget()
+            ),
+            SizedBox(height: 50),
+            Center(
+              child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     onPrimary: Colors.grey,
                     animationDuration: Duration(milliseconds: 1000),
@@ -69,8 +62,13 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  onPressed: (){
-                    context.goNamed(RecordTwoScreen.routeName);
+                  onPressed: () async {
+                    var newList = [];
+                    newList = await washList.where((element) => state.selects[washList.indexOf(element)]==1).toList();
+                    context.goNamed(
+                        RecordTwoScreen.routeName,
+                        queryParameters: {"query":newList.toString()}
+                    );
                   },
                   child: Text(
                       '다음 단계',
@@ -80,10 +78,10 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
                         color: Colors.white
                       ),
                   )
-              )
-          ]
-          ),
-        ],
+              ),
+            ),
+          ],
+        ),
       )
     );
   }

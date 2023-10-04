@@ -6,23 +6,28 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RecordTwoScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordTwo';
+  final query;
 
-  const RecordTwoScreen({Key? key}) : super(key: key);
-
+  const RecordTwoScreen({
+    this.query,
+    Key? key}) : super(key: key);
   @override
   ConsumerState<RecordTwoScreen> createState() => _RecordTwoScreenState();
 }
 
 class _RecordTwoScreenState extends ConsumerState<RecordTwoScreen> {
+  var newList = [];
   static get routeName => 'recordTwo';
-  final List<String> _products =
-  List.generate(100, (index) => "Product ${index.toString()}");
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    newList = widget.query.toString().split('[')[1].toString().split(']')[0].toString().split(',').toList();
+  }
   @override
   Widget build(BuildContext context) {
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
-    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
-    final state = ref.watch(SelectProvider);
+
+
     return DefaultLayoutV2(
         appBar: _renderAppbar(context),
         child: Center(
@@ -45,18 +50,18 @@ class _RecordTwoScreenState extends ConsumerState<RecordTwoScreen> {
               SizedBox(height: 100),
               Expanded(
                 child: ReorderableListView.builder(
-                    itemCount: _products.length,
+                    itemCount: newList.length,
                     itemBuilder: (context, index) {
-                      final String productName = _products[index];
+                      String washType = newList[index];
                       return Card(
-                        key: ValueKey(productName),
+                        key: ValueKey(washType),
                         color: Colors.amberAccent,
                         elevation: 1,
                         margin: const EdgeInsets.all(10),
                         child: ListTile(
                           contentPadding: const EdgeInsets.all(25),
                           title: Text(
-                            productName,
+                            washType,
                             style: const TextStyle(fontSize: 18),
                           ),
                           trailing: ReorderableDragStartListener(
@@ -71,8 +76,8 @@ class _RecordTwoScreenState extends ConsumerState<RecordTwoScreen> {
                         if (newIndex > oldIndex) {
                           newIndex = newIndex - 1;
                         }
-                        final element = _products.removeAt(oldIndex);
-                        _products.insert(newIndex, element);
+                        final element = newList.removeAt(oldIndex);
+                        newList.insert(newIndex, element);
                       });
                     }),
               ),
