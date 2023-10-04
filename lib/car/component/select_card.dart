@@ -20,7 +20,7 @@ class SelectCard extends ConsumerStatefulWidget {
 class _SelectCardState extends ConsumerState<SelectCard> {
   final washList = ['매트세척','시트세정','시트코팅','휠세척','고압수','프리워시','스노우폼','본세차'
     ,'철분제거','페인트클렌저','클레잉','유막제거','발수코팅','폴리싱','탈지','실런트'
-    ,'고체왁스','물왁스','드라잉','타이어코팅','휠코팅','엔진룸세척','트렁크처리'];
+    ,'고체왁스','물왁스','드라잉','타이어코팅','휠코팅','엔진룸세척','트렁크정리'];
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(SelectProvider);

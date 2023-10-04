@@ -47,18 +47,25 @@ class _RecordTwoScreenState extends ConsumerState<RecordTwoScreen> {
               ),
               //trailing: ReorderableDragStartListener(
               //                             index: index, child: Icon(Icons.drag_handle)),
-              SizedBox(height: 100),
+              SizedBox(height: 25),
               Expanded(
                 child: ReorderableListView.builder(
                     itemCount: newList.length,
                     itemBuilder: (context, index) {
                       String washType = newList[index];
                       return Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: BorderSide(width: 0.5)
+                        ),
                         key: ValueKey(washType),
-                        color: Colors.amberAccent,
-                        elevation: 1,
+                        color: Colors.white,
+                        elevation: 2,
                         margin: const EdgeInsets.all(10),
                         child: ListTile(
+                          leading: Icon(
+                            Icons.do_not_disturb_on_total_silence_rounded
+                          ),
                           contentPadding: const EdgeInsets.all(25),
                           title: Text(
                             washType,
@@ -79,32 +86,37 @@ class _RecordTwoScreenState extends ConsumerState<RecordTwoScreen> {
                         final element = newList.removeAt(oldIndex);
                         newList.insert(newIndex, element);
                       });
-                    }),
+                    },
+
+                    ),
               ),
               Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 30),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          onPrimary: Colors.grey,
-                          animationDuration: Duration(milliseconds: 1000),
-                          primary: Colors.black,
-                          shadowColor: Colors.black,
-                          minimumSize: Size(350,50),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                    SizedBox(height: 15),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 16),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            onPrimary: Colors.grey,
+                            animationDuration: Duration(milliseconds: 1000),
+                            primary: Colors.black,
+                            shadowColor: Colors.black,
+                            minimumSize: Size(350,50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
                           ),
-                        ),
-                        onPressed: (){},
-                        child: Text(
-                          '다음 단계',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white
-                          ),
-                        )
+                          onPressed: (){},
+                          child: Text(
+                            '다음 단계',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white
+                            ),
+                          )
+                      ),
                     )
                   ]
               ),
