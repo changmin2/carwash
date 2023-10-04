@@ -1,5 +1,6 @@
 import 'package:carwash/car/component/select_card.dart';
 import 'package:carwash/car/provider/select_provider.dart';
+import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -63,8 +64,12 @@ class _RecordTwoScreenState extends ConsumerState<RecordTwoScreen> {
                         elevation: 2,
                         margin: const EdgeInsets.all(10),
                         child: ListTile(
-                          leading: Icon(
-                            Icons.do_not_disturb_on_total_silence_rounded
+                          leading: Text(
+                              (index+1).toString(),
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.brown
+                            ),
                           ),
                           contentPadding: const EdgeInsets.all(25),
                           title: Text(
