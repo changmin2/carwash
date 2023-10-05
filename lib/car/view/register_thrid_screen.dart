@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:carwash/common/layout/default_layout_v2.dart';
@@ -205,6 +206,9 @@ class _RecordThridScreenState extends State<RecordThridScreen> {
                       ),
                     ),
                     onPressed: (){
+                      final bytes = File(_image!.path).readAsBytesSync();
+                      String base64Image =base64Encode(bytes);
+                      print(base64Image);
 
                     },
                     child: Text(
