@@ -1,22 +1,24 @@
 import 'package:carwash/car/component/select_card.dart';
 import 'package:carwash/car/provider/select_provider.dart';
+import 'package:carwash/car/view/register_thrid_screen.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class RecordTwoScreen extends ConsumerStatefulWidget {
+class RecordSecondScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordTwo';
   final query;
 
-  const RecordTwoScreen({
+  const RecordSecondScreen({
     this.query,
     Key? key}) : super(key: key);
   @override
-  ConsumerState<RecordTwoScreen> createState() => _RecordTwoScreenState();
+  ConsumerState<RecordSecondScreen> createState() => _RecordTwoScreenState();
 }
 
-class _RecordTwoScreenState extends ConsumerState<RecordTwoScreen> {
+class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
   var newList = [];
   static get routeName => 'recordTwo';
   @override
@@ -112,7 +114,11 @@ class _RecordTwoScreenState extends ConsumerState<RecordTwoScreen> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          onPressed: (){},
+                          onPressed: (){
+                            context.goNamed(
+                                RecordThridScreen.routeName
+                            );
+                          },
                           child: Text(
                             '다음 단계',
                             style: TextStyle(

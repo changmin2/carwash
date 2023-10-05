@@ -1,6 +1,6 @@
 import 'package:carwash/car/component/select_card.dart';
 import 'package:carwash/car/provider/select_provider.dart';
-import 'package:carwash/car/view/register_two_screen.dart';
+import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -66,7 +66,7 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
                     var newList = [];
                     newList = await washList.where((element) => state.selects[washList.indexOf(element)]==1).toList();
                     context.goNamed(
-                        RecordTwoScreen.routeName,
+                        RecordSecondScreen.routeName,
                         queryParameters: {"query":newList.toString()}
                     );
                   },
