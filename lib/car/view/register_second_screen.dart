@@ -116,7 +116,8 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
                           ),
                           onPressed: (){
                             context.goNamed(
-                                RecordThridScreen.routeName
+                              RecordThridScreen.routeName,
+                              queryParameters: {"query":newList.toString()}
                             );
                           },
                           child: Text(

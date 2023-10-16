@@ -11,7 +11,11 @@ import 'package:dotted_border/dotted_border.dart';
 
 class RecordThridScreen extends StatefulWidget {
   static get routeName => 'recordThrid';
-  const RecordThridScreen({Key? key}) : super(key: key);
+  final query;
+  const RecordThridScreen({
+    required this.query,
+    Key? key
+  }) : super(key: key);
 
   @override
   State<RecordThridScreen> createState() => _RecordThridScreenState();
@@ -20,7 +24,17 @@ class RecordThridScreen extends StatefulWidget {
 class _RecordThridScreenState extends State<RecordThridScreen> {
   XFile? _image;
   var _day = '';
+  var _prameterDay = '';
+  var _place = '';
+  var newList = [];
   final ImagePicker picker = ImagePicker();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    newList = widget.query.toString().split('[')[1].toString().split(']')[0].toString().split(',').toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +86,7 @@ class _RecordThridScreenState extends State<RecordThridScreen> {
                       );
                       if(selectedDate!=null){
                         setState(() {
+                          _prameterDay = selectedDate.toString();
                           _day = DateFormat('yyyy년 MM월 dd일 ').format(selectedDate)
                               +'('+ DateFormat('E','ko').format(selectedDate)+')';
                         });
@@ -96,6 +111,9 @@ class _RecordThridScreenState extends State<RecordThridScreen> {
                 ),
                 child: ListTile(
                   title: TextFormField(
+                    onChanged: (value){
+                      _place = value;
+                    },
                     decoration: InputDecoration(
                       border: InputBorder.none
                     ),
@@ -208,8 +226,9 @@ class _RecordThridScreenState extends State<RecordThridScreen> {
                     onPressed: (){
                       final bytes = File(_image!.path).readAsBytesSync();
                       String base64Image =base64Encode(bytes);
-                      print(base64Image);
-
+                      print(_place);
+                      print(_prameterDay);
+                      print(newList);
                     },
                     child: Text(
                       '완료',

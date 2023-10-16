@@ -51,7 +51,9 @@ class AuthProviderNotifier extends ChangeNotifier{
                   GoRoute(
                     path: 'record/register/thrid',
                     name: RecordThridScreen.routeName,
-                    builder: (_,state) => RecordThridScreen()
+                    builder: (_,state) => RecordThridScreen(
+                      query: state.queryParameters['query']
+                    )
                   )
                 ]
               )
