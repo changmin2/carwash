@@ -1,15 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:carwash/car/model/register_params.dart';
+import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
 
-class RecordThridScreen extends StatefulWidget {
+class RecordThridScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordThrid';
   final query;
   const RecordThridScreen({
@@ -18,10 +21,10 @@ class RecordThridScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<RecordThridScreen> createState() => _RecordThridScreenState();
+  ConsumerState<RecordThridScreen> createState() => _RecordThridScreenState();
 }
 
-class _RecordThridScreenState extends State<RecordThridScreen> {
+class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   XFile? _image;
   var _day = '';
   var _prameterDay = '';
@@ -226,9 +229,16 @@ class _RecordThridScreenState extends State<RecordThridScreen> {
                     onPressed: (){
                       final bytes = File(_image!.path).readAsBytesSync();
                       String base64Image =base64Encode(bytes);
-                      print(_place);
-                      print(_prameterDay);
-                      print(newList);
+
+                      RecordRegisterParams params = new RecordRegisterParams(
+                        image: base64Image,
+                        place: _place,
+                        date: _day,
+                        washList: newList
+                      );
+
+                      ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
+
                     },
                     child: Text(
                       '완료',

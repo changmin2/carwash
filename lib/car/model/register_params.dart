@@ -7,7 +7,7 @@ class RecordRegisterParams{
   final String? date;
   final String? place;
   final String? image;
-  final List<String>? washList;
+  final List<dynamic>? washList;
 
   const RecordRegisterParams({
     this.date,

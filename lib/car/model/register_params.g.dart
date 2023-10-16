@@ -12,9 +12,7 @@ RecordRegisterParams _$RecordRegisterParamsFromJson(
       date: json['date'] as String?,
       place: json['place'] as String?,
       image: json['image'] as String?,
-      washList: (json['washList'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
+      washList: json['washList'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$RecordRegisterParamsToJson(
