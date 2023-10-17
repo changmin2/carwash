@@ -11,7 +11,7 @@ part 'record_repository.g.dart';
 final recordRepositoryProvider = Provider((ref){
   final dio = ref.watch(dioProvider);
   
-  final repository = RecordRepository(dio,baseUrl: 'http://$ip/carwash');
+  final repository = RecordRepository(dio,baseUrl: 'http://$ip/car');
 
   return repository;
 });

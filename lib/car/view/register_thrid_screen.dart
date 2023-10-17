@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:carwash/car/model/register_params.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,12 +27,13 @@ class RecordThridScreen extends ConsumerStatefulWidget {
 }
 
 class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
-  XFile? _image;
+  File? _image;
   var _day = '';
   var _prameterDay = '';
   var _place = '';
   var newList = [];
   final ImagePicker picker = ImagePicker();
+  FirebaseStorage storage = FirebaseStorage.instance;
 
   @override
   void initState() {
@@ -116,6 +119,9 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                   title: TextFormField(
                     onChanged: (value){
                       _place = value;
+                    },
+                    onSaved: (value){
+                      _place = value!;
                     },
                     decoration: InputDecoration(
                       border: InputBorder.none
@@ -232,8 +238,8 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
 
                       RecordRegisterParams params = new RecordRegisterParams(
                         image: base64Image,
-                        place: _place,
-                        date: _day,
+                        place: _place.toString(),
+                        date: _prameterDay.toString(),
                         washList: newList
                       );
 
@@ -257,11 +263,20 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
     );
   }
 
+  Future<void> uploadImage() async {
+    final now = DateTime.now();
+    var ref = storage.ref().child('washRecord/$now.jpg');
+    ref.putFile(_image!);
+
+    ref.getDownloadURL(); //이미지 파일의 url
+  }
+
   Future getImage(ImageSource imageSource) async {
     final XFile? pickedFile = await picker.pickImage(source: imageSource);
     if(pickedFile!=null){
       setState(() {
-        _image = XFile(pickedFile.path);
+        _image = File(pickedFile.path);
+        uploadImage();
       });
     }
   }
