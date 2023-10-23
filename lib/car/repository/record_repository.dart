@@ -28,4 +28,12 @@ abstract class RecordRepository{
   Future<void> recordRegister({
     @Body() RecordRegisterParams? recordRegisterParams = const RecordRegisterParams()
   });
+
+  @GET("/{date}")
+  @Headers({
+    'accessToken':'true'
+  })
+  Future<void> getRecord({
+    @Path() required String date
+  });
 }

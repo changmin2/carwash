@@ -32,6 +32,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   var _prameterDay = '';
   var _place = '';
   var newList = [];
+  var _downloadUrl = '';
   final ImagePicker picker = ImagePicker();
   FirebaseStorage storage = FirebaseStorage.instance;
 
@@ -232,12 +233,10 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: (){
-                      final bytes = File(_image!.path).readAsBytesSync();
-                      String base64Image =base64Encode(bytes);
-
+                    onPressed: () async {
+                      await uploadImage();
                       RecordRegisterParams params = new RecordRegisterParams(
-                        image: base64Image,
+                        image: _downloadUrl,
                         place: _place.toString(),
                         date: _prameterDay.toString(),
                         washList: newList
@@ -245,6 +244,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
 
                       ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
 
+                      context.go('/');
                     },
                     child: Text(
                       '완료',
@@ -266,9 +266,10 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   Future<void> uploadImage() async {
     final now = DateTime.now();
     var ref = storage.ref().child('washRecord/$now.jpg');
-    ref.putFile(_image!);
+    await ref.putFile(_image!);
 
-    ref.getDownloadURL(); //이미지 파일의 url
+    _downloadUrl = await ref.getDownloadURL(); //이미지 파일의 url
+
   }
 
   Future getImage(ImageSource imageSource) async {
@@ -276,7 +277,6 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
     if(pickedFile!=null){
       setState(() {
         _image = File(pickedFile.path);
-        uploadImage();
       });
     }
   }

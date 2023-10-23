@@ -9,7 +9,7 @@ import '../const/colors.dart';
 
 class RootTab extends ConsumerStatefulWidget {
   static String get routeName => 'home';
-  const RootTab({Key? key}) : super(key: key);
+  const  RootTab({Key? key}) : super(key: key);
 
   @override
   ConsumerState<RootTab> createState() => _RootTabState();
