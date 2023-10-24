@@ -1,4 +1,5 @@
 import 'package:carwash/car/component/record_card.dart';
+import 'package:carwash/car/model/recordDto.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
