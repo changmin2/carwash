@@ -25,11 +25,17 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
 
   DateTime _focusedDay = DateTime.now();
 
+  var eventList = [];
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    ref.read(recordRepositoryProvider).getRecord(date: _focusedDay.toString());
+    init();
+  }
+
+  void init() async {
+    eventList = await ref.read(recordRepositoryProvider).getRecord(date: _focusedDay.toString());
   }
 
   @override

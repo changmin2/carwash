@@ -1,3 +1,4 @@
+import 'package:carwash/car/model/recordDto.dart';
 import 'package:carwash/car/model/register_params.dart';
 import 'package:carwash/common/dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,7 +34,7 @@ abstract class RecordRepository{
   @Headers({
     'accessToken':'true'
   })
-  Future<void> getRecord({
+  Future<List<recordDto>> getRecord({
     @Path() required String date
   });
 }
