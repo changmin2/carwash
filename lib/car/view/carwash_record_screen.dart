@@ -77,6 +77,12 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
                       size: 40.0,
                     ),
                   ),
+                  onPageChanged: (focusedDay){
+                    setState(() {
+                      _selectedDay = focusedDay;
+                      _focusedDay = focusedDay;
+                    });
+                  },
                   locale: 'ko_KR',
                   focusedDay: _focusedDay,
                   firstDay: DateTime.utc(2021,10,16),
