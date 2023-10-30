@@ -27,7 +27,13 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
   DateTime _focusedDay = DateTime.now();
   Map<String,List<Event>> events = {};
   var eventList = [];
-
+  var check = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    init();
+  }
   Future init() async {
     events = new Map<String,List<Event>>();
     eventList = await ref.read(recordRepositoryProvider).getRecord(date: _focusedDay.toString());
@@ -39,7 +45,7 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
         events[o.date.toString().split(" ")[0]] = [Event(o.id,o.memberId,o.imgUrl,o.washList,o.place,o.date)];
       }
     }
-    return true;
+    check = true;
   }
 
   @override
@@ -47,14 +53,7 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
     return DefaultLayoutV2(
 
       floatingActionButton: _floatingActionButton(context),
-      child: FutureBuilder(
-        future: init(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if(snapshot.hasData == false){
-            return Center(child: CircularProgressIndicator());
-          }
-          else{
-            return Column(
+      child: check ? Column(
               children: [
                 TableCalendar(
                   headerStyle: HeaderStyle(
@@ -109,10 +108,7 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
                 )
 
               ],
-            );
-          }
-          }
-      )
+            ) : Center(child: CircularProgressIndicator(),)
     );
   }
 }
