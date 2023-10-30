@@ -25,85 +25,99 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
   );
 
   DateTime _focusedDay = DateTime.now();
-
+  Map<String,List<Event>> events = {};
   var eventList = [];
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    init();
-  }
-
-  void init() async {
+  Future init() async {
+    events = new Map<String,List<Event>>();
     eventList = await ref.read(recordRepositoryProvider).getRecord(date: _focusedDay.toString());
+    for (var o in eventList) {
+      o = o as recordDto;
+      if(events.containsKey(o.date.toString().split(" ")[0])){
+        events[o.date.toString().split(" ")[0]]!.add(Event(o.id,o.memberId,o.imgUrl,o.washList,o.place,o.date));
+      }else{
+        events[o.date.toString().split(" ")[0]] = [Event(o.id,o.memberId,o.imgUrl,o.washList,o.place,o.date)];
+      }
+    }
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
-
     return DefaultLayoutV2(
 
       floatingActionButton: _floatingActionButton(context),
-      child: Column(
-        children: [
-          TableCalendar(
-              headerStyle: HeaderStyle(
-                titleCentered: true,
-                formatButtonVisible: false,
-                titleTextFormatter: (date, locale) =>
-                    DateFormat.yMMMMd(locale).format(date),
-                titleTextStyle: const  TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500
+      child: FutureBuilder(
+        future: init(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if(snapshot.hasData == false){
+            return Center(child: CircularProgressIndicator());
+          }
+          else{
+            return Column(
+              children: [
+                TableCalendar(
+                  headerStyle: HeaderStyle(
+                    titleCentered: true,
+                    formatButtonVisible: false,
+                    titleTextFormatter: (date, locale) =>
+                        DateFormat.yMMMMd(locale).format(date),
+                    titleTextStyle: const  TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500
+                    ),
+                    headerPadding: const EdgeInsets.only(bottom: 20,top: 20),
+                    leftChevronPadding: const EdgeInsets.only(left: 50),
+                    rightChevronPadding: const EdgeInsets.only(right: 50),
+                    leftChevronIcon: const Icon(
+                      Icons.arrow_left,
+                      size: 40.0,
+                    ),
+                    rightChevronIcon: const Icon(
+                      Icons.arrow_right,
+                      size: 40.0,
+                    ),
+                  ),
+                  locale: 'ko_KR',
+                  focusedDay: _focusedDay,
+                  firstDay: DateTime.utc(2021,10,16),
+                  lastDay: DateTime.utc(2030,3,14),
+                  onDaySelected: (DateTime selectedDay,DateTime focusedDay){
+                    setState(() {
+                      _selectedDay = selectedDay;
+                      _focusedDay = focusedDay;
+                    });
+                  },
+                  selectedDayPredicate: (DateTime day) {
+                    // selectedDay 와 동일한 날짜의 모양을 바꿔줍니다.
+                    return isSameDay(_selectedDay, day);
+                  },
+                  eventLoader: (day){
+                    return events[day.toString().split(" ")[0]] ?? [];
+                  },
                 ),
-                headerPadding: const EdgeInsets.only(bottom: 20,top: 20),
-                leftChevronPadding: const EdgeInsets.only(left: 50),
-                rightChevronPadding: const EdgeInsets.only(right: 50),
-                leftChevronIcon: const Icon(
-                  Icons.arrow_left,
-                  size: 40.0,
-                ),
-                rightChevronIcon: const Icon(
-                  Icons.arrow_right,
-                  size: 40.0,
-                ),
-              ),
-              locale: 'ko_KR',
-              focusedDay: _focusedDay,
-              firstDay: DateTime.utc(2021,10,16),
-              lastDay: DateTime.utc(2030,3,14),
-              onDaySelected: (DateTime selectedDay,DateTime focusedDay){
-                setState(() {
-                  _selectedDay = selectedDay;
-                  _focusedDay = focusedDay;
-                });
-              },
-            selectedDayPredicate: (DateTime day) {
-              // selectedDay 와 동일한 날짜의 모양을 바꿔줍니다.
-              return isSameDay(_selectedDay, day);
-            },
-            // eventLoader: (day){
-            //     return [Event('hi',true)];
-            // },
-          ),
-          SizedBox(height: 16),
-          RecordCard()
+                SizedBox(height: 16),
+                events[_selectedDay.toString().split(" ")[0]]==null ? Container()
+                :
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: events[_selectedDay.toString().split(" ")[0]]!.length,
+                      itemBuilder: (BuildContext context,int idx){
+                        return RecordCard(record:events[_selectedDay.toString().split(" ")[0]]![idx]);
+                      }
+                  ),
+                )
 
-        ],
+              ],
+            );
+          }
+          }
       )
     );
   }
 }
 
-class Event {
-  String title;
-  bool complete;
-  Event(this.title, this.complete);
 
-  @override
-  String toString() => title;
-}
 
 FloatingActionButton _floatingActionButton(BuildContext context){
 
