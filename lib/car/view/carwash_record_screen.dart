@@ -1,5 +1,6 @@
 import 'package:carwash/car/component/record_card.dart';
 import 'package:carwash/car/model/recordDto.dart';
+import 'package:carwash/car/provider/record_provider.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
@@ -11,6 +12,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 class CarWashRecordScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordScreen';
+
   const CarWashRecordScreen({Key? key}) : super(key: key);
 
   @override
@@ -27,16 +29,15 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
   DateTime _focusedDay = DateTime.now();
   Map<String,List<Event>> events = {};
   var eventList = [];
-  var check = false;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    init();
   }
-  Future init() async {
+  Future<String> init() async {
     events = new Map<String,List<Event>>();
-    eventList = await ref.read(recordRepositoryProvider).getRecord(date: _focusedDay.toString());
+    eventList = await ref.read(RecordProvider('false').notifier).getRecord();
     for (var o in eventList) {
       o = o as recordDto;
       if(events.containsKey(o.date.toString().split(" ")[0])){
@@ -45,7 +46,7 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
         events[o.date.toString().split(" ")[0]] = [Event(o.id,o.memberId,o.imgUrl,o.washList,o.place,o.date)];
       }
     }
-    check = true;
+    return "sucess";
   }
 
   @override
@@ -53,7 +54,13 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
     return DefaultLayoutV2(
 
       floatingActionButton: _floatingActionButton(context),
-      child: check ? Column(
+      child: FutureBuilder(
+        future: init(),
+        builder: (BuildContext context, AsyncSnapshot snapshot){
+          if (snapshot.hasData == false) {
+            return Center(child: const CircularProgressIndicator());
+          }else{
+            return Column(
               children: [
                 TableCalendar(
                   headerStyle: HeaderStyle(
@@ -103,7 +110,7 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
                 ),
                 SizedBox(height: 16),
                 events[_selectedDay.toString().split(" ")[0]]==null ? Container()
-                :
+                    :
                 Expanded(
                   child: ListView.builder(
                       itemCount: events[_selectedDay.toString().split(" ")[0]]!.length,
@@ -114,7 +121,10 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
                 )
 
               ],
-            ) : Center(child: CircularProgressIndicator(),)
+            );
+          }
+        },
+      )
     );
   }
 }

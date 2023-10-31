@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:carwash/car/model/register_params.dart';
+import 'package:carwash/car/provider/record_provider.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -94,6 +95,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                       if(selectedDate!=null){
                         setState(() {
                           _prameterDay = selectedDate.toString();
+                          print(_prameterDay);
                           _day = DateFormat('yyyy년 MM월 dd일 ').format(selectedDate)
                               +'('+ DateFormat('E','ko').format(selectedDate)+')';
                         });
@@ -235,6 +237,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                     ),
                     onPressed: () async {
                       await uploadImage();
+
                       RecordRegisterParams params = new RecordRegisterParams(
                         image: _downloadUrl,
                         place: _place.toString(),
@@ -242,7 +245,8 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                         washList: newList
                       );
 
-                      ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
+                      await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
+                      await ref.read(RecordProvider('true').notifier).getRecord();
 
                       context.go('/');
                     },

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
+import '../../weather/provider/weather_provider.dart';
 import '../const/colors.dart';
 
 class RootTab extends ConsumerStatefulWidget {
@@ -25,6 +26,7 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
     super.initState();
     controller = TabController(length: 2, vsync: this);
     controller.animateTo(index);
+    ref.read(WeatherProvider.notifier).getWeather();
   }
 
   @override
