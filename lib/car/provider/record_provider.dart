@@ -1,3 +1,4 @@
+import 'package:carwash/car/provider/state_provider.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,10 +26,13 @@ class RecordStateNotifier extends StateNotifier<List<recordDto>>{
     []
   );
 
-  Future<List<recordDto>> getRecord()async {
-    if(state.length!=0 && flag=='false'){
+  Future<List<recordDto>> getRecord(
+      bool? stateflag
+      )async {
+    if(state.length!=0 && flag=='false' && stateflag==false){
 
     }else{
+
       var pstate = await repository.getRecord(date: "hi");
       state = pstate;
     }

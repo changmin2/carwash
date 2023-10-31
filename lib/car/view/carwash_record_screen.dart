@@ -1,6 +1,7 @@
 import 'package:carwash/car/component/record_card.dart';
 import 'package:carwash/car/model/recordDto.dart';
 import 'package:carwash/car/provider/record_provider.dart';
+import 'package:carwash/car/provider/state_provider.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
@@ -37,7 +38,12 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
   }
   Future<String> init() async {
     events = new Map<String,List<Event>>();
-    eventList = await ref.read(RecordProvider('false').notifier).getRecord();
+    var flag = ref.watch(stateProvider);
+    eventList = await ref.watch(RecordProvider('false').notifier).getRecord(flag.flag);
+    if(flag.flag==true){
+      ref.read(stateProvider).change();
+
+    }
     for (var o in eventList) {
       o = o as recordDto;
       if(events.containsKey(o.date.toString().split(" ")[0])){

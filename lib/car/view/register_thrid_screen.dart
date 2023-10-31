@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:carwash/car/model/register_params.dart';
 import 'package:carwash/car/provider/record_provider.dart';
+import 'package:carwash/car/provider/state_provider.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -246,8 +247,8 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                       );
 
                       await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
-                      await ref.read(RecordProvider('true').notifier).getRecord();
-
+                      await ref.read(RecordProvider('true').notifier).getRecord(false);
+                      ref.read(stateProvider).change();
                       context.go('/');
                     },
                     child: Text(
