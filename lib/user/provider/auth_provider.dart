@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:carwash/car/view/carwash_record_screen.dart';
+import 'package:carwash/car/view/record_detail_screen.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/car/view/register_thrid_screen.dart';
@@ -40,7 +41,17 @@ class AuthProviderNotifier extends ChangeNotifier{
         GoRoute(
             path: 'recordScreen',
             name: CarWashRecordScreen.routeName,
-            builder: (_,__) => CarWashRecordScreen()
+            builder: (_,__) => CarWashRecordScreen(),
+            routes: [
+              GoRoute(
+                path: 'recordDetail/:id',
+                name: RecordDetail.routeName,
+                builder: (_,state) => RecordDetail(
+                    id: int.parse(state.pathParameters['id']!)
+                  //rid: 123
+                ),
+              )
+            ]
         ),
         GoRoute(
             path: 'record/register',

@@ -3,6 +3,7 @@ import 'package:carwash/car/model/recordDto.dart';
 import 'package:carwash/car/provider/record_provider.dart';
 import 'package:carwash/car/provider/state_provider.dart';
 import 'package:carwash/car/repository/record_repository.dart';
+import 'package:carwash/car/view/record_detail_screen.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
@@ -121,7 +122,15 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
                   child: ListView.builder(
                       itemCount: events[_selectedDay.toString().split(" ")[0]]!.length,
                       itemBuilder: (BuildContext context,int idx){
-                        return RecordCard(record:events[_selectedDay.toString().split(" ")[0]]![idx]);
+                        return GestureDetector(
+                          onTap: (){
+                            context.goNamed(RecordDetail.routeName,
+                                pathParameters: {
+                                  'id':events[_selectedDay.toString().split(" ")[0]]![idx].id.toString()
+                                });
+                          },
+                            child: RecordCard(record:events[_selectedDay.toString().split(" ")[0]]![idx])
+                        );
                       }
                   ),
                 )
