@@ -1,7 +1,12 @@
+import 'package:carwash/car/model/recordDto.dart';
 import 'package:flutter/material.dart';
 
 class RecordCard extends StatelessWidget {
+  final Event record;
+
+
   const RecordCard({
+    required this.record,
     Key? key
   }) : super(key: key);
 
@@ -26,13 +31,14 @@ class RecordCard extends StatelessWidget {
               const SizedBox(width: 16),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '2023-09-24'
+                    record.date.toString().split(" ")[0]
                   ),
                   SizedBox(height: 8),
                   Text(
-                    '화곡동 카워시'
+                    record.place
                   )
                 ],
               )
@@ -42,4 +48,21 @@ class RecordCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class Event {
+  int id;
+  String memberId;
+  String imgUrl;
+  String washList;
+  String place;
+  DateTime date;
+  Event(
+      this.id,
+      this.memberId,
+      this.imgUrl,
+      this.washList,
+      this.place,
+      this.date
+      );
 }

@@ -20,7 +20,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    ref.read(WeatherProvider.notifier).getWeather();
   }
 
   @override
