@@ -29,6 +29,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     return DefaultLayoutV2(
       child: SingleChildScrollView(
+        // 키보드가 올라오고 화면을 드래그하면 키보드가 사라짐.
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defalutSpace),
@@ -100,7 +101,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               const SizedBox(height: TSizes.spaceBtwSections),
               SizedBox(
-                width: 400,
+                width: double.infinity,
                 child: ElevatedButton(
                   // onPressed: () async {
                   //   if (_idFormKey.currentState!.validate() &&
@@ -122,7 +123,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   child: const Text('로그인'),
                 ),
               ),
+
               const SizedBox(height: TSizes.spaceBtwItems / 2),
+
               TextButton(
                 onPressed: () {
                   Navigator.push(
@@ -133,9 +136,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("세차파트너에 처음이신가요?",style: Theme.of(context).textTheme.bodySmall),
+                    Text(
+                      "세차파트너에 처음이신가요?",
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                     const SizedBox(width: TSizes.spaceBtwInputFields),
-                    Text("회원가입",style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: PRIMARY_COLOR)),
+                    Text(
+                      "회원가입",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: PRIMARY_COLOR,
+                            decoration: TextDecoration.underline,
+                            decorationThickness: 5,
+                            decorationColor: PRIMARY_COLOR,
+                          ),
+                    ),
                   ],
                 ),
               ),
