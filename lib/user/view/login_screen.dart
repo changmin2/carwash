@@ -1,10 +1,11 @@
+import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/common/view/main_screen.dart';
 import 'package:carwash/user/view/signup_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../model/user_model.dart';
+import '../../common/const/colors.dart';
 import '../provider/user_me_provider.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -25,30 +26,38 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(userMeProvider);
+
     return DefaultLayoutV2(
       child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Padding(
-          padding: EdgeInsets.only(left: 16, right: 16),
+          padding: const EdgeInsets.all(TSizes.defalutSpace),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: 800,
-                height: 350,
-                child: Image.asset(
-                  'asset/img/login.png',
-                  fit: BoxFit.contain,
-                ),
+              Image.asset(
+                'asset/img/login.png',
+                width: double.infinity,
+                height: 150,
+                alignment: Alignment.topLeft,
               ),
-              SizedBox(
-                height: 25,
+              Text(
+                'Welcome back ,',
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
+              const SizedBox(height: TSizes.spaceBtwItems / 2),
+              Text(
+                '세차파트너에 오신걸 환영합니다.',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: TSizes.spaceBtwSections * 2),
               Form(
                 key: _idFormKey,
                 child: TextFormField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), labelText: 'ID'),
+                  decoration: const InputDecoration(
+                    labelText: '아이디를 입력해주세요.',
+                    prefixIcon: Icon(Icons.person_2_outlined),
+                  ),
                   onChanged: (String value) {
                     username = value;
                   },
@@ -64,10 +73,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   },
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: TSizes.spaceBtwInputFields),
               Form(
                 key: _psFormKey,
                 child: TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: '비밀번호를 입력해주세요,',
+                    prefixIcon: Icon(Icons.https_outlined),
+                    suffixIcon: Icon(Icons.visibility_outlined),
+                  ),
                   onChanged: (String value) {
                     password = value;
                   },
@@ -81,46 +96,68 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       return "영문과 숫자 조합으로 입력해주세요.";
                     }
                   },
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), labelText: 'Password'),
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: TSizes.spaceBtwSections),
               SizedBox(
                 width: 400,
                 child: ElevatedButton(
-                    onPressed: () async {
-                      if (_idFormKey.currentState!.validate() &&
-                          _psFormKey.currentState!.validate()) {
-                        await ref.read(userMeProvider.notifier).login(
-                            username: username,
-                            password: password,
-                            context: context);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                    ),
-                    child: Text('login')),
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 50.0,
-                child: ElevatedButton(
+                  // onPressed: () async {
+                  //   if (_idFormKey.currentState!.validate() &&
+                  //       _psFormKey.currentState!.validate()) {
+                  //     await ref.read(userMeProvider.notifier).login(
+                  //         username: username,
+                  //         password: password,
+                  //         context: context);
+                  //   }
+                  // },
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MainScreen(),
+                      ),
+                    );
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff132B35),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  child: Text("회원가입"),
+                  child: const Text('로그인'),
                 ),
               ),
+              const SizedBox(height: TSizes.spaceBtwItems / 2),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("세차파트너에 처음이신가요?",style: Theme.of(context).textTheme.bodySmall),
+                    const SizedBox(width: TSizes.spaceBtwInputFields),
+                    Text("회원가입",style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: PRIMARY_COLOR)),
+                  ],
+                ),
+              ),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (context) => const SignUpScreen()));
+              //     },
+              //     style: ElevatedButton.styleFrom().copyWith(
+              //       backgroundColor:
+              //           const MaterialStatePropertyAll(Colors.white),
+              //     ),
+              //     child: const Text("회원가입",
+              //         style: TextStyle(
+              //           color: Colors.black,
+              //         )),
+              //   ),
+              // ),
             ],
           ),
         ),
