@@ -23,7 +23,8 @@ class DefaultLayoutV2 extends ConsumerWidget {
       appBar: appBar==null ? null
       : appBar,
       body: SafeArea(child: child),
-      backgroundColor: backgroundColor ?? Colors.white,
+      // backgroundColor: backgroundColor ?? Colors.white,
+      backgroundColor: backgroundColor,
       floatingActionButton: floatingActionButton,
       bottomNavigationBar: bottomNavagtionBar,
     );
