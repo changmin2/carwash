@@ -1,3 +1,6 @@
+import 'package:carwash/car/view/record_detail_screen.dart';
+import 'package:carwash/common/const/sizes.dart';
+import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 class RecentCarWashCard extends StatelessWidget {
@@ -5,47 +8,93 @@ class RecentCarWashCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 100,
+    return GestureDetector(
+      // onTap: () => THelperFunctions.navigateToScreen(context, const RecordDetail(id: 2)),
+      child: SizedBox(
+        height: 80,
+        child: Padding(
+            padding: const EdgeInsets.all(TSizes.md),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Image.asset(
+                      'asset/img/login.png',
+                      width: 50,
+                      height: 50,
+                    ),
+                    const SizedBox(width: TSizes.spaceBtwItems),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '2023-05-04',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        Text(
+                          '화곡동 카워시',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                const Icon(Icons.keyboard_arrow_right),
 
-      child: Card(
-          shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-          ),
-        child: Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 16),
-              child: Icon(
-                Icons.car_crash_sharp,
-                size: 50,
-              ),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 16),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '2023-05-04',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700
-                    ),
-                  ),
-                  Text(
-                    '화곡동 카워시',
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
         ),
       ),
     );
+
+
+    //   SizedBox(
+    //   width: double.infinity,
+    //   height: 100,
+    //   child: Card(
+    //     color: Colors.white,
+    //     elevation: 1.0,
+    //     shape: RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.circular(12.0),
+    //     ),
+    //     child: Padding(
+    //       padding: const EdgeInsets.all(TSizes.md),
+    //       child: Row(
+    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //         children: [
+    //           Row(
+    //             children: [
+    //               Image.asset(
+    //                 'asset/img/login.png',
+    //                 width: 50,
+    //                 height: 50,
+    //               ),
+    //               const SizedBox(width: TSizes.spaceBtwItems),
+    //               Column(
+    //                 mainAxisAlignment: MainAxisAlignment.center,
+    //                 crossAxisAlignment: CrossAxisAlignment.start,
+    //                 children: [
+    //                   Text(
+    //                     '2023-05-04',
+    //                     style: Theme.of(context).textTheme.bodyMedium,
+    //                   ),
+    //                   Text(
+    //                     '화곡동 카워시',
+    //                     style: Theme.of(context).textTheme.bodyMedium,
+    //                   )
+    //                 ],
+    //               ),
+    //             ],
+    //           ),
+    //           const Icon(Icons.keyboard_arrow_right),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // );
+
+
   }
 }

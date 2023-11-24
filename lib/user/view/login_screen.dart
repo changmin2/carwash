@@ -57,7 +57,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 key: _idFormKey,
                 child: TextFormField(
                   decoration: const InputDecoration(
-                    labelText: '아이디를 입력해주세요.',
+                    hintText: '아이디를 입력해주세요.',
                     prefixIcon: Icon(Icons.person_2_outlined),
                   ),
                   onChanged: (String value) {
@@ -81,7 +81,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 child: TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(
-                    labelText: '비밀번호를 입력해주세요,',
+                    hintText: '비밀번호를 입력해주세요,',
                     prefixIcon: Icon(Icons.https_outlined),
                     suffixIcon: Icon(Icons.visibility_outlined),
                   ),

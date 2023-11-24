@@ -1,3 +1,5 @@
+import 'package:carwash/common/const/colors.dart';
+import 'package:carwash/common/const/sizes.dart';
 import 'package:flutter/material.dart';
 
 class TElevatedButtonTheme {
@@ -5,9 +7,9 @@ class TElevatedButtonTheme {
 
   static final lightElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      elevation: 0,
+      elevation: TSizes.buttonElevation,
       foregroundColor: Colors.white,
-      backgroundColor: const Color(0xff2A9D8F),
+      backgroundColor: PRIMARY_COLOR,
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
       side: const BorderSide(color: Colors.grey),
@@ -18,7 +20,7 @@ class TElevatedButtonTheme {
         fontWeight: FontWeight.w600,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusDirectional.circular(12),
+        borderRadius: BorderRadiusDirectional.circular(TSizes.buttonRadius),
       ),
     ),
   );
@@ -27,9 +29,9 @@ class TElevatedButtonTheme {
 
   static final darkElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      elevation: 0,
+      elevation: TSizes.buttonElevation,
       foregroundColor: Colors.white,
-      backgroundColor: const Color(0xff2A9D8F),
+      backgroundColor: PRIMARY_COLOR,
       disabledForegroundColor: Colors.grey,
       disabledBackgroundColor: Colors.grey,
       side: const BorderSide(color: Colors.grey),
@@ -40,7 +42,7 @@ class TElevatedButtonTheme {
         fontWeight: FontWeight.w600,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusDirectional.circular(12),
+        borderRadius: BorderRadiusDirectional.circular(TSizes.buttonRadius),
       ),
     ),
   );

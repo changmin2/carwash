@@ -101,11 +101,16 @@ flutter:
   fonts:
     - family: SeoulNamsan
       fonts:
-        - asset: asset/font/SeoulNamsanEB.ttf
         - asset: asset/font/SeoulNamsanB.ttf
+          weight: 400
+        - asset: asset/font/SeoulNamsanEB.ttf
+          weight: 500
         - asset: asset/font/SeoulNamsanM.ttf
+          weight: 300
         - asset: asset/font/SeoulNamsanL.ttf
+          weight: 200
         - asset: asset/font/SeoulNamsanvert.ttf
+          weight: 100
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

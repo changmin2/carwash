@@ -1,7 +1,6 @@
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
-import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/common/view/main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -10,13 +9,12 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = THelperFunctions.isDarkMode(context);
 
     return DefaultLayoutV2(
       appBar: AppBar(
         elevation: 0.0,
-        leading: BackButton(
-          color: isDarkMode ? Colors.white : Colors.black,
+        leading: const BackButton(
+          color: Colors.black,
         ),
       ),
       child: SingleChildScrollView(

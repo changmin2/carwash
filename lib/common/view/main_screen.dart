@@ -1,3 +1,4 @@
+import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/common/component/carwash_life_card.dart';
 import 'package:carwash/common/component/event_card.dart';
 import 'package:carwash/common/component/recent_carwash_card.dart';
@@ -45,7 +46,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 width: 150,
                 child: OutlinedButton.icon(
                   // 텍스트버튼에 아이콘 넣기
-                  onPressed: () {},
+                  onPressed: () => THelperFunctions.navigateToScreen(context, const RecordFirstScreen()),
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.white),
                   ),
@@ -187,7 +188,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                         children: [
                           Text(
                             '세차 라이프',
-                            style: Theme.of(context).textTheme.titleLarge,
+                            style: Theme.of(context).textTheme.headlineMedium,
                           ),
                           TextButton(
                             onPressed: () {},
@@ -195,7 +196,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                               'See all',
                               style: Theme.of(context)
                                   .textTheme
-                                  .labelLarge
+                                  .titleMedium
                                   ?.copyWith(color: Colors.blue),
                             ),
                           )
@@ -218,13 +219,14 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       ),
 
                       const SizedBox(height: TSizes.spaceBtwSections),
-
+                      
+                      /// 최근 세차
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             '최근 세차',
-                            style: Theme.of(context).textTheme.titleLarge,
+                            style: Theme.of(context).textTheme.headlineMedium,
                           ),
                           TextButton(
                             onPressed: () {},
@@ -232,7 +234,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                               'See all',
                               style: Theme.of(context)
                                   .textTheme
-                                  .labelLarge
+                                  .titleMedium
                                   ?.copyWith(color: Colors.blue),
                             ),
                           )
@@ -242,12 +244,17 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       SizedBox(
                         height: 270,
                         child: ListView.builder(
-                          itemCount: 7,
-                          scrollDirection: Axis.vertical,
+                          itemCount: 3,
+                          // scrollDirection: Axis.vertical,
                           itemBuilder: (BuildContext context, int index) {
-                            return const Padding(
-                              padding: EdgeInsets.only(right: 8),
-                              child: RecentCarWashCard(),
+                            return const Column(
+                              children: [
+                                RecentCarWashCard(),
+                                Divider(
+                                  color: Colors.grey,
+                                  thickness: 0.3,
+                                )
+                              ],
                             );
                           },
                         ),
