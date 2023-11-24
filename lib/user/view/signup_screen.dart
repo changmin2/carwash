@@ -1,6 +1,7 @@
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/common/view/main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,12 +10,13 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = THelperFunctions.isDarkMode(context);
+
     return DefaultLayoutV2(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0.0,
-        leading: const BackButton(
-          color: Colors.black,
+        leading: BackButton(
+          color: isDarkMode ? Colors.white : Colors.black,
         ),
       ),
       child: SingleChildScrollView(
@@ -35,30 +37,29 @@ class SignUpScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      // Text(
-                      //   '세차 파트너',
-                      //   style: TextStyle(
-                      //     color: Color(0xff2A9D8F),
-                      //     fontSize: 22.0,
-                      //     fontWeight: FontWeight.bold,
-                      //     height: 1,
-                      //   ),
-                      // ),
-                      Text('세차파트너',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium
-                              ?.copyWith(color: PRIMARY_COLOR)),
-                      Text(' 가 되어',
-                          style: Theme.of(context).textTheme.headlineSmall),
+                      Text(
+                        '세차파트너',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(color: PRIMARY_COLOR),
+                      ),
+                      Text(
+                        ' 가 되어',
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
                     ],
                   ),
-                  const SizedBox(height: TSizes.spaceBtwInputFields / 4),
-                  Text('여러 회원분들과',
-                      style: Theme.of(context).textTheme.headlineSmall),
-                  const SizedBox(height: TSizes.spaceBtwInputFields / 4),
-                  Text('세차에 대해 공유해보세요!',
-                      style: Theme.of(context).textTheme.headlineSmall),
+                  const SizedBox(height: TSizes.xs),
+                  Text(
+                    '여러 회원분들과',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: TSizes.xs),
+                  Text(
+                    '세차에 대해 공유해보세요!',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
                 ],
               ),
 
@@ -77,7 +78,7 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: TSizes.spaceBtwInputFields / 2),
+                    const SizedBox(height: TSizes.sm),
 
                     /// 아이디
                     TextFormField(
@@ -100,7 +101,7 @@ class SignUpScreen extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: TSizes.spaceBtwInputFields / 2),
+                    const SizedBox(height: TSizes.sm),
 
                     TextFormField(
                       // 비밀번호 효과
@@ -121,7 +122,7 @@ class SignUpScreen extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: TSizes.spaceBtwInputFields / 2),
+                    const SizedBox(height: TSizes.sm),
 
                     TextFormField(
                       decoration: const InputDecoration(
@@ -139,7 +140,7 @@ class SignUpScreen extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: TSizes.spaceBtwInputFields / 2),
+                    const SizedBox(height: TSizes.sm),
 
                     TextFormField(
                       maxLines: 5,
