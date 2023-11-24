@@ -28,9 +28,9 @@ class _App extends ConsumerWidget {
     // state.deleteAll();
     return MaterialApp.router(
       // 시스템 설정에 따른 Theme
-      themeMode: ThemeMode.system,
+      // themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
-      darkTheme: TAppTheme.darkTheme,
+      // darkTheme: TAppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       routerDelegate: router.routerDelegate,
       routeInformationParser: router.routeInformationParser,
