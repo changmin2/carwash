@@ -42,6 +42,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 height: 150,
                 alignment: Alignment.topLeft,
               ),
+              const SizedBox(height: TSizes.spaceBtwItems),
               Text(
                 'Welcome back ,',
                 style: Theme.of(context).textTheme.headlineMedium,
@@ -49,9 +50,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               const SizedBox(height: TSizes.spaceBtwItems / 2),
               Text(
                 '세차파트너에 오신걸 환영합니다.',
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
-              const SizedBox(height: TSizes.spaceBtwSections * 2),
+              const SizedBox(height: TSizes.spaceBtwSections),
               Form(
                 key: _idFormKey,
                 child: TextFormField(
