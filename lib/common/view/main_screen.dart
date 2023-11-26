@@ -29,7 +29,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(WeatherProvider);
-
+    print(state.toString());
     return DefaultLayoutV2(
       backgroundColor: PRIMARY_COLOR,
       appBar: renderAppBar(context),
@@ -107,7 +107,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       state.length != 0
                           ? Column(
                               children: [
-                                const Row(
+                                Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
@@ -127,7 +127,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 15, right: 15),
                                   child: Container(
-                                    height: 180,
+                                    height: 200,
                                     child: ListView.builder(
                                       itemCount: state[0].list.length,
                                       scrollDirection: Axis.horizontal,
@@ -145,7 +145,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                 ),
                               ],
                             )
-                          : const SizedBox(
+                          : SizedBox(
                               height: 150,
                               child: Column(
                                 children: [
@@ -247,7 +247,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                           itemCount: 3,
                           // scrollDirection: Axis.vertical,
                           itemBuilder: (BuildContext context, int index) {
-                            return const Column(
+                            return Column(
                               children: [
                                 RecentCarWashCard(),
                                 Divider(

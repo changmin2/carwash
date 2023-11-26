@@ -66,7 +66,7 @@ class SignUpScreen extends StatelessWidget {
               Form(
                 child: Column(
                   children: [
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text('아이디'),
@@ -88,7 +88,7 @@ class SignUpScreen extends StatelessWidget {
                     const SizedBox(height: TSizes.spaceBtwInputFields),
 
                     /// 비밀번호
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text('비밀번호'),
@@ -113,7 +113,7 @@ class SignUpScreen extends StatelessWidget {
                     const SizedBox(height: TSizes.spaceBtwInputFields),
 
                     /// 닉네임
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text('닉네임'),
@@ -131,7 +131,7 @@ class SignUpScreen extends StatelessWidget {
                     const SizedBox(height: TSizes.spaceBtwInputFields),
 
                     /// 나의 소개
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text('나의 소개'),

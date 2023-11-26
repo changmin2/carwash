@@ -104,23 +104,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  // onPressed: () async {
-                  //   if (_idFormKey.currentState!.validate() &&
-                  //       _psFormKey.currentState!.validate()) {
-                  //     await ref.read(userMeProvider.notifier).login(
-                  //         username: username,
-                  //         password: password,
-                  //         context: context);
-                  //   }
-                  // },
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MainScreen(),
-                      ),
-                    );
+                  onPressed: () async {
+                    if (_idFormKey.currentState!.validate() &&
+                        _psFormKey.currentState!.validate()) {
+                      await ref.read(userMeProvider.notifier).login(
+                          username: username,
+                          password: password,
+                          context: context);
+                    }
                   },
+                  // onPressed: () {
+                  //   Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => const MainScreen(),
+                  //     ),
+                  //   );
+                  // },
                   child: const Text('로그인'),
                 ),
               ),

@@ -1,5 +1,4 @@
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carwash/car/component/washlist_card.dart';
 import 'package:carwash/car/provider/record_provider.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
@@ -97,22 +96,11 @@ class _RecordDetailState extends ConsumerState<RecordDetail> {
                 child: Container(
                     width: 400,
                     height: 250,
-                    child :CachedNetworkImage(
-                          imageUrl: state.imgUrl,
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          placeholder: (context, url) => SizedBox(
-                              height: 30,
-                              width: 30,
-                              child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-                        )
+                    child: Image(
+                      image: NetworkImage(
+                        state.imgUrl
+                      ),
+                    )
                 )
               ),
               const SizedBox(height: 16,),

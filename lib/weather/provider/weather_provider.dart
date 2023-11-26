@@ -29,8 +29,10 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherModel>>{
 
   Future<void> getWeather()async {
     if(state.length!=0){
+      print('o');
       return;
     }else{
+      print('o');
       var times = ['09','12','18'];
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
