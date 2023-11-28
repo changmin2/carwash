@@ -100,6 +100,7 @@ class AuthProviderNotifier extends ChangeNotifier{
   //로그인 스크린으로 보내줄지
   //홈스크린으로 보내줄지 확인하는 과정이 필요
   FutureOr<String?> redirectLogic(BuildContext context,GoRouterState state)  {
+    print(state.location);
     final UserModelBase? user = ref.read(userMeProvider);
     //로그인 중
     final logginIn = state.location == '/login';

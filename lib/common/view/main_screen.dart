@@ -9,6 +9,7 @@ import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../weather/provider/weather_provider.dart';
 
@@ -46,7 +47,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 width: 150,
                 child: OutlinedButton.icon(
                   // 텍스트버튼에 아이콘 넣기
-                  onPressed: () => THelperFunctions.navigateToScreen(context, const RecordFirstScreen()),
+                  onPressed: () {
+                    context.goNamed(RecordFirstScreen.routeName);
+                  },
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.white),
                   ),

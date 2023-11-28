@@ -48,7 +48,7 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(SelectProvider);
     return DefaultLayoutV2(
-      appBar: AppBar(),
+      appBar: _renderAppbar(context),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: TSizes.defalutSpace),
@@ -98,23 +98,23 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
     );
   }
 }
-//
-// AppBar _renderAppbar(BuildContext context){
-//   return AppBar(
-//     leading: BackButton(
-//
-//     ),
-//       // backgroundColor: Colors.white,
-//       // centerTitle: true,
-//       // elevation: 0,
-//       // leading: Padding(
-//       //   padding: EdgeInsets.only(left: 10),
-//       //   child: IconButton(
-//       //     onPressed: (){Navigator.pop(context);},
-//       //     icon: Icon(Icons.arrow_back,size: 30),
-//       //     color: Colors.brown,
-//       //     alignment: Alignment.centerLeft,
-//       //   ),
-//       // )
-//   );
-// }
+
+AppBar _renderAppbar(BuildContext context){
+  return AppBar(
+    leading: BackButton(
+
+    ),
+      // backgroundColor: Colors.white,
+      // centerTitle: true,
+      // elevation: 0,
+      // leading: Padding(
+      //   padding: EdgeInsets.only(left: 10),
+      //   child: IconButton(
+      //     onPressed: (){Navigator.pop(context);},
+      //     icon: Icon(Icons.arrow_back,size: 30),
+      //     color: Colors.brown,
+      //     alignment: Alignment.centerLeft,
+      //   ),
+      // )
+  );
+}
