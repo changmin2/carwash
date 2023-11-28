@@ -1,3 +1,4 @@
+import 'package:carwash/common/const/sizes.dart';
 import 'package:flutter/material.dart';
 
 class TAppbarTheme {
@@ -9,8 +10,8 @@ class TAppbarTheme {
     scrolledUnderElevation: 0,
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
-    iconTheme: IconThemeData(color: Colors.black, size: 24),
-    actionsIconTheme: IconThemeData(color: Colors.black, size: 24),
+    iconTheme: IconThemeData(color: Colors.black, size: TSizes.iconMd),
+    actionsIconTheme: IconThemeData(color: Colors.black, size: TSizes.iconMd),
     titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black),
   );
 
@@ -21,8 +22,8 @@ class TAppbarTheme {
     scrolledUnderElevation: 0,
     backgroundColor: Colors.transparent,
     surfaceTintColor: Colors.transparent,
-    iconTheme: IconThemeData(color: Colors.black, size: 24),
-    actionsIconTheme: IconThemeData(color: Colors.white, size: 24),
+    iconTheme: IconThemeData(color: Colors.black, size: TSizes.iconMd),
+    actionsIconTheme: IconThemeData(color: Colors.white, size: TSizes.iconMd),
     titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
   );
 }
