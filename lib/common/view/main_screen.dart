@@ -6,7 +6,7 @@ import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
-import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/user/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -70,7 +70,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 width: 150,
                 child: OutlinedButton.icon(
                   // 텍스트버튼에 아이콘 넣기
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.white),
                   ),
@@ -274,7 +276,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   }
 }
 
-AppBar renderAppBar(context) {
+AppBar renderAppBar(_context) {
   return AppBar(
     // 뒤로가기 버튼 제외
     automaticallyImplyLeading: false,
@@ -297,7 +299,9 @@ AppBar renderAppBar(context) {
         ),
       ),
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(_context, MaterialPageRoute(builder:(context) => UserProfileScreen()));
+        },
         icon: const Icon(
           Icons.list,
           color: Colors.white,
