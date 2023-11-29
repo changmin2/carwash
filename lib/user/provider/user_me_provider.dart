@@ -58,7 +58,7 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
       await Future.delayed(Duration(milliseconds: (2000-get.inMilliseconds)));
     }
     state = resp;
-
+    print(resp.intro);
 
   }
   Future<UserModelBase> login({

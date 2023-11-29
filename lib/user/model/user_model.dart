@@ -18,14 +18,21 @@ class UserModelLoading extends UserModelBase{}
 class UserModel extends UserModelBase{
   final String username;
   final String password;
+  final String nickname;
+  final String intro;
 
   UserModel({
     required this.username,
-    required this.password
+    required this.password,
+    required this.nickname,
+    required this.intro
   });
 
 
   factory UserModel.fromJson(Map<String,dynamic> json)
   => _$UserModelFromJson(json);
 
+
+  Map<String, dynamic> toJson()
+  => _$UserModelToJson(this);
 }

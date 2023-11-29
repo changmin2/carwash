@@ -3,12 +3,26 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/view/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignUpScreen extends StatelessWidget {
+import '../model/join_request.dart';
+import '../repository/user_me_repository.dart';
+
+class SignUpScreen extends ConsumerWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
+    String username = '';
+    String password = '';
+    String nickname = '';
+    String intro = '';
+
+    final _idFormKey = GlobalKey<FormState>();
+    final _passwordFormKey = GlobalKey<FormState>();
+    final _nicknameFormKey = GlobalKey<FormState>();
+    final _introFormKey = GlobalKey<FormState>();
 
     return DefaultLayoutV2(
       appBar: AppBar(
@@ -79,9 +93,25 @@ class SignUpScreen extends StatelessWidget {
                     const SizedBox(height: TSizes.sm),
 
                     /// 아이디
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: '아이디를 입력하세요.',
+                    Form(
+                      key: _idFormKey,
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: '아이디를 입력하세요.',
+                        ),
+                        onChanged: (String value) {
+                          username = value;
+                        },
+                        validator: (value) {
+                          if (value!.length < 3) {
+                            return "아이디를 3글자 이상 입력해주세요.";
+                          } else if (value!.length > 15) {
+                            return "아이디를 15자 이하로 입력해주세요.";
+                          }
+                          if (!isValidEmailFormat(value!)) {
+                            return "영문과 숫자 조합으로 입력해주세요.";
+                          }
+                        },
                       ),
                     ),
 
@@ -101,12 +131,28 @@ class SignUpScreen extends StatelessWidget {
 
                     const SizedBox(height: TSizes.sm),
 
-                    TextFormField(
-                      // 비밀번호 효과
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        hintText: '비밀번호를 입력하세요.',
-                        suffixIcon: Icon(Icons.visibility_outlined),
+                    Form(
+                      key: _passwordFormKey,
+                      child: TextFormField(
+                        // 비밀번호 효과
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          hintText: '비밀번호를 입력하세요.',
+                          suffixIcon: Icon(Icons.visibility_outlined),
+                        ),
+                        onChanged: (String value) {
+                          password = value;
+                        },
+                        validator: (value) {
+                          if (value!.length < 3) {
+                            return "비밀번호를 3글자 이상 입력해주세요.";
+                          } else if (value!.length > 15) {
+                            return "비밀번호를 15자 이하로 입력해주세요.";
+                          }
+                          if (!isValidEmailFormat(value!)) {
+                            return "영문과 숫자 조합으로 입력해주세요.";
+                          }
+                        },
                       ),
                     ),
 
@@ -122,9 +168,20 @@ class SignUpScreen extends StatelessWidget {
 
                     const SizedBox(height: TSizes.sm),
 
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: '닉네임을 입력하세요.',
+                    Form(
+                      key: _nicknameFormKey,
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: '닉네임을 입력하세요.',
+                        ),
+                        onChanged: (String value) {
+                          nickname = value;
+                        },
+                        validator: (value) {
+                          if (value!.length < 2) {
+                            return "닉네임을 2글자 이상 입력해주세요.";
+                          }
+                        },
                       ),
                     ),
 
@@ -140,10 +197,21 @@ class SignUpScreen extends StatelessWidget {
 
                     const SizedBox(height: TSizes.sm),
 
-                    TextFormField(
-                      maxLines: 5,
-                      decoration: const InputDecoration(
-                        hintText: '나의 소개를 입력하세요.',
+                    Form(
+                      key: _introFormKey,
+                      child: TextFormField(
+                        maxLines: 5,
+                        decoration: const InputDecoration(
+                          hintText: '나의 소개를 입력하세요.',
+                        ),
+                        onChanged: (String value) {
+                          intro = value;
+                        },
+                        validator: (value) {
+                          if (value!.length < 3) {
+                            return "나의 소개를 3글자 이상 입력해주세요.";
+                          }
+                        },
                       ),
                     ),
 
@@ -153,12 +221,23 @@ class SignUpScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const MainScreen()),
-                          );
+                        onPressed: () async {
+                          if (_idFormKey.currentState!.validate() &&
+                              _passwordFormKey.currentState!.validate() && _nicknameFormKey!.currentState!.validate()
+                              && _introFormKey.currentState!.validate()) {
+                            JoinRequest request = new JoinRequest(memberId: username, password: password,
+                                nickname: nickname, intro: intro);
+                            await ref.read(userMeRepositoryProvider).join(request);
+                            await ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('회원가입 완료'),
+                                  duration: Duration(seconds: 1),
+                                )
+                            );
+                            await Future.delayed(const Duration(milliseconds: 1000), () {
+                            });
+                            Navigator.pop(context);
+                          }
                         },
                         child: const Text("회원 가입"),
                       ),
@@ -171,5 +250,8 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+  bool isValidEmailFormat(String word) {
+    return RegExp(r"^(?=.*[a-zA-Z])(?=.*[0-9])").hasMatch(word);
   }
 }

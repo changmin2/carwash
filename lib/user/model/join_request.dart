@@ -6,10 +6,14 @@ part 'join_request.g.dart';
 class JoinRequest{
   final String memberId;
   final String password;
+  final String nickname;
+  final String intro;
 
   JoinRequest({
     required this.memberId,
-    required this.password
+    required this.password,
+    required this.nickname,
+    required this.intro
   });
 
   factory JoinRequest.fromJson(Map<String, dynamic> json)
