@@ -30,7 +30,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(WeatherProvider);
-    print(state.toString());
     return DefaultLayoutV2(
       backgroundColor: PRIMARY_COLOR,
       appBar: renderAppBar(context),
