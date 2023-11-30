@@ -124,7 +124,7 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
                       itemBuilder: (BuildContext context,int idx){
                         return GestureDetector(
                           onTap: (){
-                            context.goNamed(RecordDetail.routeName,
+                            context.pushNamed(RecordDetail.routeName,
                                 pathParameters: {
                                   'id':events[_selectedDay.toString().split(" ")[0]]![idx].id.toString()
                                 });
