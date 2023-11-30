@@ -26,6 +26,7 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
     super.initState();
     controller = TabController(length: 2, vsync: this);
     controller.animateTo(index);
+    ref.read(WeatherProvider.notifier).getWeather();
   }
 
   @override

@@ -11,8 +11,7 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    final state = ref.watch(WeatherProvider);
-    ref.read(WeatherProvider.notifier).getWeather();
+
     return Container(
       color: Colors.white,
       child: Image.asset(
