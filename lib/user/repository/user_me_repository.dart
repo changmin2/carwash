@@ -32,7 +32,7 @@ abstract class UserMeRepository{
   );
 
   @POST('/join')
-  Future<void> join(
+  Future<String> join(
       @Body() JoinRequest joinRequest
   );
 }

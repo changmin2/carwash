@@ -4,7 +4,9 @@ import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/view/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
+import '../model/duplicate_request.dart';
 import '../model/join_request.dart';
 import '../repository/user_me_repository.dart';
 
@@ -18,6 +20,7 @@ class SignUpScreen extends ConsumerWidget {
     String password = '';
     String nickname = '';
     String intro = '';
+    bool dulicateCheck = true;
 
     final _idFormKey = GlobalKey<FormState>();
     final _passwordFormKey = GlobalKey<FormState>();
@@ -91,29 +94,33 @@ class SignUpScreen extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: TSizes.sm),
-
                     /// 아이디
                     Form(
-                      key: _idFormKey,
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: '아이디를 입력하세요.',
-                        ),
-                        onChanged: (String value) {
-                          username = value;
-                        },
-                        validator: (value) {
-                          if (value!.length < 3) {
-                            return "아이디를 3글자 이상 입력해주세요.";
-                          } else if (value!.length > 15) {
-                            return "아이디를 15자 이하로 입력해주세요.";
-                          }
-                          if (!isValidEmailFormat(value!)) {
-                            return "영문과 숫자 조합으로 입력해주세요.";
-                          }
-                        },
-                      ),
+                     key: _idFormKey,
+                     child: TextFormField(
+                       decoration: const InputDecoration(
+                         hintText: '아이디를 입력하세요.',
+                       ),
+                       onChanged: (String value) {
+                         dulicateCheck = true;
+                         username = value;
+                       },
+                       validator: (value) {
+                         if (value!.length < 3) {
+                           return "아이디를 3글자 이상 입력해주세요.";
+                         } else if (value!.length > 15) {
+                           return "아이디를 15자 이하로 입력해주세요.";
+                         }
+                         if (!isValidEmailFormat(value!)) {
+                           return "영문과 숫자 조합으로 입력해주세요.";
+                         }
+                         if(!dulicateCheck){
+                           return "중복된 아이디 입니다!";
+                         }
+                       },
+                     ),
                     ),
+
 
                     const SizedBox(height: TSizes.spaceBtwInputFields),
 
@@ -227,16 +234,28 @@ class SignUpScreen extends ConsumerWidget {
                               && _introFormKey.currentState!.validate()) {
                             JoinRequest request = new JoinRequest(memberId: username, password: password,
                                 nickname: nickname, intro: intro);
-                            await ref.read(userMeRepositoryProvider).join(request);
-                            await ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('회원가입 완료'),
-                                  duration: Duration(seconds: 1),
-                                )
-                            );
-                            await Future.delayed(const Duration(milliseconds: 1000), () {
-                            });
-                            Navigator.pop(context);
+                            String result = await ref.read(userMeRepositoryProvider).join(request);
+                            if(result=='-1'){
+                              dulicateCheck = false;
+                              _idFormKey.currentState!.validate();
+                              await ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('중복된 아이디입니다!'),
+                                    duration: Duration(seconds: 1),
+                                  )
+                              );
+                            }else{
+                              await ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('회원가입 완료'),
+                                    duration: Duration(seconds: 1),
+                                  )
+                              );
+                              await Future.delayed(const Duration(milliseconds: 1000), () {
+                              });
+                              Navigator.pop(context);
+                            }
+
                           }
                         },
                         child: const Text("회원 가입"),
