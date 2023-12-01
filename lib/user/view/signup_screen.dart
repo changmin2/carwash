@@ -1,12 +1,9 @@
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
-import 'package:carwash/common/view/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 
-import '../model/duplicate_request.dart';
 import '../model/join_request.dart';
 import '../repository/user_me_repository.dart';
 
@@ -20,7 +17,7 @@ class SignUpScreen extends ConsumerWidget {
     String password = '';
     String nickname = '';
     String intro = '';
-    bool dulicateCheck = true;
+    bool idDuplicateCheck = true;
 
     final _idFormKey = GlobalKey<FormState>();
     final _passwordFormKey = GlobalKey<FormState>();
@@ -102,7 +99,7 @@ class SignUpScreen extends ConsumerWidget {
                          hintText: '아이디를 입력하세요.',
                        ),
                        onChanged: (String value) {
-                         dulicateCheck = true;
+                         idDuplicateCheck = true;
                          username = value;
                        },
                        validator: (value) {
@@ -114,7 +111,7 @@ class SignUpScreen extends ConsumerWidget {
                          if (!isValidEmailFormat(value!)) {
                            return "영문과 숫자 조합으로 입력해주세요.";
                          }
-                         if(!dulicateCheck){
+                         if(!idDuplicateCheck){
                            return "중복된 아이디 입니다!";
                          }
                        },
@@ -125,7 +122,7 @@ class SignUpScreen extends ConsumerWidget {
                     const SizedBox(height: TSizes.spaceBtwInputFields),
 
                     /// 비밀번호
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text('비밀번호'),
@@ -166,7 +163,7 @@ class SignUpScreen extends ConsumerWidget {
                     const SizedBox(height: TSizes.spaceBtwInputFields),
 
                     /// 닉네임
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text('닉네임'),
@@ -195,7 +192,7 @@ class SignUpScreen extends ConsumerWidget {
                     const SizedBox(height: TSizes.spaceBtwInputFields),
 
                     /// 나의 소개
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text('나의 소개'),
@@ -236,7 +233,7 @@ class SignUpScreen extends ConsumerWidget {
                                 nickname: nickname, intro: intro);
                             String result = await ref.read(userMeRepositoryProvider).join(request);
                             if(result=='-1'){
-                              dulicateCheck = false;
+                              idDuplicateCheck = false;
                               _idFormKey.currentState!.validate();
                               await ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
