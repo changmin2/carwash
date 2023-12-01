@@ -4,6 +4,7 @@ import 'package:carwash/common/view/main_screen.dart';
 import 'package:carwash/user/view/signup_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../common/const/colors.dart';
 import '../provider/user_me_provider.dart';
@@ -25,7 +26,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(userMeProvider);
+    // final state = ref.watch(userMeProvider);
 
     return DefaultLayoutV2(
       child: SingleChildScrollView(
@@ -58,7 +59,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 child: TextFormField(
                   decoration: const InputDecoration(
                     hintText: '아이디를 입력해주세요.',
-                    prefixIcon: Icon(Icons.person_2_outlined),
+                    // prefixIcon: Icon(Icons.person_2_outlined),
+                    prefixIcon: Icon(Iconsax.direct_right),
                   ),
                   onChanged: (String value) {
                     username = value;
@@ -82,7 +84,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   obscureText: true,
                   decoration: const InputDecoration(
                     hintText: '비밀번호를 입력해주세요,',
-                    prefixIcon: Icon(Icons.https_outlined),
+                    // prefixIcon: Icon(Icons.https_outlined),
+                    prefixIcon: Icon(Iconsax.password_check),
                     suffixIcon: Icon(Icons.visibility_outlined),
                   ),
                   onChanged: (String value) {
