@@ -1,12 +1,35 @@
 flutter_native_splash:
-  #color: "#FFFFFF"
-  background_image: "asset/img/splash.png"
-  #image: asset/img/logo/splashV3.png
+  # 이 패키지는 Flutter의 기본 흰색 기본 스플래시 화면을 사용자 정의하는 기본 코드를 생성합니다.
+  # 배경색과 스플래시 이미지.
+  ## 생성 / 복원 명령어
+  # flutter pub run flutter_native_splash:create
+  # Flutter의 기본 흰색 시작 화면을 복원하려면 터미널에서 다음 명령을 실행합니다.
+  # flutter pub run flutter_native_splash:remove
 
-  fullscreen: true
+  #flutter pub run flutter_native_splash:create
+
+  # 수정하거나 변경되는 경우
+  #flutter pub run flutter_native_splash:remove
+  #flutter clean
+  #flutter pub get
+  #flutter pub run flutter_native_splash:create
+
+  ##  필수 매개변수 color / background_image
+  # 둘 중 하나만 사용할 수 있으며 색상과 background_image를 둘 다 설정할 수 없습니다.
+  color: "#FFFFFF"
+  #background_image: "asset/img/splash.png"
+
+
+  ## 이후 내용은 선택적 매개변수들 입니다.
+
+  # image 키워드로 스플래시 화면에 사용되는 이미지를 지정할 수 있습니다.
+  # png 파일이며 4x 픽셀 밀도에 맞게 크기가 조정되어야 합니다.
+  #image: asset/img/splash.png
+
+  #fullscreen: true
 
   #color_dark: "#FFFFFF"
-  background_image_dark: "asset/img/splash.png"
+  #background_image_dark: "asset/img/splash.png"
   #image_dark: asset/img/logo/splashV3.png
 
   # This package generates native code to customize Flutter's default white native splash screen
@@ -32,6 +55,9 @@ flutter_native_splash:
   # The branding property allows you to specify an image used as branding in the splash screen.
   # It must be a png file. It is supported for Android, iOS and the Web.  For Android 12,
   # see the Android 12 section below.
+
+  # branding 속성을 사용하면 시작 화면에서 아래에 나오는 브랜딩으로 사용할 이미지를 지정할 수 있습니다.
+  # png 파일이어야 합니다. Android, iOS 및 웹에서 지원됩니다. 안드로이드 12의 경우, Android 12 섹션을 참조하세요.
   #branding: assets/dart.png
 
   # To position the branding image at the bottom of the screen you can use bottom, bottomRight,
@@ -43,6 +69,8 @@ flutter_native_splash:
   # parameters from above. If the image_dark parameter is specified, color_dark or
   # background_image_dark must be specified.  color_dark and background_image_dark cannot both be
   # set.
+  # color_dark, background_image_dark, image_dark, branding_dark는 다크모드 설정 변수입니다.
+
   #color_dark: "#042a49"
   #background_image_dark: "assets/dark-background.png"
   #image_dark: assets/splash-invert.png
@@ -51,29 +79,42 @@ flutter_native_splash:
   # Android 12 handles the splash screen differently than previous versions.  Please visit
   # https://developer.android.com/guide/topics/ui/splash-screen
   # Following are Android 12 specific parameter.
+
+  # Android 12는 이전 버전과 다르게 시작 화면을 처리합니다. 방문하시기 바랍니다
   android_12:
+
+    # 이미지 매개변수는 스플래시 화면 아이콘 이미지를 설정합니다. 이 매개변수를 지정하지 않으면
+    # 앱의 런처 아이콘이 대신 사용됩니다.
+    # 스플래쉬 화면은 화면 중앙의 원에 잘려서 나오니 참고하세요.
+    # 아이콘 배경이 있는 앱 아이콘: 960×960 픽셀이어야 하며 원 안에 맞아야 합니다.
+    # 직경 640픽셀.
+    # 아이콘 배경이 없는 앱 아이콘: 1152×1152 픽셀이어야 하며 원 안에 맞아야 합니다.
+    # 직경 768픽셀.
     image: asset/img/splash.png
 
   # Splash screen background color.
-    color: "#FFFFFF"
+  # 스플래시 화면 배경색.
+    #color: "#FFFFFF"
 
   # App icon background color.
+  # 앱 아이콘 배경색.
   #icon_background_color: "#111111"
 
   # The branding property allows you to specify an image used as branding in the splash screen.
+  # branding 속성을 사용하면 시작 화면에서 브랜딩으로 사용할 이미지를 지정할 수 있습니다.
   #branding: assets/dart.png
 
   # The image_dark, color_dark, icon_background_color_dark, and branding_dark set values that
   # apply when the device is in dark mode. If they are not specified, the app will use the
   # parameters from above.
-    image_dark: asset/img/splash.png
-    color_dark: "#FFFFFF"
+    #image_dark: asset/img/splash.png
+    #color_dark: "#FFFFFF"
   #icon_background_color_dark: "#eeeeee"
 
   # The android, ios and web parameters can be used to disable generating a splash screen on a given
   # platform.
-  android: true
-  ios: true
+  #android: true
+  #ios: true
   #web: false
 
   # Platform specific images can be specified with the following parameters, which will override
