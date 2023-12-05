@@ -1,7 +1,9 @@
 import 'package:carwash/car/component/select_card.dart';
 import 'package:carwash/car/provider/select_provider.dart';
 import 'package:carwash/car/view/register_thrid_screen.dart';
+import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/colors.dart';
+import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,9 +13,7 @@ class RecordSecondScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordTwo';
   final query;
 
-  const RecordSecondScreen({
-    this.query,
-    Key? key}) : super(key: key);
+  const RecordSecondScreen({this.query, Key? key}) : super(key: key);
   @override
   ConsumerState<RecordSecondScreen> createState() => _RecordTwoScreenState();
 }
@@ -21,137 +21,99 @@ class RecordSecondScreen extends ConsumerStatefulWidget {
 class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
   var newList = [];
   static get routeName => 'recordTwo';
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    newList = widget.query.toString().split('[')[1].toString().split(']')[0].toString().split(',').toList();
+    newList = widget.query
+        .toString()
+        .split('[')[1]
+        .toString()
+        .split(']')[0]
+        .toString()
+        .split(',')
+        .toList();
   }
+
   @override
   Widget build(BuildContext context) {
 
-
     return DefaultLayoutV2(
-        appBar: _renderAppbar(context),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20),
-              Padding(
-                padding: EdgeInsets.only(left: 16),
-                child: Text(
-                  '나만의 세차를 기록하고 공유해보세요!',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20
-                  ),
-                ),
-              ),
-              //trailing: ReorderableDragStartListener(
-              //                             index: index, child: Icon(Icons.drag_handle)),
-              SizedBox(height: 25),
-              Expanded(
-                child: ReorderableListView.builder(
-                    itemCount: newList.length,
-                    itemBuilder: (context, index) {
-                      String washType = newList[index];
-                      return Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: BorderSide(width: 0.5)
-                        ),
-                        key: ValueKey(washType),
-                        color: Colors.white,
-                        elevation: 2,
-                        margin: const EdgeInsets.all(10),
-                        child: ListTile(
-                          leading: Text(
-                              (index+1).toString(),
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.brown
-                            ),
-                          ),
-                          contentPadding: const EdgeInsets.all(25),
-                          title: Text(
-                            washType,
-                            style: const TextStyle(fontSize: 18),
-                          ),
-                          trailing: ReorderableDragStartListener(
-                                                 index: index, child: Icon(Icons.drag_handle)),
-                          onTap: () {/* Do something else */},
-                        ),
-                      );
-                    },
-                    // The reorder function
-                    onReorder: (oldIndex, newIndex) {
-                      setState(() {
-                        if (newIndex > oldIndex) {
-                          newIndex = newIndex - 1;
-                        }
-                        final element = newList.removeAt(oldIndex);
-                        newList.insert(newIndex, element);
-                      });
-                    },
 
-                    ),
-              ),
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 16),
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            onPrimary: Colors.grey,
-                            animationDuration: Duration(milliseconds: 1000),
-                            primary: Colors.black,
-                            shadowColor: Colors.black,
-                            minimumSize: Size(350,50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: (){
-                            context.goNamed(
-                              RecordThridScreen.routeName,
-                              queryParameters: {"query":newList.toString()}
-                            );
-                          },
-                          child: Text(
-                            '다음 단계',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white
-                            ),
-                          )
+      appBar: AppBar(),
+
+      child: Padding(
+        padding: const EdgeInsets.all(TSizes.defalutSpace),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// 타이틀
+            Text(
+              '나만의 세차를\n기록하고 공유해보세요!',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            //trailing: ReorderableDragStartListener(
+            //                             index: index, child: Icon(Icons.drag_handle)),
+
+            const SizedBox(height: TSizes.spaceBtwSections),
+            
+            /// 선택된 리스트
+            Expanded(
+              child: ReorderableListView.builder(
+                itemCount: newList.length,
+                itemBuilder: (context, index) {
+                  String washType = newList[index];
+                  return TRoundedContainer(
+                    margin: const EdgeInsets.only(bottom: TSizes.sm),
+                    showBorder: true,
+                    key: ValueKey(washType),
+                    child: ListTile(
+                      leading: Text(
+                        (index + 1).toString(),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
-                    )
-                  ]
+                      title: Text(
+                        washType,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      trailing: ReorderableDragStartListener(
+                        index: index,
+                        child: const Icon(Icons.reorder_outlined),
+                      ),
+                      onTap: () {/* Do something else */},
+                    ),
+                  );
+                },
+                // The reorder function
+                onReorder: (oldIndex, newIndex) {
+                  setState(() {
+                    if (newIndex > oldIndex) {
+                      newIndex = newIndex - 1;
+                    }
+                    final element = newList.removeAt(oldIndex);
+                    newList.insert(newIndex, element);
+                  });
+                },
               ),
-            ],
-          ),
-        )
+            ),
+
+            const SizedBox(height: TSizes.defalutSpace),
+            
+            /// 다음 단계 버튼
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  context.goNamed(RecordThridScreen.routeName,
+                      queryParameters: {"query": newList.toString()});
+                },
+                child: const Text('다음 단계'),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
-}
-
-AppBar _renderAppbar(BuildContext context){
-  return AppBar(
-      backgroundColor: Colors.white,
-      centerTitle: true,
-      elevation: 0,
-      leading: Padding(
-        padding: EdgeInsets.only(left: 10),
-        child: IconButton(
-          onPressed: (){Navigator.pop(context);},
-          icon: Icon(Icons.arrow_back,size: 30),
-          color: Colors.brown,
-          alignment: Alignment.centerLeft,
-        ),
-      )
-  );
 }
