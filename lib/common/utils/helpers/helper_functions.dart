@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class THelperFunctions {
   THelperFunctions._();
 
-  // static void showSnackBar(String message){
-  //   ScaffoldMessenger.of(Get.context!).showSnackBar(
-  //     SnackBar(content: Text(message)),
-  //   );
-  // }
+  static void showSnackBar(BuildContext context, String message){
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
 
   // static void showAlert(String title, String message) {
   //   showDialog(context: Get.context!, builder: (BuildContext context) {
