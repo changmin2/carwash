@@ -4,6 +4,8 @@ import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/common/view/main_screen.dart';
+import 'package:carwash/common/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -47,20 +49,26 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(SelectProvider);
+
     return DefaultLayoutV2(
-      appBar: _renderAppbar(context),
+      /// 앱바
+      appBar: AppBar(),
+
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: TSizes.defalutSpace),
+          padding: const EdgeInsets.all(TSizes.defalutSpace),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: TSizes.spaceBtwSections),
+              /// 타이틀
               Text(
                 '나만의 세차를\n기록하고 공유해보세요!',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
+
               const SizedBox(height: TSizes.spaceBtwSections),
+
+              ///
               Wrap(
                   direction: Axis.horizontal, // 정렬 방향
                   alignment: WrapAlignment.center, // 정렬 방식
@@ -75,18 +83,17 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
                   )
                   // WsmBoxWidget()
                   ),
+
               const SizedBox(height: TSizes.spaceBtwSections),
+
+              /// 다음 단계 버튼
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
                     var newList = [];
-                    newList = await washList
-                        .where((element) =>
-                            state.selects[washList.indexOf(element)] == 1)
-                        .toList();
-                    context.goNamed(RecordSecondScreen.routeName,
-                        queryParameters: {"query": newList.toString()});
+                    newList = await washList.where((element) => state.selects[washList.indexOf(element)] == 1).toList();
+                    context.goNamed(RecordSecondScreen.routeName, queryParameters: {"query": newList.toString()});
                   },
                   child: const Text('다음 단계'),
                 ),
@@ -98,23 +105,23 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
     );
   }
 }
-
-AppBar _renderAppbar(BuildContext context){
-  return AppBar(
-    leading: BackButton(
-
-    ),
-      // backgroundColor: Colors.white,
-      // centerTitle: true,
-      // elevation: 0,
-      // leading: Padding(
-      //   padding: EdgeInsets.only(left: 10),
-      //   child: IconButton(
-      //     onPressed: (){Navigator.pop(context);},
-      //     icon: Icon(Icons.arrow_back,size: 30),
-      //     color: Colors.brown,
-      //     alignment: Alignment.centerLeft,
-      //   ),
-      // )
-  );
-}
+//
+// AppBar _renderAppbar(BuildContext context){
+//   return AppBar(
+//     leading: BackButton(
+//
+//     ),
+//       // backgroundColor: Colors.white,
+//       // centerTitle: true,
+//       // elevation: 0,
+//       // leading: Padding(
+//       //   padding: EdgeInsets.only(left: 10),
+//       //   child: IconButton(
+//       //     onPressed: (){Navigator.pop(context);},
+//       //     icon: Icon(Icons.arrow_back,size: 30),
+//       //     color: Colors.brown,
+//       //     alignment: Alignment.centerLeft,
+//       //   ),
+//       // )
+//   );
+// }

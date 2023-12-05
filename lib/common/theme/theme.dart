@@ -1,5 +1,6 @@
 import 'package:carwash/common/theme/custom_themes/appbar_theme.dart';
 import 'package:carwash/common/theme/custom_themes/bottom_sheet_theme.dart';
+import 'package:carwash/common/theme/custom_themes/card_theme.dart';
 import 'package:carwash/common/theme/custom_themes/checkbox_theme.dart';
 import 'package:carwash/common/theme/custom_themes/chip_theme.dart';
 import 'package:carwash/common/theme/custom_themes/elevated_button_theme.dart';
@@ -12,7 +13,8 @@ class TAppTheme {
   TAppTheme._();
 
   static ThemeData lightTheme = ThemeData(
-    useMaterial3: true,
+    // 이거 쓰니 상태바가 이상함..
+    // useMaterial3: true,
     fontFamily: 'SeoulNamsan',
     brightness: Brightness.light,
     primaryColor: const Color(0xff2A9D8F),
@@ -25,11 +27,12 @@ class TAppTheme {
     chipTheme: TChipTheme.lightChipTheme,
     checkboxTheme: TCheckBoxTheme.lightCheckBoxTheme,
     bottomSheetTheme: TBottomSheetTheme.lightBottomSheetTheme,
+    cardTheme: TCardTheme.lightCardTheme,
   );
 
 
   static ThemeData darkTheme = ThemeData(
-    useMaterial3: true,
+    // useMaterial3: true,
     fontFamily: 'SeoulNamsan',
     brightness: Brightness.dark,
     primaryColor: const Color(0xff2A9D8F),
@@ -42,5 +45,6 @@ class TAppTheme {
     chipTheme: TChipTheme.darkChipTheme,
     checkboxTheme: TCheckBoxTheme.darkCheckBoxTheme,
     bottomSheetTheme: TBottomSheetTheme.darkBottomSheetTheme,
+    cardTheme: TCardTheme.lightCardTheme,
   );
 }
