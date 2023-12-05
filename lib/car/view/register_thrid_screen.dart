@@ -1,28 +1,25 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:carwash/car/model/register_params.dart';
 import 'package:carwash/car/provider/record_provider.dart';
 import 'package:carwash/car/provider/state_provider.dart';
 import 'package:carwash/car/repository/record_repository.dart';
+import 'package:carwash/common/component/rounded_container.dart';
+import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:carwash/common/utils/formatters/formatter.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 class RecordThridScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordThrid';
   final query;
-  const RecordThridScreen({
-    required this.query,
-    Key? key
-  }) : super(key: key);
+  const RecordThridScreen({required this.query, Key? key}) : super(key: key);
 
   @override
   ConsumerState<RecordThridScreen> createState() => _RecordThridScreenState();
@@ -48,217 +45,187 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayoutV2(
-      appBar: _renderAppbar(context),
+      appBar: AppBar(),
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 20,right: 20),
+          padding: const EdgeInsets.all(TSizes.defalutSpace),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              /// 타이틀
               Text(
-                '나만의 세차를 기록하고 공유해보세요!',
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 20
-                ),
+                '나만의 세차를\n기록하고 공유해보세요!',
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
-              const SizedBox(height: 20),
+              
+              const SizedBox(height: TSizes.spaceBtwSections),
+              
+              /// 세차일자 라벨
               Text(
-                '세차  일자',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700
-                ),
+                '세차 일자',
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-              const SizedBox(height: 16),
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    side: BorderSide(width: 0.4)
-                ),
+              
+              const SizedBox(height: TSizes.spaceBtwInputFields),
+              
+              /// 세차일자
+              TRoundedContainer(
+                radius: 14,
+                showBorder: true,
                 child: ListTile(
                   title: Text(
                     _day,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400
-                    ),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                   trailing: IconButton(
-                    icon: Icon(Icons.calendar_month),
+                    icon: const Icon(Icons.calendar_month),
                     onPressed: () async {
-                      final selectedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2099)
-                      );
-                      if(selectedDate!=null){
+                      final selectedDate =
+                      await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2099));
+                      if (selectedDate != null) {
                         setState(() {
                           _prameterDay = selectedDate.toString();
-                          print(_prameterDay);
-                          _day = DateFormat('yyyy년 MM월 dd일 ').format(selectedDate)
-                              +'('+ DateFormat('E','ko').format(selectedDate)+')';
+                          _day = TFormatter.formatDate(selectedDate);
+                          // _day =
+                          //     '${DateFormat('yyyy년 MM월 dd일 ').format(selectedDate)}(${DateFormat('E', 'ko').format(selectedDate)})';
                         });
                       }
                     },
                   ),
                 ),
               ),
-              const SizedBox(height: 8,),
+
+              const SizedBox(height: TSizes.spaceBtwItems),
+              
+              /// 세차장소 라벨
               Text(
-                '세차  장소',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700
-                ),
+                '세차 장소',
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-              const SizedBox(height: 8,),
-              Card(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    side: BorderSide(width: 0.4)
-                ),
-                child: ListTile(
-                  title: TextFormField(
-                    onChanged: (value){
-                      _place = value;
-                    },
-                    onSaved: (value){
-                      _place = value!;
-                    },
-                    decoration: InputDecoration(
-                      border: InputBorder.none
-                    ),
-                    style: TextStyle(
-                      decorationThickness: 0
-                    ),
-                  ),
-                )
+              
+              const SizedBox(height: TSizes.spaceBtwInputFields),
+              
+              /// 세차장소 입력
+              TextFormField(
+                onChanged: (value) {
+                  _place = value;
+                },
+                onSaved: (value) {
+                  _place = value!;
+                },
+                // decoration: const InputDecoration(border: InputBorder.none),
+                // style: const TextStyle(decorationThickness: 0),
               ),
-              const SizedBox(height: 16,),
+
+              const SizedBox(height: TSizes.spaceBtwItems),
+
+              /// 사진 라벨
               Text(
                 '사진',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700
-                ),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
-              const SizedBox(height: 16,),
+
+              const SizedBox(height: TSizes.spaceBtwInputFields),
+
+              /// 사진 등록
               DottedBorder(
                 color: Colors.grey,
-                dashPattern: [5,3],
+                dashPattern: const [5, 3],
                 borderType: BorderType.RRect,
-                radius: Radius.circular(10),
+                radius: const Radius.circular(12),
                 child: Container(
                   width: 400,
                   height: 180,
-                  decoration: _image!=null ? BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: FileImage(File(_image!.path))
-                      )
-                  ) : null,
+                  decoration: _image != null
+                      ? BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: FileImage(
+                              File(_image!.path),
+                            ),
+                          ),
+                        )
+                      : null,
                   child: Row(
-                      mainAxisAlignment:MainAxisAlignment.center,
-                      children: [
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                onPressed: (){
-                                  getImage(ImageSource.camera);
-                                },
-                                icon: _image==null ? Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.6),
-                                      shape: BoxShape.circle
-                                  ),
-                                  child: Icon(
-                                    CupertinoIcons.camera,
-                                    color: Theme.of(context).colorScheme.primary,
-                                  ),
-                                ) : Container(),
-                              ),
-                              _image==null ? Text(
-                                '카메라',
-                                style: TextStyle(
-                                    color: Theme.of(context).colorScheme.primary
-                                ),
-                              ) : Container()
-                            ]
-                        ),
-                        SizedBox(width: 16),
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-
-                              IconButton(
-                                onPressed: (){
-                                  getImage(ImageSource.gallery);
-                                },
-                                icon: _image==null ? Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.6),
-                                      shape: BoxShape.circle
-                                  ),
-                                  child: Icon(
-                                    CupertinoIcons.arrow_up_doc,
-                                    color: Theme.of(context).colorScheme.primary,
-                                  ),
-                                ) : Container(),
-                              ), _image==null ?
-                              Text(
-                                '갤러리',
-                                style: TextStyle(
-                                    color: Theme.of(context).colorScheme.primary
-                                ),
-                              ) : Container()
-                            ]
-                        ),
-                      ]
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              getImage(ImageSource.camera);
+                            },
+                            icon: _image == null
+                                ? Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(color: Colors.white.withOpacity(0.6), shape: BoxShape.circle),
+                                    child: Icon(
+                                      CupertinoIcons.camera,
+                                      color: Theme.of(context).colorScheme.primary,
+                                    ),
+                                  )
+                                : Container(),
+                          ),
+                          _image == null
+                              ? Text(
+                                  '카메라',
+                                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                                )
+                              : Container()
+                        ],
+                      ),
+                      const SizedBox(width: TSizes.spaceBtwItems),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              getImage(ImageSource.gallery);
+                            },
+                            icon: _image == null
+                                ? Container(
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(color: Colors.white.withOpacity(0.6), shape: BoxShape.circle),
+                                    child: Icon(
+                                      CupertinoIcons.arrow_up_doc,
+                                      color: Theme.of(context).colorScheme.primary,
+                                    ),
+                                  )
+                                : Container(),
+                          ),
+                          _image == null
+                              ? Text(
+                                  '갤러리',
+                                  style: TextStyle(color: Theme.of(context).colorScheme.primary),
+                                )
+                              : Container()
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-              const SizedBox(height: 20,),
-              Center(
+              
+              const SizedBox(height: TSizes.spaceBtwSections),
+
+              /// 완료 버튼
+              SizedBox(
+                width: double.infinity,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.grey,
-                      animationDuration: Duration(milliseconds: 1000),
-                      primary: Colors.black,
-                      shadowColor: Colors.black,
-                      minimumSize: Size(350,50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onPressed: () async {
-                      await uploadImage();
+                  onPressed: () async {
+                    await uploadImage();
 
-                      RecordRegisterParams params = new RecordRegisterParams(
-                        image: _downloadUrl,
-                        place: _place.toString(),
-                        date: _prameterDay.toString(),
-                        washList: newList
-                      );
+                    RecordRegisterParams params =
+                        RecordRegisterParams(image: _downloadUrl, place: _place.toString(), date: _prameterDay.toString(), washList: newList);
 
-                      await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
-                      await ref.read(RecordProvider('true').notifier).getRecord(false);
-                      ref.read(stateProvider).change();
-                      context.go('/');
-                    },
-                    child: Text(
-                      '완료',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white
-                      ),
-                    )
+                    await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
+                    await ref.read(RecordProvider('true').notifier).getRecord(false);
+                    ref.read(stateProvider).change();
+                    context.go('/');
+                  },
+                  child: const Text('완료'),
                 ),
               ),
             ],
@@ -274,32 +241,14 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
     await ref.putFile(_image!);
 
     _downloadUrl = await ref.getDownloadURL(); //이미지 파일의 url
-
   }
 
   Future getImage(ImageSource imageSource) async {
     final XFile? pickedFile = await picker.pickImage(source: imageSource);
-    if(pickedFile!=null){
+    if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
       });
     }
   }
-}
-
-AppBar _renderAppbar(BuildContext context){
-  return AppBar(
-      backgroundColor: Colors.white,
-      centerTitle: true,
-      elevation: 0,
-      leading: Padding(
-        padding: EdgeInsets.only(left: 10),
-        child: IconButton(
-          onPressed: (){Navigator.pop(context);},
-          icon: Icon(Icons.arrow_back,size: 30),
-          color: Colors.brown,
-          alignment: Alignment.centerLeft,
-        ),
-      )
-  );
 }
