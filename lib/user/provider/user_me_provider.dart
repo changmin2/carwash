@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../../common/const/data.dart';
 import '../../common/secure_storage/secure_storage.dart';
+import '../../weather/provider/weather_provider.dart';
 import '../model/user_model.dart';
 import '../repository/auth_repository.dart';
 import '../repository/user_me_repository.dart';
@@ -13,11 +14,14 @@ final userMeProvider = StateNotifierProvider<UserMeStateNotifier,UserModelBase?>
   final authRepository = ref.watch(authRepositoryProivder);
   final userMeRepository = ref.watch(userMeRepositoryProvider);
   final storage = ref.watch(secureStorageProvider);
+  final weather =  ref.read(WeatherProvider);
+
 
   return UserMeStateNotifier(
       authRepository: authRepository,
       userMeRepository: userMeRepository,
       storage: storage,
+      weather: weather
   );
 });
 
@@ -25,12 +29,12 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
   final AuthRepository authRepository;
   final UserMeRepository userMeRepository;
   final FlutterSecureStorage storage;
-
-
+  final weather;
   UserMeStateNotifier({
     required this.authRepository,
     required this.userMeRepository,
-    required this.storage
+    required this.storage,
+    required this.weather
   }) : super(UserModelLoading()){
     //내정보 가져오기
     getMe();

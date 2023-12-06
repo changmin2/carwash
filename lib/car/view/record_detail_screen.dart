@@ -22,8 +22,10 @@ class _RecordDetailState extends ConsumerState<RecordDetail> {
   Widget build(BuildContext context) {
     final state = ref.read(RecordProvider('false')).firstWhere((element) => element.id == widget.id);
     var wash = state.washList.split("[")[1].split("]")[0].split(",");
+    final NetworkImage =  Image.network(state.imgUrl);
 
     return DefaultLayoutV2(
+
       appBar: AppBar(),
       child: SingleChildScrollView(
         child: Padding(
@@ -84,8 +86,13 @@ class _RecordDetailState extends ConsumerState<RecordDetail> {
                 dashPattern: const [5, 3],
                 borderType: BorderType.RRect,
                 radius: const Radius.circular(12),
-                child: Image(
-                  image: NetworkImage(state.imgUrl),
+                child: NetworkImage.key == null
+                ? Center(
+                  child: CircularProgressIndicator(),
+                )
+
+                : Image(
+                  image: NetworkImage.image,
                   width: 400,
                   height: 250,
                   fit: BoxFit.fill,

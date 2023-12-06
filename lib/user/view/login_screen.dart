@@ -1,6 +1,6 @@
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
-import 'package:carwash/common/view/main_screen.dart';
+
 import 'package:carwash/user/view/signup_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';

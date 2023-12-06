@@ -18,7 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../weather/provider/weather_provider.dart';
-import '../../widgets/appbar.dart';
+
 
 class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({Key? key}) : super(key: key);

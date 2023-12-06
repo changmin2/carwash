@@ -10,9 +10,11 @@ import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/profile_screen.dart';
 import 'package:carwash/weather/provider/weather_provider.dart';
+import 'package:carwash/weather/repository/weather_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import '../model/user_model.dart';
 import '../view/login_screen.dart';
@@ -113,6 +115,10 @@ class AuthProviderNotifier extends ChangeNotifier{
   //로그인 스크린으로 보내줄지
   //홈스크린으로 보내줄지 확인하는 과정이 필요
   FutureOr<String?> redirectLogic(BuildContext context,GoRouterState state)  {
+    // final weather =  ref.read(WeatherProvider);
+    // if(weather.length == 0){
+    //   ref.read(WeatherProvider.notifier).getWeather();
+    // }
     final UserModelBase? user = ref.read(userMeProvider);
     //로그인 중
     final logginIn = state.location == '/login';
