@@ -22,7 +22,9 @@ class RecordCard extends StatelessWidget {
           Row(
             children: [
               /// 아이콘
-              Image.asset('asset/img/record.png'),
+              Image.asset(
+                  'asset/img/record.png'
+              ),
 
               const SizedBox(width: TSizes.spaceBtwItems),
 

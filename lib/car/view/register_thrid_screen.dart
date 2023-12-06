@@ -244,7 +244,10 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   }
 
   Future getImage(ImageSource imageSource) async {
-    final XFile? pickedFile = await picker.pickImage(source: imageSource);
+    final XFile? pickedFile = await picker.pickImage(
+        source: imageSource,
+        imageQuality: 60
+    );
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
