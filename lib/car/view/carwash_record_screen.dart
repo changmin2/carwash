@@ -61,9 +61,7 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
     /// 세차 기록 보기
     return DefaultLayoutV2(
       /// 앱바
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-      ),
+      appBar: AppBar(),
 
       /// 작성하기 버튼
       floatingActionButton: _floatingActionButton(context),
