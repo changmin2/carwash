@@ -6,6 +6,7 @@ import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -70,7 +71,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 child: OutlinedButton.icon(
                   // 텍스트버튼에 아이콘 넣기
                   onPressed: () {
-
+                    context.goNamed(CommunityScreen.routeName);
                   },
                   style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(Colors.white),

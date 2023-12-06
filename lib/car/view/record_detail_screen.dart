@@ -88,6 +88,7 @@ class _RecordDetailState extends ConsumerState<RecordDetail> {
                   image: NetworkImage(state.imgUrl),
                   width: 400,
                   height: 250,
+                  fit: BoxFit.fill,
                 ),
               ),
               
