@@ -21,22 +21,25 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
           '오늘은 비가 주르륵...'
         ),
       ),
-      child: Padding(
-        padding: EdgeInsets.only(left: 20,right: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20),
+          Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: Container(
               height: 400,
               child: SingleChildScrollView(
                   child: Text('contet\nddddddd\ndddddd\ndddddd\nddddd\ndfdfasdfasd\nfasdfdasfa\nfasdfadsfasfcontet\nddddddd\ndddddd\ndddddd\nddddd\ndfdfasdfasd\nfasdfdasfa\nfasdfadsfasfcontet\nddddddd\ndddddd\ndddddd\nddddd\ndfdfasdfasd\nfasdfdasfa\nfasdfadsfasfcontet\nddddddd\ndddddd\ndddddd\nddddd\ndfdfasdfasd\nfasdfdasfa\nfasdfadsfasfcontet\nddddddd\ndddddd\ndddddd\nddddd\ndfdfasdfasd\nfasdfdasfa\nfasdfadsfasfcontet\nddddddd\ndddddd\ndddddd\nddddd\ndfdfasdfasd\nfasdfdasfa\nfasdfadsfasf')
               ),
             ),
-            const SizedBox(height: 20),
-            Divider(thickness: 1, height: 1,color: PRIMARY_COLOR),
-            const SizedBox(height: 16),
-            Text(
+          ),
+          const SizedBox(height: 20),
+          Divider(thickness: 1, height: 1,color: PRIMARY_COLOR),
+          const SizedBox(height: 16),
+          Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: Text(
               '댓글',
               style: TextStyle(
                 color: Colors.amber,
@@ -44,9 +47,10 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                 fontWeight: FontWeight.w700
               ),
             ),
-            const SizedBox(height: 16),
-          ],
-        ),
+          ),
+          const SizedBox(height: 16),
+          CommentCard()
+        ],
       )
     );
   }

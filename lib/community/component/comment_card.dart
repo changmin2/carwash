@@ -5,47 +5,46 @@ class CommentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Padding(
+      padding: EdgeInsets.only(left: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Card(
-              child: ListTile(
-                  leading: CircleAvatar(
-                    radius: 30,
-                    child: FittedBox(
-                        child: Icon(
-                          Icons.create,
-                          color: Colors.brown,
-                        )
-                    ),
-                    backgroundColor: Colors.white10,
-                  ),
-                  title: Padding(
-                    padding: EdgeInsets.only(top: 8),
-                    child: Text(
-                        'hi'
-                    ),
-                  ),
-                  subtitle: Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          width: 90,
-                          child: Text(
-                            '세린',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                      ],
+          Row(
+          children: [
+            Icon(
+              Icons.account_circle_rounded,
+              size: 40,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '세린이',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700
                     ),
                   ),
-              )
+                  const SizedBox(height: 8),
+                  Text(
+                    '차가 너무 멋져요'
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 8),
+        Padding(
+          padding: EdgeInsets.only(left: 55),
+          child: Text(
+            '2023.03.24'
           ),
-          //대댓글 자리
-        ]
+        )
+      ]
+      ),
     );
   }
 }

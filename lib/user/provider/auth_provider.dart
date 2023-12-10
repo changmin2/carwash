@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import '../../community/view/community_register.dart';
 import '../model/user_model.dart';
 import '../view/login_screen.dart';
 import '../view/splash_screen.dart';
@@ -55,9 +56,14 @@ class AuthProviderNotifier extends ChangeNotifier{
           builder: (_,__) => CommunityScreen(),
           routes: [
             GoRoute(
-                path: ':id',
+                path: 'community/:id',
                 name: CommunityDetailScreen.routeName,
                 builder: (_,__) => CommunityDetailScreen()
+            ),
+            GoRoute(
+                path: 'community1/communityRegister',
+                name: CommunityRegisterScreen.routeName,
+                builder: (_,__) => CommunityRegisterScreen()
             ),
           ]
         ),
