@@ -6,6 +6,7 @@ import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/car/view/register_thrid_screen.dart';
 import 'package:carwash/common/view/root_tap.dart';
+import 'package:carwash/community/view/community_detail.dart';
 import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/profile_screen.dart';
@@ -52,6 +53,13 @@ class AuthProviderNotifier extends ChangeNotifier{
           path: 'community',
           name: CommunityScreen.routeName,
           builder: (_,__) => CommunityScreen(),
+          routes: [
+            GoRoute(
+                path: ':id',
+                name: CommunityDetailScreen.routeName,
+                builder: (_,__) => CommunityDetailScreen()
+            ),
+          ]
         ),
         GoRoute(
             path: 'recordScreen',

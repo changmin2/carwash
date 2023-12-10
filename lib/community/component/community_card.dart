@@ -1,5 +1,7 @@
 import 'package:carwash/common/component/rounded_container.dart';
+import 'package:carwash/community/view/community_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../common/const/sizes.dart';
 
@@ -8,28 +10,72 @@ class CommunityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TRoundedContainer(
-      width: 400,
-      height: 150,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(TSizes.defalutSpace),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '자신만의 세차 방법을 공유해보세요',
-                style: Theme.of(context).textTheme.bodyLarge,
+    return GestureDetector(
+      onTap: (){
+        context.goNamed(CommunityDetailScreen.routeName,
+            pathParameters: {'id':'1'});
+      },
+      child: Padding(
+        padding: EdgeInsets.only(left: 10,right: 10),
+        child: TRoundedContainer(
+          width: double.infinity,
+          height: 150,
+          child: Card(
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10,bottom: 10,left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: 110,
+                    height: 35,
+                    child: Card(
+                      color: Colors.red,
+                      child: Center(
+                        child: Text(
+                          '질문게시판',
+                          style: TextStyle(
+                            color: Colors.white
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5,),
+                  Text(
+                    '오늘은 비가 주르륵.....',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.account_circle_rounded
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        '세린이',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      const SizedBox(width: 10),
+                      Icon(
+                        Icons.favorite_outline
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        '16',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ],
+                  )
+                ],
               ),
-              const SizedBox(height: TSizes.spaceBtwItems),
-              Text(
-                '세차를 공유하면 포인트를 드립니다!',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ],
+            ),
           ),
         ),
       ),

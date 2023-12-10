@@ -1,3 +1,4 @@
+import 'package:carwash/community/view/community_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../car/view/register_first_screen.dart';
@@ -40,7 +41,7 @@ class TopMenuWidget extends StatelessWidget {
           width: 150,
           child: OutlinedButton.icon(
             // 텍스트버튼에 아이콘 넣기
-            onPressed: () {},
+            onPressed: () => THelperFunctions.navigateToScreen(context, const CommunityScreen()),
             style: const ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(Colors.white),
             ),
