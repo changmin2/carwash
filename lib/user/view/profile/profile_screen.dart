@@ -4,6 +4,8 @@ import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/common/widgets/appbar.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
+import 'package:carwash/user/view/profile/widget/setting_menu_tile.dart';
+import 'package:carwash/user/view/profile/widget/user_profile_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
@@ -25,34 +27,16 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
+            /// Appbar
             const TAppbar(
               backButtonColor: Colors.white,
             ),
-            ListTile(
-              leading: const Image(
-                image: AssetImage('asset/img/naver_logo.png'),
-                width: 50,
-                height: 50,
-              ),
-              title: Text(
-                '유상용111',
-                style: Theme.of(context).textTheme.headlineSmall!.apply(color: Colors.white),
-              ),
-              subtitle: Text(
-                'rsy0921@naver.com',
-                style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),
-              ),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Iconsax.edit,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+
+            /// Profile Tile
+            const TUserProfileTile(title: "주니아빠", subtitle: "1단계 환자"),
             const SizedBox(height: TSizes.spaceBtwSections),
 
-            /// 설정 목록
+            /// Setting List
             Container(
               height: THelperFunctions.screenHeight(context),
               decoration: const BoxDecoration(
@@ -65,25 +49,15 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: TSizes.spaceBtwSections),
-                  const ListTile(
-                    leading: Icon(
-                      Iconsax.icon,
-                      size: 28,
-                      color: PRIMARY_COLOR,
-                    ),
-                    title: Text('나의 장비'),
-                    subtitle: Text('나만의 장비를 등록하고 관리해보세요!'),
-                  ),
-                  const ListTile(
-                    leading: Icon(
-                      Iconsax.activity,
-                      size: 28,
-                      color: PRIMARY_COLOR,
-                    ),
-                    title: Text('알림 설정'),
-                    subtitle: Text('알고 싶은 내용만 알림이 오게 관리해보세요!'),
-                  ),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                  
+                  /// Setting Menus
+                  const TSettingsMenuTile(icon: Iconsax.box, title: "나의 장비", subTitle: '나만의 장비를 등록하고 관리해보세요!'),
+                  const TSettingsMenuTile(icon: Iconsax.notification_bing, title: "알림 설정", subTitle: '알고 싶은 내용만 알림이 오게 관리해보세요!'),
+                  const TSettingsMenuTile(icon: Iconsax.notification_bing, title: "알림 설정", subTitle: '알고 싶은 내용만 알림이 오게 관리해보세요!'),
+
+                  const SizedBox(height: TSizes.spaceBtwSections * 2),
+                  
+                  /// Logout Button
                   Container(
                     padding: const EdgeInsets.all(TSizes.defalutSpace),
                     width: double.infinity,
@@ -94,7 +68,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                         )
                       ),
                       onPressed: () => ref.read(userMeProvider.notifier).logout(),
-                      child: const Text("LOGOUT"),
+                      child: const Text("로그아웃"),
                     ),
                   ),
                 ],
@@ -106,3 +80,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
     );
   }
 }
+
+
+
+
