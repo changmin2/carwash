@@ -1,22 +1,16 @@
-import 'package:carwash/car/view/carwash_record_screen.dart';
-import 'package:carwash/car/view/register_first_screen.dart';
-import 'package:carwash/common/component/carwash_life_card.dart';
-import 'package:carwash/common/component/event_card.dart';
-import 'package:carwash/common/component/recent_carwash_card.dart';
 import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
-import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/common/view/main/widget/carwash_life_list_widget.dart';
 import 'package:carwash/common/view/main/widget/event_list_widget.dart';
 import 'package:carwash/common/view/main/widget/recent_carwash_list_widget.dart';
 import 'package:carwash/common/view/main/widget/top_menu_widget.dart';
+import 'package:carwash/common/widgets/appbar.dart';
+import 'package:carwash/user/view/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../user/view/profile/profile_screen.dart';
 import '../../../weather/provider/weather_provider.dart';
 
 
@@ -53,14 +47,16 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           const SizedBox(height: TSizes.md),
 
           /// ----------------------------------------------------------------
-          /// 상단 버튼
+          /// 세차기록, 커뮤니티 메뉴 버튼 영역
           /// ----------------------------------------------------------------
           const TopMenuWidget(),
+          const SizedBox(height: TSizes.spaceBtwSections),
           /// ----------------------------------------------------------------
 
-          const SizedBox(height: TSizes.spaceBtwSections),
-          
+
+          /// ----------------------------------------------------------------
           /// 컨텐츠 영역
+          /// ----------------------------------------------------------------
           Expanded(
             child: SingleChildScrollView(
               child: Container(
@@ -134,38 +130,18 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       /// 이벤트
                       /// ----------------------------------------------------------------
                       const EventListWidget(),
-
                       const SizedBox(height: TSizes.spaceBtwSections),
 
                       /// ----------------------------------------------------------------
                       /// 세차 라이프
                       /// ----------------------------------------------------------------
                       const CarWashLifeListWidget(),
-
                       const SizedBox(height: TSizes.spaceBtwSections),
 
+                      /// ----------------------------------------------------------------
                       /// 최근 세차
+                      /// ----------------------------------------------------------------
                       const RecentCarWashListWidget(),
-
-
-                      // SizedBox(
-                      //   height: 270,
-                      //   child: ListView.builder(
-                      //     itemCount: 3,
-                      //     // scrollDirection: Axis.vertical,
-                      //     itemBuilder: (BuildContext context, int index) {
-                      //       return const Column(
-                      //         children: [
-                      //           RecentCarWashCard(),
-                      //           Divider(
-                      //             color: Colors.grey,
-                      //             thickness: 0.3,
-                      //           )
-                      //         ],
-                      //       );
-                      //     },
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
