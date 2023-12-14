@@ -1,9 +1,13 @@
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/community/component/community_card.dart';
+import 'package:carwash/community/provider/communityProvider.dart';
+import 'package:carwash/community/repository/community_repository.dart';
 import 'package:carwash/community/view/community_register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../common/view/pagination_list_view.dart';
 
 class CommunityScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityScreen';
@@ -16,10 +20,107 @@ class CommunityScreen extends ConsumerStatefulWidget {
 
 class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ref.read(communityProvider.notifier).init();
+  }
+  @override
   Widget build(BuildContext context) {
     return DefaultLayoutV2(
       appBar: AppBar(),
-      child: CommunityCard(),
+      child: Column(
+          children: [
+            Container(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: (){},
+                      child: Container(
+                        width: 120,
+                        height: 30,
+                        child: Card(
+                          color: Colors.green,
+                          child: Center(
+                            child: Text(
+                              '전체',
+                              style: TextStyle(
+                                  color: Colors.white
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){},
+                      child: Container(
+                        width: 120,
+                        height: 30,
+                        child: Card(
+                          color: Colors.red,
+                          child: Center(
+                            child: Text(
+                              '자유게시판',
+                              style: TextStyle(
+                                  color: Colors.white
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){},
+                      child: Container(
+                        width: 120,
+                        height: 30,
+                        child: Card(
+                          color: Colors.blue,
+                          child: Center(
+                            child: Text(
+                              '세차라이프',
+                              style: TextStyle(
+                                  color: Colors.white
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: (){},
+                      child: Container(
+                        width: 120,
+                        height: 30,
+                        child: Card(
+                          color: Colors.grey,
+                          child: Center(
+                            child: Text(
+                              '질문게시판',
+                              style: TextStyle(
+                                  color: Colors.white
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: PaginationListView(
+                  provider: communityProvider,
+                  itemBuilder: <CommunityModel>(_,index,community){
+                    return CommunityCard();
+                  }),
+            ),
+          ],
+      ),
       floatingActionButton: _floatingActionButton(context),
     );
   }

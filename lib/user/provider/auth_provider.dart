@@ -9,17 +9,14 @@ import 'package:carwash/common/view/root_tap.dart';
 import 'package:carwash/community/view/community_detail.dart';
 import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
-import 'package:carwash/user/view/profile_screen.dart';
-import 'package:carwash/weather/provider/weather_provider.dart';
-import 'package:carwash/weather/repository/weather_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import '../../community/view/community_register.dart';
 import '../model/user_model.dart';
 import '../view/login_screen.dart';
+import '../view/profile/profile_screen.dart';
 import '../view/splash_screen.dart';
 
 final authProvider = ChangeNotifierProvider<AuthProviderNotifier>((ref) {

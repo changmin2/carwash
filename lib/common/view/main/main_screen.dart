@@ -12,11 +12,11 @@ import 'package:carwash/common/view/main/widget/carwash_life_list_widget.dart';
 import 'package:carwash/common/view/main/widget/event_list_widget.dart';
 import 'package:carwash/common/view/main/widget/recent_carwash_list_widget.dart';
 import 'package:carwash/common/view/main/widget/top_menu_widget.dart';
-import 'package:carwash/user/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../user/view/profile/profile_screen.dart';
 import '../../../weather/provider/weather_provider.dart';
 
 

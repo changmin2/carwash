@@ -20,13 +20,13 @@ class PaginationParams{
     int? after,
     int? count,
     String? category,
-    int? id,
+    int? recipe_id,
   }){
     return PaginationParams(
         after: after ?? this.after,
         count: count ?? this.count,
         category: category ?? this.category,
-        id: id ?? this.id
+        id: recipe_id ?? this.id
     );
   }
 

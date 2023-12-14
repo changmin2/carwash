@@ -1,0 +1,32 @@
+import 'package:carwash/common/model/model_with_id.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'community_model.g.dart';
+
+@JsonSerializable()
+class CommunityModel implements IModelWithId{
+  final int id;
+  final String title;
+  final String content;
+  final String creator;
+  final int hits;
+  final int favorite;
+  final String category;
+  final String createDate;
+
+  CommunityModel({
+    required this.id,
+    required this.title,
+    required this.content,
+    required this.creator,
+    required this.hits,
+    required this.favorite,
+    required this.category,
+    required this.createDate
+  });
+
+  factory CommunityModel.fromJson(Map<String,dynamic> json)
+  => _$CommunityModelFromJson(json);
+
+  Map<String,dynamic> toJson() => _$CommunityModelToJson(this);
+}

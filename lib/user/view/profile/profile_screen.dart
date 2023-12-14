@@ -2,7 +2,6 @@ import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
-import 'package:carwash/common/widgets/appbar.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/profile/widget/setting_menu_tile.dart';
 import 'package:carwash/user/view/profile/widget/user_profile_tile.dart';
@@ -28,10 +27,10 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
         child: Column(
           children: [
             /// Appbar
-            const TAppbar(
-              backButtonColor: Colors.white,
-            ),
-
+            // const TAppbar(
+            //   backButtonColor: Colors.white,
+            // ),
+            AppBar(),
             /// Profile Tile
             const TUserProfileTile(title: "주니아빠", subtitle: "1단계 환자"),
             const SizedBox(height: TSizes.spaceBtwSections),
