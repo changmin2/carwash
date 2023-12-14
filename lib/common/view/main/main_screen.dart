@@ -2,6 +2,7 @@ import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/common/view/main/widget/carwash_life_list_widget.dart';
 import 'package:carwash/common/view/main/widget/event_list_widget.dart';
 import 'package:carwash/common/view/main/widget/recent_carwash_list_widget.dart';
@@ -10,6 +11,7 @@ import 'package:carwash/common/widgets/appbar.dart';
 import 'package:carwash/user/view/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../weather/provider/weather_provider.dart';
 
@@ -173,16 +175,17 @@ AppBar renderAppBar(_context) {
       IconButton(
         onPressed: () {},
         icon: const Icon(
-          Icons.notifications_none_outlined,
+          // Icons.notifications_none_outlined,
+          Iconsax.notification_bing,
           color: Colors.white,
         ),
       ),
       IconButton(
         onPressed: () {
-          Navigator.push(_context, MaterialPageRoute(builder: (context) => UserProfileScreen()));
+          THelperFunctions.navigateToScreen(_context, const UserProfileScreen());
         },
         icon: const Icon(
-          Icons.list,
+          Iconsax.textalign_justifycenter,
           color: Colors.white,
         ),
       ),
