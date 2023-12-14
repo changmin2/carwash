@@ -61,7 +61,7 @@ dependencies:
   url_launcher: ^6.1.12
   get: ^4.6.5
   get_storage: ^2.1.1
-
+  flutter_naver_login: ^1.6.0
 
 
 
