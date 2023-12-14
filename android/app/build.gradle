@@ -50,7 +50,9 @@ android {
         applicationId "com.example.carwash"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 19
+        // 2023-12-15.RSY.네이버 아이디 로그인을 위해 19 -> 21로 변경함.
+        //minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode 11
         versionName flutterVersionName

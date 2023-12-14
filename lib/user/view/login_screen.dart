@@ -1,5 +1,7 @@
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/user/utils/NaverLogin.dart';
 
 import 'package:carwash/user/view/signup_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -37,13 +39,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              /// ----------------------------------------------------------------
+              /// 이미지
+              /// ----------------------------------------------------------------
               Image.asset(
                 'asset/img/login.png',
                 width: double.infinity,
                 height: 150,
                 alignment: Alignment.topLeft,
               ),
+
               const SizedBox(height: TSizes.spaceBtwItems),
+
+              /// ----------------------------------------------------------------
+              /// 타이틀
+              /// ----------------------------------------------------------------
               Text(
                 'Welcome back ,',
                 style: Theme.of(context).textTheme.headlineMedium,
@@ -53,7 +63,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 '세차파트너에 오신걸 환영합니다.',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
+
               const SizedBox(height: TSizes.spaceBtwSections),
+
+              /// ----------------------------------------------------------------
+              /// 아이디
+              /// ----------------------------------------------------------------
               Form(
                 key: _idFormKey,
                 child: TextFormField(
@@ -77,7 +92,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   },
                 ),
               ),
+
               const SizedBox(height: TSizes.spaceBtwInputFields),
+
+              /// ----------------------------------------------------------------
+              /// 비밀번호
+              /// ----------------------------------------------------------------
               Form(
                 key: _psFormKey,
                 child: TextFormField(
@@ -103,17 +123,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   },
                 ),
               ),
+
               const SizedBox(height: TSizes.spaceBtwSections),
+
+              /// ----------------------------------------------------------------
+              /// 로그인 버튼
+              /// ----------------------------------------------------------------
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    if (_idFormKey.currentState!.validate() &&
-                        _psFormKey.currentState!.validate()) {
-                      await ref.read(userMeProvider.notifier).login(
-                          username: username,
-                          password: password,
-                          context: context);
+                    if (_idFormKey.currentState!.validate() && _psFormKey.currentState!.validate()) {
+                      await ref.read(userMeProvider.notifier).login(username: username, password: password, context: context);
                     }
                   },
                   // onPressed: () {
@@ -130,13 +151,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
               const SizedBox(height: TSizes.spaceBtwItems / 2),
 
+              /// ----------------------------------------------------------------
+              /// 회원가입 텍스트버튼
+              /// ----------------------------------------------------------------
               TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpScreen()));
-                },
+                onPressed: () => THelperFunctions.navigateToScreen(context, const SignUpScreen()),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -157,25 +176,49 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ],
                 ),
               ),
-              // SizedBox(
-              //   width: double.infinity,
-              //   child: ElevatedButton(
-              //     onPressed: () {
-              //       Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //               builder: (context) => const SignUpScreen()));
-              //     },
-              //     style: ElevatedButton.styleFrom().copyWith(
-              //       backgroundColor:
-              //           const MaterialStatePropertyAll(Colors.white),
-              //     ),
-              //     child: const Text("회원가입",
-              //         style: TextStyle(
-              //           color: Colors.black,
-              //         )),
-              //   ),
-              // ),
+
+              const SizedBox(height: TSizes.spaceBtwItems),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Card(
+                    elevation: 5.0,
+                    shape: const CircleBorder(),
+                    clipBehavior: Clip.antiAlias,
+                    child: Ink.image(
+                      image: const AssetImage('asset/img/naver_logo.png'),
+                      width: 50,
+                      height: 50,
+                      child: InkWell(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(35.0),
+                        ),
+                        onTap: () {
+                          NaverLogin.login();
+                        },
+                      ),
+                    ),
+                  ),
+                  // const SizedBox(width: TSizes.lg),
+                  // Card(
+                  //   elevation: 5.0,
+                  //   shape: const CircleBorder(),
+                  //   clipBehavior: Clip.antiAlias,
+                  //   child: Ink.image(
+                  //     image: const AssetImage('asset/img/naver_logo.png'),
+                  //     width: 50,
+                  //     height: 50,
+                  //     child: InkWell(
+                  //       borderRadius: const BorderRadius.all(
+                  //         Radius.circular(35.0),
+                  //       ),
+                  //       onTap: () {},
+                  //     ),
+                  //   ),
+                  // ),
+                ],
+              ),
             ],
           ),
         ),
