@@ -1,14 +1,15 @@
 import 'package:carwash/common/model/cursor_pagination_model.dart';
 import 'package:carwash/common/provider/pagination_provider.dart';
 import 'package:carwash/community/model/community_model.dart';
+import 'package:carwash/community/provider/category_provider.dart';
 import 'package:carwash/community/repository/community_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 final communityProvider = StateNotifierProvider<CommunityStateNotifier,CursorPaginationBase>((ref) {
+  final category = ref.watch(categoryProvider);
   final repository = ref.watch(communityRepositoryProvider);
-  String category = '';
-
+  print(category + "hi");
   return CommunityStateNotifier(repository: repository, category: category);
 });
 

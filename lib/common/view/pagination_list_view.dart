@@ -69,7 +69,7 @@ class _PaginationListViewState<T extends IModelWithId> extends ConsumerState<Pag
 
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
       child:  ListView.separated(
         controller: controller,
         itemCount: cp.data.length + 1,

@@ -1,5 +1,6 @@
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/community/component/community_card.dart';
+import 'package:carwash/community/provider/category_provider.dart';
 import 'package:carwash/community/provider/communityProvider.dart';
 import 'package:carwash/community/repository/community_repository.dart';
 import 'package:carwash/community/view/community_register.dart';
@@ -27,6 +28,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   }
   @override
   Widget build(BuildContext context) {
+
     return DefaultLayoutV2(
       appBar: AppBar(),
       child: Column(
@@ -36,8 +38,11 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: (){},
+                    InkWell(
+                      splashColor: Colors.yellow,
+                      onTap: (){
+                        ref.read(categoryProvider.notifier).update((state) => '');
+                      },
                       child: Container(
                         width: 120,
                         height: 30,
@@ -54,8 +59,11 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: (){},
+                    InkWell(
+                      splashColor: Colors.yellow,
+                      onTap: (){
+                        ref.read(categoryProvider.notifier).update((state) => '자유게시판');
+                      },
                       child: Container(
                         width: 120,
                         height: 30,
@@ -72,8 +80,11 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: (){},
+                    InkWell(
+                      splashColor: Colors.yellow,
+                      onTap: (){
+                        ref.read(categoryProvider.notifier).update((state) => '세차라이프');
+                      },
                       child: Container(
                         width: 120,
                         height: 30,
@@ -90,8 +101,11 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: (){},
+                    InkWell(
+                      splashColor: Colors.yellow,
+                      onTap: (){
+                        ref.read(categoryProvider.notifier).update((state) => '질문게시판');
+                      },
                       child: Container(
                         width: 120,
                         height: 30,
@@ -116,7 +130,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
               child: PaginationListView(
                   provider: communityProvider,
                   itemBuilder: <CommunityModel>(_,index,community){
-                    return CommunityCard();
+                    return CommunityCard(community: community);
                   }),
             ),
           ],
