@@ -6,14 +6,14 @@ import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/car/view/register_thrid_screen.dart';
 import 'package:carwash/common/view/root_tap.dart';
-import 'package:carwash/community/view/community_detail.dart';
+import 'package:carwash/community/view/community_detail_screen.dart';
 import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../community/view/community_register.dart';
+import '../../community/view/community_register_screen.dart';
 import '../model/user_model.dart';
 import '../view/login_screen.dart';
 import '../view/profile/profile_screen.dart';
@@ -55,7 +55,9 @@ class AuthProviderNotifier extends ChangeNotifier{
             GoRoute(
                 path: 'community/:id',
                 name: CommunityDetailScreen.routeName,
-                builder: (_,__) => CommunityDetailScreen()
+                builder: (_,state) => CommunityDetailScreen(
+                    id: int.parse(state.pathParameters['id']!)
+                )
             ),
             GoRoute(
                 path: 'community1/communityRegister',

@@ -3,7 +3,7 @@ import 'package:carwash/community/component/community_card.dart';
 import 'package:carwash/community/provider/category_provider.dart';
 import 'package:carwash/community/provider/communityProvider.dart';
 import 'package:carwash/community/repository/community_repository.dart';
-import 'package:carwash/community/view/community_register.dart';
+import 'package:carwash/community/view/community_register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -28,7 +28,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
   }
   @override
   Widget build(BuildContext context) {
-
+    ref.invalidate(communityProvider);
     return DefaultLayoutV2(
       appBar: AppBar(),
       child: Column(

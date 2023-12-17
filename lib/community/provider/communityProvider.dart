@@ -9,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final communityProvider = StateNotifierProvider<CommunityStateNotifier,CursorPaginationBase>((ref) {
   final category = ref.watch(categoryProvider);
   final repository = ref.watch(communityRepositoryProvider);
-  print(category + "hi");
   return CommunityStateNotifier(repository: repository, category: category);
 });
 
@@ -22,6 +21,12 @@ class CommunityStateNotifier extends PaginationProvider<CommunityModel,Community
 
   void init(){
     state is CursorPaginationLoading;
+  }
+
+  CommunityModel getDetail(int id){
+    final pState = state as CursorPagination;
+
+    return pState.data.where((e) => e.id == id).first;
   }
 
 }

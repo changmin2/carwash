@@ -1,6 +1,6 @@
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/community/component/category_card.dart';
-import 'package:carwash/community/view/community_detail.dart';
+import 'package:carwash/community/view/community_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -62,6 +62,10 @@ class CommunityCard extends StatelessWidget {
                         community.favorite.toString(),
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
+                      const SizedBox(width: 8),
+                      Text(
+                        community.createDate.split('T')[0]
+                      )
                     ],
                   )
                 ],
