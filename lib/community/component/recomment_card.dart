@@ -1,7 +1,9 @@
+import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../../user/model/user_model.dart';
 import '../model/comment_model.dart';
 import '../provider/comment_provider.dart';
 
@@ -20,6 +22,7 @@ class ReCommentCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
+    final user = ref.read(userMeProvider) as UserModel;
     return Padding(
       padding: EdgeInsets.only(left: 30),
       child: Column(
@@ -52,12 +55,19 @@ class ReCommentCard extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 8),
-            Padding(
-              padding: EdgeInsets.only(left: 40),
-              child: Text(
-                  recomment.createDate.toString().split(" ")[0]
-              ),
-            ),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 40),
+                  child: Text(
+                      recomment.createDate.toString().split(" ")[0]
+                  ),
+                ),
+                recomment.creator == user.username ?
+                _PopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id)
+                    :_NoCreatorPopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id)
+              ],
+            )
 
           ]
       ),
@@ -96,9 +106,17 @@ PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int rec
 }
 
 
-PopupMenuButton _NoCreatorPopupMenuButtonPage (BuildContext context,WidgetRef ref){
+PopupMenuButton _NoCreatorPopupMenuButtonPage (BuildContext context,WidgetRef ref,int recomment_id,int commnet_id){
   return PopupMenuButton(
     onSelected: (value){
+      if(value=='신고'){
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('신고되었습니다. 누적된 신고자는 블라인드 처리 됩니다.'),
+              duration: Duration(seconds: 1),
+            )
+        );
+      }
     },
     itemBuilder: (context) {
       return [

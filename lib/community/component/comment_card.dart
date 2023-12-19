@@ -19,6 +19,7 @@ class CommentCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
+    final user = ref.read(userMeProvider) as UserModel;
     return Padding(
       padding: EdgeInsets.only(left: 10),
       child: Column(
@@ -59,7 +60,9 @@ class CommentCard extends ConsumerWidget {
               Text(
               comment.createDate.toString().split(" ")[0]
             ),
+            comment.creator == user.username ?
             _PopupMenuButtonPage(context, ref, comment.comment_id, board_id)
+            :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id)
           ]
         ),
       ),
