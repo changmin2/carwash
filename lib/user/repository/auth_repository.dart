@@ -36,6 +36,24 @@ class AuthRepository{
     return LoginResponse.fromJson(resp.data);
   }
 
+  Future<LoginResponse> snslogin({
+    required String username,
+    required String password,
+    required String nickname
+  }) async {
+
+    final resp = await dio.post(
+        '$baseUrl/snslogin',
+        data: {
+          'memberId':username,
+          'password':password,
+          'nickname':nickname
+        }
+    );
+
+    return LoginResponse.fromJson(resp.data);
+  }
+
   Future<LoginResponse>token() async{
     final resp = await dio.post(
         '$baseUrl/token',

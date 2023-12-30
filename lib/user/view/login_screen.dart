@@ -1,12 +1,17 @@
+import 'dart:io';
+
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/user/utils/NaverLogin.dart';
 
 import 'package:carwash/user/view/signup_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../common/const/colors.dart';
 import '../provider/user_me_provider.dart';
@@ -194,29 +199,34 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(35.0),
                         ),
-                        onTap: () {
-                          NaverLogin.login();
+                        onTap: () async {
+                          _login_naver();
                         },
                       ),
                     ),
                   ),
-                  // const SizedBox(width: TSizes.lg),
-                  // Card(
-                  //   elevation: 5.0,
-                  //   shape: const CircleBorder(),
-                  //   clipBehavior: Clip.antiAlias,
-                  //   child: Ink.image(
-                  //     image: const AssetImage('asset/img/naver_logo.png'),
-                  //     width: 50,
-                  //     height: 50,
-                  //     child: InkWell(
-                  //       borderRadius: const BorderRadius.all(
-                  //         Radius.circular(35.0),
-                  //       ),
-                  //       onTap: () {},
-                  //     ),
-                  //   ),
-                  // ),
+                  SizedBox(width: 16),
+                  Platform.isIOS ?
+                  Card(
+                    elevation: 5.0,
+                    shape: const CircleBorder(),
+                    clipBehavior: Clip.antiAlias,
+                    child: Ink.image(
+                      image: const AssetImage('asset/img/apple_logo.png'),
+                      width: 50,
+                      height: 50,
+                      child: InkWell(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(35.0),
+                        ),
+                        onTap: () async {
+                          var res = await _login_apple();
+                          print(res.additionalUserInfo);
+                        },
+                      ),
+                    ),
+                  )
+                  : Container()    ,
                 ],
               ),
             ],
@@ -229,4 +239,29 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool isValidEmailFormat(String word) {
     return RegExp(r"^(?=.*[a-zA-Z])(?=.*[0-9])").hasMatch(word);
   }
+
+  void _login_naver() async{
+    NaverLoginResult res = await FlutterNaverLogin.logIn();
+    ref.read(userMeProvider.notifier).snslogin(username: res.account.id, password: res.account.mobile.toString()+res.account.id, context: context,nickname: res.account.nickname);
+  }
+
+  Future<UserCredential> _login_apple() async{
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+    );
+
+    // Create an `OAuthCredential` from the credential returned by Apple.
+    final oauthCredential = OAuthProvider("apple.com").credential(
+      idToken: appleCredential.identityToken,
+      accessToken: appleCredential.authorizationCode,
+    );
+
+    // Sign in the user with Firebase. If the nonce we generated earlier does
+    // not match the nonce in `appleCredential.identityToken`, sign in will fail.
+    return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+  }
 }
+

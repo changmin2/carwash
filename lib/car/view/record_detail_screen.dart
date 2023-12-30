@@ -86,7 +86,7 @@ class _RecordDetailState extends ConsumerState<RecordDetail> {
                 dashPattern: const [5, 3],
                 borderType: BorderType.RRect,
                 radius: const Radius.circular(12),
-                child: NetworkImage.key == null
+                child: NetworkImage.image == null
                 ? Center(
                   child: CircularProgressIndicator(),
                 )

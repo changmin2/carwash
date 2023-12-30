@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:72146841179:android:c2e7f5006c91519513597e",
+        "mobilesdk_app_id": "1:72146841179:android:4ff70b5943477e9413597e",
         "android_client_info": {
-          "package_name": "com.example.carwash"
+          "package_name": "com.example.carwashChangMin"
         }
       },
       "oauth_client": [],

@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.carwash</string>
+	<string>com.example.carwashChangMin</string>
 	<key>PROJECT_ID</key>
 	<string>carwash-68d25</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:72146841179:ios:027a49b062a76f6e13597e</string>
+	<string>1:72146841179:ios:94bf1e652d43197813597e</string>
 </dict>
 </plist>

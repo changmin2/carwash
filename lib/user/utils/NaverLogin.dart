@@ -1,3 +1,4 @@
+import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
 
@@ -10,6 +11,7 @@ class NaverLogin {
           NaverAccountResult account = res.account;
           debugPrint('로그인 성공(account.id)= ' + account.id);
           debugPrint('로그인 성공= ' + account.toString());
+          return account;
         } else {
           debugPrint('로그인 실패=' + res.errorMessage);
         }

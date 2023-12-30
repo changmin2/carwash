@@ -2,6 +2,7 @@ import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/user/model/user_model.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/profile/widget/setting_menu_tile.dart';
 import 'package:carwash/user/view/profile/widget/user_profile_tile.dart';
@@ -21,6 +22,7 @@ class UserProfileScreen extends ConsumerStatefulWidget {
 class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    final state = ref.read(userMeProvider) as UserModel;
     return DefaultLayoutV2(
       backgroundColor: PRIMARY_COLOR,
       child: SingleChildScrollView(
@@ -32,7 +34,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
             // ),
             AppBar(),
             /// Profile Tile
-            const TUserProfileTile(title: "주니아빠", subtitle: "1단계 환자"),
+            TUserProfileTile(title: state.nickname, subtitle: "1단계 환자"),
             const SizedBox(height: TSizes.spaceBtwSections),
 
             /// Setting List
