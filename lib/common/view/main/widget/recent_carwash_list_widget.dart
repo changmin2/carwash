@@ -1,4 +1,5 @@
 import 'package:carwash/car/provider/recentRecord_provider.dart';
+import 'package:carwash/car/view/record_recent_screen.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -91,8 +92,8 @@ class _RecentCarWashListWidgetState extends ConsumerState<RecentCarWashListWidge
                     itemBuilder: (context,idx){
                       return GestureDetector(
                           onTap: () {
-                            context.pushNamed(RecordDetail.routeName,
-                                pathParameters: {'id': record[idx].id.toString()});
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => RecordRecent(
+                                model: record[idx])));
                           },
                           child: RecentCarWashCard(record: record[idx]));
                 }),
