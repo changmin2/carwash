@@ -32,42 +32,27 @@ class TCommunityAllScreen extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwItems),
 
             /// HOT 전체 리스트
+            /// 요청사항 : 전체 게시판에서 핫한 글 5개만
             SizedBox(
               height: 270,
-              child: ListView.builder(
+              child: ListView.separated(
                 itemCount: 5,
                 scrollDirection: Axis.horizontal,
+                separatorBuilder: (_, __) {
+                  return const SizedBox(width: TSizes.sm);
+                },
                 itemBuilder: (BuildContext context, int index) {
-                  return const Padding(
-                    padding: EdgeInsets.only(right: TSizes.sm),
-                    child: TCommunityAllHotCardWidget(
-                      containerWidth: 200,
-                      imageUrl: 'asset/img/car_image.jpeg',
-                      imageHeight: 200,
-                      nickName: '세린이',
-                      title: '오늘 세차 맛집 다녀 왔습니다! 너무 깨끗했고 시설도 좋았습니다.',
-                      likeCount: '120',
-                    ),
+                  return const TCommunityAllHotCardWidget(
+                    containerWidth: 200,
+                    imageUrl: 'asset/img/car_image.jpeg',
+                    imageHeight: 200,
+                    nickName: '세린이',
+                    title: '오늘 세차 맛집 다녀 왔습니다! 너무 깨끗했고 시설도 좋았습니다.',
+                    likeCount: '120',
                   );
                 },
               ),
             ),
-
-            const SizedBox(height: TSizes.spaceBtwItems),
-
-            // SizedBox(
-            //   width: double.infinity,
-            //   child: OutlinedButton(
-            //     onPressed: () {},
-            //     style: ElevatedButton.styleFrom(
-            //       backgroundColor: const Color(0xffE6EAEE),
-            //     ),
-            //     child: Text(
-            //       "전체보기",
-            //       style: Theme.of(context).textTheme.titleMedium
-            //     ),
-            //   ),
-            // ),
 
             const SizedBox(height: TSizes.spaceBtwSections),
 
@@ -81,6 +66,7 @@ class TCommunityAllScreen extends StatelessWidget {
             const SizedBox(height: TSizes.spaceBtwItems),
 
             /// 최신글 리스트
+            /// 요청사항 : 전체 게시판에서 최신 글 5개만
             ListView.separated(
               itemCount: 5,
               // 리스트에 해당되는 영역만 차지
