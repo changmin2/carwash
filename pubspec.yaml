@@ -61,7 +61,12 @@ dependencies:
   url_launcher: ^6.1.12
   get: ^4.6.5
   get_storage: ^2.1.1
+  # 네이버 로그인
   flutter_naver_login: ^1.6.0
+  # 사진 스크롤
+  smooth_page_indicator: ^1.1.0
+  # 글 더보기
+  readmore: ^2.2.0
   firebase_auth: ^4.15.3
   sign_in_with_apple: ^5.0.0
 

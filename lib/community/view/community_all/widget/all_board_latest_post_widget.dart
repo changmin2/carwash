@@ -1,0 +1,75 @@
+import 'package:carwash/common/component/rounded_container.dart';
+import 'package:carwash/common/component/rounded_image.dart';
+import 'package:carwash/common/const/colors.dart';
+import 'package:carwash/common/const/sizes.dart';
+import 'package:flutter/material.dart';
+
+class TCommunityAllLatestPostWidget extends StatelessWidget {
+  final String postType, title, nickName, imageUrl;
+  final bool isNetworkImage;
+
+  const TCommunityAllLatestPostWidget({
+    super.key,
+    required this.postType,
+    required this.title,
+    required this.nickName,
+    required this.imageUrl,
+    this.isNetworkImage = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// 게시판 종류 라벨
+            TRoundedContainer(
+              padding: const EdgeInsets.all(TSizes.xs),
+              radius: 5,
+              showBorder: true,
+              borderColor: postType == '세차라이프' ? PRIMARY_COLOR
+              : postType == '질문게시판' ? const Color(0xffE9C46A) : const Color(0xffF4A261),
+              child: Text(
+                postType,
+                style: postType == '세차라이프' ? Theme.of(context).textTheme.labelMedium!.apply(color: PRIMARY_COLOR)
+                : postType == '질문게시판' ? Theme.of(context).textTheme.labelMedium!.apply(color: const Color(0xffE9C46A))
+                : Theme.of(context).textTheme.labelMedium!.apply(color: const Color(0xffF4A261)),
+              ),
+            ),
+            const SizedBox(height: TSizes.sm),
+            
+            /// 제목
+            SizedBox(
+              width: 250,
+              child: Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ),
+            const SizedBox(height: TSizes.sm),
+            
+            /// 닉네임
+            Text(
+              nickName,
+              style: Theme.of(context).textTheme.labelMedium,
+            )
+          ],
+        ),
+        
+        /// 사진
+        TRoundedImage(
+          imageUrl: imageUrl,
+          width: 70,
+          height: 70,
+          fit: BoxFit.fill,
+          borderRadius: 12.0,
+        ),
+      ],
+    );
+  }
+}
