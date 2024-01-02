@@ -1,9 +1,7 @@
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/sizes.dart';
-import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 class TCommunityFreeHotCard extends StatelessWidget {
 

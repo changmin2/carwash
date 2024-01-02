@@ -2,6 +2,7 @@ import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/community/view/community_free/widget/community_free_hot_card.dart';
+import 'package:carwash/community/view/community_free/widget/community_free_list_widget.dart';
 import 'package:carwash/community/view/widget/community_section_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -28,19 +29,20 @@ class TCommunityFreeScreen extends StatelessWidget {
 
             const SizedBox(height: TSizes.spaceBtwItems),
 
-            /// HOT 전체 리스트
+            /// HOT 자유 리스트
+            /// 요청사항 : 자유게시판 중 핫한 글 5개만
             SizedBox(
               height: 160,
-              child: ListView.builder(
+              child: ListView.separated(
                 itemCount: 5,
                 scrollDirection: Axis.horizontal,
+                separatorBuilder: (_, __){
+                  return const SizedBox(width: TSizes.sm);
+                },
                 itemBuilder: (BuildContext context, int index) {
-                  return const Padding(
-                    padding: EdgeInsets.only(right: TSizes.sm),
-                    child: TCommunityFreeHotCard(
-                      imageUrl: 'asset/img/car_image.jpeg',
-                      title: '오늘 세차 맛집 다녀 왔습니다! 너무 깨끗했고 시설도 좋았습니다.',
-                    ),
+                  return const TCommunityFreeHotCard(
+                    imageUrl: 'asset/img/car_image.jpeg',
+                    title: '오늘 세차 맛집 다녀 왔습니다! 너무 깨끗했고 시설도 좋았습니다.',
                   );
                 },
               ),
@@ -51,7 +53,8 @@ class TCommunityFreeScreen extends StatelessWidget {
             const Divider(thickness: 1),
 
             const SizedBox(height: TSizes.spaceBtwItems),
-
+            
+            /// 자유게사판 리스트
             ListView.separated(
                 itemCount: 5,
                 // 리스트에 해당되는 영역만 차지
@@ -68,92 +71,10 @@ class TCommunityFreeScreen extends StatelessWidget {
                   );
                 },
                 itemBuilder: (_, int index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          TRoundedContainer(
-                            padding: const EdgeInsets.all(TSizes.xs),
-                            showBorder: true,
-                            radius: 6,
-                            borderColor: Colors.redAccent,
-                            child: Text(
-                              'HOT',
-                              style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.redAccent),
-                            ),
-                          ),
-                          const SizedBox(width: TSizes.sm),
-                          TRoundedContainer(
-                            padding: const EdgeInsets.all(TSizes.xs),
-                            showBorder: true,
-                            radius: 6,
-                            child: Text(
-                              '#세차방법공유',
-                              style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.grey),
-                            ),
-                          ),
-                          const SizedBox(width: TSizes.sm),
-                          Text('2023.12.21', style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.grey)),
-                        ],
-                      ),
-                      const SizedBox(height: TSizes.spaceBtwItems),
-
-                      Text('세차 하는 진정한 방법을 가르쳐 주겠다!', style: Theme.of(context).textTheme.bodyMedium,),
-
-                      const SizedBox(height: TSizes.spaceBtwItems),
-
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const TRoundedImage(
-                            width: 30,
-                            height: 30,
-                            fit: BoxFit.fill,
-                            imageUrl: 'asset/img/car_image.jpeg',
-                            borderRadius: 100,
-                          ),
-
-                          const SizedBox(width: TSizes.sm),
-
-                          Text('세차환자', style: Theme.of(context).textTheme.bodySmall),
-                          const SizedBox(width: TSizes.sm),
-                          Text('|', style: Theme.of(context).textTheme.bodySmall),
-                          const SizedBox(width: TSizes.sm),
-
-                          const Icon(
-                            Iconsax.like_1,
-                            size: 14,
-                          ),
-                          // Text(
-                          //   '추천',
-                          //   style: Theme.of(context).textTheme.bodySmall,
-                          // ),
-                          const SizedBox(width: TSizes.xs),
-                          Text(
-                            '10',
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                          const SizedBox(width: TSizes.sm),
-                          Text('|', style: Theme.of(context).textTheme.bodySmall),
-                          const SizedBox(width: TSizes.sm),
-                          const Icon(
-                            Iconsax.message4,
-                            size: 14,
-                          ),
-
-                          // Text(
-                          //   '댓글',
-                          //   style: Theme.of(context).textTheme.bodySmall,
-                          // ),
-                          const SizedBox(width: TSizes.xs),
-                          Text(
-                            '10',
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                        ],
-                      ),
-                    ],
+                  return const TCommunityFreeListWidget(
+                    title: '세차하는 진정한 방법을 알려주겠다!',
+                    nickName: '세차환자',
+                    date: '2023.12.31',
                   );
                 }),
           ],
@@ -162,3 +83,5 @@ class TCommunityFreeScreen extends StatelessWidget {
     );
   }
 }
+
+
