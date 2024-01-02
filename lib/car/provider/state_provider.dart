@@ -9,9 +9,7 @@ class StateChangeNotifier extends ChangeNotifier{
   bool flag = true;
 
   void change(){
-    print(flag);
     flag = flag ? false : true;
-    print(flag);
     notifyListeners();
   }
 }

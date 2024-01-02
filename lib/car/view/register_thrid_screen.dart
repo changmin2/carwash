@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:carwash/car/model/recordDto.dart';
 import 'package:carwash/car/model/register_params.dart';
+import 'package:carwash/car/provider/recentRecord_provider.dart';
 import 'package:carwash/car/provider/record_provider.dart';
 import 'package:carwash/car/provider/state_provider.dart';
 import 'package:carwash/car/repository/record_repository.dart';
@@ -8,6 +10,7 @@ import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/formatters/formatter.dart';
+import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +18,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
+
+import '../../user/model/user_model.dart';
 
 class RecordThridScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordThrid';
@@ -44,6 +49,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.read(userMeProvider) as UserModel;
     return DefaultLayoutV2(
       appBar: AppBar(),
       child: SingleChildScrollView(
@@ -219,9 +225,9 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
 
                     RecordRegisterParams params =
                         RecordRegisterParams(image: _downloadUrl, place: _place.toString(), date: _prameterDay.toString(), washList: newList);
-
-                    await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
+                    recordDto re = await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
                     await ref.read(RecordProvider('true').notifier).getRecord(false);
+                    ref.read(recentRecordProvider(user.username).notifier).add(re);
                     ref.read(stateProvider).change();
                     context.go('/');
                   },

@@ -1,3 +1,4 @@
+import 'package:carwash/car/model/recentRecordDto.dart';
 import 'package:carwash/car/model/recordDto.dart';
 import 'package:carwash/car/model/register_params.dart';
 import 'package:carwash/common/dio/dio.dart';
@@ -26,7 +27,7 @@ abstract class RecordRepository{
   @Headers({
     'accessToken':'true'
   })
-  Future<void> recordRegister({
+  Future<recordDto> recordRegister({
     @Body() RecordRegisterParams? recordRegisterParams = const RecordRegisterParams()
   });
 
@@ -36,5 +37,10 @@ abstract class RecordRepository{
   })
   Future<List<recordDto>> getRecord({
     @Path() required String date
+  });
+
+  @POST("/recentRecord")
+  Future<List<recordDto>> recentRecord({
+    @Body() RecentRecordDto param = const RecentRecordDto()
   });
 }

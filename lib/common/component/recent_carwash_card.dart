@@ -2,8 +2,13 @@ import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:flutter/material.dart';
 
+import '../../car/model/recordDto.dart';
+
 class RecentCarWashCard extends StatelessWidget {
-  const RecentCarWashCard({Key? key}) : super(key: key);
+  final recordDto record;
+  const RecentCarWashCard({
+    required this.record,
+    Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +39,11 @@ class RecentCarWashCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '2023-05-04',
+                      record.date.add(Duration(hours: 9)).toString().split(" ")[0],
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
-                      '화곡동 카워시',
+                      record.place,
                       style: Theme.of(context).textTheme.bodyMedium,
                     )
                   ],

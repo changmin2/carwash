@@ -221,7 +221,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                         onTap: () async {
                           var res = await _login_apple();
-                          print(res.additionalUserInfo);
+                          String id = res.user!.email!;
+                          String ps = res.user!.uid!;
+                          ref.read(userMeProvider.notifier).snslogin(username: ps, password: id, nickname: "temp", context: context);
                         },
                       ),
                     ),

@@ -1,17 +1,26 @@
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/community/model/community_model.dart';
+import 'package:carwash/community/view/community_recent_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../car/view/record_detail_screen.dart';
+import '../../community/view/community_detail_screen.dart';
 
 class CarWashLife extends StatelessWidget {
-  const CarWashLife({Key? key}) : super(key: key);
+  final CommunityModel model;
+  const CarWashLife({
+    required this.model,
+    Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityRecentScreen(model: model)));
+        },
       child: TRoundedContainer(
         width: 230,
         height: 320,
@@ -45,7 +54,7 @@ class CarWashLife extends StatelessWidget {
                           const Icon(Icons.face),
                           const SizedBox(width: TSizes.xs),
                           Text(
-                            '세린이',
+                            model.creator,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ],
@@ -60,7 +69,7 @@ class CarWashLife extends StatelessWidget {
                           ),
                           const SizedBox(width: TSizes.xs),
                           Text(
-                            '120',
+                            model.favorite.toString(),
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ],
@@ -75,7 +84,7 @@ class CarWashLife extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        THelperFunctions.truncateText('오늘 세차 맛집 다녀 왔습니다! 너무 깨끗했고 시설도 좋았습니다.', 15),
+                        THelperFunctions.truncateText(model.content, 15),
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],

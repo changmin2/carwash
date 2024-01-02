@@ -34,5 +34,7 @@ abstract class CommunityRepository extends IBasePaginationRepository<CommunityMo
     @Body() RequestRegisterParam param
   );
 
+  @GET('/recentCommunity')
+  Future<List<CommunityModel>> recentCommunity();
 
 }

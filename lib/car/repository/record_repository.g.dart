@@ -19,7 +19,7 @@ class _RecordRepository implements RecordRepository {
   String? baseUrl;
 
   @override
-  Future<void> recordRegister(
+  Future<recordDto> recordRegister(
       {recordRegisterParams = const RecordRegisterParams()}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -28,19 +28,21 @@ class _RecordRepository implements RecordRepository {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(recordRegisterParams?.toJson() ?? <String, dynamic>{});
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<recordDto>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/register',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return null;
+            .compose(
+              _dio.options,
+              '/register',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = recordDto.fromJson(_result.data!);
+    return value;
   }
 
   @override
@@ -59,6 +61,33 @@ class _RecordRepository implements RecordRepository {
             .compose(
               _dio.options,
               '/${date}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => recordDto.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<List<recordDto>> recentRecord(
+      {param = const RecentRecordDto()}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(param.toJson());
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<recordDto>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/recentRecord',
               queryParameters: queryParameters,
               data: _data,
             )

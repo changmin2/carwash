@@ -1,3 +1,5 @@
+import 'package:carwash/car/model/recentRecordDto.dart';
+import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
@@ -7,7 +9,8 @@ import 'package:carwash/common/view/main/widget/carwash_life_list_widget.dart';
 import 'package:carwash/common/view/main/widget/event_list_widget.dart';
 import 'package:carwash/common/view/main/widget/recent_carwash_list_widget.dart';
 import 'package:carwash/common/view/main/widget/top_menu_widget.dart';
-import 'package:carwash/common/widgets/appbar.dart';
+import 'package:carwash/user/model/user_model.dart';
+import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,7 +41,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(WeatherProvider);
-
     return DefaultLayoutV2(
       appBar: renderAppBar(context),
       backgroundColor: PRIMARY_COLOR,
