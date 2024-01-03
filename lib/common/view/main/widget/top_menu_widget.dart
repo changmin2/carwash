@@ -19,7 +19,7 @@ class TopMenuWidget extends StatelessWidget {
           width: 150,
           child: OutlinedButton.icon(
             // 텍스트버튼에 아이콘 넣기
-            onPressed: () => THelperFunctions.navigateToScreen(context, const RecordFirstScreen()),
+            onPressed: () =>context.goNamed(RecordFirstScreen.routeName),
             style: const ButtonStyle(
               backgroundColor: MaterialStatePropertyAll(Colors.white),
             ),

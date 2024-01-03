@@ -44,6 +44,12 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ref.read(SelectProvider).init();
+  }
+  @override
   Widget build(BuildContext context) {
     final state = ref.watch(SelectProvider);
 

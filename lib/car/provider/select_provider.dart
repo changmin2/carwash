@@ -12,4 +12,8 @@ class SelectChangeNotifier extends ChangeNotifier{
     selects[index] == 0 ? selects[index]=1 : selects[index] = 0;
     notifyListeners();
   }
+
+  void init(){
+    selects = selects.map((e) => e==1 ? 0 : 0).toList();
+  }
 }

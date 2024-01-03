@@ -11,11 +11,14 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/formatters/formatter.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
 
@@ -242,10 +245,13 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   }
 
   Future<void> uploadImage() async {
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.start();
     final now = DateTime.now();
-    var ref = storage.ref().child('washRecord/$now.jpg');
+    var ref = storage.ref().child('washRecord/$now.png');
     await ref.putFile(_image!);
-
+    print(stopwatch.elapsed.toString() + "측정시간");
+    stopwatch.stop();
     _downloadUrl = await ref.getDownloadURL(); //이미지 파일의 url
   }
 
