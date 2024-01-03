@@ -1,6 +1,5 @@
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
-import 'package:carwash/common/widgets/tabbar.dart';
 import 'package:carwash/community/provider/communityProvider.dart';
 import 'package:carwash/community/view/community_carwash_life/community_carwash_life_screen.dart';
 import 'package:carwash/community/view/community_question/community_question_screen.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../provider/category_provider.dart';
 import 'community_all/community_all_screen.dart';
 
 
@@ -24,6 +24,8 @@ class CommunityScreen extends ConsumerStatefulWidget {
 }
 
 class _CommunityScreenState extends ConsumerState<CommunityScreen> {
+
+  var category = ['','자유게시판','세차라이프','질문게시판'];
   @override
   void initState() {
     // TODO: implement initState
@@ -40,7 +42,10 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
       length: 4,
       child: DefaultLayoutV2(
         appBar: AppBar(
-          bottom: const TTabBar(
+          bottom: TabBar(
+            onTap: (index){
+              ref.read(categoryProvider.notifier).update((state) => category[index]);
+            },
             tabs: [
               Tab(child: Text('전체', style: TextStyle(fontSize: 16))),
               Tab(child: Text('자유게시판', style: TextStyle(fontSize: 16))),

@@ -5,6 +5,9 @@ import 'package:carwash/community/view/widget/community_section_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../common/view/pagination_list_view.dart';
+import '../../component/community_card.dart';
+import '../../provider/communityProvider.dart';
 import '../community_detail_screen.dart';
 
 class TCommunityAllScreen extends StatelessWidget {
@@ -79,50 +82,20 @@ class TCommunityAllScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: TSizes.spaceBtwItems),
-
-            /// 최신글 리스트
-            ListView.separated(
-              itemCount: 5,
-              // 리스트에 해당되는 영역만 차지
-              shrinkWrap: true,
-              // 스크롤이 되지 않게.
-              primary: false,
-              separatorBuilder: (_, __) {
-                return const Column(
-                  children: [
-                    SizedBox(height: TSizes.spaceBtwItems),
-                    Divider(thickness: 0.5),
-                    SizedBox(height: TSizes.spaceBtwItems),
-                  ],
-                );
-              },
-              itemBuilder: (_, int index) {
-                String postType = "세차라이프";
-
-                if (index == 0) {
-                  postType = "세차라이프";
-                } else if (index == 1) {
-                  postType = "자유게시판";
-                } else if (index == 2) {
-                  postType = "질문게시판";
-                } else {
-                  postType = "세차라이프";
-                }
-
-                return GestureDetector(
-                  child: Column(
-                    children: [
-                      TCommunityAllLatestPostWidget(
-                        postType: postType,
-                        title: '오늘 세차 맛집 다녀왔어요~',
-                        nickName: '세린이',
-                        imageUrl: 'asset/img/car_image.jpeg',
-                      ),
-                    ],
-                  ),
-                  onTap: () => context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': '1'}),
-                );
-              },
+            Container(
+              height: 500,
+              child: Column(
+                children:[
+                  Expanded(
+                  child: PaginationListView(
+                      provider: communityProvider,
+                      itemBuilder: <CommunityModel>(_,index,community){
+                        return TCommunityAllLatestPostWidget(
+                          model: community,
+                        );
+                      }),
+                ),]
+              ),
             ),
           ],
         ),
