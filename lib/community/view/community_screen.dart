@@ -10,6 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../common/widgets/tabbar.dart';
 import '../provider/category_provider.dart';
 import 'community_all/community_all_screen.dart';
 
@@ -42,11 +43,11 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
       length: 4,
       child: DefaultLayoutV2(
         appBar: AppBar(
-          bottom: TabBar(
+          bottom: TTabBar(
             onTap: (index){
               ref.read(categoryProvider.notifier).update((state) => category[index]);
             },
-            tabs: [
+            tabs: const [
               Tab(child: Text('전체', style: TextStyle(fontSize: 16))),
               Tab(child: Text('자유게시판', style: TextStyle(fontSize: 16))),
               Tab(child: Text('세차라이프', style: TextStyle(fontSize: 16))),
