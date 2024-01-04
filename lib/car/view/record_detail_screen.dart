@@ -22,7 +22,6 @@ class _RecordDetailState extends ConsumerState<RecordDetail> {
   Widget build(BuildContext context) {
     final state = ref.read(RecordProvider('false')).firstWhere((element) => element.id == widget.id);
     var wash = state.washList.split("[")[1].split("]")[0].split(",");
-    final NetworkImage =  Image.network(state.imgUrl);
 
     return DefaultLayoutV2(
 
@@ -82,21 +81,28 @@ class _RecordDetailState extends ConsumerState<RecordDetail> {
               const SizedBox(height: TSizes.spaceBtwInputFields),
 
               DottedBorder(
-                color: Colors.grey,
-                dashPattern: const [5, 3],
-                borderType: BorderType.RRect,
-                radius: const Radius.circular(12),
-                child: NetworkImage.image == null
-                ? Center(
-                  child: CircularProgressIndicator(),
-                )
-
-                : Image(
-                  image: NetworkImage.image,
-                  width: 400,
-                  height: 250,
-                  fit: BoxFit.fill,
-                ),
+                  color: Colors.grey,
+                  dashPattern: const [5, 3],
+                  borderType: BorderType.RRect,
+                  radius: const Radius.circular(12),
+                  child: Container(
+                    width: 400,
+                    height: 200,
+                    child: Image.network(
+                      state.imgUrl,
+                      fit: BoxFit.fill,
+                      loadingBuilder: (BuildContext context,Widget child,ImageChunkEvent? loadingProgress){
+                        if(loadingProgress == null){
+                          return child;
+                        }
+                        return Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
+                          ),
+                        );
+                      },
+                    ),
+                  )
               ),
               
               const SizedBox(height: TSizes.spaceBtwInputFields),
