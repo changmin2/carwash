@@ -54,16 +54,42 @@ class _RecentCarWashListWidgetState extends ConsumerState<RecentCarWashListWidge
                 ],
               ),
               const SizedBox(height: 16),
-              Text(
-                '최근 세차가 없습니다.',
-                style: TextStyle(
-                  fontSize: 20
-                ),
-              )
+              CircularProgressIndicator(),
             ]
           )
           :
-
+          record[0].id ==00
+          ?
+          Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '최근 세차',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        THelperFunctions.navigateToScreen(context, const CarWashRecordScreen());
+                      },
+                      child: Text(
+                        'See all',
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.blue),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  '최근 세차가 없습니다.',
+                  style: TextStyle(
+                      fontSize: 20
+                  ),
+                )
+              ]
+          )
+          :
           Column(
             children: [
               Row(

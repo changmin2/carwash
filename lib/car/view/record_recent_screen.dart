@@ -22,7 +22,6 @@ class _RecordDetailState extends ConsumerState<RecordRecent> {
   @override
   Widget build(BuildContext context) {
     var wash = widget.model.washList.split("[")[1].split("]")[0].split(",");
-    final NetworkImage =  Image.network(widget.model.imgUrl);
 
     return DefaultLayoutV2(
 
@@ -86,17 +85,24 @@ class _RecordDetailState extends ConsumerState<RecordRecent> {
                 dashPattern: const [5, 3],
                 borderType: BorderType.RRect,
                 radius: const Radius.circular(12),
-                child: NetworkImage.image == null
-                ? Center(
-                  child: CircularProgressIndicator(),
-                )
-
-                : Image(
-                  image: NetworkImage.image,
+                child: Container(
                   width: 400,
-                  height: 250,
-                  fit: BoxFit.fill,
-                ),
+                  height: 200,
+                  child: Image.network(
+                    widget.model.imgUrl,
+                    fit: BoxFit.fill,
+                    loadingBuilder: (BuildContext context,Widget child,ImageChunkEvent? loadingProgress){
+                      if(loadingProgress == null){
+                        return child;
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
+                        ),
+                      );
+                    },
+                  ),
+                )
               ),
               
               const SizedBox(height: TSizes.spaceBtwInputFields),
