@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../common/widgets/appbar.dart';
+
 class UserProfileScreen extends ConsumerStatefulWidget {
   static get routeName => 'userProfileScreen';
 
@@ -25,16 +27,18 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
     final state = ref.read(userMeProvider) as UserModel;
     return DefaultLayoutV2(
       backgroundColor: PRIMARY_COLOR,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+      ),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            /// Appbar
-            // const TAppbar(
-            //   backButtonColor: Colors.white,
-            // ),
-            AppBar(),
+
             /// Profile Tile
             TUserProfileTile(title: state.nickname, subtitle: "1단계 환자"),
+
             const SizedBox(height: TSizes.spaceBtwSections),
 
             /// Setting List
