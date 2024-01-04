@@ -72,16 +72,6 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
 FloatingActionButton _floatingActionButton(BuildContext context) {
 
-  // return FloatingActionButton(
-  //   backgroundColor: PRIMARY_COLOR,
-  //   onPressed: () {
-  //     context.goNamed(CommunityRegisterScreen.routeName);
-  //   },
-  //   child: const Icon(
-  //     Iconsax.path,
-  //     color: Colors.white,
-  //   ),
-  // );
 
   return FloatingActionButton.extended(
     backgroundColor: PRIMARY_COLOR,
