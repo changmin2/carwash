@@ -4,9 +4,12 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../common/component/rounded_container.dart';
 import '../../../../common/component/rounded_image.dart';
 import '../../../../common/const/sizes.dart';
+import '../../../model/community_model.dart';
 
 class TCommunityCarWashLifeListWidget extends StatelessWidget {
+  final CommunityModel model;
   TCommunityCarWashLifeListWidget({
+    required this.model,
     super.key,
   });
 
@@ -39,8 +42,8 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('세차환자', style: Theme.of(context).textTheme.bodyMedium),
-                      Text('2023.12.21', style: Theme.of(context).textTheme.labelMedium),
+                      Text(model.creator, style: Theme.of(context).textTheme.bodyMedium),
+                      Text(model.createDate.split("T")[0], style: Theme.of(context).textTheme.labelMedium),
                     ],
                   ),
                 ],
@@ -132,7 +135,7 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: TSizes.defalutSpace),
           child: Text(
-            '추운 겨울이 왔네요...너무 너무 추운데 세차는 해야겠더라구요~ 너무 추워서 오늘은 개러지에서 비싼 돈 주고 세차를 했습니다.',
+            model.content,
             style: Theme.of(context).textTheme.bodyMedium,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,

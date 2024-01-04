@@ -2,6 +2,9 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/community/view/community_carwash_life/widget/comunity_carwash_life_list_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/view/pagination_list_view.dart';
+import '../../provider/communityProvider.dart';
+
 class TCommunityCarWashLifeScreen extends StatelessWidget {
   const TCommunityCarWashLifeScreen({
     super.key,
@@ -9,17 +12,20 @@ class TCommunityCarWashLifeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return ListView.separated(
-        itemCount: 3,
-        shrinkWrap: true,
-        padding: const EdgeInsets.symmetric(vertical: TSizes.defalutSpace),
-        separatorBuilder: (_, int index) {
-          return const SizedBox(height: TSizes.spaceBtwSections);
-        },
-        itemBuilder: (_, int index) {
-          return TCommunityCarWashLifeListWidget();
-        });
+    return Container(
+      child: Column(
+          children:[
+            Expanded(
+              child: PaginationListView(
+                  provider: communityProvider,
+                  itemBuilder: <CommunityModel>(_,index,community){
+                    return TCommunityCarWashLifeListWidget(
+                      model: community,
+                    );
+                  }),
+            ),]
+      ),
+    );
   }
 }
 

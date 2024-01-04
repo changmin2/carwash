@@ -2,19 +2,15 @@ import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
+import 'package:carwash/community/model/community_model.dart';
 import 'package:flutter/material.dart';
 
 class TCommunityAllLatestPostWidget extends StatelessWidget {
-  final String postType, title, nickName, imageUrl;
-  final bool isNetworkImage;
+  final CommunityModel model;
 
   const TCommunityAllLatestPostWidget({
     super.key,
-    required this.postType,
-    required this.title,
-    required this.nickName,
-    required this.imageUrl,
-    this.isNetworkImage = false,
+    required this.model
   });
 
   @override
@@ -30,12 +26,12 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.xs),
               radius: 5,
               showBorder: true,
-              borderColor: postType == '세차라이프' ? PRIMARY_COLOR
-              : postType == '질문게시판' ? const Color(0xffE9C46A) : const Color(0xffF4A261),
+              borderColor: model.category == '세차라이프' ? PRIMARY_COLOR
+              : model.category == '질문게시판' ? const Color(0xffE9C46A) : const Color(0xffF4A261),
               child: Text(
-                postType,
-                style: postType == '세차라이프' ? Theme.of(context).textTheme.labelMedium!.apply(color: PRIMARY_COLOR)
-                : postType == '질문게시판' ? Theme.of(context).textTheme.labelMedium!.apply(color: const Color(0xffE9C46A))
+                model.category,
+                style: model.category == '세차라이프' ? Theme.of(context).textTheme.labelMedium!.apply(color: PRIMARY_COLOR)
+                : model.category == '질문게시판' ? Theme.of(context).textTheme.labelMedium!.apply(color: const Color(0xffE9C46A))
                 : Theme.of(context).textTheme.labelMedium!.apply(color: const Color(0xffF4A261)),
               ),
             ),
@@ -45,7 +41,7 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
             SizedBox(
               width: 250,
               child: Text(
-                title,
+                model.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodyMedium,
@@ -55,7 +51,7 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
             
             /// 닉네임
             Text(
-              nickName,
+              model.creator,
               style: Theme.of(context).textTheme.labelMedium,
             )
           ],
@@ -63,7 +59,7 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
         
         /// 사진
         TRoundedImage(
-          imageUrl: imageUrl,
+          imageUrl: 'asset/img/car_image.jpeg',
           width: 70,
           height: 70,
           fit: BoxFit.fill,
