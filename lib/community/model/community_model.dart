@@ -13,6 +13,8 @@ class CommunityModel implements IModelWithId{
   final int favorite;
   final String category;
   final String createDate;
+  String? hastag;
+  String? imgUrls;
 
   CommunityModel({
     required this.id,
@@ -22,7 +24,9 @@ class CommunityModel implements IModelWithId{
     required this.hits,
     required this.favorite,
     required this.category,
-    required this.createDate
+    required this.createDate,
+    this.hastag = '',
+    this.imgUrls = ''
   });
 
   factory CommunityModel.fromJson(Map<String,dynamic> json)

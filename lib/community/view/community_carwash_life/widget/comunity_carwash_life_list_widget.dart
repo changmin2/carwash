@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../common/component/rounded_container.dart';
 import '../../../../common/component/rounded_image.dart';
 import '../../../../common/const/sizes.dart';
 import '../../../model/community_model.dart';
+import '../../community_detail_screen_bak.dart';
 
 class TCommunityCarWashLifeListWidget extends StatelessWidget {
   final CommunityModel model;
@@ -17,6 +19,10 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> imgs = [];
+    if(model.imgUrls != ''){
+      imgs = model.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -67,17 +73,29 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
         const SizedBox(height: TSizes.spaceBtwItems),
 
         /// 사진
+        imgs.length == 0
+        ?
+        Container(
+          height: 150,
+          child: Center(
+            child: Text(
+              'No Image'
+            ),
+          ),
+        )
+        :
         SizedBox(
           height: 350,
           child: PageView.builder(
             controller: controller,
-            itemCount: 3,
+            itemCount: imgs.length,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (_, int index) {
-              return const TRoundedImage(
+              return TRoundedImage(
                 fit: BoxFit.cover,
-                imageUrl: 'asset/img/car_image.jpeg',
+                imageUrl: imgs[0],
                 borderRadius: 0,
+                isNetworkImage: true,
               );
             },
           ),
@@ -85,10 +103,14 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
 
         const SizedBox(height: TSizes.spaceBtwItems),
 
+        imgs.length == 0
+        ?
+        Container()
+        :
         Center(
           child: SmoothPageIndicator(
             controller: controller,
-            count: 3,
+            count: imgs.length,
             effect: const ExpandingDotsEffect(
               activeDotColor: Colors.black,
               dotHeight: 6,
@@ -141,6 +163,7 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
         ),
+        SizedBox(height: 16)
       ],
     );
   }

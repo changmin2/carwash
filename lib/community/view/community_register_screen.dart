@@ -4,11 +4,13 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/community/model/requestRegister_model.dart';
 import 'package:carwash/community/repository/community_repository.dart';
+import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/model/user_model.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CommunityRegisterScreen extends ConsumerStatefulWidget {
@@ -264,21 +266,35 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                     if (_titleKey.currentState!.validate() && _contentKey.currentState!.validate()
                           && _tagKey.currentState!.validate()) {
                       final user = ref.read(userMeProvider) as UserModel;
+
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context){
+                            return Container(
+                              height: 100,
+                              child: Center(
+                                  child: Text(
+                                      '업로드중...'
+                                  )
+                              ),
+                            );
+                          }
+                      );
+
+                      await uploadImage();
+
                       RequestRegisterParam param = RequestRegisterParam(
                         creator: user.nickname,
                         content: content!,
                         title: title!,
                         category: category,
+                        hastag: tag!,
+                        imgUrl: _downloadUrls == null ? '' : _downloadUrls.toString()!
                       );
 
-                      ref.read(communityRepositoryProvider).register(param);
+                      await ref.read(communityRepositoryProvider).register(param);
 
-                      await ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('등록완료!!'),
-                        duration: Duration(seconds: 3),
-                      ));
-                      
-                      Navigator.pop(context);
+                      context.goNamed(CommunityScreen.routeName);
                     }
                   },
                   child: const Text('등록'),

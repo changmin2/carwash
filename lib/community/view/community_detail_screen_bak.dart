@@ -10,22 +10,21 @@ import '../../common/component/pagination_list_viewV2.dart';
 import '../../user/model/user_model.dart';
 import '../../user/provider/user_me_provider.dart';
 
-class CommunityDetailScreen extends ConsumerStatefulWidget {
+class CommunityDetailScreenBak extends ConsumerStatefulWidget {
   static get routeName => 'communityDetailScreen';
   final id;
-  const CommunityDetailScreen({
+  const CommunityDetailScreenBak({
     required this.id,
     Key? key}) : super(key: key);
 
   @override
-  ConsumerState<CommunityDetailScreen> createState() => _CommunityDetailScreenState();
+  ConsumerState<CommunityDetailScreenBak> createState() => _CommunityDetailScreenState();
 }
 
-class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
+class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreenBak> {
 
   @override
   Widget build(BuildContext context) {
-
     ref.invalidate(commentProvider);
     final state = ref.read(communityProvider.notifier).getDetail(widget.id);
 

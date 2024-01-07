@@ -3,7 +3,10 @@ import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../community_detail_screen_bak.dart';
 
 class TCommunityFreeHotCard extends StatelessWidget {
 
@@ -20,7 +23,6 @@ class TCommunityFreeHotCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
       child: TRoundedContainer(
         width: 120,
         child: Column(

@@ -8,12 +8,16 @@ class RequestRegisterParam{
   final String content;
   final String title;
   final String category;
+  final String hastag;
+  String? imgUrl;
 
   RequestRegisterParam({
     required this.creator,
     required this.content,
     required this.title,
-    required this.category
+    required this.category,
+    required this.hastag,
+    this.imgUrl = ''
   });
 
   factory RequestRegisterParam.fromJson(Map<String,dynamic> json)

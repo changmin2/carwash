@@ -46,7 +46,6 @@ class PaginationProvider<T extends IModelWithId,U extends IBasePaginationReposit
       //    fetchMore가 아닐때 - 새로고침의 의도가 있다
       if(state is CursorPagination && !forceRefetch){
         final pState = state as CursorPagination;
-
         if(!pState.meta.hasMore){
           //더 데이터가 없다
           return;

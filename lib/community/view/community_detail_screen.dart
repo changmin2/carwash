@@ -2,18 +2,15 @@ import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
-import 'package:carwash/community/component/comment_card.dart';
 import 'package:carwash/community/provider/comment_provider.dart';
-import 'package:carwash/community/provider/communityProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
-
-import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
 import '../../common/component/rounded_image.dart';
 import '../../user/model/user_model.dart';
 import '../../user/provider/user_me_provider.dart';
+import '../provider/communityProvider.dart';
 
 class CommunityDetailScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityDetailScreen';
@@ -28,8 +25,15 @@ class CommunityDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
+
   @override
   Widget build(BuildContext context) {
+    ref.invalidate(commentProvider);
+    final state = ref.read(communityProvider.notifier).getDetail(widget.id);
+    List<String> imgs = [];
+    if(state.imgUrls != ''){
+      imgs = state.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
+    }
     return DefaultLayoutV2(
       appBar: AppBar(
           // title: Text(state.title),
@@ -114,58 +118,66 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              Text('2023.12.21', style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.grey)),
+              Text(state.createDate.split("T")[0], style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.grey)),
               const SizedBox(width: TSizes.sm),
 
               const SizedBox(height: TSizes.spaceBtwItems),
 
               /// 제목
-              Text('오늘 세차 맛집 다녀왔어요~', style: Theme.of(context).textTheme.titleMedium),
+              Text(state.title, style: Theme.of(context).textTheme.titleMedium),
 
               const SizedBox(height: TSizes.spaceBtwItems),
 
               /// 태그
+              state.hastag != ''
+              ?
               TRoundedContainer(
                 padding: const EdgeInsets.all(TSizes.xs),
                 showBorder: true,
                 radius: 6,
                 borderColor: PRIMARY_COLOR,
                 child: Text(
-                  '#세차장추천',
+                  state.hastag!,
                   style: Theme.of(context).textTheme.labelLarge!.copyWith(color: PRIMARY_COLOR),
                 ),
-              ),
+              )
+              :
+              Container(),
 
               const SizedBox(height: TSizes.spaceBtwItems),
 
               /// 글 내용
               Text(
-                '오늘 세차 맛집 다녀왔어요~ 날씨도 춥고 연말이라 약속도 많아서 오랜만에 세차를 다녀왔는데 완전 맛집이였어요~ 센스있는 사장님께서 노래도 틀어놔 심심하지 않았어요. ',
+                state.content,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(height: 1.5),
               ),
 
               const SizedBox(height: TSizes.spaceBtwSections),
-
+              imgs.length > 0
+              ?
               SizedBox(
                 height: 120,
                 child: ListView.separated(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: 5,
+                  itemCount: imgs.length,
                   separatorBuilder: (_, __) {
                     return const SizedBox(width: TSizes.spaceBtwItems / 2);
                   },
                   itemBuilder: (_, int index) {
-                    return const TRoundedImage(
-                      imageUrl: 'asset/img/car_image.jpeg',
+                    return TRoundedImage(
+                      imageUrl: imgs[index],
                       width: 120,
                       height: 120,
                       fit: BoxFit.fill,
                       borderRadius: 12.0,
+                      isNetworkImage: true,
                     );
                   },
                 ),
-              ),
+              )
+              :
+              Container(),
               const SizedBox(height: TSizes.spaceBtwSections * 2),
 
               /// 추천 버튼 클릭시
@@ -186,7 +198,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
                         const SizedBox(width: TSizes.sm),
 
-                        Text('세차환자', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey)),
+                        Text(state.creator, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey)),
                       ],
                     ),
 

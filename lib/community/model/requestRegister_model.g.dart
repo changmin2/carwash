@@ -13,6 +13,8 @@ RequestRegisterParam _$RequestRegisterParamFromJson(
       content: json['content'] as String,
       title: json['title'] as String,
       category: json['category'] as String,
+      hastag: json['hastag'] as String,
+      imgUrl: json['imgUrl'] as String? ?? '',
     );
 
 Map<String, dynamic> _$RequestRegisterParamToJson(
@@ -22,4 +24,6 @@ Map<String, dynamic> _$RequestRegisterParamToJson(
       'content': instance.content,
       'title': instance.title,
       'category': instance.category,
+      'hastag': instance.hastag,
+      'imgUrl': instance.imgUrl,
     };
