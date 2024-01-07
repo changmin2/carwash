@@ -67,7 +67,7 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
 
     final cp = state as CursorPagination<T>;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child:  ListView.separated(
         controller: controller,
         itemCount: cp.data.length + 1,

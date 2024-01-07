@@ -20,10 +20,12 @@ class CommunityStateNotifier extends PaginationProvider<CommunityModel,Community
   });
 
   void init(){
+
     state is CursorPaginationLoading;
   }
 
   CommunityModel getDetail(int id){
+
     final pState = state as CursorPagination;
 
     return pState.data.where((e) => e.id == id).first;

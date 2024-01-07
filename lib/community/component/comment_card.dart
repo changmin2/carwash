@@ -3,6 +3,7 @@ import 'package:carwash/community/model/comment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../common/const/sizes.dart';
 import '../../user/model/user_model.dart';
 import '../../user/provider/user_me_provider.dart';
 import '../provider/comment_provider.dart';
@@ -23,64 +24,72 @@ class CommentCard extends ConsumerWidget {
     return Padding(
       padding: EdgeInsets.only(left: 10),
       child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.account_circle_rounded,
-            size: 40,
+          /// 댓글 내용
+          Text(
+            comment.content,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  comment.creator,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700
+          const SizedBox(height: TSizes.spaceBtwItems),
+
+          /// 댓글 아이디
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    comment.creator,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  comment.content
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-      const SizedBox(height: 8),
-      Padding(
-        padding: EdgeInsets.only(left: 55),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-              Text(
-              comment.createDate.toString().split(" ")[0]
-            ),
-            comment.creator == user.username ?
-            _PopupMenuButtonPage(context, ref, comment.comment_id, board_id)
-            :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id)
-          ]
-        ),
-      ),
-        SizedBox(height: 10),
-        recomments?.length != 0 ?
-        ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: recomments!.length,
-            itemBuilder: (BuildContext context,int index){
-              return ReCommentCard(
-                  recomment: recomments![index],
-                  username: 'cc',
-                  comment_id: comment.id,
-              );
-            }): Container()
-              ]
+                  const SizedBox(width: TSizes.spaceBtwItems),
+                  /// 댓글 아이디
+                  Text(
+                    comment.createDate.toString().split(" ")[0],
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
               ),
+              Padding(
+                padding: EdgeInsets.only(left: 55),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      comment.creator == user.username ?
+                      _PopupMenuButtonPage(context, ref, comment.comment_id, board_id)
+                          :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id)
+                    ]
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: TSizes.spaceBtwItems),
+
+          const Divider(color: Colors.grey),
+
+          const SizedBox(height: TSizes.spaceBtwItems),
+
+
+          /// 대댓글 내용
+          recomments?.length != 0
+          ?
+                  ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: recomments!.length,
+                      itemBuilder: (BuildContext context,int index){
+                        return ReCommentCard(
+                            board_id : board_id,
+                            recomment: recomments![index],
+                            username: 'cc',
+                            comment_id: comment.comment_id,
+                        );
+                      }): Container(),
+          const SizedBox(height: TSizes.spaceBtwItems),
+        ],
+      )
     );
   }
 }
@@ -89,7 +98,9 @@ PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int com
   return PopupMenuButton(
     onSelected: (value) async {
       if(value=='삭제') {
-        await ref.read(commentProvider(board_id).notifier).deleteComment(comment_id);
+        if(context.mounted){
+          await ref.read(commentProvider(board_id).notifier).deleteComment(comment_id);
+        }
         //댓글 밑에 달린 대댓글 갯수를 가져오지 않고 다시 업데이트
       }else if(value=='신고'){
         ScaffoldMessenger.of(context).showSnackBar(

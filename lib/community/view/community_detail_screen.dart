@@ -6,10 +6,12 @@ import 'package:carwash/community/provider/comment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
 import '../../common/component/rounded_image.dart';
 import '../../user/model/user_model.dart';
 import '../../user/provider/user_me_provider.dart';
+import '../component/comment_card.dart';
 import '../provider/communityProvider.dart';
 
 class CommunityDetailScreen extends ConsumerStatefulWidget {
@@ -26,11 +28,21 @@ class CommunityDetailScreen extends ConsumerStatefulWidget {
 
 class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+  }
   @override
   Widget build(BuildContext context) {
     ref.invalidate(commentProvider);
     final state = ref.read(communityProvider.notifier).getDetail(widget.id);
     List<String> imgs = [];
+    final _formKey = GlobalKey<FormState>();
+    var _content;
+
     if(state.imgUrls != ''){
       imgs = state.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
     }
@@ -61,16 +73,16 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                   children: [
                     Expanded(
                       child: Form(
-                        // key: _contentKey,
+                        key: _formKey,
                         child: TextFormField(
-                          // onChanged: (value) {
-                          //   content = value;
-                          // },
-                          // validator: (value) {
-                          //   if (value!.isEmpty) {
-                          //     return "내용을 입력해주세요.";
-                          //   }
-                          // },
+                          onChanged: (value) {
+                            _content = value;
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "내용을 입력해주세요.";
+                            }
+                          },
                           decoration: const InputDecoration(
                             hintText: '댓글을 작성하세요.',
                             filled: false,
@@ -88,7 +100,17 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
                     /// 댓글 등록
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        _formKey.currentState!.save();
+                        if (_formKey.currentState!.validate()) {
+                          final state = ref.watch(userMeProvider);
+                          final pState = state as UserModel;
+
+                          ref.watch(commentProvider(widget.id).notifier)
+                              .createComment(pState.username, _content);
+                          Navigator.pop(context);
+                        }
+                      },
                       child: const Icon(
                         Iconsax.edit,
                         size: 35,
@@ -250,76 +272,23 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
               ),
 
               const SizedBox(height: TSizes.spaceBtwItems),
-
-
-              /// 댓글 내용
-              Text(
-                '저도 시간 나면 한번 가봐야 겠네요~~',
-                style: Theme.of(context).textTheme.bodyMedium,
+              SizedBox(
+                height: 700,
+                child: Column(
+                  children: [Expanded(
+                    child: PaginationListViewV2(
+                        id: widget.id,
+                        provider: commentProvider(widget.id),
+                        itemBuilder: <Comment>(_,index,comment){
+                          return CommentCard(
+                              comment:comment,
+                              recomments:comment.commentList,
+                              board_id: widget.id
+                          );
+                        }),
+                  ),]
+                ),
               ),
-              const SizedBox(height: TSizes.spaceBtwItems),
-
-              /// 댓글 아이디
-              Row(
-                children: [
-                  Text(
-                    '세차돌이',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  const SizedBox(width: TSizes.spaceBtwItems),
-                  /// 댓글 아이디
-                  Text(
-                    '2023.01.02',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
-              ),
-              const SizedBox(height: TSizes.spaceBtwItems),
-              
-              const Divider(color: Colors.grey),
-              
-              const SizedBox(height: TSizes.spaceBtwItems),
-
-
-              /// 대댓글 내용
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '┗',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(width: TSizes.spaceBtwItems),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '저도 시간 나면 한번 가봐야 겠네요~~',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-
-                      const SizedBox(height: TSizes.spaceBtwItems),
-
-                      /// 댓글 아이디
-                      Row(
-                        children: [
-                          Text(
-                            '세차돌이',
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                          const SizedBox(width: TSizes.spaceBtwItems),
-                          /// 댓글 아이디
-                          Text(
-                            '2023.01.02',
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: TSizes.spaceBtwItems),
 
               // Center(child: Text('첫 댓글을 남겨주세요.', style: Theme.of(context).textTheme.bodySmall)),
             ],

@@ -26,18 +26,18 @@ class CommunityScreen extends ConsumerStatefulWidget {
 class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
   var category = ['','자유게시판','세차라이프','질문게시판'];
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    ref.read(communityProvider.notifier).init();
+
   }
 
   @override
   Widget build(BuildContext context) {
 
-    ref.invalidate(communityProvider);
-
+    ref.read(communityProvider.notifier).init();
     return DefaultTabController(
       length: 4,
       child: DefaultLayoutV2(
