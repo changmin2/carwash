@@ -22,66 +22,6 @@ class TCommunityAllScreen extends StatelessWidget {
         padding: const EdgeInsets.all(TSizes.defalutSpace),
         child: Column(
           children: [
-            /// HOT 전체
-            /// HOT section header
-            const TCommunitySectionHeading(
-              firstTitle: 'HOT',
-              firstTitleColor: Colors.red,
-              secondTitle: '전체',
-              // showActionButton: true,
-              // buttonTitle: 'See All',
-            ),
-
-            const SizedBox(height: TSizes.spaceBtwItems),
-
-            /// HOT 전체 리스트
-            SizedBox(
-              height: 270,
-              child: ListView.builder(
-                itemCount: 5,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (BuildContext context, int index) {
-                  return const Padding(
-                    padding: EdgeInsets.only(right: TSizes.sm),
-                    child: TCommunityAllHotCardWidget(
-                      containerWidth: 200,
-                      imageUrl: 'asset/img/car_image.jpeg',
-                      imageHeight: 200,
-                      nickName: '세린이',
-                      title: '오늘 세차 맛집 다녀 왔습니다! 너무 깨끗했고 시설도 좋았습니다.',
-                      likeCount: '120',
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            const SizedBox(height: TSizes.spaceBtwItems),
-
-            // SizedBox(
-            //   width: double.infinity,
-            //   child: OutlinedButton(
-            //     onPressed: () {},
-            //     style: ElevatedButton.styleFrom(
-            //       backgroundColor: const Color(0xffE6EAEE),
-            //     ),
-            //     child: Text(
-            //       "전체보기",
-            //       style: Theme.of(context).textTheme.titleMedium
-            //     ),
-            //   ),
-            // ),
-
-            const SizedBox(height: TSizes.spaceBtwSections),
-
-            /// 최신글
-            /// 최신글 section heading
-            const TCommunitySectionHeading(
-              firstTitle: '최신글',
-              secondTitle: '전체',
-            ),
-
-            const SizedBox(height: TSizes.spaceBtwItems),
             Container(
               height: 500,
               child: Column(
@@ -90,6 +30,75 @@ class TCommunityAllScreen extends StatelessWidget {
                   child: PaginationListView(
                       provider: communityProvider,
                       itemBuilder: <CommunityModel>(_,index,community){
+                        if(index == 0){
+                          return Column(children: [
+                            /// HOT 전체
+                            /// HOT section header
+                            const TCommunitySectionHeading(
+                              firstTitle: 'HOT',
+                              firstTitleColor: Colors.red,
+                              secondTitle: '전체',
+                              // showActionButton: true,
+                              // buttonTitle: 'See All',
+                            ),
+
+                            const SizedBox(height: TSizes.spaceBtwItems),
+
+                            /// HOT 전체 리스트
+                            SizedBox(
+                              height: 270,
+                              child: ListView.builder(
+                                itemCount: 5,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return const Padding(
+                                    padding: EdgeInsets.only(right: TSizes.sm),
+                                    child: TCommunityAllHotCardWidget(
+                                      containerWidth: 200,
+                                      imageUrl: 'asset/img/car_image.jpeg',
+                                      imageHeight: 200,
+                                      nickName: '세린이',
+                                      title: '오늘 세차 맛집 다녀 왔습니다! 너무 깨끗했고 시설도 좋았습니다.',
+                                      likeCount: '120',
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+
+                            const SizedBox(height: TSizes.spaceBtwItems),
+
+                            // SizedBox(
+                            //   width: double.infinity,
+                            //   child: OutlinedButton(
+                            //     onPressed: () {},
+                            //     style: ElevatedButton.styleFrom(
+                            //       backgroundColor: const Color(0xffE6EAEE),
+                            //     ),
+                            //     child: Text(
+                            //       "전체보기",
+                            //       style: Theme.of(context).textTheme.titleMedium
+                            //     ),
+                            //   ),
+                            // ),
+
+                            const SizedBox(height: TSizes.spaceBtwSections),
+
+                            /// 최신글
+                            /// 최신글 section heading
+                            const TCommunitySectionHeading(
+                              firstTitle: '최신글',
+                              secondTitle: '전체',
+                            ),
+
+                            const SizedBox(height: TSizes.spaceBtwItems),
+
+                            TCommunityAllLatestPostWidget(
+                              model: community,
+                            )
+                          ],
+                          );
+                        }
                         return TCommunityAllLatestPostWidget(
                           model: community,
                         );
