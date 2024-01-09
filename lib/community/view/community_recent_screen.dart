@@ -14,6 +14,7 @@ import '../../user/provider/user_me_provider.dart';
 import '../component/comment_card.dart';
 import '../model/community_model.dart';
 import '../provider/communityProvider.dart';
+import '../provider/hot_all_community_provider.dart';
 
 class CommunityRecentScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityRecentScreen';
@@ -40,7 +41,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
   Widget build(BuildContext context) {
 
     ref.invalidate(commentProvider);
-    ref.watch(communityProvider.notifier);
+    ref.watch(hotAllCommunityProvider);
     List<String> imgs = [];
     final _formKey = GlobalKey<FormState>();
     var _content;
@@ -208,7 +209,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
               /// 추천 버튼 클릭시
               GestureDetector(
                 onTap: (){
-                  ref.watch(communityProvider.notifier).clickFavorite(widget.model.id);
+                  ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
