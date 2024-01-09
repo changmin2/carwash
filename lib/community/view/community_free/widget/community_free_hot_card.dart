@@ -28,7 +28,7 @@ class TCommunityFreeHotCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityRecentScreen(model: model)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityRecentScreen(model: model,freeOrall: false,)));
       },
       child: TRoundedContainer(
         width: 120,

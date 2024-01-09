@@ -3,6 +3,7 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/community/provider/comment_provider.dart';
+import 'package:carwash/community/provider/hot_free_community_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
@@ -19,8 +20,11 @@ import '../provider/hot_all_community_provider.dart';
 class CommunityRecentScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityRecentScreen';
   final CommunityModel model;
-  const CommunityRecentScreen({
+  bool freeOrall;
+
+  CommunityRecentScreen({
     required this.model,
+    this.freeOrall = true,
     Key? key,
   }) : super(key: key);
 
@@ -41,7 +45,12 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
   Widget build(BuildContext context) {
 
     ref.invalidate(commentProvider);
-    ref.watch(hotAllCommunityProvider);
+    widget.freeOrall==true
+    ?
+    ref.watch(hotAllCommunityProvider)
+    :
+    ref.watch(hotFreeCommunityProvider);
+
     List<String> imgs = [];
     final _formKey = GlobalKey<FormState>();
     var _content;
@@ -209,7 +218,11 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
               /// 추천 버튼 클릭시
               GestureDetector(
                 onTap: (){
-                  ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id);
+                  widget.freeOrall == true
+                  ?
+                  ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id)
+                  :
+                  ref.read(hotFreeCommunityProvider.notifier).clickFavorite(widget.model.id);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
