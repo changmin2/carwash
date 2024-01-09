@@ -38,7 +38,9 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
   }
   @override
   Widget build(BuildContext context) {
+
     ref.invalidate(commentProvider);
+    ref.watch(communityProvider.notifier);
     List<String> imgs = [];
     final _formKey = GlobalKey<FormState>();
     var _content;
@@ -47,6 +49,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
       imgs = widget.model.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
     }
     return DefaultLayoutV2(
+
       appBar: AppBar(
           // title: Text(state.title),
           // actions: [
@@ -204,7 +207,9 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
 
               /// 추천 버튼 클릭시
               GestureDetector(
-                onTap: (){},
+                onTap: (){
+                  ref.watch(communityProvider.notifier).clickFavorite(widget.model.id);
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -234,7 +239,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                         ),
                         const SizedBox(width: TSizes.xs),
                         Text(
-                          '10',
+                          widget.model.favorite.toString(),
                           style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
                         ),
                       ],

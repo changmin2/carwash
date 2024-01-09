@@ -38,6 +38,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
   @override
   Widget build(BuildContext context) {
     ref.invalidate(commentProvider);
+    ref.watch(communityProvider);
     final state = ref.read(communityProvider.notifier).getDetail(widget.id);
     List<String> imgs = [];
     final _formKey = GlobalKey<FormState>();
@@ -219,7 +220,9 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
                                 /// 추천 버튼 클릭시
                                 GestureDetector(
-                                  onTap: (){},
+                                  onTap: (){
+                                    ref.read(communityProvider.notifier).clickFavorite(widget.id);
+                                  },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -249,7 +252,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                           ),
                                           const SizedBox(width: TSizes.xs),
                                           Text(
-                                            '10',
+                                            state.favorite.toString(),
                                             style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
                                           ),
                                         ],

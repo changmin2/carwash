@@ -10,11 +10,16 @@ class CommunityModel implements IModelWithId{
   final String content;
   final String creator;
   final int hits;
-  final int favorite;
+  int favorite;
   final String category;
   final String createDate;
   String? hastag;
   String? imgUrls;
+
+
+  set favor(int num){
+    this.favorite+=num;
+  }
 
   CommunityModel({
     required this.id,

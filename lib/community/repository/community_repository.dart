@@ -37,4 +37,10 @@ abstract class CommunityRepository extends IBasePaginationRepository<CommunityMo
   @GET('/recentCommunity')
   Future<List<CommunityModel>> recentCommunity();
 
+
+  @GET("/clickFavorite/{id}")
+  Future<void> clickFavorite({
+    @Path() required String id
+  });
+
 }
