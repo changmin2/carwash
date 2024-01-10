@@ -1,16 +1,18 @@
 import 'package:carwash/community/view/community_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../car/view/register_first_screen.dart';
+import '../../../../community/provider/communityProvider.dart';
 import '../../../const/sizes.dart';
 import '../../../utils/helpers/helper_functions.dart';
 
-class TopMenuWidget extends StatelessWidget {
+class TopMenuWidget extends ConsumerWidget {
   const TopMenuWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [

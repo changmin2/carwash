@@ -27,18 +27,18 @@ class CommunityScreen extends ConsumerStatefulWidget {
 class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
   var category = ['','자유게시판','세차라이프','질문게시판'];
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    ref.read(communityProvider.notifier).init();
+
   }
 
   @override
   Widget build(BuildContext context) {
 
-    ref.invalidate(communityProvider);
-
+    ref.read(communityProvider.notifier).init();
     return DefaultTabController(
       length: 4,
       child: DefaultLayoutV2(
@@ -73,16 +73,6 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
 FloatingActionButton _floatingActionButton(BuildContext context) {
 
-  // return FloatingActionButton(
-  //   backgroundColor: PRIMARY_COLOR,
-  //   onPressed: () {
-  //     context.goNamed(CommunityRegisterScreen.routeName);
-  //   },
-  //   child: const Icon(
-  //     Iconsax.path,
-  //     color: Colors.white,
-  //   ),
-  // );
 
   return FloatingActionButton.extended(
     backgroundColor: PRIMARY_COLOR,

@@ -80,14 +80,17 @@ class CarWashLife extends StatelessWidget {
                   const SizedBox(height: TSizes.md),
 
                   /// 글 내용
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        THelperFunctions.truncateText(model.content, 15),
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
+                  SizedBox(
+                    height: 25,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          THelperFunctions.truncateText(model.content, 15),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

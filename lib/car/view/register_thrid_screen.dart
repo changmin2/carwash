@@ -224,6 +224,19 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context){
+                          return Container(
+                            height: 100,
+                            child: Center(
+                              child: Text(
+                                '업로드중...'
+                              )
+                            ),
+                          );
+                        }
+                    );
                     await uploadImage();
 
                     RecordRegisterParams params =
@@ -232,6 +245,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                     await ref.read(RecordProvider('true').notifier).getRecord(false);
                     ref.read(recentRecordProvider(user.username).notifier).add(re);
                     ref.read(stateProvider).change();
+
                     context.go('/');
                   },
                   child: const Text('완료'),
@@ -245,13 +259,13 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   }
 
   Future<void> uploadImage() async {
-    Stopwatch stopwatch = new Stopwatch();
-    stopwatch.start();
+    //Stopwatch stopwatch = new Stopwatch();
+    //stopwatch.start();
     final now = DateTime.now();
     var ref = storage.ref().child('washRecord/$now.png');
     await ref.putFile(_image!);
-    print(stopwatch.elapsed.toString() + "측정시간");
-    stopwatch.stop();
+    //print(stopwatch.elapsed.toString() + "측정시간");
+    //stopwatch.stop();
     _downloadUrl = await ref.getDownloadURL(); //이미지 파일의 url
   }
 
