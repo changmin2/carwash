@@ -39,10 +39,7 @@ class TCommunityFreeListWidget extends StatelessWidget {
                         showBorder: true,
                         radius: 6,
                         borderColor: Colors.redAccent,
-                        child: Text(
-                          'HOT',
-                          style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.redAccent),
-                        ),
+                        child: Text('HOT', style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.redAccent)),
                       ),
                       const SizedBox(width: TSizes.sm),
                     ],
@@ -57,10 +54,7 @@ class TCommunityFreeListWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(TSizes.xs),
                         showBorder: true,
                         radius: 6,
-                        child: Text(
-                          '#$hashtag',
-                          style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.grey),
-                        ),
+                        child: Text('#$hashtag', style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.grey)),
                       ),
                       const SizedBox(width: TSizes.sm),
                     ],
@@ -74,10 +68,7 @@ class TCommunityFreeListWidget extends StatelessWidget {
         const SizedBox(height: TSizes.spaceBtwItems),
 
         /// 제목
-        Text(
-          title,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
+        Text(title, style: Theme.of(context).textTheme.bodyMedium),
         const SizedBox(height: TSizes.spaceBtwItems),
 
         /// 유저사진, 닉네임, 좋아요, 댓글
@@ -105,31 +96,18 @@ class TCommunityFreeListWidget extends StatelessWidget {
             const SizedBox(width: TSizes.sm),
 
             /// 추천
-            const Icon(
-              Iconsax.like_1,
-              size: 14,
-            ),
+            const Icon(Iconsax.like_1, size: 14),
             const SizedBox(width: TSizes.xs),
-
-            Text(
-              '$likeCount',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
+            Text('$likeCount', style: Theme.of(context).textTheme.bodySmall),
             const SizedBox(width: TSizes.sm),
 
             Text('|', style: Theme.of(context).textTheme.bodySmall),
             const SizedBox(width: TSizes.sm),
 
             /// 댓글
-            const Icon(
-              Iconsax.message4,
-              size: 14,
-            ),
+            const Icon(Iconsax.message4, size: 14),
             const SizedBox(width: TSizes.xs),
-            Text(
-              '$replyCount',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
+            Text('$replyCount', style: Theme.of(context).textTheme.bodySmall),
           ],
         ),
       ],

@@ -2,15 +2,11 @@ import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:iconsax/iconsax.dart';
 
 import '../../../model/community_model.dart';
-import '../../community_detail_screen_bak.dart';
 import '../../community_recent_screen.dart';
 
 class TCommunityFreeHotCard extends StatelessWidget {
-
   final String imageUrl, title;
   final bool isNetworkImage;
   final CommunityModel model;
@@ -26,8 +22,15 @@ class TCommunityFreeHotCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityRecentScreen(model: model,freeOrall: false,)));
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CommunityRecentScreen(
+                    model: model,
+                    freeOrall: false,
+                  )),
+        );
       },
       child: TRoundedContainer(
         width: 120,

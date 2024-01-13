@@ -16,7 +16,6 @@ class WashListCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          
           /// 숫자 아이콘
           renderIcon(step),
           
@@ -24,9 +23,8 @@ class WashListCard extends StatelessWidget {
           
           /// 세차 기록
           Text(
-            wash,
+            wash.trim(),
             style: Theme.of(context).textTheme.labelMedium,
-            maxLines: 10,
           ),
         ],
       ),
