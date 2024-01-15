@@ -152,153 +152,166 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              Text(widget.model.createDate.split("T")[0], style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.grey)),
-              const SizedBox(width: TSizes.sm),
-
-              const SizedBox(height: TSizes.spaceBtwItems),
-
-              /// 제목
-              Text(widget.model.title, style: Theme.of(context).textTheme.titleMedium),
-
-              const SizedBox(height: TSizes.spaceBtwItems),
-
-              /// 태그
-              widget.model.hastag != ''
-              ?
-              TRoundedContainer(
-                padding: const EdgeInsets.all(TSizes.xs),
-                showBorder: true,
-                radius: 6,
-                borderColor: PRIMARY_COLOR,
-                child: Text(
-                  widget.model.hastag!,
-                  style: Theme.of(context).textTheme.labelLarge!.copyWith(color: PRIMARY_COLOR),
-                ),
-              )
-              :
-              Container(),
-
-              const SizedBox(height: TSizes.spaceBtwItems),
-
-              /// 글 내용
-              Text(
-                widget.model.content,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(height: 1.5),
-              ),
-
-              const SizedBox(height: TSizes.spaceBtwSections),
-              imgs.length > 0
-              ?
-              SizedBox(
-                height: 120,
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: imgs.length,
-                  separatorBuilder: (_, __) {
-                    return const SizedBox(width: TSizes.spaceBtwItems / 2);
-                  },
-                  itemBuilder: (_, int index) {
-                    return TRoundedImage(
-                      imageUrl: imgs[index],
-                      width: 120,
-                      height: 120,
-                      fit: BoxFit.fill,
-                      borderRadius: 12.0,
-                      isNetworkImage: true,
-                    );
-                  },
-                ),
-              )
-              :
-              Container(),
-              const SizedBox(height: TSizes.spaceBtwSections * 2),
-
-              /// 추천 버튼 클릭시
-              GestureDetector(
-                onTap: (){
-                  widget.freeOrall == true
-                  ?
-                  ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id)
-                  :
-                  ref.read(hotFreeCommunityProvider.notifier).clickFavorite(widget.model.id);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        const TRoundedImage(
-                          width: 30,
-                          height: 30,
-                          fit: BoxFit.fill,
-                          imageUrl: 'asset/img/car_image.jpeg',
-                          borderRadius: 100,
-                        ),
-
-                        const SizedBox(width: TSizes.sm),
-
-                        Text(widget.model.creator, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey)),
-                      ],
-                    ),
-
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const Icon(
-                          Iconsax.like_1,
-                          size: 22,
-                          color: Colors.grey,
-                        ),
-                        const SizedBox(width: TSizes.xs),
-                        Text(
-                          widget.model.favorite.toString(),
-                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: TSizes.spaceBtwItems),
-
-              Divider(thickness: 5, color: Colors.grey.withOpacity(0.3)),
-
-              const SizedBox(height: TSizes.spaceBtwItems),
-
-              /// 댓글 0일 경우
-              // Row(
-              //   children: [
-              //     Text('댓글', style: Theme.of(context).textTheme.bodySmall),
-              //     const SizedBox(width: TSizes.spaceBtwItems / 2),
-              //     Text('0', style: Theme.of(context).textTheme.bodySmall),
-              //   ],
-              // ),
-              //
-              // const SizedBox(height: TSizes.spaceBtwItems),
-              //
-              // Center(child: Text('첫 댓글을 남겨주세요.', style: Theme.of(context).textTheme.bodySmall)),
-
-              /// 댓글 0이 아닐 경우
-              Row(
-                children: [
-                  Text('댓글', style: Theme.of(context).textTheme.bodySmall),
-                  const SizedBox(width: TSizes.spaceBtwItems / 2),
-                  Text(widget.model.commentCnt.toString(), style: Theme.of(context).textTheme.bodySmall),
-                ],
-              ),
-
               const SizedBox(height: TSizes.spaceBtwItems),
               SizedBox(
                 height: 700,
                 child: Column(
                   children: [Expanded(
                     child: PaginationListViewV2(
+                        model: widget.model,
                         id: widget.model.id,
                         provider: commentProvider(widget.model.id),
                         itemBuilder: <Comment>(_,index,comment){
+                          if(index == 0){
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+
+                                Text(widget.model.createDate.split("T")[0], style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.grey)),
+                                const SizedBox(width: TSizes.sm),
+
+                                const SizedBox(height: TSizes.spaceBtwItems),
+
+                                /// 제목
+                                Text(widget.model.title, style: Theme.of(context).textTheme.titleMedium),
+
+                                const SizedBox(height: TSizes.spaceBtwItems),
+
+                                /// 태그
+                                widget.model.hastag != ''
+                                    ?
+                                TRoundedContainer(
+                                  padding: const EdgeInsets.all(TSizes.xs),
+                                  showBorder: true,
+                                  radius: 6,
+                                  borderColor: PRIMARY_COLOR,
+                                  child: Text(
+                                    widget.model.hastag!,
+                                    style: Theme.of(context).textTheme.labelLarge!.copyWith(color: PRIMARY_COLOR),
+                                  ),
+                                )
+                                    :
+                                Container(),
+
+                                const SizedBox(height: TSizes.spaceBtwItems),
+
+                                /// 글 내용
+                                Text(
+                                  widget.model.content,
+                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(height: 1.5),
+                                ),
+
+                                const SizedBox(height: TSizes.spaceBtwSections),
+                                imgs.length > 0
+                                    ?
+                                SizedBox(
+                                  height: 120,
+                                  child: ListView.separated(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: imgs.length,
+                                    separatorBuilder: (_, __) {
+                                      return const SizedBox(width: TSizes.spaceBtwItems / 2);
+                                    },
+                                    itemBuilder: (_, int index) {
+                                      return TRoundedImage(
+                                        imageUrl: imgs[index],
+                                        width: 120,
+                                        height: 120,
+                                        fit: BoxFit.fill,
+                                        borderRadius: 12.0,
+                                        isNetworkImage: true,
+                                      );
+                                    },
+                                  ),
+                                )
+                                    :
+                                Container(),
+                                const SizedBox(height: TSizes.spaceBtwSections * 2),
+
+                                /// 추천 버튼 클릭시
+                                GestureDetector(
+                                  onTap: (){
+                                    widget.freeOrall == true
+                                        ?
+                                    ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id)
+                                        :
+                                    ref.read(hotFreeCommunityProvider.notifier).clickFavorite(widget.model.id);
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const TRoundedImage(
+                                            width: 30,
+                                            height: 30,
+                                            fit: BoxFit.fill,
+                                            imageUrl: 'asset/img/car_image.jpeg',
+                                            borderRadius: 100,
+                                          ),
+
+                                          const SizedBox(width: TSizes.sm),
+
+                                          Text(widget.model.creator, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey)),
+                                        ],
+                                      ),
+
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          const Icon(
+                                            Iconsax.like_1,
+                                            size: 22,
+                                            color: Colors.grey,
+                                          ),
+                                          const SizedBox(width: TSizes.xs),
+                                          Text(
+                                            widget.model.favorite.toString(),
+                                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+
+                                const SizedBox(height: TSizes.spaceBtwItems),
+
+                                Divider(thickness: 5, color: Colors.grey.withOpacity(0.3)),
+
+                                const SizedBox(height: TSizes.spaceBtwItems),
+
+                                /// 댓글 0일 경우
+                                // Row(
+                                //   children: [
+                                //     Text('댓글', style: Theme.of(context).textTheme.bodySmall),
+                                //     const SizedBox(width: TSizes.spaceBtwItems / 2),
+                                //     Text('0', style: Theme.of(context).textTheme.bodySmall),
+                                //   ],
+                                // ),
+                                //
+                                // const SizedBox(height: TSizes.spaceBtwItems),
+                                //
+                                // Center(child: Text('첫 댓글을 남겨주세요.', style: Theme.of(context).textTheme.bodySmall)),
+
+                                /// 댓글 0이 아닐 경우
+                                Row(
+                                  children: [
+                                    Text('댓글', style: Theme.of(context).textTheme.bodySmall),
+                                    const SizedBox(width: TSizes.spaceBtwItems / 2),
+                                    Text(widget.model.commentCnt.toString(), style: Theme.of(context).textTheme.bodySmall),
+                                  ],
+                                ),
+                                CommentCard(
+                                    comment:comment,
+                                    recomments:comment.commentList,
+                                    board_id: widget.model.id
+                                )
+                              ]
+                            );
+                          }
                           return CommentCard(
                               comment:comment,
                               recomments:comment.commentList,
