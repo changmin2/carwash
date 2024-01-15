@@ -18,6 +18,7 @@ CommunityModel _$CommunityModelFromJson(Map<String, dynamic> json) =>
       createDate: json['createDate'] as String,
       hastag: json['hastag'] as String? ?? '',
       imgUrls: json['imgUrls'] as String? ?? '',
+      commentCnt: json['commentCnt'] as int,
     );
 
 Map<String, dynamic> _$CommunityModelToJson(CommunityModel instance) =>
@@ -32,4 +33,5 @@ Map<String, dynamic> _$CommunityModelToJson(CommunityModel instance) =>
       'createDate': instance.createDate,
       'hastag': instance.hastag,
       'imgUrls': instance.imgUrls,
+      'commentCnt': instance.commentCnt,
     };

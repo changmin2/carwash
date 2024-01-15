@@ -286,7 +286,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                 children: [
                   Text('댓글', style: Theme.of(context).textTheme.bodySmall),
                   const SizedBox(width: TSizes.spaceBtwItems / 2),
-                  Text('5', style: Theme.of(context).textTheme.bodySmall),
+                  Text(widget.model.commentCnt.toString(), style: Theme.of(context).textTheme.bodySmall),
                 ],
               ),
 

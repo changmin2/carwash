@@ -1,5 +1,6 @@
 import 'package:carwash/common/provider/comment_pagination_provider.dart';
 import 'package:carwash/common/provider/pagination_provider.dart';
+import 'package:carwash/community/provider/communityProvider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/model/cursor_pagination_model.dart';
@@ -77,7 +78,6 @@ class CommentStateNotifier extends CommentPaginationProvider<CommentModel,Commen
         content: content
     );
     final resp =  await repository.createReComment(comment_id: comment_id,commentParam: commentParam);
-
     final pState = state as CursorPagination;
 
     //comment_id와 같은 항목은 삭제 했으므로 제외

@@ -126,7 +126,7 @@ class TCommunityQuestionListWidget extends StatelessWidget {
               ),
 
               Text(
-                '댓글 10개',
+                '댓글 '+model.commentCnt.toString()+"개",
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

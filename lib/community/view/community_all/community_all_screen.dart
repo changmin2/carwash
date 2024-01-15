@@ -68,6 +68,7 @@ class TCommunityAllScreen extends ConsumerWidget {
                                         nickName: hot[index].creator,
                                         title: hot[index].content,
                                         likeCount: hot[index].favorite.toString(),
+                                        commentCnt:hot[index].commentCnt.toString()
                                       ),
                                     ),
                                   );

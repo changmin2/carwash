@@ -1,6 +1,7 @@
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/common/model/cursor_pagination_model.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/community/provider/comment_provider.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +29,14 @@ class CommunityDetailScreen extends ConsumerStatefulWidget {
 
 class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
+  }
+  var st;
+  Future<void> commentFuture() async{
+    st = await ref.read(commentProvider(widget.id));
   }
   @override
   Widget build(BuildContext context) {
@@ -43,6 +46,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
     List<String> imgs = [];
     final _formKey = GlobalKey<FormState>();
     var _content;
+
 
     if(state.imgUrls != ''){
       imgs = state.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
@@ -148,6 +152,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                   children: [
                     Expanded(
                     child: PaginationListViewV2(
+                        model: state,
                         id: widget.id,
                         provider: commentProvider(widget.id),
                         itemBuilder: <Comment>(_,index,comment){
@@ -271,7 +276,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                   children: [
                                     Text('댓글', style: Theme.of(context).textTheme.bodySmall),
                                     const SizedBox(width: TSizes.spaceBtwItems / 2),
-                                    Text('5', style: Theme.of(context).textTheme.bodySmall),
+                                    Text(state.commentCnt.toString(), style: Theme.of(context).textTheme.bodySmall),
                                   ],
                                 ),
 

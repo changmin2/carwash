@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class TCommunityAllHotCardWidget extends StatelessWidget {
-  final String imageUrl, nickName, likeCount, title, replyCount;
+  final String imageUrl, nickName, likeCount, title, replyCount,commentCnt;
   final bool isNetworkImage;
   final double containerWidth;
   final double imageHeight;
@@ -18,6 +18,7 @@ class TCommunityAllHotCardWidget extends StatelessWidget {
     required this.nickName,
     required this.containerWidth,
     required this.imageHeight,
+    required this.commentCnt,
     this.isNetworkImage = false,
     this.likeCount = '0',
     this.replyCount = '0',
@@ -99,7 +100,7 @@ class TCommunityAllHotCardWidget extends StatelessWidget {
                             ),
                             const SizedBox(width: TSizes.xs),
                             Text(
-                              replyCount,
+                              commentCnt,
                               style: Theme.of(context).textTheme.labelLarge,
                             ),
                           ],
