@@ -14,7 +14,6 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
     super.key,
     required this.model
   });
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

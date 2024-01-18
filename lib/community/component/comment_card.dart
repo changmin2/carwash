@@ -1,5 +1,7 @@
+import 'package:carwash/community/component/comment_register_screen.dart';
 import 'package:carwash/community/component/recomment_card.dart';
 import 'package:carwash/community/model/comment_model.dart';
+import 'package:carwash/community/provider/communityProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,20 +9,25 @@ import '../../common/const/sizes.dart';
 import '../../user/model/user_model.dart';
 import '../../user/provider/user_me_provider.dart';
 import '../provider/comment_provider.dart';
+import '../provider/hot_all_community_provider.dart';
+import '../provider/hot_free_community_provider.dart';
 
 class CommentCard extends ConsumerWidget {
   final CommentModel comment;
   final List<Recomment>? recomments;
   final int board_id;
-  const CommentCard({
+  int flag;
+  CommentCard({
     required this.comment,
     required this.recomments,
     required this.board_id,
+    this.flag = 0,
     Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     final user = ref.read(userMeProvider) as UserModel;
+    int recommentsCnt = recomments == null ? 1 : recomments!.length+1;
     return Padding(
       padding: EdgeInsets.only(left: 10),
       child: Column(
@@ -58,8 +65,8 @@ class CommentCard extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       comment.creator == user.username ?
-                      _PopupMenuButtonPage(context, ref, comment.comment_id, board_id)
-                          :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id)
+                      _PopupMenuButtonPage(context, ref, comment.comment_id, board_id,recommentsCnt,flag)
+                          :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id,flag)
                     ]
                 ),
               ),
@@ -85,6 +92,7 @@ class CommentCard extends ConsumerWidget {
                             recomment: recomments![index],
                             username: 'cc',
                             comment_id: comment.comment_id,
+                            flag: flag
                         );
                       }): Container(),
           const SizedBox(height: TSizes.spaceBtwItems),
@@ -94,12 +102,15 @@ class CommentCard extends ConsumerWidget {
   }
 }
 
-PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int comment_id,int board_id){
+PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int comment_id,int board_id,int recommentsCnt,flag){
   return PopupMenuButton(
     onSelected: (value) async {
       if(value=='삭제') {
         if(context.mounted){
           await ref.read(commentProvider(board_id).notifier).deleteComment(comment_id);
+          await flag == 0 ? ref.read(communityProvider.notifier).downCommentCnt(board_id,recommentsCnt)
+              : flag == 1 ? ref.read(hotAllCommunityProvider.notifier).downCommentCnt(board_id,recommentsCnt): ref.read(hotFreeCommunityProvider.notifier).downCommentCnt(board_id,recommentsCnt);
+
         }
         //댓글 밑에 달린 대댓글 갯수를 가져오지 않고 다시 업데이트
       }else if(value=='신고'){
@@ -110,72 +121,7 @@ PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int com
             )
         );
       }else  if(value=='대댓글'){
-        final _formKey = GlobalKey<FormState>();
-        var _comment;
-        showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            builder: (BuildContext context){
-              final bottomInset = MediaQuery.of(context).viewInsets.bottom;
-              return Padding(
-                padding: EdgeInsets.only(bottom: bottomInset),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Form(
-                      key: _formKey,
-                      child: TextFormField(
-                        onSaved: (value){
-                          _comment = value as String;
-                        },
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: '댓글을 입력해주세요'
-                        ),
-                        validator: (value){
-                          if(value!.length<1){
-                            return "댓글을 입력해주세요";
-                          }
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: (){
-                            _formKey.currentState!.save();
-                            if(_formKey.currentState!.validate()){
-                              final state = ref.watch(userMeProvider);
-                              final pState = state as UserModel;
-                              ref.read(commentProvider(board_id).notifier).createRecommend(pState.username,_comment, comment_id);
-                              Navigator.pop(context);
-                            }
-                          },
-                          child: Text('등록'),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.brown
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        ElevatedButton(
-                          onPressed: (){
-                            Navigator.pop(context);
-                          },
-                          child: Text('취소'),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.brown
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              );
-            }
-        );
-
+        Navigator.push(context, MaterialPageRoute(builder: (context) => CommentRegisterScreen(id: board_id,comment_id : comment_id,flag: flag,)));
       }
     },
     itemBuilder: (context) {
@@ -198,76 +144,11 @@ PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int com
 }
 
 
-PopupMenuButton _NoCreatorPopupMenuButtonPage (BuildContext context,WidgetRef ref,int comment_id,int recipe_id){
+PopupMenuButton _NoCreatorPopupMenuButtonPage (BuildContext context,WidgetRef ref,int comment_id,int recipe_id,int flag){
   return PopupMenuButton(
     onSelected: (value){
       if(value=='대댓글'){
-        final _formKey = GlobalKey<FormState>();
-        var _comment;
-        showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            builder: (BuildContext context){
-              final bottomInset = MediaQuery.of(context).viewInsets.bottom;
-              return Padding(
-                padding: EdgeInsets.only(bottom: bottomInset),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Form(
-                      key: _formKey,
-                      child: TextFormField(
-                        onSaved: (value){
-                          _comment = value as String;
-                        },
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: '댓글을 입력해주세요'
-                        ),
-                        validator: (value){
-                          if(value!.length<1){
-                            return "댓글을 입력해주세요";
-                          }
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: (){
-                            _formKey.currentState!.save();
-                            if(_formKey.currentState!.validate()){
-                              final state = ref.watch(userMeProvider);
-                              final pState = state as UserModel;
-                              ref.read(commentProvider(recipe_id).notifier).createRecommend(pState.username,_comment, comment_id);
-                              Navigator.pop(context);
-                            }
-                          },
-                          child: Text('등록'),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.brown
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        ElevatedButton(
-                          onPressed: (){
-                            Navigator.pop(context);
-                          },
-                          child: Text('취소'),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.brown
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              );
-            }
-        );
-
+        Navigator.push(context, MaterialPageRoute(builder: (context) => CommentRegisterScreen(id: recipe_id,comment_id : comment_id,flag: flag,)));
       }
       else if(value=='신고'){
         ScaffoldMessenger.of(context).showSnackBar(

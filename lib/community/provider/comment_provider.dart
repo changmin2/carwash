@@ -28,7 +28,7 @@ class CommentStateNotifier extends CommentPaginationProvider<CommentModel,Commen
   });
 
   //댓글 생성
-  void createComment(String creator,String content) async {
+  Future<void>  createComment(String creator,String content) async {
     CommentParam commentParam = new CommentParam(
         creator: creator,
         content: content
@@ -36,13 +36,14 @@ class CommentStateNotifier extends CommentPaginationProvider<CommentModel,Commen
     //처음에 댓글이 아예 없을 때
     if(state is CursorPaginationError){
       final resp =  await repository.createComment(recipe_id: id!,commentParam: commentParam);
-      super.paginate(id: id!);
+      await super.paginate(id: id!);
     }
     //댓글을 추가하는 경우
     else{
       final pState = state as CursorPagination;
       //Detail은 RestaurantModel을 상속받은 것이므로 교체해준다.
       final resp =  await repository.createComment(recipe_id: id!,commentParam: commentParam);
+
       state = pState.copyWith(
           data: <CommentModel>[
             ...pState.data,
@@ -72,7 +73,7 @@ class CommentStateNotifier extends CommentPaginationProvider<CommentModel,Commen
   }
 
   //대댓글 등록
-  void createRecommend(String creator,String content, int comment_id) async {
+  Future<void> createRecommend(String creator,String content, int comment_id) async {
     CommentParam commentParam = new CommentParam(
         creator: creator,
         content: content

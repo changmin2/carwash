@@ -59,7 +59,7 @@ class TCommunityAllScreen extends ConsumerWidget {
                                     padding: EdgeInsets.only(right: TSizes.sm),
                                     child: GestureDetector(
                                       onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityRecentScreen(model: hot[index])));
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityRecentScreen(model: hot[index],flag: 1,)));
                                       },
                                       child: TCommunityAllHotCardWidget(
                                         containerWidth: 200,
@@ -78,19 +78,6 @@ class TCommunityAllScreen extends ConsumerWidget {
 
                             const SizedBox(height: TSizes.spaceBtwItems),
 
-                            // SizedBox(
-                            //   width: double.infinity,
-                            //   child: OutlinedButton(
-                            //     onPressed: () {},
-                            //     style: ElevatedButton.styleFrom(
-                            //       backgroundColor: const Color(0xffE6EAEE),
-                            //     ),
-                            //     child: Text(
-                            //       "전체보기",
-                            //       style: Theme.of(context).textTheme.titleMedium
-                            //     ),
-                            //   ),
-                            // ),
 
                             const SizedBox(height: TSizes.spaceBtwSections),
 

@@ -23,6 +23,8 @@ class CommunityDetailScreenBak extends ConsumerStatefulWidget {
 
 class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreenBak> {
 
+
+
   @override
   Widget build(BuildContext context) {
     ref.invalidate(commentProvider);
@@ -86,6 +88,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreenBak
       )
     );
   }
+
 }
 
 TextButton _commentRegisterButton(BuildContext context,WidgetRef ref,int id){
@@ -93,8 +96,8 @@ TextButton _commentRegisterButton(BuildContext context,WidgetRef ref,int id){
   var _comment;
 
   return TextButton(
-      onPressed: (){
-        showModalBottomSheet(
+      onPressed: () async {
+        await showModalBottomSheet(
             context: context,
             isScrollControlled: true,
             builder: (BuildContext context){
@@ -126,14 +129,15 @@ TextButton _commentRegisterButton(BuildContext context,WidgetRef ref,int id){
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
-                          onPressed: (){
+                          onPressed: () async {
                             _formKey.currentState!.save();
                             if(_formKey.currentState!.validate()){
-                              final state = ref.watch(userMeProvider);
+                              final state = await ref.watch(userMeProvider);
                               final pState = state as UserModel;
-
-                              ref.watch(commentProvider(id).notifier).createComment(pState.username,_comment);
+                              await ref.read(commentProvider(id).notifier).createComment(pState.username,_comment);
                               Navigator.pop(context);
+                              await ref.read(communityProvider.notifier).upCommentCnt(id);
+
                             }
                           },
                           child: Text('등록'),

@@ -19,7 +19,7 @@ class CarWashLife extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityRecentScreen(model: model)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityRecentScreen(model: model,flag: 1,)));
         },
       child: TRoundedContainer(
         width: 230,
