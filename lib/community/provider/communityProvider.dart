@@ -50,5 +50,40 @@ class CommunityStateNotifier extends PaginationProvider<CommunityModel,Community
     );
   }
 
+  Future<void> upCommentCnt(int id)async {
+    var pState = state as CursorPagination;
+    List<CommunityModel> tempList = [];
+    for(int i =0; i<pState.data.length; i++){
+      if(pState.data[i].id == id){
+        pState.data[i].commentCnt+=1;
+        tempList.add(pState.data[i]);
+      }else{
+        tempList.add(pState.data[i]);
+      }
+    }
+
+    state =pState.copyWith(
+      data: tempList
+    );
+  }
+
+  Future<void> downCommentCnt(int id,int count)async {
+    print(id);
+    print(count);
+    var pState = state as CursorPagination;
+    List<CommunityModel> tempList = [];
+    for(int i =0; i<pState.data.length; i++){
+      if(pState.data[i].id == id){
+        pState.data[i].commentCnt-=count;
+        tempList.add(pState.data[i]);
+      }else{
+        tempList.add(pState.data[i]);
+      }
+    }
+
+    state =pState.copyWith(
+        data: tempList
+    );
+  }
 
 }

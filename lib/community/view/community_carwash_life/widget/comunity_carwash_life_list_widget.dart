@@ -145,7 +145,7 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
               const SizedBox(width: TSizes.xs),
 
               Text(
-                '10개',
+                model.commentCnt.toString()+'개',
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],

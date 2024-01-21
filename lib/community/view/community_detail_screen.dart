@@ -1,7 +1,9 @@
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/common/model/cursor_pagination_model.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/community/component/comment_register_screen.dart';
 import 'package:carwash/community/provider/comment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,12 +30,14 @@ class CommunityDetailScreen extends ConsumerStatefulWidget {
 
 class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
+  }
+  var st;
+  Future<void> commentFuture() async{
+    st = await ref.read(commentProvider(widget.id));
   }
   @override
   Widget build(BuildContext context) {
@@ -41,99 +45,28 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
     ref.watch(communityProvider);
     final state = ref.read(communityProvider.notifier).getDetail(widget.id);
     List<String> imgs = [];
-    final _formKey = GlobalKey<FormState>();
-    var _content;
+
 
     if(state.imgUrls != ''){
       imgs = state.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
     }
     return DefaultLayoutV2(
-      appBar: AppBar(
-          // title: Text(state.title),
-          // actions: [
-          //   Padding(
-          //     padding: EdgeInsets.only(right: 8),
-          //     child: _commentRegisterButton(context, ref, widget.id),
-          //   ),
-          // ],
-          ),
-      bottomNavagtionBar: GestureDetector(
-        onTap: () {
-          /// showModalBottomSheet().then((value){});     -> 바텀시트 닫은 경우 호출됨.
-          /// showModalBottomSheet().whenComplete((){});  -> then 다음에 호출됨.
-          showModalBottomSheet(
-            isScrollControlled: true,
-            useSafeArea: true,
-            context: context,
-            builder: (_) {
-              return TRoundedContainer(
-                height: THelperFunctions.screenHeight(context),
-                padding: const EdgeInsets.all(TSizes.defalutSpace),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Form(
-                        key: _formKey,
-                        child: TextFormField(
-                          onChanged: (value) {
-                            _content = value;
-                          },
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "내용을 입력해주세요.";
-                            }
-                          },
-                          decoration: const InputDecoration(
-                            hintText: '댓글을 작성하세요.',
-                            filled: false,
-                            border: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                          ),
-                          keyboardType: TextInputType.multiline,
-                          maxLines: 5,
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(width: TSizes.spaceBtwItems),
-
-                    /// 댓글 등록
-                    GestureDetector(
-                      onTap: () {
-                        _formKey.currentState!.save();
-                        if (_formKey.currentState!.validate()) {
-                          final state = ref.watch(userMeProvider);
-                          final pState = state as UserModel;
-
-                          ref.watch(commentProvider(widget.id).notifier)
-                              .createComment(pState.username, _content);
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: const Icon(
-                        Iconsax.edit,
-                        size: 35,
-                        color: PRIMARY_COLOR,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
-        },
-        child: TRoundedContainer(
-          backgroundColor: const Color(0xffF8F8FA),
-          padding: const EdgeInsets.all(TSizes.defalutSpace),
-          radius: 0,
+      appBar: AppBar(),
+      bottomNavagtionBar:
+        GestureDetector(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CommentRegisterScreen( id: widget.id)));
+          },
+          child: TRoundedContainer(
+            backgroundColor: const Color(0xffF8F8FA),
+            padding: const EdgeInsets.all(TSizes.defalutSpace),
+            radius: 0,
           child: Text(
             '댓글을 남겨보세요.',
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.grey),
           ),
+                ),
         ),
-      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defalutSpace),
@@ -148,6 +81,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                   children: [
                     Expanded(
                     child: PaginationListViewV2(
+                        model: state,
                         id: widget.id,
                         provider: commentProvider(widget.id),
                         itemBuilder: <Comment>(_,index,comment){
@@ -271,7 +205,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                   children: [
                                     Text('댓글', style: Theme.of(context).textTheme.bodySmall),
                                     const SizedBox(width: TSizes.spaceBtwItems / 2),
-                                    Text('5', style: Theme.of(context).textTheme.bodySmall),
+                                    Text(state.commentCnt.toString(), style: Theme.of(context).textTheme.bodySmall),
                                   ],
                                 ),
 
@@ -307,73 +241,4 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
       ),
     );
   }
-}
-
-TextButton _commentRegisterButton(BuildContext context, WidgetRef ref, int id) {
-  final _formKey = GlobalKey<FormState>();
-  var _comment;
-
-  return TextButton(
-      onPressed: () {
-        showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            builder: (BuildContext context) {
-              final bottomInset = MediaQuery.of(context).viewInsets.bottom;
-              return Padding(
-                padding: EdgeInsets.only(bottom: bottomInset),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Form(
-                      key: _formKey,
-                      child: TextFormField(
-                        onSaved: (value) {
-                          _comment = value as String;
-                        },
-                        decoration: InputDecoration(border: OutlineInputBorder(), labelText: '댓글을 입력해주세요'),
-                        validator: (value) {
-                          if (value!.length < 1) {
-                            return "댓글을 입력해주세요";
-                          }
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            _formKey.currentState!.save();
-                            if (_formKey.currentState!.validate()) {
-                              final state = ref.watch(userMeProvider);
-                              final pState = state as UserModel;
-
-                              ref.watch(commentProvider(id).notifier).createComment(pState.username, _comment);
-                              Navigator.pop(context);
-                            }
-                          },
-                          child: Text('등록'),
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.brown),
-                        ),
-                        const SizedBox(width: 8),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text('취소'),
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.brown),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              );
-            });
-      },
-      child: Text(
-        '댓글작성',
-        style: TextStyle(fontSize: 18),
-      ));
 }

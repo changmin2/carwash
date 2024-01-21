@@ -1,3 +1,4 @@
+import 'package:carwash/community/provider/communityProvider.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,6 +8,8 @@ import '../../common/const/sizes.dart';
 import '../../user/model/user_model.dart';
 import '../model/comment_model.dart';
 import '../provider/comment_provider.dart';
+import '../provider/hot_all_community_provider.dart';
+import '../provider/hot_free_community_provider.dart';
 
 class ReCommentCard extends ConsumerWidget {
 
@@ -14,12 +17,14 @@ class ReCommentCard extends ConsumerWidget {
   final String username;
   final int comment_id;
   final int board_id;
+  int flag;
 
-  const ReCommentCard({
+  ReCommentCard({
     required this.board_id,
     required this.recomment,
     required this.username,
     required this.comment_id,
+    this.flag = 0,
     Key? key
   }) : super(key: key);
 
@@ -63,7 +68,7 @@ class ReCommentCard extends ConsumerWidget {
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         recomment.creator == user.username ?
-                        _PopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id,board_id)
+                        _PopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id,board_id,flag)
                             :_NoCreatorPopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id)
                       ],
                     ),
@@ -79,9 +84,9 @@ class ReCommentCard extends ConsumerWidget {
 }
 
 
-PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int recomment_id,int commnet_id,int board_id){
+PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int recomment_id,int commnet_id,int board_id,int flag){
   return PopupMenuButton(
-    onSelected: (value){
+    onSelected: (value)async{
       if(value=='신고') {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -91,7 +96,10 @@ PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int rec
         );
       }else if(value == '삭제'){
         ref.read(commentProvider(board_id).notifier).deleteReComment(recomment_id,commnet_id);
-      }
+        await flag == 0 ? ref.read(communityProvider.notifier).downCommentCnt(board_id,1)
+          : flag == 1 ? ref.read(hotAllCommunityProvider.notifier).downCommentCnt(board_id,1): ref.read(hotFreeCommunityProvider.notifier).downCommentCnt(board_id,1);
+
+    }
     },
     itemBuilder: (context) {
       return [

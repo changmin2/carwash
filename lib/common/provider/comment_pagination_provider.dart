@@ -1,9 +1,6 @@
 import 'package:carwash/common/model/pagination_params.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../model/cursor_pagination_model.dart';
-import '../model/model_with_id.dart';
-
 import '../model/model_with_idV2.dart';
 import '../repository/comment_pagination_repository.dart';
 
@@ -78,11 +75,9 @@ class CommentPaginationProvider<T extends IModelWithIdV2,U extends IBasePaginati
           state = CursorPaginationLoading();
         }
       }
-
       final resp = await repository.commentPaginate(
           paginationParams: paginationParams, id: id
       );
-
 
       if(state is CursorPaginationFetchingMore){
         final pState = state as CursorPaginationFetchingMore<T>;
