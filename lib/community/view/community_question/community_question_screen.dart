@@ -24,19 +24,3 @@ class TCommunityQuestionScreen extends StatelessWidget {
     );
   }
 }
-
-
-              Text(
-                '댓글 10개',
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
-          ),
-          SizedBox(height: TSizes.spaceBtwItems),
-          Divider(thickness: 1),
-          SizedBox(height: TSizes.spaceBtwItems)
-        ],
-      ),
-    );
-  }
-}

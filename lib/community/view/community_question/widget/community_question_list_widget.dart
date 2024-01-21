@@ -8,7 +8,9 @@ import '../../../model/community_model.dart';
 import '../../community_detail_screen_bak.dart';
 
 class TCommunityQuestionListWidget extends StatelessWidget {
+
   final CommunityModel model;
+
   const TCommunityQuestionListWidget({
     required this.model,
     super.key,
@@ -92,7 +94,7 @@ class TCommunityQuestionListWidget extends StatelessWidget {
               ),
 
               Text(
-                '댓글 10개',
+                '댓글 '+model.commentCnt.toString()+"개",
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
