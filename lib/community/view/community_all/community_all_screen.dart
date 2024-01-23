@@ -18,7 +18,6 @@ class TCommunityAllScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final hot = ref.watch(hotAllCommunityProvider);
 
     return Padding(
@@ -62,6 +61,7 @@ class TCommunityAllScreen extends ConsumerWidget {
                             nickName: hot[index].creator,
                             title: hot[index].content,
                             likeCount: hot[index].favorite.toString(),
+                            commentCnt: hot[index].commentCnt.toString(),
                           ),
                         );
                       },

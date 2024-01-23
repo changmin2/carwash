@@ -57,7 +57,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                   
                   /// Setting Menus
                   const TSettingsMenuTile(icon: Iconsax.box, title: "나의 장비", subTitle: '나만의 장비를 등록하고 관리해보세요!'),
-                  const TSettingsMenuTile(icon: Iconsax.notification_bing, title: "알림 설정", subTitle: '알고 싶은 내용만 알림이 오게 관리해보세요!'),
+                  const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "나의 세차 루트", subTitle: '자주 사용하는 세차 루트를 등록해 보세요!'),
                   const TSettingsMenuTile(icon: Iconsax.notification_bing, title: "알림 설정", subTitle: '알고 싶은 내용만 알림이 오게 관리해보세요!'),
 
                   const SizedBox(height: TSizes.spaceBtwSections * 2),
