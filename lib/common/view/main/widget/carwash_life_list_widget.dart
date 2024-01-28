@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../community/provider/category_provider.dart';
 import '../../../../community/provider/communityProvider.dart';
 import '../../../../community/view/community_detail_screen.dart';
 import '../../../component/carwash_life_card.dart';
@@ -23,6 +24,7 @@ class _CarWashLifeListWidgetState extends ConsumerState<CarWashLifeListWidget> {
   Widget build(BuildContext context) {
 
     var community = ref.watch(hotAllCommunityProvider);
+
     return community.length == 0
     ? Column(
       children: [

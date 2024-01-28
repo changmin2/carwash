@@ -31,11 +31,14 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    ref.read(WeatherProvider.notifier).getWeather();
+  }
 
-    // // 스테이터스바 백그라운드컬러
-    // SystemChrome.setSystemUIOverlayStyle(
-    //   const SystemUiOverlayStyle().copyWith(statusBarColor: PRIMARY_COLOR),
-    // );
+  @override
+  void dispose() {
+    //controller.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
