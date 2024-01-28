@@ -52,7 +52,7 @@ class TCommunityAllScreen extends ConsumerWidget {
                             SizedBox(
                               height: 270,
                               child: ListView.builder(
-                                itemCount: hot.length,
+                                itemCount: hot.length >= 5? 5 : hot.length,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Padding(

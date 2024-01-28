@@ -57,14 +57,18 @@ class TCommunityFreeScreen extends ConsumerWidget {
                                     itemCount: hot.length,
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: (BuildContext context, int index) {
-                                      return Padding(
+                                      return hot[index].category == "자유게시판"
+                                      ?
+                                      Padding(
                                         padding: EdgeInsets.only(right: TSizes.sm),
                                         child: TCommunityFreeHotCard(
                                           imageUrl: 'asset/img/car_image.jpeg',
                                           title: hot[index].title,
                                           model: hot[index],
                                         ),
-                                      );
+                                      )
+                                      :
+                                      Container();
                                     },
                                   ),
                                 ),

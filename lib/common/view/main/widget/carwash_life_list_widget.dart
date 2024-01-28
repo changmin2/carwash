@@ -76,10 +76,14 @@ class _CarWashLifeListWidgetState extends ConsumerState<CarWashLifeListWidget> {
             itemCount: community.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              return Padding(
+              return community[index].category == "세차라이프"
+              ?
+              Padding(
                   padding: EdgeInsets.only(right: 8),
                   child: CarWashLife(model:community[index])
-              );
+              )
+              :
+              Container();
             },
           ),
         ),
