@@ -41,25 +41,6 @@ class TCommunityFreeScreen extends ConsumerWidget {
                         /// HOT 전체 리스트
                         SizedBox(
                           height: 170,
-                          child: ListView.separated(
-                            itemCount: hot.length,
-                            scrollDirection: Axis.horizontal,
-                            separatorBuilder: (_, __) {
-                              return const SizedBox(width: TSizes.sm);
-                            },
-                            itemBuilder: (BuildContext context, int index) {
-                              return TCommunityFreeHotCard(
-                                imageUrl: 'asset/img/car_image.jpeg',
-                                title: hot[index].title,
-                                model: hot[index],
-                              );
-                            },
-                          ),
-                        ),
-
-                        /// HOT 전체 리스트
-                        SizedBox(
-                          height: 170,
                           child: ListView.builder(
                             itemCount: hot.length,
                             scrollDirection: Axis.horizontal,

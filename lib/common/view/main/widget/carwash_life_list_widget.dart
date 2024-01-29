@@ -68,8 +68,9 @@ class _CarWashLifeListWidgetState extends ConsumerState<CarWashLifeListWidget> {
                 child: ListView.separated(
                   itemCount: community.length,
                   scrollDirection: Axis.horizontal,
-                  separatorBuilder: (_, __) => const SizedBox(width: TSizes.spaceBtwItems),
+                  separatorBuilder: (_, __) => const SizedBox(width: 0),
                   itemBuilder: (BuildContext context, int index) {
+
                     return community[index].category == "세차라이프" ? CarWashLife(model: community[index]) : Container();
                   },
                 ),
