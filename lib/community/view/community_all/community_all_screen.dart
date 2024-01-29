@@ -44,7 +44,7 @@ class TCommunityAllScreen extends ConsumerWidget {
                   SizedBox(
                     height: 270,
                     child: ListView.separated(
-                      itemCount: hot.length,
+                      itemCount: hot.length >= 5 ? 5 : hot.length,
                       scrollDirection: Axis.horizontal,
                       separatorBuilder: (_, __) {
                         return const SizedBox(width: TSizes.sm);
