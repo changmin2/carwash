@@ -5,6 +5,7 @@ import 'package:carwash/car/view/record_detail_screen.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/car/view/register_thrid_screen.dart';
+import 'package:carwash/common/view/main/main_screen.dart';
 import 'package:carwash/common/view/root_tap.dart';
 import 'package:carwash/community/view/community_detail_screen.dart';
 import 'package:carwash/community/view/community_detail_screen_bak.dart';
@@ -41,7 +42,7 @@ class AuthProviderNotifier extends ChangeNotifier{
     GoRoute(
       path: '/',
       name: RootTab.routeName,
-      builder: (_,__) => RootTab(),
+      builder: (_,__) => MainScreen(),
       routes: [
         GoRoute(
           path: 'profile',

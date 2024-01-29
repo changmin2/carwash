@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../community/view/community_screen.dart';
+import '../../../../community/provider/category_provider.dart';
+import '../../../../community/provider/communityProvider.dart';
+import '../../../../community/view/community_detail_screen.dart';
 import '../../../component/carwash_life_card.dart';
 import '../../../const/sizes.dart';
 
@@ -21,6 +24,7 @@ class _CarWashLifeListWidgetState extends ConsumerState<CarWashLifeListWidget> {
   Widget build(BuildContext context) {
 
     var community = ref.watch(hotAllCommunityProvider);
+
     return community.length == 0
     ? Column(
       children: [
@@ -72,6 +76,16 @@ class _CarWashLifeListWidgetState extends ConsumerState<CarWashLifeListWidget> {
           child: ListView.separated(
             itemCount: community.length,
             scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              return community[index].category == "세차라이프"
+              ?
+              Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: CarWashLife(model:community[index])
+              )
+              :
+              Container();
+            },
             separatorBuilder: (_, __) => const SizedBox(width: TSizes.spaceBtwItems),
             itemBuilder: (_, int index) => CarWashLife(model:community[index]),
           ),

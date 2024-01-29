@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/user/model/user_model.dart';
+import 'package:carwash/user/provider/loginCheck_provider.dart';
 import 'package:carwash/user/utils/NaverLogin.dart';
 
 import 'package:carwash/user/view/signup_screen.dart';
@@ -33,9 +35,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final state = ref.watch(userMeProvider);
+    var state = ref.read(userMeProvider);
 
     return DefaultLayoutV2(
+
+
       child: SingleChildScrollView(
         // 키보드가 올라오고 화면을 드래그하면 키보드가 사라짐.
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
@@ -68,8 +72,23 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 '세차파트너에 오신걸 환영합니다.',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
-
+              //아이디 또는 비밀번호가 다를 경우
+              state is UserModelError
+                  ? Column(
+                     children: [
+                       const SizedBox(height: 8),
+                       Text(
+                         '아이디 또는 비밀번호를 확인하세요!!',
+                         style: TextStyle(
+                           color: Colors.red,
+                           fontWeight: FontWeight.w700
+                         ),
+                       )
+                     ],
+                  )
+                  :Container(),
               const SizedBox(height: TSizes.spaceBtwSections),
+
 
               /// ----------------------------------------------------------------
               /// 아이디
@@ -140,16 +159,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   onPressed: () async {
                     if (_idFormKey.currentState!.validate() && _psFormKey.currentState!.validate()) {
                       await ref.read(userMeProvider.notifier).login(username: username, password: password, context: context);
+
                     }
                   },
-                  // onPressed: () {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => const MainScreen(),
-                  //     ),
-                  //   );
-                  // },
                   child: const Text('로그인'),
                 ),
               ),

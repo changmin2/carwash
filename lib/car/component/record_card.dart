@@ -12,43 +12,50 @@ class RecordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TRoundedContainer(
-      height: 80,
-      showBorder: true,
-      padding: const EdgeInsets.symmetric(horizontal: TSizes.sm),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              /// 아이콘
-              Image.asset(
-                  'asset/img/record.png'
-              ),
+    return Column(
+      children: [
+          TRoundedContainer(
+            height: 80,
+            showBorder: true,
+            padding: const EdgeInsets.symmetric(horizontal: TSizes.sm),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    /// 아이콘
+                    Image.asset(
+                        'asset/img/login.png',
+                        width: 40,
+                        height: 40,
+                    ),
 
-              const SizedBox(width: TSizes.spaceBtwItems),
+                    const SizedBox(width: TSizes.spaceBtwItems),
 
-              /// 세차 기록 정보
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  /// 날짜
-                  Text(record.date.toString().split(" ")[0]),
+                    /// 세차 기록 정보
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        /// 날짜
+                        Text(record.date.toString().split(" ")[0]),
 
-                  const SizedBox(height: TSizes.xs),
+                        const SizedBox(height: TSizes.xs),
 
-                  /// 장소
-                  Text(record.place)
-                ],
-              ),
-            ],
-          ),
-          
-          /// 자세히 보기 아이콘
-          const Icon(Icons.keyboard_arrow_right),
-        ],
-      ),
+                        /// 장소
+                        Text(record.place)
+                      ],
+                    ),
+                  ],
+                ),
+
+                /// 자세히 보기 아이콘
+                const Icon(Icons.keyboard_arrow_right),
+              ],
+            ),
+        ),
+        const SizedBox(height: 8)
+      ]
     );
   }
 }
