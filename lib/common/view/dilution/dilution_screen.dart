@@ -35,31 +35,34 @@ class _DilutionScreenState extends State<DilutionScreen> {
                 children: [
                   Text(
                     "물 용량",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: PRIMARY_COLOR),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color: PRIMARY_COLOR),
                   ),
                   Text(
                     "을 입력하시면 ",
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                   Text(
                     "희석비율",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: PRIMARY_COLOR),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color: PRIMARY_COLOR),
                   ),
                   Text(
                     "에 맞춰",
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),
+
+              const SizedBox(height: TSizes.spaceBtwItems / 2),
+
               Row(
                 children: [
                   Text(
                     "케미컬 용량",
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.redAccent),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.redAccent),
                   ),
                   Text(
                     "을 계산하여 보여줍니다.",
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),
@@ -73,10 +76,11 @@ class _DilutionScreenState extends State<DilutionScreen> {
               ),
           
               const SizedBox(height: TSizes.spaceBtwInputFields),
-          
+
               Form(
                 key: _waterFormKey,
                 child: TextFormField(
+                  keyboardType: TextInputType.number,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly
                   ],
@@ -87,7 +91,7 @@ class _DilutionScreenState extends State<DilutionScreen> {
                     water = value;
                   },
                   validator: (value) {
-                    if (value!.length < 1) {
+                    if (value!.isEmpty) {
                       return "물 용량을 입력해주세요.";
                     }
                   },
@@ -108,6 +112,7 @@ class _DilutionScreenState extends State<DilutionScreen> {
               Form(
                 key: _dilutionFormKey,
                 child: TextFormField(
+                  keyboardType: TextInputType.number,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly
                   ],
@@ -118,7 +123,7 @@ class _DilutionScreenState extends State<DilutionScreen> {
                     dilution = value;
                   },
                   validator: (value) {
-                    if (value!.length < 1) {
+                    if (value!.isEmpty) {
                       return "희석 비율을 입력해주세요.";
                     }
                   },
@@ -136,6 +141,7 @@ class _DilutionScreenState extends State<DilutionScreen> {
                       setState(() {
                         chemical = (int.parse(water) / int.parse(dilution)).toStringAsFixed(2);
                       });
+                      FocusScope.of(context).unfocus();
                     }
                   },
                   child: const Text("케미컬 용량 계산하기"),
