@@ -7,7 +7,7 @@
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Carwash</string>
+		<string>세차파트너</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>This application requires location services to work</string>
 		<key>NSLocationAlwaysUsageDescription</key>
