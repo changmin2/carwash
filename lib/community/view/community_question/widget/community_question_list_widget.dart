@@ -5,7 +5,7 @@ import '../../../../common/component/rounded_container.dart';
 import '../../../../common/component/rounded_image.dart';
 import '../../../../common/const/sizes.dart';
 import '../../../model/community_model.dart';
-import '../../community_detail_screen_bak.dart';
+import '../../community_detail_screen.dart';
 
 class TCommunityQuestionListWidget extends StatelessWidget {
 
@@ -20,7 +20,7 @@ class TCommunityQuestionListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        context.goNamed(CommunityDetailScreenBak.routeName,
+        context.goNamed(CommunityDetailScreen.routeName,
             pathParameters: {'id':model.id.toString()});
       },
       child: Column(
@@ -43,7 +43,8 @@ class TCommunityQuestionListWidget extends StatelessWidget {
           ),
 
           const SizedBox(height: TSizes.spaceBtwItems),
-
+          model.hastag != ""
+          ?
           Row(
             children: [
               TRoundedContainer(
@@ -57,20 +58,10 @@ class TCommunityQuestionListWidget extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(width: TSizes.spaceBtwItems / 2),
-
-              TRoundedContainer(
-                padding: const EdgeInsets.all(6.0),
-                showBorder: true,
-                borderColor: Colors.indigoAccent,
-                radius: 6,
-                child: Text(
-                  '#프리워시종류',
-                  style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.indigoAccent),
-                ),
-              ),
             ],
-          ),
+          )
+          :
+          SizedBox(height: 8),
 
           const SizedBox(height: TSizes.spaceBtwItems),
 

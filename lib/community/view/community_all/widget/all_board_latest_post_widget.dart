@@ -3,9 +3,10 @@ import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/community/model/community_model.dart';
-import 'package:carwash/community/view/community_detail_screen_bak.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../community_detail_screen.dart';
 
 class TCommunityAllLatestPostWidget extends StatelessWidget {
   final CommunityModel model;
@@ -18,7 +19,7 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        context.goNamed(CommunityDetailScreenBak.routeName,
+        context.goNamed(CommunityDetailScreen.routeName,
             pathParameters: {'id':model.id.toString()});
       },
       child: Row(

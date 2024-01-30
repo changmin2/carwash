@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../common/view/pagination_list_view.dart';
 import '../../provider/communityProvider.dart';
-import '../community_detail_screen_bak.dart';
+import '../community_detail_screen.dart';
 
 class TCommunityCarWashLifeScreen extends StatelessWidget {
   const TCommunityCarWashLifeScreen({
@@ -18,7 +18,7 @@ class TCommunityCarWashLifeScreen extends StatelessWidget {
         itemBuilder: <CommunityModel>(_,index,community){
           return GestureDetector(
             onTap: (){
-              context.goNamed(CommunityDetailScreenBak.routeName,
+              context.goNamed(CommunityDetailScreen.routeName,
                   pathParameters: {'id':community.id.toString()});
             },
             child: TCommunityCarWashLifeListWidget(

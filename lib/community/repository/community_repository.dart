@@ -46,4 +46,8 @@ abstract class CommunityRepository extends IBasePaginationRepository<CommunityMo
     @Path() required String id
   });
 
+  @GET("/downFavorite/{id}")
+  Future<void> downFavorite({
+    @Path() required String id
+  });
 }

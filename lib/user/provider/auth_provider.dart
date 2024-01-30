@@ -8,7 +8,6 @@ import 'package:carwash/car/view/register_thrid_screen.dart';
 import 'package:carwash/common/view/main/main_screen.dart';
 import 'package:carwash/common/view/root_tap.dart';
 import 'package:carwash/community/view/community_detail_screen.dart';
-import 'package:carwash/community/view/community_detail_screen_bak.dart';
 import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:flutter/cupertino.dart';

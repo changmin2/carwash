@@ -59,7 +59,7 @@ class TCommunityFreeListWidget extends StatelessWidget {
                       const SizedBox(width: TSizes.sm),
                     ],
                   )
-                : const SizedBox(),
+                : const SizedBox(width: 16),
 
             /// 날짜
             Text(date, style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.grey)),
@@ -110,6 +110,7 @@ class TCommunityFreeListWidget extends StatelessWidget {
             Text('$replyCount', style: Theme.of(context).textTheme.bodySmall),
           ],
         ),
+        Divider()
       ],
     );
   }

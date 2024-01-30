@@ -1,5 +1,6 @@
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/community/provider/hot_all_community_provider.dart';
+import 'package:carwash/community/provider/hot_free_community_provider.dart';
 import 'package:carwash/community/view/community_all/widget/all_board_hot_card_widget.dart';
 import 'package:carwash/community/view/community_all/widget/all_board_latest_post_widget.dart';
 import 'package:carwash/community/view/widget/community_section_heading.dart';

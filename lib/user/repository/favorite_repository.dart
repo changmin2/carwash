@@ -23,4 +23,21 @@ abstract class FavoriteRepository{
     'accessToken':'true'
   })
   Future<List<int>> getFavorites();
+
+  @GET('/add/{id}')
+  @Headers({
+    'accessToken':'true'
+  })
+  Future<void> addFavorites({
+    @Path() required int id
+  });
+
+  @GET('/delete/{id}')
+  @Headers({
+    'accessToken':'true'
+  })
+  Future<void> deleteFavorites({
+    @Path() required int id
+  });
+
 }

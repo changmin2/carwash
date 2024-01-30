@@ -11,6 +11,7 @@ import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
 import '../../common/component/rounded_image.dart';
 import '../../user/model/user_model.dart';
+import '../../user/provider/favorite_provider.dart';
 import '../../user/provider/user_me_provider.dart';
 import '../component/comment_card.dart';
 import '../component/comment_register_screen.dart';
@@ -48,13 +49,11 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
   @override
   Widget build(BuildContext context) {
     ref.invalidate(commentProvider);
-    widget.freeOrall==true
-    ?
-    ref.watch(hotAllCommunityProvider)
-    :
-    ref.watch(hotFreeCommunityProvider);
+    ref.watch(hotAllCommunityProvider);
 
     List<String> imgs = [];
+    final favorites = ref.read(favoriteProvider);
+    var check = favorites.indexOf(widget.model.id);
 
     if(widget.model.imgUrls != ''){
       imgs = widget.model.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
@@ -165,11 +164,11 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                                 /// 추천 버튼 클릭시
                                 GestureDetector(
                                   onTap: (){
-                                    widget.freeOrall == true
-                                        ?
-                                    ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id)
-                                        :
-                                    ref.read(hotFreeCommunityProvider.notifier).clickFavorite(widget.model.id);
+                                        check == -1
+                                          ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id)
+                                          : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.model.id);
+
+                                    ref.read(favoriteProvider.notifier).updateFavorites(widget.model.id);
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -193,8 +192,10 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
-                                          const Icon(
-                                            Iconsax.like_1,
+                                          Icon(
+                                            check == -1
+                                                ? Iconsax.like_1
+                                                : Iconsax.like_11,
                                             size: 22,
                                             color: Colors.grey,
                                           ),

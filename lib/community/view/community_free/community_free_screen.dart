@@ -1,4 +1,5 @@
 import 'package:carwash/common/const/sizes.dart';
+import 'package:carwash/community/provider/hot_all_community_provider.dart';
 import 'package:carwash/community/provider/hot_free_community_provider.dart';
 import 'package:carwash/community/view/community_free/widget/community_free_hot_card.dart';
 import 'package:carwash/community/view/community_free/widget/community_free_list_widget.dart';
@@ -9,7 +10,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../common/view/pagination_list_view.dart';
 import '../../provider/communityProvider.dart';
-import '../community_detail_screen_bak.dart';
+import '../community_detail_screen.dart';
 
 class TCommunityFreeScreen extends ConsumerWidget {
   const TCommunityFreeScreen({
@@ -18,7 +19,7 @@ class TCommunityFreeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final hot = ref.watch(hotFreeCommunityProvider);
+    final hot = ref.watch(hotAllCommunityProvider);
     return hot.isNotEmpty
         ? Padding(
             padding: const EdgeInsets.all(TSizes.defalutSpace),
@@ -67,7 +68,7 @@ class TCommunityFreeScreen extends ConsumerWidget {
 
                         GestureDetector(
                           onTap: () {
-                            context.goNamed(CommunityDetailScreenBak.routeName, pathParameters: {'id': community.id.toString()});
+                            context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
                           },
                           child: TCommunityFreeListWidget(
                             hotYn: true,
@@ -86,17 +87,17 @@ class TCommunityFreeScreen extends ConsumerWidget {
 
                   return GestureDetector(
                     onTap: () {
-                      context.goNamed(CommunityDetailScreenBak.routeName, pathParameters: {'id': community.id.toString()});
+                      context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
                     },
                     child: TCommunityFreeListWidget(
                       hotYn: true,
-                      hashtag: '세차방법공유',
+                      hashtag: community.hastag,
                       date: community.createDate.split("T")[0],
                       title: community.title,
                       imageUrl: 'asset/img/car_image.jpeg',
                       nickName: community.creator,
-                      likeCount: 10,
-                      replyCount: 10,
+                      likeCount: community.favorite,
+                      replyCount: community.commentCnt,
                     ),
                   );
                 }),
@@ -130,11 +131,11 @@ class TCommunityFreeScreen extends ConsumerWidget {
 
                         GestureDetector(
                           onTap: () {
-                            context.goNamed(CommunityDetailScreenBak.routeName, pathParameters: {'id': community.id.toString()});
+                            context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
                           },
                           child: TCommunityFreeListWidget(
                             hotYn: true,
-                            hashtag: '세차방법공유',
+                            hashtag: community.hastag,
                             date: community.createDate.split("T")[0],
                             title: community.title,
                             imageUrl: 'asset/img/car_image.jpeg',
@@ -149,11 +150,11 @@ class TCommunityFreeScreen extends ConsumerWidget {
 
                   return GestureDetector(
                     onTap: () {
-                      context.goNamed(CommunityDetailScreenBak.routeName, pathParameters: {'id': community.id.toString()});
+                      context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
                     },
                     child: TCommunityFreeListWidget(
                       hotYn: true,
-                      hashtag: '세차방법공유',
+                      hashtag: community.hastag,
                       date: community.createDate.split("T")[0],
                       title: community.title,
                       imageUrl: 'asset/img/car_image.jpeg',

@@ -36,6 +36,22 @@ class HotFreeCommunityNotifier extends StateNotifier<List<CommunityModel>>{
     state = tempList;
   }
 
+  void downFavorite(int id){
+
+    var pState = state;
+    List<CommunityModel> tempList = [];
+    for(int i =0; i<pState.length; i++){
+      if(pState[i].id == id){
+        pState[i].favorite-=1;
+        tempList.add(pState[i]);
+      }else{
+        tempList.add(pState[i]);
+      }
+    }
+    repository.clickFavorite(id: id.toString());
+    state = tempList;
+  }
+
   Future<void> upCommentCnt(int id)async {
     var pState = state;
     List<CommunityModel> tempList = [];

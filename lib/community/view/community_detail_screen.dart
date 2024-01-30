@@ -5,6 +5,7 @@ import 'package:carwash/common/model/cursor_pagination_model.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/community/component/comment_register_screen.dart';
 import 'package:carwash/community/provider/comment_provider.dart';
+import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
@@ -35,15 +36,15 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
     // TODO: implement initState
     super.initState();
   }
-  var st;
-  Future<void> commentFuture() async{
-    st = await ref.read(commentProvider(widget.id));
-  }
+
   @override
   Widget build(BuildContext context) {
+
     ref.invalidate(commentProvider);
     ref.watch(communityProvider);
     final state = ref.read(communityProvider.notifier).getDetail(widget.id);
+    final favorites = ref.read(favoriteProvider);
+    var check = favorites.indexOf(widget.id);
     List<String> imgs = [];
 
 
@@ -155,7 +156,10 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                 /// 추천 버튼 클릭시
                                 GestureDetector(
                                   onTap: (){
-                                    ref.read(communityProvider.notifier).clickFavorite(widget.id);
+                                    check == -1
+                                    ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
+                                    : ref.read(communityProvider.notifier).downFavorite(widget.id);
+                                    ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -179,10 +183,13 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
-                                          const Icon(
-                                            Iconsax.like_1,
+                                          Icon(
+                                            check == -1
+                                            ? Iconsax.like_1
+                                            : Iconsax.like_11,
                                             size: 22,
                                             color: Colors.grey,
+
                                           ),
                                           const SizedBox(width: TSizes.xs),
                                           Text(

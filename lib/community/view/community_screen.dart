@@ -57,6 +57,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
         ),
         floatingActionButton: _floatingActionButton(context),
         child: const TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: [
             /// 전체 탭 화면
             TCommunityAllScreen(),

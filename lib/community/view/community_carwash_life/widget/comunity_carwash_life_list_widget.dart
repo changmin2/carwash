@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -6,7 +7,6 @@ import '../../../../common/component/rounded_container.dart';
 import '../../../../common/component/rounded_image.dart';
 import '../../../../common/const/sizes.dart';
 import '../../../model/community_model.dart';
-import '../../community_detail_screen_bak.dart';
 
 class TCommunityCarWashLifeListWidget extends StatelessWidget {
   final CommunityModel model;
@@ -56,16 +56,16 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
               ),
 
               /// 팔로우 버튼
-              TRoundedContainer(
-                padding: const EdgeInsets.all(TSizes.sm),
-                radius: 10,
-                showBorder: true,
-                backgroundColor: Colors.redAccent,
-                child: Text(
-                  '팔로우',
-                  style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),
-                ),
-              ),
+              // TRoundedContainer(
+              //   padding: const EdgeInsets.all(TSizes.sm),
+              //   radius: 10,
+              //   showBorder: true,
+              //   backgroundColor: Colors.redAccent,
+              //   child: Text(
+              //     '팔로우',
+              //     style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -130,7 +130,7 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
               ),
               const SizedBox(width: TSizes.xs),
               Text(
-                '10개',
+                model.favorite.toString() + "개",
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(width: TSizes.spaceBtwItems / 2),

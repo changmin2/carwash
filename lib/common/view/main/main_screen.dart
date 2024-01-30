@@ -45,7 +45,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(WeatherProvider);
-    final favorites = ref.read(favoriteProvider.notifier).getFavorites();
+    ref.read(favoriteProvider.notifier).getFavorites();
     return DefaultLayoutV2(
       appBar: renderAppBar(context),
       backgroundColor: PRIMARY_COLOR,
