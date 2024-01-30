@@ -4,11 +4,13 @@ import 'package:carwash/car/provider/record_provider.dart';
 import 'package:carwash/car/provider/state_provider.dart';
 import 'package:carwash/car/view/record_detail_screen.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
+import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -151,15 +153,19 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
 }
 
 FloatingActionButton _floatingActionButton(BuildContext context) {
+
   return FloatingActionButton.extended(
-    backgroundColor: Colors.green,
+    backgroundColor: PRIMARY_COLOR,
     onPressed: () {
       context.goNamed(RecordFirstScreen.routeName);
     },
-    label: const Text("작성하기"),
+    label: Text(
+      '작성하기',
+      style: Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white),
+    ),
     icon: const Icon(
-      Icons.edit,
-      size: 20,
+      Iconsax.path,
+      color: Colors.white,
     ),
   );
 }
