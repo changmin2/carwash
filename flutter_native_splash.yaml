@@ -6,7 +6,7 @@ flutter_native_splash:
   # Flutter의 기본 흰색 시작 화면을 복원하려면 터미널에서 다음 명령을 실행합니다.
   # flutter pub run flutter_native_splash:remove
 
-  #flutter pub run flutter_native_splash:create
+  # flutter pub run flutter_native_splash:create
 
   # 수정하거나 변경되는 경우
   #flutter pub run flutter_native_splash:remove
@@ -16,8 +16,8 @@ flutter_native_splash:
 
   ##  필수 매개변수 color / background_image
   # 둘 중 하나만 사용할 수 있으며 색상과 background_image를 둘 다 설정할 수 없습니다.
-  color: "#FFFFFF"
-  #background_image: "asset/img/splash.png"
+  #color: "#FFFFFF"
+  background_image: "asset/img/splash.png"
 
 
   ## 이후 내용은 선택적 매개변수들 입니다.
@@ -94,7 +94,7 @@ flutter_native_splash:
 
   # Splash screen background color.
   # 스플래시 화면 배경색.
-    #color: "#FFFFFF"
+    color: "#FFFFFF"
 
   # App icon background color.
   # 앱 아이콘 배경색.
