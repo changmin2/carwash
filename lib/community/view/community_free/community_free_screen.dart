@@ -77,8 +77,8 @@ class TCommunityFreeScreen extends ConsumerWidget {
                             title: community.title,
                             imageUrl: 'asset/img/car_image.jpeg',
                             nickName: community.creator,
-                            likeCount: 10,
-                            replyCount: 10,
+                            likeCount: community.favorite,
+                            replyCount: community.commentCnt,
                           ),
                         )
                       ],

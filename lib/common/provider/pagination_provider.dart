@@ -1,4 +1,6 @@
+import 'package:carwash/community/model/community_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 import '../model/cursor_pagination_model.dart';
 import '../model/model_with_id.dart';
@@ -102,8 +104,6 @@ class PaginationProvider<T extends IModelWithId,U extends IBasePaginationReposit
       final resp = await repository.paginate(
         paginationParams: paginationParams
       );
-
-
 
       if(state is CursorPaginationFetchingMore){
         final pState = state as CursorPaginationFetchingMore<T>;

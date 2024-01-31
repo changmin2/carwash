@@ -247,6 +247,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                     ref.read(stateProvider).change();
 
                     context.go('/');
+
                   },
                   child: const Text('완료'),
                 ),
@@ -259,13 +260,9 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   }
 
   Future<void> uploadImage() async {
-    //Stopwatch stopwatch = new Stopwatch();
-    //stopwatch.start();
     final now = DateTime.now();
     var ref = storage.ref().child('washRecord/$now.png');
     await ref.putFile(_image!);
-    //print(stopwatch.elapsed.toString() + "측정시간");
-    //stopwatch.stop();
     _downloadUrl = await ref.getDownloadURL(); //이미지 파일의 url
   }
 

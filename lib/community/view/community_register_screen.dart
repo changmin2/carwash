@@ -6,6 +6,7 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/community/model/requestRegister_model.dart';
+import 'package:carwash/community/provider/communityProvider.dart';
 import 'package:carwash/community/repository/community_repository.dart';
 import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/model/user_model.dart';
@@ -293,7 +294,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                       );
 
                       await ref.read(communityRepositoryProvider).register(param);
-
+                      await ref.read(communityProvider.notifier).paginate(category: category);
                       context.goNamed(CommunityScreen.routeName);
                     }
                   },
