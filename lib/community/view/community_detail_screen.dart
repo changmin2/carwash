@@ -234,7 +234,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                         }),
                   ),
                   Container(
-                    height: 100,
+                    height: 250
                   )
                   ]
                 ),

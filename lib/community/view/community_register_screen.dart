@@ -152,7 +152,8 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
               Text('사진등록', style: Theme.of(context).textTheme.titleMedium),
               const SizedBox(height: TSizes.spaceBtwInputFields / 2),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   //카메라로 촬영하기
                   TRoundedContainer(
@@ -295,7 +296,10 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                       );
 
                       await ref.read(communityRepositoryProvider).register(param);
-                      await ref.read(communityProvider.notifier).paginate(category: category);
+                      //뒤로가기시 페이지 갱신
+                      print("hi1");
+                      await ref.read(communityProvider.notifier).paginate(forceRefetch: true);
+                      print("hi2");
                       context.goNamed(CommunityScreen.routeName);
                     }
                   },
