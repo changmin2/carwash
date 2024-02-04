@@ -66,7 +66,9 @@ class PaginationProvider<T extends IModelWithId,U extends IBasePaginationReposit
       // PaginationParams 생성
       PaginationParams paginationParams = PaginationParams(
         count: fetchCount,
-        category: this.category
+        category: this.category,
+        //id 최대값 넣기 역순으로 조회하기 때문에 추후에 수정
+        after: 999999
       );
 
       //fetchMore

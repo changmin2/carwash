@@ -20,6 +20,7 @@ class TCommunityFreeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final hot = ref.watch(hotAllCommunityProvider);
+    ref.watch(communityProvider);
     return hot.isNotEmpty
         ? Padding(
             padding: const EdgeInsets.all(TSizes.defalutSpace),

@@ -20,6 +20,7 @@ class TCommunityAllScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final hot = ref.watch(hotAllCommunityProvider);
+    ref.watch(communityProvider);
 
     return Padding(
       padding: const EdgeInsets.all(TSizes.defalutSpace),
