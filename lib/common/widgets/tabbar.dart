@@ -15,6 +15,7 @@ class TTabBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return TabBar(
+      tabAlignment: TabAlignment.center,
       tabs: tabs,
       isScrollable: true,
       indicatorColor: PRIMARY_COLOR,

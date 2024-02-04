@@ -12,8 +12,6 @@ import 'package:iconsax/iconsax.dart';
 import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
 import '../../common/component/rounded_image.dart';
-import '../../user/model/user_model.dart';
-import '../../user/provider/user_me_provider.dart';
 import '../component/comment_card.dart';
 import '../provider/communityProvider.dart';
 
@@ -39,7 +37,6 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     ref.invalidate(commentProvider);
     ref.watch(communityProvider);
     final state = ref.read(communityProvider.notifier).getDetail(widget.id);
@@ -155,11 +152,13 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
                                 /// 추천 버튼 클릭시
                                 GestureDetector(
-                                  onTap: (){
+                                  onTap: () {
+                                    ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
                                     check == -1
                                     ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
                                     : ref.read(communityProvider.notifier).downFavorite(widget.id);
-                                    ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
+
+
                                   },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

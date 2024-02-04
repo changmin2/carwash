@@ -33,7 +33,6 @@ class CommunityStateNotifier extends PaginationProvider<CommunityModel,Community
   }
 
   void clickFavorite(int id){
-
     var pState = state as CursorPagination;
     List<CommunityModel> tempList = [];
     for(int i =0; i<pState.data.length; i++){
@@ -44,7 +43,9 @@ class CommunityStateNotifier extends PaginationProvider<CommunityModel,Community
         tempList.add(pState.data[i]);
       }
     }
+
     repository.clickFavorite(id: id.toString());
+
     state = pState.copyWith(
       data: tempList
     );

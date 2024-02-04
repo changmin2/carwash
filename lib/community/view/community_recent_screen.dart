@@ -51,7 +51,6 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
     List<String> imgs = [];
     final favorites = ref.read(favoriteProvider);
     var check = favorites.indexOf(widget.model.id);
-
     if (widget.model.imgUrls != '') {
       imgs = widget.model.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
     }
@@ -83,6 +82,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                   children: [
                     Expanded(
                       child: PaginationListViewV2(
+                          flag: false,
                           model: widget.model,
                           id: widget.model.id,
                           provider: commentProvider(widget.model.id),

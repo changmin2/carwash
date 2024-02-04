@@ -43,16 +43,24 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
       length: 4,
       child: DefaultLayoutV2(
         appBar: AppBar(
-          bottom: TTabBar(
-            onTap: (index){
-              ref.read(categoryProvider.notifier).update((state) => category[index]);
-            },
-            tabs: const [
-              Tab(child: Text('전체', style: TextStyle(fontSize: 16))),
-              Tab(child: Text('자유게시판', style: TextStyle(fontSize: 16))),
-              Tab(child: Text('세차라이프', style: TextStyle(fontSize: 16))),
-              Tab(child: Text('질문게시판', style: TextStyle(fontSize: 16))),
-            ],
+
+          centerTitle: true,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(50),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: TTabBar(
+                onTap: (index){
+                  ref.read(categoryProvider.notifier).update((state) => category[index]);
+                },
+                tabs: const [
+                  Tab(child: Text('전체', style: TextStyle(fontSize: 16))),
+                  Tab(child: Text('자유게시판', style: TextStyle(fontSize: 16))),
+                  Tab(child: Text('세차라이프', style: TextStyle(fontSize: 16))),
+                  Tab(child: Text('질문게시판', style: TextStyle(fontSize: 16))),
+                ],
+              ),
+            ),
           ),
         ),
         floatingActionButton: _floatingActionButton(context),

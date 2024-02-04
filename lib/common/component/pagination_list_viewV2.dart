@@ -2,11 +2,13 @@
 
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/component/rounded_image.dart';
+import 'package:carwash/community/provider/hot_all_community_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../community/model/community_model.dart';
 import '../../community/provider/communityProvider.dart';
+import '../../user/provider/favorite_provider.dart';
 import '../const/colors.dart';
 import '../const/sizes.dart';
 import '../model/cursor_pagination_model.dart';import '../model/model_with_idV2.dart';
@@ -21,12 +23,15 @@ class PaginationListViewV2<T extends IModelWithIdV2> extends ConsumerStatefulWid
   final PaginationWidgetBuilder<T> itemBuilder;
   final int id;
   final CommunityModel? model;
+  //Detail화면인자 Recent화면인지 체크
+  final bool? flag;
 
   const PaginationListViewV2({
     required this.provider,
     required this.itemBuilder,
     required this.id,
     this.model = null,
+    this.flag = true,
     Key? key}) : super(key: key);
 
   @override
@@ -74,6 +79,8 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
       if(widget.model!.imgUrls != ''){
         imgs = widget.model!.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
       }
+      final favorites = ref.read(favoriteProvider);
+      var check = favorites.indexOf(widget.id);
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -143,7 +150,18 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
           /// 추천 버튼 클릭시
           GestureDetector(
             onTap: (){
-              ref.read(communityProvider.notifier).clickFavorite(widget.id);
+              ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
+              widget.flag == true
+              ?
+              check == -1
+                  ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
+                  : ref.read(communityProvider.notifier).downFavorite(widget.id)
+              :
+              check == -1
+              ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.id)
+                  : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.id);
+
+
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -167,8 +185,8 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Icon(
-                      Iconsax.like_1,
+                     Icon(
+                      check == -1 ? Iconsax.like_1 : Iconsax.like_11,
                       size: 22,
                       color: Colors.grey,
                     ),
