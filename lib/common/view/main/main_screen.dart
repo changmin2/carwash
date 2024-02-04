@@ -97,7 +97,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                                     ),
                                     const SizedBox(width: TSizes.spaceBtwItems),
                                     Text(
-                                      '오늘은 세차하기 좋은 날이에요!',
+                                      '오늘 날씨를 확인하고 세차해요!',
                                       style: Theme.of(context).textTheme.titleLarge,
                                     )
                                   ],
