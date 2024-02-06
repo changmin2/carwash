@@ -33,7 +33,7 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherModel>>{
     }else{
       var times = ['09','12','18'];
       Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+          desiredAccuracy: LocationAccuracy.medium);
 
       var pstate = await repository.readWeather(lat: position.latitude,
           lon: position.longitude,

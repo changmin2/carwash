@@ -21,6 +21,7 @@ class TCommunityAllScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final hot = ref.watch(hotAllCommunityProvider);
     ref.watch(communityProvider);
+    ref.watch(hotAllCommunityProvider);
 
     return Padding(
       padding: const EdgeInsets.all(TSizes.defalutSpace),
@@ -54,7 +55,7 @@ class TCommunityAllScreen extends ConsumerWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
-                            THelperFunctions.navigateToScreen(context, CommunityRecentScreen(model: hot[index]));
+                            THelperFunctions.navigateToScreen(context, CommunityRecentScreen(model: hot[index],flag: 1,));
                           },
                           child: TCommunityAllHotCardWidget(
                             containerWidth: 200,
