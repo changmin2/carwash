@@ -280,31 +280,68 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                     if (_titleKey.currentState!.validate() && _contentKey.currentState!.validate() && _tagKey.currentState!.validate()) {
                       final user = ref.read(userMeProvider) as UserModel;
 
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return const SizedBox(
-                              height: 100,
-                              child: Center(child: Text('업로드 중...')),
-                            );
-                          });
+
 
                       //await uploadImage();
-                      await s3Upload();
 
-                      RequestRegisterParam param = RequestRegisterParam(
-                        creator: user.nickname,
-                        content: content!,
-                        title: title!,
-                        category: category,
-                        hastag: tag!,
-                        imgUrl: _downloadUrls == null ? '' : _downloadUrls.toString()!,
-                      );
+                      if(category == '세차라이프'){
+                        print(category.toString());
+                        if(images.length == 0){
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("세차라이프는 이미지를 하나 이상 선택해야합니다."),
+                            duration: Duration(milliseconds: 500),
+                          ));
+                          return;
+                        }else{
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return const SizedBox(
+                                  height: 100,
+                                  child: Center(child: Text('업로드 중...')),
+                                );
+                              });
+                          await s3Upload();
+                          RequestRegisterParam param = RequestRegisterParam(
+                            creator: user.nickname,
+                            content: content!,
+                            title: title!,
+                            category: category,
+                            hastag: tag!,
+                            imgUrl: _downloadUrls == null ? '' : _downloadUrls.toString()!,
+                          );
 
-                      await ref.read(communityRepositoryProvider).register(param);
-                      //뒤로가기시 페이지 갱신
-                      await ref.read(communityProvider.notifier).paginate(forceRefetch: true);
-                      context.goNamed(CommunityScreen.routeName);
+                          await ref.read(communityRepositoryProvider).register(param);
+                          //뒤로가기시 페이지 갱신
+                          await ref.read(communityProvider.notifier).paginate(forceRefetch: true);
+                          context.goNamed(CommunityScreen.routeName);
+                        }
+
+                      }else{
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const SizedBox(
+                                height: 100,
+                                child: Center(child: Text('업로드 중...')),
+                              );
+                            });
+                        await s3Upload();
+                        RequestRegisterParam param = RequestRegisterParam(
+                          creator: user.nickname,
+                          content: content!,
+                          title: title!,
+                          category: category,
+                          hastag: tag!,
+                          imgUrl: _downloadUrls == null ? '' : _downloadUrls.toString()!,
+                        );
+
+                        await ref.read(communityRepositoryProvider).register(param);
+                        //뒤로가기시 페이지 갱신
+                        await ref.read(communityProvider.notifier).paginate(forceRefetch: true);
+                        context.goNamed(CommunityScreen.routeName);
+                      }
+
                     }
                   },
                   child: const Text('등록'),

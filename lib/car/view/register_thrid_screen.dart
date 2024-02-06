@@ -227,29 +227,52 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    showModalBottomSheet(
-                        context: context,
-                        builder: (BuildContext context){
-                          return Container(
-                            height: 100,
-                            child: Center(
-                              child: Text(
-                                '업로드중...'
-                              )
-                            ),
-                          );
-                        }
-                    );
                     //await uploadImage();
-                    await s3Upload();
-                    RecordRegisterParams params =
-                        RecordRegisterParams(image: _downloadUrl, place: _place.toString(), date: _prameterDay.toString(), washList: newList);
-                    recordDto re = await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
-                    await ref.read(RecordProvider('true').notifier).getRecord(false);
-                    ref.read(recentRecordProvider(user.username).notifier).add(re);
-                    ref.read(stateProvider).change();
+                    if(_day == ''){
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("세차일자를 선택하세요."),
+                        duration: Duration(milliseconds: 500),
+                      ));
+                      return;
+                    }
+                    else if(_place == ''){
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("세차 장소를 입력하세요."),
+                        duration: Duration(milliseconds: 500),
+                      ));
+                      return;
+                    }
+                    else if(_image == null){
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("이미지를 선택하세요."),
+                        duration: Duration(milliseconds: 500),
+                      ));
+                      return;
+                    }else{
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context){
+                            return Container(
+                              height: 100,
+                              child: Center(
+                                  child: Text(
+                                      '업로드중...'
+                                  )
+                              ),
+                            );
+                          }
+                      );
 
-                    context.go('/');
+                      await s3Upload();
+                      RecordRegisterParams params =
+                      RecordRegisterParams(image: _downloadUrl, place: _place.toString(), date: _prameterDay.toString(), washList: newList);
+                      recordDto re = await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
+                      await ref.read(RecordProvider('true').notifier).getRecord(false);
+                      ref.read(recentRecordProvider(user.username).notifier).add(re);
+                      ref.read(stateProvider).change();
+
+                      context.go('/');
+                    }
 
                   },
                   child: const Text('완료'),
