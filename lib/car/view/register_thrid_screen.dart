@@ -7,20 +7,23 @@ import 'package:carwash/car/provider/record_provider.dart';
 import 'package:carwash/car/provider/state_provider.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/common/component/rounded_container.dart';
+import 'package:carwash/common/const/data.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/formatters/formatter.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
+
+import 'package:path/path.dart';
+import 'package:async/async.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../../user/model/user_model.dart';
 
@@ -237,8 +240,8 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                           );
                         }
                     );
-                    await uploadImage();
-
+                    //await uploadImage();
+                    await s3Upload();
                     RecordRegisterParams params =
                         RecordRegisterParams(image: _downloadUrl, place: _place.toString(), date: _prameterDay.toString(), washList: newList);
                     recordDto re = await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
@@ -264,6 +267,33 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
     var ref = storage.ref().child('washRecord/$now.png');
     await ref.putFile(_image!);
     _downloadUrl = await ref.getDownloadURL(); //이미지 파일의 url
+  }
+
+  Future<void> s3Upload() async {
+    // open a bytestream
+    var stream = new http.ByteStream(DelegatingStream.typed(_image!.openRead()));
+    // get file length
+    var length = await _image!.length();
+
+    // string to uri
+    var uri = Uri.parse("http://$ip/s3/upload");
+
+    // create multipart request
+    var request = new http.MultipartRequest("POST", uri);
+
+    // multipart that takes file
+    var multipartFile = new http.MultipartFile('file', stream, length,
+        filename: basename(_image!.path));
+
+    // add file to multipart
+    request.files.add(multipartFile);
+
+    // send
+    var response = await request.send();
+    // listen for response
+    await response.stream.transform(utf8.decoder).listen((value) {
+      _downloadUrl = value.toString();
+    });
   }
 
   Future getImage(ImageSource imageSource) async {

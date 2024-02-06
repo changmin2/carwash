@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:carwash/common/component/rounded_container.dart';
-import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
@@ -14,9 +13,15 @@ import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+
+import 'package:path/path.dart';
+import 'package:async/async.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import '../../common/const/data.dart';
 
 class CommunityRegisterScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityRegisterScreen';
@@ -284,7 +289,8 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                             );
                           });
 
-                      await uploadImage();
+                      //await uploadImage();
+                      await s3Upload();
 
                       RequestRegisterParam param = RequestRegisterParam(
                         creator: user.nickname,
@@ -323,5 +329,37 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
         _downloadUrls.add(await ref.getDownloadURL());
       }
     }
+  }
+
+  Future<void> s3Upload() async {
+    if (images.isNotEmpty) {
+      for (int i = 0; i < images.length; i++) {
+        // open a bytestream
+        var stream = new http.ByteStream(DelegatingStream.typed(images[i]!.openRead()));
+        // get file length
+        var length = await images[i]!.length();
+
+        // string to uri
+        var uri = Uri.parse("http://$ip/s3/upload");
+
+        // create multipart request
+        var request = new http.MultipartRequest("POST", uri);
+
+        // multipart that takes file
+        var multipartFile = new http.MultipartFile('file', stream, length,
+            filename: basename(images[i]!.path));
+
+        // add file to multipart
+        request.files.add(multipartFile);
+
+        // send
+        var response = await request.send();
+        // listen for response
+        await response.stream.transform(utf8.decoder).listen((value) {
+          _downloadUrls.add(value.toString());
+        });
+      }
+    }
+
   }
 }
