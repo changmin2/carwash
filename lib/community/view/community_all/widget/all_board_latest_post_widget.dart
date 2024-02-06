@@ -65,13 +65,16 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
           ),
 
           /// 사진
-          TRoundedImage(
-            imageUrl: 'asset/img/car_image.jpeg',
-            width: 70,
-            height: 70,
-            fit: BoxFit.fill,
-            borderRadius: 12.0,
+          Expanded(
+            child: TRoundedImage(
+              imageUrl: 'asset/img/car_image.jpeg',
+              width: 70,
+              height: 70,
+              fit: BoxFit.fill,
+              borderRadius: 12.0,
+            ),
           ),
+          const SizedBox(width: 4)
         ],
       ),
     );

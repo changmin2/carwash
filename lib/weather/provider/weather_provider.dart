@@ -32,8 +32,25 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherModel>>{
       return;
     }else{
       var times = ['09','12','18'];
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.medium);
+      Stopwatch stopwatch = new Stopwatch();
+
+      // Stopwatch 시작
+      stopwatch.start();
+      Position position;
+
+      Position? lastPosition = await Geolocator.getLastKnownPosition();
+
+      if(lastPosition != null){
+
+        position = lastPosition;
+      }else{
+        position =  await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.low);
+      }
+      print('doSomething() executed in ${stopwatch.elapsed}');
+
+      // 스톱워치 정지
+      stopwatch.stop();
 
       var pstate = await repository.readWeather(lat: position.latitude,
           lon: position.longitude,

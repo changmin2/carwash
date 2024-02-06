@@ -8,6 +8,7 @@ import 'package:carwash/community/provider/comment_provider.dart';
 import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
@@ -136,7 +137,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                     },
                                     itemBuilder: (_, int index) {
                                       return TRoundedImage(
-                                        imageUrl: imgs[index],
+                                        imageUrl: imgs[index].toString().trim(),
                                         width: 120,
                                         height: 120,
                                         fit: BoxFit.fill,

@@ -297,9 +297,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
 
                       await ref.read(communityRepositoryProvider).register(param);
                       //뒤로가기시 페이지 갱신
-                      print("hi1");
                       await ref.read(communityProvider.notifier).paginate(forceRefetch: true);
-                      print("hi2");
                       context.goNamed(CommunityScreen.routeName);
                     }
                   },
@@ -318,8 +316,10 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
     if (images.isNotEmpty) {
       for (int i = 0; i < images.length; i++) {
         File _file = File(images[i]!.path);
+
         var ref = storage.ref().child('washRecord/$now' + i.toString() + '.png');
         await ref.putFile(_file);
+
         _downloadUrls.add(await ref.getDownloadURL());
       }
     }

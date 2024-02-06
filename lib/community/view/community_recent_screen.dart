@@ -143,7 +143,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                                                 },
                                                 itemBuilder: (_, int index) {
                                                   return TRoundedImage(
-                                                    imageUrl: imgs[index],
+                                                    imageUrl: imgs[index].toString().trim(),
                                                     width: 120,
                                                     height: 120,
                                                     fit: BoxFit.fill,
