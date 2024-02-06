@@ -20,6 +20,8 @@ class TCommunityFreeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final hot = ref.watch(hotAllCommunityProvider);
+    final hotLists = hot.map((element) =>  element.id);
+
     ref.watch(communityProvider);
     return hot.isNotEmpty
         ? Padding(
@@ -72,8 +74,8 @@ class TCommunityFreeScreen extends ConsumerWidget {
                             context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
                           },
                           child: TCommunityFreeListWidget(
-                            hotYn: true,
-                            hashtag: '세차방법공유',
+                            hotYn: hotLists.contains(community.id) ? true : false,
+                            hashtag: community.hastag,
                             date: community.createDate.split("T")[0],
                             title: community.title,
                             imageUrl: 'asset/img/car_image.jpeg',
@@ -91,7 +93,7 @@ class TCommunityFreeScreen extends ConsumerWidget {
                       context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
                     },
                     child: TCommunityFreeListWidget(
-                      hotYn: true,
+                      hotYn: hotLists.contains(community.id) ? true : false,
                       hashtag: community.hastag,
                       date: community.createDate.split("T")[0],
                       title: community.title,
@@ -135,7 +137,7 @@ class TCommunityFreeScreen extends ConsumerWidget {
                             context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
                           },
                           child: TCommunityFreeListWidget(
-                            hotYn: true,
+                            hotYn: hotLists.contains(community.id) ? true : false,
                             hashtag: community.hastag,
                             date: community.createDate.split("T")[0],
                             title: community.title,
@@ -154,7 +156,7 @@ class TCommunityFreeScreen extends ConsumerWidget {
                       context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
                     },
                     child: TCommunityFreeListWidget(
-                      hotYn: true,
+                      hotYn: hotLists.contains(community.id) ? true : false,
                       hashtag: community.hastag,
                       date: community.createDate.split("T")[0],
                       title: community.title,
