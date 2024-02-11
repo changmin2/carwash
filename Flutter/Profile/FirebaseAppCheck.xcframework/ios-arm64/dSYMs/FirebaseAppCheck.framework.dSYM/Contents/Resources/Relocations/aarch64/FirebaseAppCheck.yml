@@ -1,0 +1,140 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/ichangmin/StudioProjects/carwash/Flutter/Profile/iphoneos/Profile-iphoneos/FirebaseAppCheck/FirebaseAppCheck.framework/FirebaseAppCheck'
+relocations:
+  - { offsetInCU: 0x34, offset: 0x5475A, size: 0x8, addend: 0x0, symName: _FirebaseAppCheckVersionString, symObjAddr: 0x0, symBinAddr: 0x82F0, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x5478F, size: 0x8, addend: 0x0, symName: _FirebaseAppCheckVersionNumber, symObjAddr: 0x30, symBinAddr: 0x8320, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x547CC, size: 0x8, addend: 0x0, symName: '-[FIRApp(AppCheck) resourceName]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0xC4 }
+  - { offsetInCU: 0x58, offset: 0x547FD, size: 0x8, addend: 0x0, symName: '-[FIRApp(AppCheck) resourceName]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0xC4 }
+  - { offsetInCU: 0x27, offset: 0x5487D, size: 0x8, addend: 0x0, symName: '-[FIRAppAttestProvider initWithAppAttestProvider:]', symObjAddr: 0x0, symBinAddr: 0x40C4, symSize: 0x78 }
+  - { offsetInCU: 0x96, offset: 0x548EC, size: 0x8, addend: 0x0, symName: '-[FIRAppAttestProvider initWithAppAttestProvider:]', symObjAddr: 0x0, symBinAddr: 0x40C4, symSize: 0x78 }
+  - { offsetInCU: 0xDD, offset: 0x54933, size: 0x8, addend: 0x0, symName: '-[FIRAppAttestProvider initWithApp:]', symObjAddr: 0x78, symBinAddr: 0x413C, symSize: 0x1DC }
+  - { offsetInCU: 0x134, offset: 0x5498A, size: 0x8, addend: 0x0, symName: '-[FIRAppAttestProvider getTokenWithCompletion:]', symObjAddr: 0x254, symBinAddr: 0x4318, symSize: 0xA4 }
+  - { offsetInCU: 0x177, offset: 0x549CD, size: 0x8, addend: 0x0, symName: '___47-[FIRAppAttestProvider getTokenWithCompletion:]_block_invoke', symObjAddr: 0x2F8, symBinAddr: 0x43BC, symSize: 0x8C }
+  - { offsetInCU: 0x214, offset: 0x54A6A, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32b, symObjAddr: 0x384, symBinAddr: 0x4448, symSize: 0x10 }
+  - { offsetInCU: 0x23D, offset: 0x54A93, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s, symObjAddr: 0x394, symBinAddr: 0x4458, symSize: 0x8 }
+  - { offsetInCU: 0x25C, offset: 0x54AB2, size: 0x8, addend: 0x0, symName: '-[FIRAppAttestProvider getLimitedUseTokenWithCompletion:]', symObjAddr: 0x39C, symBinAddr: 0x4460, symSize: 0xA4 }
+  - { offsetInCU: 0x29F, offset: 0x54AF5, size: 0x8, addend: 0x0, symName: '___57-[FIRAppAttestProvider getLimitedUseTokenWithCompletion:]_block_invoke', symObjAddr: 0x440, symBinAddr: 0x4504, symSize: 0x8C }
+  - { offsetInCU: 0x33C, offset: 0x54B92, size: 0x8, addend: 0x0, symName: '-[FIRAppAttestProvider appAttestProvider]', symObjAddr: 0x4CC, symBinAddr: 0x4590, symSize: 0x8 }
+  - { offsetInCU: 0x373, offset: 0x54BC9, size: 0x8, addend: 0x0, symName: '-[FIRAppAttestProvider .cxx_destruct]', symObjAddr: 0x4D4, symBinAddr: 0x4598, symSize: 0xC }
+  - { offsetInCU: 0x27, offset: 0x54E4C, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck initWithApp:]', symObjAddr: 0x0, symBinAddr: 0x45A4, symSize: 0x304 }
+  - { offsetInCU: 0x41, offset: 0x54E66, size: 0x8, addend: 0x0, symName: _FIRAppCheckAppCheckTokenDidChangeNotification, symObjAddr: 0x1430, symBinAddr: 0xC120, symSize: 0x0 }
+  - { offsetInCU: 0x61, offset: 0x54E86, size: 0x8, addend: 0x0, symName: _kFIRAppCheckTokenNotificationKey, symObjAddr: 0x1438, symBinAddr: 0xC128, symSize: 0x0 }
+  - { offsetInCU: 0x7C, offset: 0x54EA1, size: 0x8, addend: 0x0, symName: _kFIRAppCheckAppNameNotificationKey, symObjAddr: 0x1440, symBinAddr: 0xC130, symSize: 0x0 }
+  - { offsetInCU: 0x92, offset: 0x54EB7, size: 0x8, addend: 0x0, symName: __providerFactory, symObjAddr: 0x7358, symBinAddr: 0xF0F0, symSize: 0x0 }
+  - { offsetInCU: 0x1BF, offset: 0x54FE4, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck initWithApp:]', symObjAddr: 0x0, symBinAddr: 0x45A4, symSize: 0x304 }
+  - { offsetInCU: 0x2EE, offset: 0x55113, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck initWithAppName:appCheckCore:appCheckProvider:notificationCenter:settings:]', symObjAddr: 0x304, symBinAddr: 0x48A8, symSize: 0xFC }
+  - { offsetInCU: 0x371, offset: 0x55196, size: 0x8, addend: 0x0, symName: '+[FIRAppCheck appCheck]', symObjAddr: 0x400, symBinAddr: 0x49A4, symSize: 0x7C }
+  - { offsetInCU: 0x3B8, offset: 0x551DD, size: 0x8, addend: 0x0, symName: '+[FIRAppCheck appCheckWithApp:]', symObjAddr: 0x47C, symBinAddr: 0x4A20, symSize: 0x6C }
+  - { offsetInCU: 0x40B, offset: 0x55230, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck tokenForcingRefresh:completion:]', symObjAddr: 0x4E8, symBinAddr: 0x4A8C, symSize: 0xB4 }
+  - { offsetInCU: 0x45E, offset: 0x55283, size: 0x8, addend: 0x0, symName: '___46-[FIRAppCheck tokenForcingRefresh:completion:]_block_invoke', symObjAddr: 0x59C, symBinAddr: 0x4B40, symSize: 0xF0 }
+  - { offsetInCU: 0x4B5, offset: 0x552DA, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck limitedUseTokenWithCompletion:]', symObjAddr: 0x6A4, symBinAddr: 0x4C30, symSize: 0xA4 }
+  - { offsetInCU: 0x4F8, offset: 0x5531D, size: 0x8, addend: 0x0, symName: '___45-[FIRAppCheck limitedUseTokenWithCompletion:]_block_invoke', symObjAddr: 0x748, symBinAddr: 0x4CD4, symSize: 0xF0 }
+  - { offsetInCU: 0x54F, offset: 0x55374, size: 0x8, addend: 0x0, symName: '+[FIRAppCheck setAppCheckProviderFactory:]', symObjAddr: 0x838, symBinAddr: 0x4DC4, symSize: 0x4 }
+  - { offsetInCU: 0x58E, offset: 0x553B3, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck setIsTokenAutoRefreshEnabled:]', symObjAddr: 0x83C, symBinAddr: 0x4DC8, symSize: 0x38 }
+  - { offsetInCU: 0x5D1, offset: 0x553F6, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck isTokenAutoRefreshEnabled]', symObjAddr: 0x874, symBinAddr: 0x4E00, symSize: 0x3C }
+  - { offsetInCU: 0x608, offset: 0x5542D, size: 0x8, addend: 0x0, symName: '+[FIRAppCheck setProviderFactory:]', symObjAddr: 0x8B0, symBinAddr: 0x4E3C, symSize: 0x54 }
+  - { offsetInCU: 0x64B, offset: 0x55470, size: 0x8, addend: 0x0, symName: '+[FIRAppCheck providerFactory]', symObjAddr: 0x904, symBinAddr: 0x4E90, symSize: 0x48 }
+  - { offsetInCU: 0x682, offset: 0x554A7, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck getTokenForcingRefresh:completion:]', symObjAddr: 0x94C, symBinAddr: 0x4ED8, symSize: 0xB4 }
+  - { offsetInCU: 0x6D5, offset: 0x554FA, size: 0x8, addend: 0x0, symName: '___49-[FIRAppCheck getTokenForcingRefresh:completion:]_block_invoke', symObjAddr: 0xA00, symBinAddr: 0x4F8C, symSize: 0xF8 }
+  - { offsetInCU: 0x763, offset: 0x55588, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck getLimitedUseTokenWithCompletion:]', symObjAddr: 0xAF8, symBinAddr: 0x5084, symSize: 0xA4 }
+  - { offsetInCU: 0x7A6, offset: 0x555CB, size: 0x8, addend: 0x0, symName: '___48-[FIRAppCheck getLimitedUseTokenWithCompletion:]_block_invoke', symObjAddr: 0xB9C, symBinAddr: 0x5128, symSize: 0xF8 }
+  - { offsetInCU: 0x834, offset: 0x55659, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck tokenDidChangeNotificationName]', symObjAddr: 0xC94, symBinAddr: 0x5220, symSize: 0xC }
+  - { offsetInCU: 0x867, offset: 0x5568C, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck notificationAppNameKey]', symObjAddr: 0xCA0, symBinAddr: 0x522C, symSize: 0xC }
+  - { offsetInCU: 0x89A, offset: 0x556BF, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck notificationTokenKey]', symObjAddr: 0xCAC, symBinAddr: 0x5238, symSize: 0xC }
+  - { offsetInCU: 0x8CD, offset: 0x556F2, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck tokenDidUpdate:serviceName:]', symObjAddr: 0xCB8, symBinAddr: 0x5244, symSize: 0x64 }
+  - { offsetInCU: 0x92C, offset: 0x55751, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck postTokenUpdateNotificationWithToken:]', symObjAddr: 0xD1C, symBinAddr: 0x52A8, symSize: 0x128 }
+  - { offsetInCU: 0x96F, offset: 0x55794, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck serviceNameForApp:]', symObjAddr: 0xE44, symBinAddr: 0x53D0, symSize: 0x68 }
+  - { offsetInCU: 0x9B4, offset: 0x557D9, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck resourceNameForApp:]', symObjAddr: 0xEAC, symBinAddr: 0x5438, symSize: 0xD8 }
+  - { offsetInCU: 0x9F9, offset: 0x5581E, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck appName]', symObjAddr: 0xF84, symBinAddr: 0x5510, symSize: 0x8 }
+  - { offsetInCU: 0xA30, offset: 0x55855, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck notificationCenter]', symObjAddr: 0xF8C, symBinAddr: 0x5518, symSize: 0x8 }
+  - { offsetInCU: 0xA67, offset: 0x5588C, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck settings]', symObjAddr: 0xF94, symBinAddr: 0x5520, symSize: 0x8 }
+  - { offsetInCU: 0xA9E, offset: 0x558C3, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck appCheckCore]', symObjAddr: 0xF9C, symBinAddr: 0x5528, symSize: 0x8 }
+  - { offsetInCU: 0xAD5, offset: 0x558FA, size: 0x8, addend: 0x0, symName: '-[FIRAppCheck .cxx_destruct]', symObjAddr: 0xFA4, symBinAddr: 0x5530, symSize: 0x48 }
+  - { offsetInCU: 0x27, offset: 0x55C2B, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckComponent load]', symObjAddr: 0x0, symBinAddr: 0x5578, symSize: 0x18 }
+  - { offsetInCU: 0x8F, offset: 0x55C93, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckComponent load]', symObjAddr: 0x0, symBinAddr: 0x5578, symSize: 0x18 }
+  - { offsetInCU: 0xC2, offset: 0x55CC6, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckComponent componentsToRegister]', symObjAddr: 0x18, symBinAddr: 0x5590, symSize: 0xB4 }
+  - { offsetInCU: 0x115, offset: 0x55D19, size: 0x8, addend: 0x0, symName: '___44+[FIRAppCheckComponent componentsToRegister]_block_invoke', symObjAddr: 0xCC, symBinAddr: 0x5644, symSize: 0x80 }
+  - { offsetInCU: 0x27, offset: 0x55F5F, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProvider initWithDebugProvider:]', symObjAddr: 0x0, symBinAddr: 0x56C4, symSize: 0x78 }
+  - { offsetInCU: 0x96, offset: 0x55FCE, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProvider initWithDebugProvider:]', symObjAddr: 0x0, symBinAddr: 0x56C4, symSize: 0x78 }
+  - { offsetInCU: 0xDD, offset: 0x56015, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProvider initWithApp:]', symObjAddr: 0x78, symBinAddr: 0x573C, symSize: 0x274 }
+  - { offsetInCU: 0x18F, offset: 0x560C7, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProvider currentDebugToken]', symObjAddr: 0x2EC, symBinAddr: 0x59B0, symSize: 0x44 }
+  - { offsetInCU: 0x1C6, offset: 0x560FE, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProvider localDebugToken]', symObjAddr: 0x330, symBinAddr: 0x59F4, symSize: 0x44 }
+  - { offsetInCU: 0x1FD, offset: 0x56135, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProvider getTokenWithCompletion:]', symObjAddr: 0x374, symBinAddr: 0x5A38, symSize: 0xA4 }
+  - { offsetInCU: 0x240, offset: 0x56178, size: 0x8, addend: 0x0, symName: '___51-[FIRAppCheckDebugProvider getTokenWithCompletion:]_block_invoke', symObjAddr: 0x418, symBinAddr: 0x5ADC, symSize: 0x8C }
+  - { offsetInCU: 0x2DD, offset: 0x56215, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProvider getLimitedUseTokenWithCompletion:]', symObjAddr: 0x4BC, symBinAddr: 0x5B68, symSize: 0xA4 }
+  - { offsetInCU: 0x320, offset: 0x56258, size: 0x8, addend: 0x0, symName: '___61-[FIRAppCheckDebugProvider getLimitedUseTokenWithCompletion:]_block_invoke', symObjAddr: 0x560, symBinAddr: 0x5C0C, symSize: 0x8C }
+  - { offsetInCU: 0x3BD, offset: 0x562F5, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProvider debugProvider]', symObjAddr: 0x5EC, symBinAddr: 0x5C98, symSize: 0x8 }
+  - { offsetInCU: 0x3F4, offset: 0x5632C, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProvider .cxx_destruct]', symObjAddr: 0x5F4, symBinAddr: 0x5CA0, symSize: 0xC }
+  - { offsetInCU: 0x27, offset: 0x565AF, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProviderFactory createProviderWithApp:]', symObjAddr: 0x0, symBinAddr: 0x5CAC, symSize: 0xA8 }
+  - { offsetInCU: 0x70, offset: 0x565F8, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckDebugProviderFactory createProviderWithApp:]', symObjAddr: 0x0, symBinAddr: 0x5CAC, symSize: 0xA8 }
+  - { offsetInCU: 0x35, offset: 0x5672B, size: 0x8, addend: 0x0, symName: _FIRAppCheckErrorDomain, symObjAddr: 0x38, symBinAddr: 0xC1A8, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x56768, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckErrorUtil publicDomainErrorWithError:]', symObjAddr: 0x0, symBinAddr: 0x5D54, symSize: 0xDC }
+  - { offsetInCU: 0x75, offset: 0x567B6, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckErrorUtil publicDomainErrorWithError:]', symObjAddr: 0x0, symBinAddr: 0x5D54, symSize: 0xDC }
+  - { offsetInCU: 0xBC, offset: 0x567FD, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckErrorUtil publicDomainErrorWithGACError:]', symObjAddr: 0xDC, symBinAddr: 0x5E30, symSize: 0xC4 }
+  - { offsetInCU: 0x113, offset: 0x56854, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckErrorUtil unknownErrorWithError:]', symObjAddr: 0x1A0, symBinAddr: 0x5EF4, symSize: 0x98 }
+  - { offsetInCU: 0x16A, offset: 0x568AB, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckErrorUtil appCheckErrorWithCode:failureReason:underlyingError:]', symObjAddr: 0x238, symBinAddr: 0x5F8C, symSize: 0xD0 }
+  - { offsetInCU: 0x27, offset: 0x5698A, size: 0x8, addend: 0x0, symName: _FIRAppCheckDebugLog, symObjAddr: 0x0, symBinAddr: 0x605C, symSize: 0x3C }
+  - { offsetInCU: 0x41, offset: 0x569A4, size: 0x8, addend: 0x0, symName: _kFIRLoggerAppCheck, symObjAddr: 0x180, symBinAddr: 0xC1B0, symSize: 0x0 }
+  - { offsetInCU: 0x6C, offset: 0x569CF, size: 0x8, addend: 0x0, symName: _kFIRLoggerAppCheckMessageCodeProviderFactoryIsMissing, symObjAddr: 0x188, symBinAddr: 0xC1B8, symSize: 0x0 }
+  - { offsetInCU: 0x82, offset: 0x569E5, size: 0x8, addend: 0x0, symName: _kFIRLoggerAppCheckMessageCodeProviderIsMissing, symObjAddr: 0x190, symBinAddr: 0xC1C0, symSize: 0x0 }
+  - { offsetInCU: 0x98, offset: 0x569FB, size: 0x8, addend: 0x0, symName: _kFIRLoggerAppCheckMessageDebugProviderIncompleteFIROptions, symObjAddr: 0x198, symBinAddr: 0xC1C8, symSize: 0x0 }
+  - { offsetInCU: 0xAE, offset: 0x56A11, size: 0x8, addend: 0x0, symName: _kFIRLoggerAppCheckMessageCodeDebugToken, symObjAddr: 0x1A0, symBinAddr: 0xC1D0, symSize: 0x0 }
+  - { offsetInCU: 0xC4, offset: 0x56A27, size: 0x8, addend: 0x0, symName: _kFIRLoggerAppCheckMessageDeviceCheckProviderIncompleteFIROptions, symObjAddr: 0x1A8, symBinAddr: 0xC1D8, symSize: 0x0 }
+  - { offsetInCU: 0xF8, offset: 0x56A5B, size: 0x8, addend: 0x0, symName: _FIRAppCheckDebugLog, symObjAddr: 0x0, symBinAddr: 0x605C, symSize: 0x3C }
+  - { offsetInCU: 0x195, offset: 0x56AF8, size: 0x8, addend: 0x0, symName: _FIRGetGACAppCheckLogLevel, symObjAddr: 0x3C, symBinAddr: 0x6098, symSize: 0x34 }
+  - { offsetInCU: 0x27, offset: 0x56B64, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings initWithApp:userDefault:mainBundle:]', symObjAddr: 0x0, symBinAddr: 0x60CC, symSize: 0x158 }
+  - { offsetInCU: 0x41, offset: 0x56B7E, size: 0x8, addend: 0x0, symName: _kFIRAppCheckTokenAutoRefreshEnabledUserDefaultsPrefix, symObjAddr: 0x598, symBinAddr: 0xC1E0, symSize: 0x0 }
+  - { offsetInCU: 0x61, offset: 0x56B9E, size: 0x8, addend: 0x0, symName: _kFIRAppCheckTokenAutoRefreshEnabledInfoPlistKey, symObjAddr: 0x5A0, symBinAddr: 0xC1E8, symSize: 0x0 }
+  - { offsetInCU: 0x14E, offset: 0x56C8B, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings initWithApp:userDefault:mainBundle:]', symObjAddr: 0x0, symBinAddr: 0x60CC, symSize: 0x158 }
+  - { offsetInCU: 0x1B5, offset: 0x56CF2, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings isTokenAutoRefreshEnabled]', symObjAddr: 0x158, symBinAddr: 0x6224, symSize: 0x1B4 }
+  - { offsetInCU: 0x203, offset: 0x56D40, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings setIsTokenAutoRefreshEnabled:]', symObjAddr: 0x30C, symBinAddr: 0x63D8, symSize: 0xD0 }
+  - { offsetInCU: 0x246, offset: 0x56D83, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings firebaseApp]', symObjAddr: 0x3DC, symBinAddr: 0x64A8, symSize: 0x20 }
+  - { offsetInCU: 0x27D, offset: 0x56DBA, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings userDefaults]', symObjAddr: 0x3FC, symBinAddr: 0x64C8, symSize: 0x10 }
+  - { offsetInCU: 0x2B4, offset: 0x56DF1, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings mainBundle]', symObjAddr: 0x40C, symBinAddr: 0x64D8, symSize: 0x10 }
+  - { offsetInCU: 0x2EB, offset: 0x56E28, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings userDefaultKey]', symObjAddr: 0x41C, symBinAddr: 0x64E8, symSize: 0x10 }
+  - { offsetInCU: 0x322, offset: 0x56E5F, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings isTokenAutoRefreshConfigured]', symObjAddr: 0x42C, symBinAddr: 0x64F8, symSize: 0x10 }
+  - { offsetInCU: 0x359, offset: 0x56E96, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings setIsTokenAutoRefreshConfigured:]', symObjAddr: 0x43C, symBinAddr: 0x6508, symSize: 0x10 }
+  - { offsetInCU: 0x394, offset: 0x56ED1, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckSettings .cxx_destruct]', symObjAddr: 0x44C, symBinAddr: 0x6518, symSize: 0x64 }
+  - { offsetInCU: 0x27, offset: 0x56F7F, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken initWithToken:expirationDate:receivedAtDate:]', symObjAddr: 0x0, symBinAddr: 0x657C, symSize: 0xD0 }
+  - { offsetInCU: 0xAC, offset: 0x57004, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken initWithToken:expirationDate:receivedAtDate:]', symObjAddr: 0x0, symBinAddr: 0x657C, symSize: 0xD0 }
+  - { offsetInCU: 0x113, offset: 0x5706B, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken initWithToken:expirationDate:]', symObjAddr: 0xD0, symBinAddr: 0x664C, symSize: 0x90 }
+  - { offsetInCU: 0x16A, offset: 0x570C2, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken initWithInternalToken:]', symObjAddr: 0x160, symBinAddr: 0x66DC, symSize: 0xAC }
+  - { offsetInCU: 0x1B1, offset: 0x57109, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken internalToken]', symObjAddr: 0x20C, symBinAddr: 0x6788, symSize: 0xA4 }
+  - { offsetInCU: 0x1E8, offset: 0x57140, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken token]', symObjAddr: 0x2B0, symBinAddr: 0x682C, symSize: 0x8 }
+  - { offsetInCU: 0x21F, offset: 0x57177, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken expirationDate]', symObjAddr: 0x2B8, symBinAddr: 0x6834, symSize: 0x8 }
+  - { offsetInCU: 0x256, offset: 0x571AE, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken receivedAtDate]', symObjAddr: 0x2C0, symBinAddr: 0x683C, symSize: 0x8 }
+  - { offsetInCU: 0x28D, offset: 0x571E5, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken setReceivedAtDate:]', symObjAddr: 0x2C8, symBinAddr: 0x6844, symSize: 0xC }
+  - { offsetInCU: 0x2CE, offset: 0x57226, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckToken .cxx_destruct]', symObjAddr: 0x2D4, symBinAddr: 0x6850, symSize: 0x3C }
+  - { offsetInCU: 0x27, offset: 0x572D4, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckTokenResult initWithToken:error:]', symObjAddr: 0x0, symBinAddr: 0x688C, symSize: 0xA4 }
+  - { offsetInCU: 0x78, offset: 0x57325, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckTokenResult initWithToken:error:]', symObjAddr: 0x0, symBinAddr: 0x688C, symSize: 0xA4 }
+  - { offsetInCU: 0xCF, offset: 0x5737C, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckTokenResult token]', symObjAddr: 0xA4, symBinAddr: 0x6930, symSize: 0x8 }
+  - { offsetInCU: 0x106, offset: 0x573B3, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckTokenResult error]', symObjAddr: 0xAC, symBinAddr: 0x6938, symSize: 0x8 }
+  - { offsetInCU: 0x13D, offset: 0x573EA, size: 0x8, addend: 0x0, symName: '-[FIRAppCheckTokenResult .cxx_destruct]', symObjAddr: 0xB4, symBinAddr: 0x6940, symSize: 0x30 }
+  - { offsetInCU: 0x27, offset: 0x57493, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckValidator tokenExchangeMissingFieldsInOptions:]', symObjAddr: 0x0, symBinAddr: 0x6970, symSize: 0x10C }
+  - { offsetInCU: 0x58, offset: 0x574C4, size: 0x8, addend: 0x0, symName: '+[FIRAppCheckValidator tokenExchangeMissingFieldsInOptions:]', symObjAddr: 0x0, symBinAddr: 0x6970, symSize: 0x10C }
+  - { offsetInCU: 0x27, offset: 0x57578, size: 0x8, addend: 0x0, symName: '-[FIRDeviceCheckProvider initWithDeviceCheckProvider:]', symObjAddr: 0x0, symBinAddr: 0x6A7C, symSize: 0x78 }
+  - { offsetInCU: 0x96, offset: 0x575E7, size: 0x8, addend: 0x0, symName: '-[FIRDeviceCheckProvider initWithDeviceCheckProvider:]', symObjAddr: 0x0, symBinAddr: 0x6A7C, symSize: 0x78 }
+  - { offsetInCU: 0xDD, offset: 0x5762E, size: 0x8, addend: 0x0, symName: '-[FIRDeviceCheckProvider initWithApp:]', symObjAddr: 0x78, symBinAddr: 0x6AF4, symSize: 0x270 }
+  - { offsetInCU: 0x18F, offset: 0x576E0, size: 0x8, addend: 0x0, symName: '-[FIRDeviceCheckProvider getTokenWithCompletion:]', symObjAddr: 0x2E8, symBinAddr: 0x6D64, symSize: 0xA4 }
+  - { offsetInCU: 0x1D2, offset: 0x57723, size: 0x8, addend: 0x0, symName: '___49-[FIRDeviceCheckProvider getTokenWithCompletion:]_block_invoke', symObjAddr: 0x38C, symBinAddr: 0x6E08, symSize: 0x8C }
+  - { offsetInCU: 0x26F, offset: 0x577C0, size: 0x8, addend: 0x0, symName: '-[FIRDeviceCheckProvider getLimitedUseTokenWithCompletion:]', symObjAddr: 0x430, symBinAddr: 0x6E94, symSize: 0xA4 }
+  - { offsetInCU: 0x2B2, offset: 0x57803, size: 0x8, addend: 0x0, symName: '___59-[FIRDeviceCheckProvider getLimitedUseTokenWithCompletion:]_block_invoke', symObjAddr: 0x4D4, symBinAddr: 0x6F38, symSize: 0x8C }
+  - { offsetInCU: 0x34F, offset: 0x578A0, size: 0x8, addend: 0x0, symName: '-[FIRDeviceCheckProvider deviceCheckProvider]', symObjAddr: 0x560, symBinAddr: 0x6FC4, symSize: 0x8 }
+  - { offsetInCU: 0x386, offset: 0x578D7, size: 0x8, addend: 0x0, symName: '-[FIRDeviceCheckProvider .cxx_destruct]', symObjAddr: 0x568, symBinAddr: 0x6FCC, symSize: 0xC }
+  - { offsetInCU: 0x27, offset: 0x57B5A, size: 0x8, addend: 0x0, symName: '+[FIRDeviceCheckProviderFactory load]', symObjAddr: 0x0, symBinAddr: 0x6FD8, symSize: 0x3C }
+  - { offsetInCU: 0x5B, offset: 0x57B8E, size: 0x8, addend: 0x0, symName: '+[FIRDeviceCheckProviderFactory load]', symObjAddr: 0x0, symBinAddr: 0x6FD8, symSize: 0x3C }
+  - { offsetInCU: 0x8E, offset: 0x57BC1, size: 0x8, addend: 0x0, symName: '-[FIRDeviceCheckProviderFactory createProviderWithApp:]', symObjAddr: 0x3C, symBinAddr: 0x7014, symSize: 0x4C }
+  - { offsetInCU: 0x27, offset: 0x57C8A, size: 0x8, addend: 0x0, symName: '-[FIRHeartbeatLogger(AppCheck) requestHook]', symObjAddr: 0x0, symBinAddr: 0x7060, symSize: 0x50 }
+  - { offsetInCU: 0x48, offset: 0x57CAB, size: 0x8, addend: 0x0, symName: '-[FIRHeartbeatLogger(AppCheck) requestHook]', symObjAddr: 0x0, symBinAddr: 0x7060, symSize: 0x50 }
+  - { offsetInCU: 0x7F, offset: 0x57CE2, size: 0x8, addend: 0x0, symName: '___43-[FIRHeartbeatLogger(AppCheck) requestHook]_block_invoke', symObjAddr: 0x50, symBinAddr: 0x70B0, symSize: 0x80 }
+  - { offsetInCU: 0x118, offset: 0x57D7B, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s, symObjAddr: 0xD0, symBinAddr: 0x7130, symSize: 0x8 }
+  - { offsetInCU: 0x27, offset: 0x57EB8, size: 0x8, addend: 0x0, symName: '-[FIRInternalAppCheckProvider initWithAppCheckProvider:]', symObjAddr: 0x0, symBinAddr: 0x7138, symSize: 0x78 }
+  - { offsetInCU: 0x97, offset: 0x57F28, size: 0x8, addend: 0x0, symName: '-[FIRInternalAppCheckProvider initWithAppCheckProvider:]', symObjAddr: 0x0, symBinAddr: 0x7138, symSize: 0x78 }
+  - { offsetInCU: 0xDE, offset: 0x57F6F, size: 0x8, addend: 0x0, symName: '-[FIRInternalAppCheckProvider getTokenWithCompletion:]', symObjAddr: 0x78, symBinAddr: 0x71B0, symSize: 0xA4 }
+  - { offsetInCU: 0x121, offset: 0x57FB2, size: 0x8, addend: 0x0, symName: '___54-[FIRInternalAppCheckProvider getTokenWithCompletion:]_block_invoke', symObjAddr: 0x11C, symBinAddr: 0x7254, symSize: 0x68 }
+  - { offsetInCU: 0x19E, offset: 0x5802F, size: 0x8, addend: 0x0, symName: '-[FIRInternalAppCheckProvider getLimitedUseTokenWithCompletion:]', symObjAddr: 0x19C, symBinAddr: 0x72BC, symSize: 0xE4 }
+  - { offsetInCU: 0x1E1, offset: 0x58072, size: 0x8, addend: 0x0, symName: '___64-[FIRInternalAppCheckProvider getLimitedUseTokenWithCompletion:]_block_invoke', symObjAddr: 0x280, symBinAddr: 0x73A0, symSize: 0x68 }
+  - { offsetInCU: 0x25E, offset: 0x580EF, size: 0x8, addend: 0x0, symName: '-[FIRInternalAppCheckProvider appCheckProvider]', symObjAddr: 0x2E8, symBinAddr: 0x7408, symSize: 0x8 }
+  - { offsetInCU: 0x295, offset: 0x58126, size: 0x8, addend: 0x0, symName: '-[FIRInternalAppCheckProvider .cxx_destruct]', symObjAddr: 0x2F0, symBinAddr: 0x7410, symSize: 0xC }
+...

@@ -34,10 +34,11 @@ class CarWashLife extends StatelessWidget {
                 /// 사진
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12.0),
-                  child: Image.asset(
-                    'asset/img/car_image.jpeg',
+                  child: Image.network(
+                    model.imgUrls.toString().split(",")[0].split("[")[1].split("]")[0],
                     fit: BoxFit.fill,
                     height: 200,
+                    width: double.infinity,
                   ),
                 ),
 

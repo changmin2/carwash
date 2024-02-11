@@ -1,0 +1,67 @@
+{
+  "main_library": {
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_kFIRAppCheckTokenAutoRefreshEnabledInfoPlistKey",
+            "_FirebaseAppCheckVersionString",
+            "_FirebaseAppCheckVersionNumber",
+            "_kFIRLoggerAppCheckMessageCodeProviderIsMissing",
+            "_kFIRAppCheckTokenNotificationKey",
+            "_kFIRLoggerAppCheck",
+            "_FIRAppCheckErrorDomain",
+            "_kFIRLoggerAppCheckMessageCodeDebugToken",
+            "_kFIRLoggerAppCheckMessageDebugProviderIncompleteFIROptions",
+            "_kFIRLoggerAppCheckMessageDeviceCheckProviderIncompleteFIROptions",
+            "_kFIRLoggerAppCheckMessageCodeProviderFactoryIsMissing",
+            "_kFIRAppCheckTokenAutoRefreshEnabledUserDefaultsPrefix",
+            "_FIRAppCheckAppCheckTokenDidChangeNotification",
+            "_kFIRAppCheckAppNameNotificationKey"
+          ],
+          "objc_class": [
+            "FIRInternalAppCheckProvider",
+            "FIRDeviceCheckProviderFactory",
+            "FIRAppCheckDebugProvider",
+            "FIRAppCheckErrorUtil",
+            "PodsDummy_FirebaseAppCheck",
+            "FIRAppAttestProvider",
+            "FIRAppCheckSettings",
+            "FIRAppCheckValidator",
+            "FIRAppCheckComponent",
+            "FIRAppCheckTokenResult",
+            "FIRAppCheck",
+            "FIRAppCheckToken",
+            "FIRDeviceCheckProvider",
+            "FIRAppCheckDebugProviderFactory"
+          ]
+        },
+        "text": {
+          "global": [
+            "_FIRAppCheckDebugLog",
+            "_FIRGetGACAppCheckLogLevel"
+          ]
+        }
+      }
+    ],
+    "flags": [
+      {
+        "attributes": [
+          "not_app_extension_safe"
+        ]
+      }
+    ],
+    "install_names": [
+      {
+        "name": "@rpath/FirebaseAppCheck.framework/FirebaseAppCheck"
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "11",
+        "target": "arm64-ios"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}

@@ -1,0 +1,33 @@
+dependencies: \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/geolocator_apple.build/module.modulemap \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/GeolocatorPlugin.m \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/Target\ Support\ Files/geolocator_apple/geolocator_apple-prefix.pch \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/GeolocatorPlugin.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Modules/module.modulemap \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/Flutter.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterAppDelegate.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterMacros.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterPlugin.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterBinaryMessenger.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterChannels.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterCodecs.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterPlatformViews.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterTexture.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterCallbackCache.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterDartProject.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterEngine.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterEngineGroup.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterHeadlessDartRunner.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterPluginAppLifeCycleDelegate.h \
+  /Users/ichangmin/Documents/flutter/bin/cache/artifacts/engine/ios-release/Flutter.xcframework/ios-arm64/Flutter.framework/Headers/FlutterViewController.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Constants/ErrorCodes.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Handlers/GeolocationHandler.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Handlers/PermissionHandler.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Handlers/PositionStreamHandler.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Utils/AuthorizationStatusMapper.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Utils/LocationAccuracyMapper.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Utils/LocationDistanceMapper.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Utils/LocationMapper.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Utils/PermissionUtils.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Handlers/LocationAccuracyHandler.h \
+  /Users/ichangmin/.pub-cache/hosted/pub.dev/geolocator_apple-1.2.2/ios/Classes/Handlers/LocationServiceStreamHandler.h

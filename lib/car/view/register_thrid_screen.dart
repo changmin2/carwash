@@ -1,17 +1,13 @@
 import 'dart:io';
 
-import 'package:carwash/car/model/recordDto.dart';
-import 'package:carwash/car/model/register_params.dart';
-import 'package:carwash/car/provider/recentRecord_provider.dart';
-import 'package:carwash/car/provider/record_provider.dart';
-import 'package:carwash/car/provider/state_provider.dart';
-import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/data.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/common/secure_storage/secure_storage.dart';
 import 'package:carwash/common/utils/formatters/formatter.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +21,14 @@ import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import '../../common/dio/dio.dart';
 import '../../user/model/user_model.dart';
+import '../model/recordDto.dart';
+import '../model/register_params.dart';
+import '../provider/recentRecord_provider.dart';
+import '../provider/record_provider.dart';
+import '../provider/state_provider.dart';
+import '../repository/record_repository.dart';
 
 class RecordThridScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordThrid';
@@ -152,7 +155,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                       ? BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           image: DecorationImage(
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fill,
                             image: FileImage(
                               File(_image!.path),
                             ),
@@ -310,7 +313,6 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
 
     // add file to multipart
     request.files.add(multipartFile);
-
     // send
     var response = await request.send();
     // listen for response
@@ -322,7 +324,9 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   Future getImage(ImageSource imageSource) async {
     final XFile? pickedFile = await picker.pickImage(
         source: imageSource,
-        imageQuality: 60
+        imageQuality: 30,
+        maxHeight: 300,
+        maxWidth: 500
     );
     if (pickedFile != null) {
       setState(() {
@@ -330,4 +334,5 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
       });
     }
   }
+
 }

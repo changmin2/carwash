@@ -1,0 +1,30 @@
+{
+  "" : {
+    "const-values" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple-master.swiftconstvalues",
+    "dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple-master.d",
+    "diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple-master.dia",
+    "emit-module-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple-master-emit-module.dia",
+    "swift-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/sign_in_with_apple-master.swiftdeps"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0/ios/Classes/SignInWithAppleAvailablePlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SignInWithAppleAvailablePlugin.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SignInWithAppleAvailablePlugin.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SignInWithAppleAvailablePlugin.o"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0/ios/Classes/SignInWithAppleError.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SignInWithAppleError.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SignInWithAppleError.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SignInWithAppleError.o"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0/ios/Classes/SignInWithAppleUnavailablePlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SignInWithAppleUnavailablePlugin.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SignInWithAppleUnavailablePlugin.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SignInWithAppleUnavailablePlugin.o"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/sign_in_with_apple-5.0.0/ios/Classes/SwiftSignInWithApplePlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SwiftSignInWithApplePlugin.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SwiftSignInWithApplePlugin.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/sign_in_with_apple.build/Objects-normal/arm64/SwiftSignInWithApplePlugin.o"
+  }
+}

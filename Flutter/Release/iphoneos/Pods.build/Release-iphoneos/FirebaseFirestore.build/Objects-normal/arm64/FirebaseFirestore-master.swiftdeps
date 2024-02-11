@@ -1,0 +1,40 @@
+version: "Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)"
+options: "bcc73f40a6bd2d97f9a0ea8647a91ccbd9dd1b7643f6dc85428b56bd3a877faa"
+build_start_time: [1707314068, 975659000]
+build_end_time: [1707314070, 367303000]
+inputs:
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/AsyncAwait/CollectionReference+AsyncAwait.swift"
+  : [1707312087, 343574648]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/AsyncAwait/Firestore+AsyncAwait.swift": [1707312087, 343439773]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/CodableErrors.swift": [1707312087, 341274160]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/CodablePassThroughTypes.swift": [1707312087, 343055609]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/CollectionReference+WriteEncodable.swift"
+  : [1707312087, 341837616]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/DocumentID.swift": [1707312087, 342508112]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/DocumentReference+Codable.swift"
+  : [1707312087, 340819038]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/DocumentReference+ReadDecodable.swift"
+  : [1707312087, 342929443]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/DocumentReference+WriteEncodable.swift"
+  : [1707312087, 341980323]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/DocumentSnapshot+ReadDecodable.swift"
+  : [1707312087, 342245447]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/EncoderDecoder.swift": [1707312087, 341410660]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/ExplicitNull.swift": [1707312087, 341126870]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/FieldValue+Encodable.swift": [1707312087, 342769485]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/GeoPoint+Codable.swift": [1707312087, 341553742]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/ServerTimestamp.swift": [1707312087, 343178608]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/Timestamp+Codable.swift": [1707312087, 340981287]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/TimestampDecodingStrategy.swift"
+  : [1707312087, 342111781]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/TimestampEncodingStrategy.swift"
+  : [1707312087, 342370821]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/Transaction+WriteEncodable.swift"
+  : [1707312087, 341701408]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/Codable/WriteBatch+WriteEncodable.swift"
+  : [1707312087, 342647611]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/PropertyWrapper/FirestoreQuery.swift": [1707312087, 343816938]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/PropertyWrapper/FirestoreQueryObservable.swift"
+  : [1707312087, 343960604]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/PropertyWrapper/QueryPredicate.swift": [1707312087, 344109812]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestore/Firestore/Swift/Source/SwiftHeaderWorkaround.swift": [1707312087, 340627456]

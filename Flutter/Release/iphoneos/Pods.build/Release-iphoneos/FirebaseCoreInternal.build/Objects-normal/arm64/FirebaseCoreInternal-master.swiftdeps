@@ -1,0 +1,29 @@
+version: "Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)"
+options: "1d5ccb619ecda346e8846d8e50546678894a36c06adcca4864233a8a9bbdfdc0"
+build_start_time: [1707313885, 192902000]
+build_end_time: [1707313888, 590328000]
+inputs:
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Heartbeat.swift"
+  : [1707312083, 849181203]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatController.swift"
+  : [1707312083, 849603867]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatLoggingTestUtils.swift"
+  : [1707312083, 849857824]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatStorage.swift"
+  : [1707312083, 849994282]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsBundle.swift"
+  : [1707312083, 850133406]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsPayload.swift"
+  : [1707312083, 850351530]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/RingBuffer.swift"
+  : [1707312083, 849307494]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Storage.swift"
+  : [1707312083, 849043579]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/StorageFactory.swift"
+  : [1707312083, 850463738]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/WeakContainer.swift"
+  : [1707312083, 850241989]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatController.swift"
+  : [1707312083, 849462535]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatsPayload.swift"
+  : [1707312083, 849723658]

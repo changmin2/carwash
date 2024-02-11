@@ -1,0 +1,11 @@
+dependencies: \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/GoogleUtilities.build/module.modulemap \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/GoogleUtilities/GoogleUtilities/Network/GULNetworkURLSession.m \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/GoogleUtilities/GoogleUtilities/Network/Public/GoogleUtilities/GULNetworkURLSession.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/GoogleUtilities/GoogleUtilities/Network/Public/GoogleUtilities/GULNetworkLoggerProtocol.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/GoogleUtilities/GoogleUtilities/Network/Public/GoogleUtilities/GULNetworkMessageCode.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/GoogleUtilities/GoogleUtilities/Logger/Public/GoogleUtilities/GULLogger.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/GoogleUtilities/GoogleUtilities/Logger/Public/GoogleUtilities/GULLoggerLevel.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/GoogleUtilities/GoogleUtilities/Network/GULNetworkInternal.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/GoogleUtilities/GoogleUtilities/Network/Public/GoogleUtilities/GULMutableDictionary.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/GoogleUtilities/GoogleUtilities/Network/Public/GoogleUtilities/GULNetworkConstants.h

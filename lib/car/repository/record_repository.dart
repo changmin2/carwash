@@ -43,4 +43,6 @@ abstract class RecordRepository{
   Future<List<recordDto>> recentRecord({
     @Body() RecentRecordDto param = const RecentRecordDto()
   });
+
+
 }

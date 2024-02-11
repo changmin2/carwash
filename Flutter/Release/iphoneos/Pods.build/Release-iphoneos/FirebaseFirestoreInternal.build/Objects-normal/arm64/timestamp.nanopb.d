@@ -1,0 +1,25 @@
+dependencies: \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestoreInternal/Firestore/Protos/nanopb/google/protobuf/timestamp.nanopb.cc \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestoreInternal/Firestore/Protos/nanopb/google/protobuf/timestamp.nanopb.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/nanopb/pb.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseFirestoreInternal/Firestore/core/src/nanopb/pretty_printing.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/strings/str_cat.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/port.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/attributes.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/config.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/options.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/policy_checks.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/optimization.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/strings/numbers.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/internal/endian.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/casts.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/internal/identity.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/macros.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/meta/type_traits.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/internal/unaligned_access.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/numeric/bits.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/numeric/internal/bits.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/numeric/int128.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/numeric/int128_have_intrinsic.inc \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/strings/string_view.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Release-iphoneos/abseil/absl.framework/Headers/base/internal/throw_delegate.h

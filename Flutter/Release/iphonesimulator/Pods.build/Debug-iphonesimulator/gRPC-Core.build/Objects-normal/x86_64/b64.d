@@ -1,0 +1,39 @@
+dependencies: \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/src/core/lib/slice/b64.cc \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/Target\ Support\ Files/gRPC-Core/gRPC-Core-prefix.pch \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/support/port_platform.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/port_platform.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/src/core/lib/slice/b64.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/slice.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/slice.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/gpr_slice.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/support/sync.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/gpr_types.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/sync.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/sync_generic.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/atm.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/atm_gcc_atomic.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/sync_posix.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/support/alloc.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/support/log.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/include/grpc/impl/codegen/log.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/src/core/lib/gpr/useful.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/strings/string_view.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/attributes.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/config.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/options.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/policy_checks.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/internal/throw_delegate.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/macros.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/optimization.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/port.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/types/variant.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/utility/utility.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/internal/inline_variable.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/internal/identity.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/base/internal/invoke.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/meta/type_traits.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/types/internal/variant.h \
+  /Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Debug-iphonesimulator/abseil/absl.framework/Headers/types/bad_variant_access.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/src/core/lib/slice/slice_refcount.h \
+  /Users/ichangmin/StudioProjects/carwash/ios/Pods/gRPC-Core/src/core/lib/slice/slice_refcount_base.h

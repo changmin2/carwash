@@ -1,0 +1,41 @@
+{
+  "main_library": {
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_flutter_naver_loginVersionNumber",
+            "_flutter_naver_loginVersionString"
+          ],
+          "objc_class": [
+            "PodsDummy_flutter_naver_login",
+            "FlutterNaverLoginPlugin"
+          ],
+          "objc_ivar": [
+            "FlutterNaverLoginPlugin._thirdPartyLoginConn",
+            "FlutterNaverLoginPlugin._naverResult"
+          ]
+        }
+      }
+    ],
+    "flags": [
+      {
+        "attributes": [
+          "not_app_extension_safe"
+        ]
+      }
+    ],
+    "install_names": [
+      {
+        "name": "@rpath/flutter_naver_login.framework/flutter_naver_login"
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "11",
+        "target": "arm64-ios"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}

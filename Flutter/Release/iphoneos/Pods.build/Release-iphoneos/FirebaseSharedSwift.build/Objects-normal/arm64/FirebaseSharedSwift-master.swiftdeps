@@ -1,0 +1,9 @@
+version: "Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)"
+options: "bd55572fd9c95e79a32b038abaa83afd3d6b3f86c22a9bf43f37cdf35ad6a331"
+build_start_time: [1707314064, 148617000]
+build_end_time: [1707314068, 944301000]
+inputs:
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseSharedSwift/FirebaseSharedSwift/Sources/FirebaseRemoteConfigValueDecoding.swift"
+  : [1707312095, 226223150]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseSharedSwift/FirebaseSharedSwift/Sources/third_party/FirebaseDataEncoder/FirebaseDataEncoder.swift"
+  : [1707312095, 226045360]

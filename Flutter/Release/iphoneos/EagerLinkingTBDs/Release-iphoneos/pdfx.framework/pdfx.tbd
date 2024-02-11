@@ -1,0 +1,100 @@
+{
+  "main_library": {
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_$s4pdfx15SwiftPdfxPluginC20closeDocumentMessage_5errorySo02IdG0C_SAySo12FlutterErrorCSgGtFTj",
+            "_$s4pdfx15SwiftPdfxPluginCMo",
+            "_$s4pdfx15SwiftPdfxPluginC24openDocumentAssetMessage_10completionySo08OpenPathH0C_ySo0J5ReplyCSg_So12FlutterErrorCSgtctFTq",
+            "_$s4pdfx15SwiftPdfxPluginC17renderPageMessage_10completionySo06RenderfG0C_ySo0iF5ReplyCSg_So12FlutterErrorCSgtctFTq",
+            "_$s4pdfx15SwiftPdfxPluginCMa",
+            "_$s4pdfx15SwiftPdfxPluginC24unregisterTextureMessage_5errorySo010UnregisterfG0C_SAySo12FlutterErrorCSgGtFTj",
+            "_$s4pdfx15SwiftPdfxPluginC24registerTextureWithErrorySo08RegisterF5ReplyCSgSAySo07FlutterH0CSgGFTj",
+            "_$s4pdfx15SwiftPdfxPluginC14getPageMessage_10completionySo03GetfG0C_ySo0iF5ReplyCSg_So12FlutterErrorCSgtctFTq",
+            "_$s4pdfx15SwiftPdfxPluginC20resizeTextureMessage_10completionySo06ResizefG0C_ySo12FlutterErrorCSgctFTq",
+            "_Swift51Overrides",
+            "_$s4pdfx15SwiftPdfxPluginC20updateTextureMessage_10completionySo06UpdatefG0C_ySo12FlutterErrorCSgctFTj",
+            "_$s4pdfx15SwiftPdfxPluginC23openDocumentDataMessage_10completionySo04OpengH0C_ySo0J5ReplyCSg_So12FlutterErrorCSgtctFTq",
+            "_$s4pdfx15SwiftPdfxPluginC20updateTextureMessage_10completionySo06UpdatefG0C_ySo12FlutterErrorCSgctFTq",
+            "_pdfxVersionNumber",
+            "_$s4pdfx15SwiftPdfxPluginC23openDocumentDataMessage_10completionySo04OpengH0C_ySo0J5ReplyCSg_So12FlutterErrorCSgtctFTj",
+            "_$s4pdfx15SwiftPdfxPluginC23openDocumentFileMessage_10completionySo08OpenPathH0C_ySo0J5ReplyCSg_So12FlutterErrorCSgtctFTj",
+            "_$s4pdfx15SwiftPdfxPluginCACycfC",
+            "_$s4pdfx15SwiftPdfxPluginCfD",
+            "_$s4pdfx15SwiftPdfxPluginC24registerTextureWithErrorySo08RegisterF5ReplyCSgSAySo07FlutterH0CSgGFTq",
+            "_$s4pdfx15SwiftPdfxPluginC24openDocumentAssetMessage_10completionySo08OpenPathH0C_ySo0J5ReplyCSg_So12FlutterErrorCSgtctFTj",
+            "_Swift50Overrides",
+            "_$s4pdfx15SwiftPdfxPluginC20closeDocumentMessage_5errorySo02IdG0C_SAySo12FlutterErrorCSgGtFTq",
+            "_$s4pdfx15SwiftPdfxPluginC24unregisterTextureMessage_5errorySo010UnregisterfG0C_SAySo12FlutterErrorCSgGtFTq",
+            "_$s4pdfx15SwiftPdfxPluginCN",
+            "_pdfxVersionString",
+            "_$s4pdfx15SwiftPdfxPluginC16closePageMessage_5errorySo02IdG0C_SAySo12FlutterErrorCSgGtFTj",
+            "_$s4pdfx15SwiftPdfxPluginC17renderPageMessage_10completionySo06RenderfG0C_ySo0iF5ReplyCSg_So12FlutterErrorCSgtctFTj",
+            "_$s4pdfx15SwiftPdfxPluginCMn",
+            "_$s4pdfx15SwiftPdfxPluginC8register4withySo07FlutterD9Registrar_p_tFZ",
+            "_$s4pdfx15SwiftPdfxPluginC14getPageMessage_10completionySo03GetfG0C_ySo0iF5ReplyCSg_So12FlutterErrorCSgtctFTj",
+            "_$s4pdfx15SwiftPdfxPluginCACycfc",
+            "_$s4pdfx15SwiftPdfxPluginC20resizeTextureMessage_10completionySo06ResizefG0C_ySo12FlutterErrorCSgctFTj",
+            "_$s4pdfx15SwiftPdfxPluginCMu",
+            "_$s4pdfx15SwiftPdfxPluginC23openDocumentFileMessage_10completionySo08OpenPathH0C_ySo0J5ReplyCSg_So12FlutterErrorCSgtctFTq",
+            "_$s4pdfx15SwiftPdfxPluginC16closePageMessage_5errorySo02IdG0C_SAySo12FlutterErrorCSgGtFTq"
+          ],
+          "objc_class": [
+            "PodsDummy_pdfx",
+            "UnregisterTextureMessage",
+            "UpdateTextureMessage",
+            "GetPageMessage",
+            "OpenReply",
+            "IdMessage",
+            "OpenDataMessage",
+            "_TtC4pdfx15SwiftPdfxPlugin",
+            "PdfxApiCodecWriter",
+            "RenderPageReply",
+            "PdfxPlugin",
+            "RenderPageMessage",
+            "PdfxApiCodecReaderWriter",
+            "PdfxApiCodecReader",
+            "OpenPathMessage",
+            "GetPageReply",
+            "ResizeTextureMessage",
+            "RegisterTextureReply"
+          ]
+        },
+        "text": {
+          "global": [
+            "__ZN5swift39swift51override_conformsToSwiftProtocolEPKNS_14TargetMetadataINS_9InProcessEEEPKNS_24TargetProtocolDescriptorIS1_EEN7__swift9__runtime4llvm9StringRefEPFPKNS_35TargetProtocolConformanceDescriptorIS1_EES4_S8_SC_E",
+            "_PdfxApiSetup",
+            "_PdfxApiGetCodec",
+            "__ZN5swift34swift50override_conformsToProtocolEPKNS_14TargetMetadataINS_9InProcessEEEPKNS_24TargetProtocolDescriptorIS1_EEPFPKNS_18TargetWitnessTableIS1_EES4_S8_E",
+            "__Z34_swiftoverride_class_getSuperclassPKN5swift14TargetMetadataINS_9InProcessEEE"
+          ]
+        }
+      }
+    ],
+    "flags": [
+      {
+        "attributes": [
+          "not_app_extension_safe"
+        ]
+      }
+    ],
+    "install_names": [
+      {
+        "name": "@rpath/pdfx.framework/pdfx"
+      }
+    ],
+    "swift_abi": [
+      {
+        "abi": 7
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "11",
+        "target": "arm64-ios"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}

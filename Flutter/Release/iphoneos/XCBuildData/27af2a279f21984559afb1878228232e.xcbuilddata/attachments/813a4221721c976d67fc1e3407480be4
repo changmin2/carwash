@@ -1,0 +1,70 @@
+{
+  "" : {
+    "const-values" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master.swiftconstvalues",
+    "dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master.d",
+    "diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master.dia",
+    "emit-module-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master-emit-module.dia",
+    "swift-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/FirebaseCoreInternal-master.swiftdeps"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatController.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/_ObjC_HeartbeatController.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/_ObjC_HeartbeatController.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/_ObjC_HeartbeatController.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/_ObjC_HeartbeatsPayload.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/_ObjC_HeartbeatsPayload.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/_ObjC_HeartbeatsPayload.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/_ObjC_HeartbeatsPayload.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Heartbeat.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/Heartbeat.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/Heartbeat.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/Heartbeat.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatController.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatController.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatController.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatController.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatLoggingTestUtils.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatLoggingTestUtils.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatLoggingTestUtils.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatLoggingTestUtils.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsBundle.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatsBundle.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatsBundle.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatsBundle.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatsPayload.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatsPayload.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatsPayload.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatsPayload.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/HeartbeatStorage.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatStorage.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatStorage.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/HeartbeatStorage.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/RingBuffer.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/RingBuffer.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/RingBuffer.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/RingBuffer.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/Storage.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/Storage.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/Storage.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/Storage.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/StorageFactory.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/StorageFactory.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/StorageFactory.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/StorageFactory.o"
+  },
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseCoreInternal/FirebaseCore/Internal/Sources/HeartbeatLogging/WeakContainer.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/WeakContainer.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/WeakContainer.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/FirebaseCoreInternal.build/Objects-normal/arm64/WeakContainer.o"
+  }
+}

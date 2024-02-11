@@ -166,7 +166,9 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                     backgroundColor: const Color(0xff2F80ED),
                     child: IconButton(
                       onPressed: () async {
-                        image = await picker.pickImage(source: ImageSource.camera);
+                        image = await picker.pickImage(source: ImageSource.camera, imageQuality: 30,
+                            maxHeight: 300,
+                            maxWidth: 500);
                         //카메라로 촬영하지 않고 뒤로가기 버튼을 누를 경우, null값이 저장되므로 if문을 통해 null이 아닐 경우에만 images변수로 저장하도록 합니다
                         if (image != null) {
                           if (images.length > 2) {
@@ -195,7 +197,11 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                     backgroundColor: const Color(0xff2F80ED),
                     child: IconButton(
                       onPressed: () async {
-                        multiImage = await picker.pickMultiImage();
+                        multiImage = await picker.pickMultiImage(
+                            imageQuality: 30,
+                            maxHeight: 300,
+                            maxWidth: 500
+                        );
                         if (multiImage.length > 3 || (multiImage.length - images.length).abs() > 3) {
                           THelperFunctions.showSnackBar(context, '사진은 3개까지 등록 할 수 있습니다.');
                         }
@@ -281,11 +287,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                       final user = ref.read(userMeProvider) as UserModel;
 
 
-
-                      //await uploadImage();
-
                       if(category == '세차라이프'){
-                        print(category.toString());
                         if(images.length == 0){
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text("세차라이프는 이미지를 하나 이상 선택해야합니다."),

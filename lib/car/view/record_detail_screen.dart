@@ -22,7 +22,6 @@ class _RecordDetailState extends ConsumerState<RecordDetail> {
   Widget build(BuildContext context) {
     final state = ref.read(RecordProvider('false')).firstWhere((element) => element.id == widget.id);
     var wash = state.washList.split("[")[1].split("]")[0].split(",");
-
     return DefaultLayoutV2(
 
       appBar: AppBar(),

@@ -1,0 +1,30 @@
+{
+  "" : {
+    "const-values" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/pdfx-master.swiftconstvalues",
+    "dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/pdfx-master.d",
+    "diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/pdfx-master.dia",
+    "emit-module-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/pdfx-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/pdfx-master-emit-module.dia",
+    "swift-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/pdfx-master.swiftdeps"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/Document.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/Document.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/Document.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/Document.o"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/Hooks.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/Hooks.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/Hooks.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/Hooks.o"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/Resources.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/Resources.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/Resources.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/Resources.o"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/SwiftPdfxPlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/SwiftPdfxPlugin.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/SwiftPdfxPlugin.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphoneos/Pods.build/Release-iphoneos/pdfx.build/Objects-normal/arm64/SwiftPdfxPlugin.o"
+  }
+}

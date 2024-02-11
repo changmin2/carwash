@@ -1,0 +1,30 @@
+version: "Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)"
+options: "bc590ea435530dc99a8ace0082414020d9a6f71f22bb0dbf126fc5f6f985682f"
+build_start_time: [1707314070, 567788000]
+build_end_time: [1707314073, 683672000]
+inputs:
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/AsyncAwait.swift": [1707312100, 718762662]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StorageDeleteTask.swift": [1707312100, 717406544]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StorageGetDownloadURLTask.swift"
+  : [1707312100, 717742793]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StorageGetMetadataTask.swift": [1707312100, 718453289]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StorageListTask.swift": [1707312100, 718597080]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StoragePath.swift": [1707312100, 717575085]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StorageTaskState.swift": [1707312100, 718157582]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StorageTokenAuthorizer.swift": [1707312100, 718320164]
+  ? "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StorageUpdateMetadataTask.swift"
+  : [1707312100, 718019624]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StorageUtils.swift": [1707312100, 717881208]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Result.swift": [1707312100, 717155129]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Storage.swift": [1707312100, 716212801]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageComponent.swift": [1707312100, 716855672]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageConstants.swift": [1707312100, 719442825]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageDownloadTask.swift": [1707312100, 716589091]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageError.swift": [1707312100, 719769406]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageListResult.swift": [1707312100, 716716798]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageMetadata.swift": [1707312100, 719295409]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageObservableTask.swift": [1707312100, 716441758]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageReference.swift": [1707312100, 719583991]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageTask.swift": [1707312100, 716979755]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageTaskSnapshot.swift": [1707312100, 716315842]
+  "/Users/ichangmin/StudioProjects/carwash/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageUploadTask.swift": [1707312100, 718934619]

@@ -1,0 +1,48 @@
+{
+  "" : {
+    "diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/pdfx-master.dia",
+    "emit-module-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/pdfx-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/pdfx-master-emit-module.dia",
+    "swift-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/pdfx-master.swiftdeps"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/Document.swift" : {
+    "const-values" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Document.swiftconstvalues",
+    "dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Document.d",
+    "diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Document.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Document.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Document.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Document.o",
+    "swift-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Document.swiftdeps",
+    "swiftmodule" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Document~partial.swiftmodule"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/Hooks.swift" : {
+    "const-values" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Hooks.swiftconstvalues",
+    "dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Hooks.d",
+    "diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Hooks.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Hooks.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Hooks.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Hooks.o",
+    "swift-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Hooks.swiftdeps",
+    "swiftmodule" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Hooks~partial.swiftmodule"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/Resources.swift" : {
+    "const-values" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Resources.swiftconstvalues",
+    "dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Resources.d",
+    "diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Resources.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Resources.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Resources.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Resources.o",
+    "swift-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Resources.swiftdeps",
+    "swiftmodule" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/Resources~partial.swiftmodule"
+  },
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/SwiftPdfxPlugin.swift" : {
+    "const-values" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/SwiftPdfxPlugin.swiftconstvalues",
+    "dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/SwiftPdfxPlugin.d",
+    "diagnostics" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/SwiftPdfxPlugin.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/SwiftPdfxPlugin.o",
+    "llvm-bc" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/SwiftPdfxPlugin.bc",
+    "object" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/SwiftPdfxPlugin.o",
+    "swift-dependencies" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/SwiftPdfxPlugin.swiftdeps",
+    "swiftmodule" : "/Users/ichangmin/StudioProjects/carwash/Flutter/Release/iphonesimulator/Pods.build/Debug-iphonesimulator/pdfx.build/Objects-normal/x86_64/SwiftPdfxPlugin~partial.swiftmodule"
+  }
+}

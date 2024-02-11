@@ -62,10 +62,10 @@ class CustomInterceptor extends Interceptor{
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
+    print(err.toString());
     //401에러가 났을때
     //토큰을 재발급 받는 시도를하고 토큰이 재발급되면
     //다시 새로운 토큰으로 요청을한다.
-
     final refreshToken = await storage.read(key: REFRESH_TOKEN_KEY);
 
     //refreshToken 아예 없으면

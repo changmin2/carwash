@@ -1,0 +1,9 @@
+version: "Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)"
+options: "ea6cc41355d072e6dadffe715f86bf136f50beaaa9169a2986490e0ca05e0ef4"
+build_start_time: [1707314086, 980028000]
+build_end_time: [1707314088, 454591000]
+inputs:
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/Document.swift": [1707310948, 712509]
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/Hooks.swift": [1707310948, 534052]
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/Resources.swift": [1707310948, 161097]
+  "/Users/ichangmin/.pub-cache/hosted/pub.dev/pdfx-2.5.0/ios/Classes/SwiftPdfxPlugin.swift": [1707310948, 1208880]

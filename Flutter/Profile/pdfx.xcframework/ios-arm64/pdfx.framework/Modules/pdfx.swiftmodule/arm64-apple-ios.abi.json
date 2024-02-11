@@ -1,0 +1,1630 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "pdfx"
+      },
+      {
+        "kind": "Import",
+        "name": "Flutter",
+        "printedName": "Flutter",
+        "declKind": "Import",
+        "moduleName": "pdfx"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "pdfx"
+      },
+      {
+        "kind": "Import",
+        "name": "CoreGraphics",
+        "printedName": "CoreGraphics",
+        "declKind": "Import",
+        "moduleName": "pdfx"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SwiftPdfxPlugin",
+        "printedName": "SwiftPdfxPlugin",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "register",
+            "printedName": "register(with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FlutterPluginRegistrar",
+                "printedName": "Flutter.FlutterPluginRegistrar",
+                "usr": "c:objc(pl)FlutterPluginRegistrar"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(cm)registerWithRegistrar:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC8register4withySo07FlutterD9Registrar_p_tFZ",
+            "moduleName": "pdfx",
+            "static": true,
+            "objc_name": "registerWithRegistrar:",
+            "declAttributes": [
+              "Final",
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "openDocumentDataMessage",
+            "printedName": "openDocumentDataMessage(_:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "OpenDataMessage",
+                "printedName": "pdfx.OpenDataMessage",
+                "usr": "c:objc(cs)OpenDataMessage"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(pdfx.OpenReply?, Flutter.FlutterError?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(pdfx.OpenReply?, Flutter.FlutterError?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "pdfx.OpenReply?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "OpenReply",
+                            "printedName": "pdfx.OpenReply",
+                            "usr": "c:objc(cs)OpenReply"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Flutter.FlutterError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FlutterError",
+                            "printedName": "Flutter.FlutterError",
+                            "usr": "c:objc(cs)FlutterError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)openDocumentDataMessage:completion:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC23openDocumentDataMessage_10completionySo04OpengH0C_ySo0J5ReplyCSg_So12FlutterErrorCSgtctF",
+            "moduleName": "pdfx",
+            "objc_name": "openDocumentDataMessage:completion:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "openDocumentFileMessage",
+            "printedName": "openDocumentFileMessage(_:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "OpenPathMessage",
+                "printedName": "pdfx.OpenPathMessage",
+                "usr": "c:objc(cs)OpenPathMessage"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(pdfx.OpenReply?, Flutter.FlutterError?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(pdfx.OpenReply?, Flutter.FlutterError?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "pdfx.OpenReply?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "OpenReply",
+                            "printedName": "pdfx.OpenReply",
+                            "usr": "c:objc(cs)OpenReply"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Flutter.FlutterError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FlutterError",
+                            "printedName": "Flutter.FlutterError",
+                            "usr": "c:objc(cs)FlutterError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)openDocumentFileMessage:completion:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC23openDocumentFileMessage_10completionySo08OpenPathH0C_ySo0J5ReplyCSg_So12FlutterErrorCSgtctF",
+            "moduleName": "pdfx",
+            "objc_name": "openDocumentFileMessage:completion:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "openDocumentAssetMessage",
+            "printedName": "openDocumentAssetMessage(_:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "OpenPathMessage",
+                "printedName": "pdfx.OpenPathMessage",
+                "usr": "c:objc(cs)OpenPathMessage"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(pdfx.OpenReply?, Flutter.FlutterError?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(pdfx.OpenReply?, Flutter.FlutterError?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "pdfx.OpenReply?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "OpenReply",
+                            "printedName": "pdfx.OpenReply",
+                            "usr": "c:objc(cs)OpenReply"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Flutter.FlutterError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FlutterError",
+                            "printedName": "Flutter.FlutterError",
+                            "usr": "c:objc(cs)FlutterError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)openDocumentAssetMessage:completion:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC24openDocumentAssetMessage_10completionySo08OpenPathH0C_ySo0J5ReplyCSg_So12FlutterErrorCSgtctF",
+            "moduleName": "pdfx",
+            "objc_name": "openDocumentAssetMessage:completion:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "closeDocumentMessage",
+            "printedName": "closeDocumentMessage(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "IdMessage",
+                "printedName": "pdfx.IdMessage",
+                "usr": "c:objc(cs)IdMessage"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AutoreleasingUnsafeMutablePointer",
+                "printedName": "Swift.AutoreleasingUnsafeMutablePointer<Flutter.FlutterError?>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Flutter.FlutterError?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlutterError",
+                        "printedName": "Flutter.FlutterError",
+                        "usr": "c:objc(cs)FlutterError"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "usr": "s:SA"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)closeDocumentMessage:error:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC20closeDocumentMessage_5errorySo02IdG0C_SAySo12FlutterErrorCSgGtF",
+            "moduleName": "pdfx",
+            "objc_name": "closeDocumentMessage:error:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getPageMessage",
+            "printedName": "getPageMessage(_:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "GetPageMessage",
+                "printedName": "pdfx.GetPageMessage",
+                "usr": "c:objc(cs)GetPageMessage"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(pdfx.GetPageReply?, Flutter.FlutterError?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(pdfx.GetPageReply?, Flutter.FlutterError?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "pdfx.GetPageReply?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "GetPageReply",
+                            "printedName": "pdfx.GetPageReply",
+                            "usr": "c:objc(cs)GetPageReply"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Flutter.FlutterError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FlutterError",
+                            "printedName": "Flutter.FlutterError",
+                            "usr": "c:objc(cs)FlutterError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)getPageMessage:completion:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC14getPageMessage_10completionySo03GetfG0C_ySo0iF5ReplyCSg_So12FlutterErrorCSgtctF",
+            "moduleName": "pdfx",
+            "objc_name": "getPageMessage:completion:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "renderPageMessage",
+            "printedName": "renderPageMessage(_:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RenderPageMessage",
+                "printedName": "pdfx.RenderPageMessage",
+                "usr": "c:objc(cs)RenderPageMessage"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(pdfx.RenderPageReply?, Flutter.FlutterError?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(pdfx.RenderPageReply?, Flutter.FlutterError?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "pdfx.RenderPageReply?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "RenderPageReply",
+                            "printedName": "pdfx.RenderPageReply",
+                            "usr": "c:objc(cs)RenderPageReply"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Flutter.FlutterError?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "FlutterError",
+                            "printedName": "Flutter.FlutterError",
+                            "usr": "c:objc(cs)FlutterError"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)renderPageMessage:completion:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC17renderPageMessage_10completionySo06RenderfG0C_ySo0iF5ReplyCSg_So12FlutterErrorCSgtctF",
+            "moduleName": "pdfx",
+            "objc_name": "renderPageMessage:completion:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "closePageMessage",
+            "printedName": "closePageMessage(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "IdMessage",
+                "printedName": "pdfx.IdMessage",
+                "usr": "c:objc(cs)IdMessage"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AutoreleasingUnsafeMutablePointer",
+                "printedName": "Swift.AutoreleasingUnsafeMutablePointer<Flutter.FlutterError?>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Flutter.FlutterError?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlutterError",
+                        "printedName": "Flutter.FlutterError",
+                        "usr": "c:objc(cs)FlutterError"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "usr": "s:SA"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)closePageMessage:error:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC16closePageMessage_5errorySo02IdG0C_SAySo12FlutterErrorCSgGtF",
+            "moduleName": "pdfx",
+            "objc_name": "closePageMessage:error:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "registerTextureWithError",
+            "printedName": "registerTextureWithError(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "pdfx.RegisterTextureReply?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RegisterTextureReply",
+                    "printedName": "pdfx.RegisterTextureReply",
+                    "usr": "c:objc(cs)RegisterTextureReply"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AutoreleasingUnsafeMutablePointer",
+                "printedName": "Swift.AutoreleasingUnsafeMutablePointer<Flutter.FlutterError?>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Flutter.FlutterError?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlutterError",
+                        "printedName": "Flutter.FlutterError",
+                        "usr": "c:objc(cs)FlutterError"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "usr": "s:SA"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)registerTextureWithError:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC24registerTextureWithErrorySo08RegisterF5ReplyCSgSAySo07FlutterH0CSgGF",
+            "moduleName": "pdfx",
+            "objc_name": "registerTextureWithError:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unregisterTextureMessage",
+            "printedName": "unregisterTextureMessage(_:error:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UnregisterTextureMessage",
+                "printedName": "pdfx.UnregisterTextureMessage",
+                "usr": "c:objc(cs)UnregisterTextureMessage"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "AutoreleasingUnsafeMutablePointer",
+                "printedName": "Swift.AutoreleasingUnsafeMutablePointer<Flutter.FlutterError?>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Flutter.FlutterError?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlutterError",
+                        "printedName": "Flutter.FlutterError",
+                        "usr": "c:objc(cs)FlutterError"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "usr": "s:SA"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)unregisterTextureMessage:error:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC24unregisterTextureMessage_5errorySo010UnregisterfG0C_SAySo12FlutterErrorCSgGtF",
+            "moduleName": "pdfx",
+            "objc_name": "unregisterTextureMessage:error:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "resizeTextureMessage",
+            "printedName": "resizeTextureMessage(_:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "ResizeTextureMessage",
+                "printedName": "pdfx.ResizeTextureMessage",
+                "usr": "c:objc(cs)ResizeTextureMessage"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Flutter.FlutterError?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Flutter.FlutterError?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlutterError",
+                        "printedName": "Flutter.FlutterError",
+                        "usr": "c:objc(cs)FlutterError"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)resizeTextureMessage:completion:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC20resizeTextureMessage_10completionySo06ResizefG0C_ySo12FlutterErrorCSgctF",
+            "moduleName": "pdfx",
+            "objc_name": "resizeTextureMessage:completion:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "updateTextureMessage",
+            "printedName": "updateTextureMessage(_:completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UpdateTextureMessage",
+                "printedName": "pdfx.UpdateTextureMessage",
+                "usr": "c:objc(cs)UpdateTextureMessage"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Flutter.FlutterError?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Flutter.FlutterError?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FlutterError",
+                        "printedName": "Flutter.FlutterError",
+                        "usr": "c:objc(cs)FlutterError"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)updateTextureMessage:completion:",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginC20updateTextureMessage_10completionySo06UpdatefG0C_ySo12FlutterErrorCSgctF",
+            "moduleName": "pdfx",
+            "objc_name": "updateTextureMessage:completion:",
+            "declAttributes": [
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SwiftPdfxPlugin",
+                "printedName": "pdfx.SwiftPdfxPlugin",
+                "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin(im)init",
+            "mangledName": "$s4pdfx15SwiftPdfxPluginCACycfc",
+            "moduleName": "pdfx",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@pdfx@objc(cs)SwiftPdfxPlugin",
+        "mangledName": "$s4pdfx15SwiftPdfxPluginC",
+        "moduleName": "pdfx",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "hasMissingDesignatedInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1429,
+      "length": 2,
+      "value": "90"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1452,
+      "length": 3,
+      "value": "270"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 1592,
+      "length": 9,
+      "value": "\"#ffffff\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1850,
+      "length": 1,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1893,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2011,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2144,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2168,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2227,
+      "length": 3,
+      "value": "100"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2509,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3345,
+      "length": 3,
+      "value": "180"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3369,
+      "length": 3,
+      "value": "270"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3497,
+      "length": 2,
+      "value": "90"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3520,
+      "length": 3,
+      "value": "180"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "BooleanLiteral",
+      "offset": 5686,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 5941,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6182,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 6239,
+      "length": 20,
+      "value": "\"pdf_renderer_cache\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6448,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 6712,
+      "length": 3,
+      "value": "\"-\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 6723,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 6921,
+      "length": 5,
+      "value": "\"jpg\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 7029,
+      "length": 5,
+      "value": "\"png\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 7097,
+      "length": 44,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 7115,
+      "length": 1,
+      "value": "\".\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "StringLiteral",
+      "offset": 7140,
+      "length": 1,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7791,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7809,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7791,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7809,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7791,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Document.swift",
+      "kind": "IntegerLiteral",
+      "offset": 7809,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 339,
+      "length": 1,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 387,
+      "length": 3,
+      "value": "255"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 400,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 405,
+      "length": 2,
+      "value": "17"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 417,
+      "length": 1,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 421,
+      "length": 3,
+      "value": "0xF"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 428,
+      "length": 2,
+      "value": "17"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 439,
+      "length": 3,
+      "value": "0xF"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 446,
+      "length": 2,
+      "value": "17"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 464,
+      "length": 1,
+      "value": "6"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 512,
+      "length": 3,
+      "value": "255"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 524,
+      "length": 2,
+      "value": "16"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 535,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 539,
+      "length": 4,
+      "value": "0xFF"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 551,
+      "length": 4,
+      "value": "0xFF"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 571,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 627,
+      "length": 2,
+      "value": "24"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 638,
+      "length": 2,
+      "value": "16"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 643,
+      "length": 4,
+      "value": "0xFF"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 656,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 660,
+      "length": 4,
+      "value": "0xFF"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 672,
+      "length": 4,
+      "value": "0xFF"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 787,
+      "length": 3,
+      "value": "255"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 812,
+      "length": 3,
+      "value": "255"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 836,
+      "length": 3,
+      "value": "255"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 861,
+      "length": 3,
+      "value": "255"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1894,
+      "length": 2,
+      "value": "90"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1907,
+      "length": 3,
+      "value": "270"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2196,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Hooks.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2220,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/Resources.swift",
+      "kind": "Dictionary",
+      "offset": 111,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 278,
+      "length": 2,
+      "value": "-1"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 324,
+      "length": 22,
+      "value": "\"io.scer.pdf_renderer\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "Dictionary",
+      "offset": 471,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 1223,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 1288,
+      "length": 22,
+      "value": "\"Arguments not sended\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 1504,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 1569,
+      "length": 20,
+      "value": "\"Invalid PDF format\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 2149,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 2214,
+      "length": 22,
+      "value": "\"Arguments not sended\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 2440,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 2505,
+      "length": 20,
+      "value": "\"Invalid PDF format\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 3079,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 3144,
+      "length": 22,
+      "value": "\"Arguments not sended\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 3357,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 3422,
+      "length": 20,
+      "value": "\"Invalid PDF format\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 4459,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 4528,
+      "length": 36,
+      "value": "\"Unexpected error: renderer is nil.\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 5003,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 5061,
+      "length": 27,
+      "value": "\"Unexpected error: \""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 5086,
+      "length": 1,
+      "value": "\".\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 6714,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 6776,
+      "length": 29,
+      "value": "\"Unexpected error: \""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 6803,
+      "length": 1,
+      "value": "\".\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 8461,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 8530,
+      "length": 51,
+      "value": "\"No texture of texId=\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 8580,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 9901,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 9970,
+      "length": 18,
+      "value": "\"width\/height nil\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 10682,
+      "length": 14,
+      "value": "\"RENDER_ERROR\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 10751,
+      "length": 23,
+      "value": "\"Cannot render texture\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 11336,
+      "length": 42,
+      "value": "\"Frameworks\/App.framework\/flutter_assets\/\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 11395,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 141,
+      "length": 15,
+      "value": "\"pdfx.SwiftPdfxPlugin\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 11930,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 11955,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 11981,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "BooleanLiteral",
+      "offset": 12512,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "BooleanLiteral",
+      "offset": 12890,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "BooleanLiteral",
+      "offset": 12960,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "Dictionary",
+      "offset": 13021,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 13261,
+      "length": 50,
+      "value": "\"CVPixelBufferCreate failed: result code=\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 13310,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 13376,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 13769,
+      "length": 1,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 13930,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 14464,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "IntegerLiteral",
+      "offset": 14470,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/ichangmin\/.pub-cache\/hosted\/pub.dev\/pdfx-2.5.0\/ios\/Classes\/SwiftPdfxPlugin.swift",
+      "kind": "StringLiteral",
+      "offset": 11802,
+      "length": 14,
+      "value": "\"pdfx.PdfPageTexture\""
+    }
+  ]
+}

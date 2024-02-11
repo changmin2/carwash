@@ -44,7 +44,7 @@ class _RecordDetailState extends ConsumerState<RecordRecent> {
                 showBorder: true,
                 child: ListTile(
                   title: Text(
-                    '${DateFormat('yyyy년 MM월 dd일 ').format(widget.model.date)}(${DateFormat('E', 'ko').format(widget.model.date)})',
+                    '${DateFormat('yyyy년 MM월 dd일 ').format(widget.model.date.add(new Duration(days: 1)))}(${DateFormat('E', 'ko').format(widget.model.date.add(new Duration(days: 1)))})',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
