@@ -93,7 +93,7 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
             itemBuilder: (_, int index) {
               return TRoundedImage(
                 fit: BoxFit.cover,
-                imageUrl: imgs[0],
+                imageUrl: imgs[index].trim(),
                 borderRadius: 0,
                 isNetworkImage: true,
               );

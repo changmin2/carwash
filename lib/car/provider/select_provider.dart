@@ -16,4 +16,5 @@ class SelectChangeNotifier extends ChangeNotifier{
   void init(){
     selects = selects.map((e) => e==1 ? 0 : 0).toList();
   }
+
 }

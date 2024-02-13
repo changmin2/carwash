@@ -47,7 +47,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   var newList = [];
   var _downloadUrl = '';
   final ImagePicker picker = ImagePicker();
-  FirebaseStorage storage = FirebaseStorage.instance;
+  //FirebaseStorage storage = FirebaseStorage.instance;
 
   @override
   void initState() {
@@ -288,12 +288,12 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
     );
   }
 
-  Future<void> uploadImage() async {
-    final now = DateTime.now();
-    var ref = storage.ref().child('washRecord/$now.png');
-    await ref.putFile(_image!);
-    _downloadUrl = await ref.getDownloadURL(); //이미지 파일의 url
-  }
+  // Future<void> uploadImage() async {
+  //   final now = DateTime.now();
+  //   var ref = storage.ref().child('washRecord/$now.png');
+  //   await ref.putFile(_image!);
+  //   _downloadUrl = await ref.getDownloadURL(); //이미지 파일의 url
+  // }
 
   Future<void> s3Upload() async {
     // open a bytestream

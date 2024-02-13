@@ -18,7 +18,7 @@ class RecordFirstScreen extends ConsumerStatefulWidget {
 
 class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
   final washList = [
-    '매트세척1',
+    '매트세척',
     '시트세정',
     '시트코팅',
     '휠세척',
@@ -96,7 +96,7 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
                   onPressed: () async {
                     var newList = [];
                     newList = await washList.where((element) => state.selects[washList.indexOf(element)] == 1).toList();
-                    context.goNamed(RecordSecondScreen.routeName, queryParameters: {"query": newList.toString()});
+                    context.goNamed(RecordSecondScreen.routeName);
                   },
                   child: const Text('다음 단계'),
                 ),
