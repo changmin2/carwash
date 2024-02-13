@@ -93,7 +93,7 @@ class CommentStateNotifier extends CommentPaginationProvider<CommentModel,Commen
     }
   }
 
-  void deleteReComment(int recomment_id,int comment_id) async {
+  Future<void> deleteReComment(int recomment_id,int comment_id) async {
     await repository.deleteReComment(recomment_id: recomment_id);
     final pState = state as CursorPagination;
 

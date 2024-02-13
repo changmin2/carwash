@@ -74,7 +74,7 @@ class CommentRegisterScreen extends ConsumerWidget {
                     final pState = state as UserModel;
 
                     await ref.read(commentProvider(id).notifier)
-                        .createComment(pState.username, _content);
+                        .createComment(pState.nickname, _content);
                     await flag == 0 ? ref.read(communityProvider.notifier).upCommentCnt(id)
                         : flag == 1 ? ref.read(hotAllCommunityProvider.notifier).upCommentCnt(id): ref.read(hotFreeCommunityProvider.notifier).upCommentCnt(id);
 
@@ -84,7 +84,7 @@ class CommentRegisterScreen extends ConsumerWidget {
 
                     final state = ref.watch(userMeProvider);
                     final pState = state as UserModel;
-                    await ref.read(commentProvider(id).notifier).createRecommend(pState.username,_content, comment_id!);
+                    await ref.read(commentProvider(id).notifier).createRecommend(pState.nickname,_content, comment_id!);
                     await flag == 0 ? ref.read(communityProvider.notifier).upCommentCnt(id)
                         : flag == 1 ? ref.read(hotAllCommunityProvider.notifier).upCommentCnt(id): ref.read(hotFreeCommunityProvider.notifier).upCommentCnt(id);
 

@@ -30,6 +30,7 @@ class ReCommentCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
+    ref.watch(commentProvider(board_id));
     final user = ref.read(userMeProvider) as UserModel;
     return Padding(
       padding: EdgeInsets.only(left: 30),
@@ -57,9 +58,13 @@ class ReCommentCard extends ConsumerWidget {
                     /// 댓글 아이디
                     Row(
                       children: [
-                        Text(
-                          recomment.creator,
-                          style: Theme.of(context).textTheme.bodySmall,
+                        SizedBox(
+                          width: 150,
+                          child: Text(
+                            recomment.creator,
+                            style: Theme.of(context).textTheme.bodySmall,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         const SizedBox(width: TSizes.spaceBtwItems),
                         /// 댓글 아이디
@@ -67,7 +72,7 @@ class ReCommentCard extends ConsumerWidget {
                           recomment.createDate.toString().split(" ")[0],
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
-                        recomment.creator == user.username ?
+                        recomment.creator == user.nickname ?
                         _PopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id,board_id,flag)
                             :_NoCreatorPopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id)
                       ],
@@ -95,7 +100,7 @@ PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int rec
             )
         );
       }else if(value == '삭제'){
-        ref.read(commentProvider(board_id).notifier).deleteReComment(recomment_id,commnet_id);
+        await ref.read(commentProvider(board_id).notifier).deleteReComment(recomment_id,commnet_id);
         await flag == 0 ? ref.read(communityProvider.notifier).downCommentCnt(board_id,1)
           : flag == 1 ? ref.read(hotAllCommunityProvider.notifier).downCommentCnt(board_id,1): ref.read(hotFreeCommunityProvider.notifier).downCommentCnt(board_id,1);
 

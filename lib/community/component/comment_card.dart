@@ -47,16 +47,16 @@ class CommentCard extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  Text(
-                    comment.creator,
-                    style: Theme.of(context).textTheme.bodySmall,
+                  SizedBox(
+                    width: 150,
+                    child: Text(
+                      comment.creator,
+                      style: Theme.of(context).textTheme.bodySmall,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
                   const SizedBox(width: TSizes.spaceBtwItems),
-                  /// 댓글 아이디
-                  Text(
-                    comment.createDate.toString().split(" ")[0],
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
+
                 ],
               ),
               Padding(
@@ -64,7 +64,12 @@ class CommentCard extends ConsumerWidget {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      comment.creator == user.username ?
+                      Text(
+                        comment.createDate.toString().split(" ")[0],
+                        style: Theme.of(context).textTheme.bodySmall,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      comment.creator == user.nickname ?
                       _PopupMenuButtonPage(context, ref, comment.comment_id, board_id,recommentsCnt,flag)
                           :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id,flag)
                     ]

@@ -18,6 +18,7 @@ class SignUpScreen extends ConsumerWidget {
     String nickname = '';
     String intro = '';
     bool idDuplicateCheck = true;
+    bool nickNameDuplicateCheck = true;
 
     final _idFormKey = GlobalKey<FormState>();
     final _passwordFormKey = GlobalKey<FormState>();
@@ -179,11 +180,15 @@ class SignUpScreen extends ConsumerWidget {
                           hintText: '닉네임을 입력하세요.',
                         ),
                         onChanged: (String value) {
+                          nickNameDuplicateCheck = true;
                           nickname = value;
                         },
                         validator: (value) {
                           if (value!.length < 2) {
                             return "닉네임을 2글자 이상 입력해주세요.";
+                          }
+                          if(!nickNameDuplicateCheck){
+                            return "중복된 닉네임 입니다!";
                           }
                         },
                       ),
@@ -238,6 +243,15 @@ class SignUpScreen extends ConsumerWidget {
                               await ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text('중복된 아이디입니다!'),
+                                    duration: Duration(seconds: 1),
+                                  )
+                              );
+                            }else if(result == '-2'){
+                              nickNameDuplicateCheck = false;
+                              _nicknameFormKey.currentState!.validate();
+                              await ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('중복된 닉네임입니다!'),
                                     duration: Duration(seconds: 1),
                                   )
                               );

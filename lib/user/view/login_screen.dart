@@ -4,9 +4,6 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/user/model/user_model.dart';
-import 'package:carwash/user/provider/loginCheck_provider.dart';
-import 'package:carwash/user/utils/NaverLogin.dart';
-
 import 'package:carwash/user/view/signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_naver_login/flutter_naver_login.dart';
@@ -235,7 +232,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           var res = await _login_apple();
                           String id = res.user!.email!;
                           String ps = res.user!.uid!;
-                          ref.read(userMeProvider.notifier).snslogin(username: ps, password: id, nickname: "temp", context: context);
+                          ref.read(userMeProvider.notifier).snslogin(username: ps, password: id, nickname: id, context: context);
                         },
                       ),
                     ),
