@@ -116,12 +116,14 @@ class _RecentCarWashListWidgetState extends ConsumerState<RecentCarWashListWidge
                 child: ListView.builder(
                     itemCount: record.length,
                     itemBuilder: (context,idx){
-                      return GestureDetector(
+                      return record[idx].id != 00 ?
+                       GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => RecordRecent(
                                 model: record[idx])));
                           },
-                          child: RecentCarWashCard(record: record[idx]));
+                          child: RecentCarWashCard(record: record[idx]))
+                       : Container();
                 }),
               )
             ],
