@@ -42,26 +42,26 @@ class CommentCard extends ConsumerWidget {
           const SizedBox(height: TSizes.spaceBtwItems),
 
           /// 댓글 아이디
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 150,
-                    child: Text(
-                      comment.creator,
-                      style: Theme.of(context).textTheme.bodySmall,
-                      overflow: TextOverflow.ellipsis,
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width/3.5,
+                      child: Text(
+                        comment.creator,
+                        style: Theme.of(context).textTheme.bodySmall,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: TSizes.spaceBtwItems),
+                    const SizedBox(width: TSizes.spaceBtwItems),
 
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 55),
-                child: Row(
+                  ],
+                ),
+                Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
@@ -74,8 +74,8 @@ class CommentCard extends ConsumerWidget {
                           :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id,flag)
                     ]
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(height: TSizes.spaceBtwItems),
 

@@ -34,55 +34,58 @@ class ReCommentCard extends ConsumerWidget {
     final user = ref.read(userMeProvider) as UserModel;
     return Padding(
       padding: EdgeInsets.only(left: 30),
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '┗',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                const SizedBox(width: TSizes.spaceBtwItems),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      recomment.content,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '┗',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                  const SizedBox(width: TSizes.spaceBtwItems),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        recomment.content,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
 
-                    const SizedBox(height: TSizes.spaceBtwItems),
+                      const SizedBox(height: TSizes.spaceBtwItems),
 
-                    /// 댓글 아이디
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 150,
-                          child: Text(
-                            recomment.creator,
-                            style: Theme.of(context).textTheme.bodySmall,
-                            overflow: TextOverflow.ellipsis,
+                      /// 댓글 아이디
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width/4,
+                            child: Text(
+                              recomment.creator,
+                              style: Theme.of(context).textTheme.bodySmall,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: TSizes.spaceBtwItems),
-                        /// 댓글 아이디
-                        Text(
-                          recomment.createDate.toString().split(" ")[0],
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                        recomment.creator == user.nickname ?
-                        _PopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id,board_id,flag)
-                            :_NoCreatorPopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id)
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-          ]
+                          const SizedBox(width: TSizes.spaceBtwItems),
+                          /// 댓글 아이디
+                          Text(
+                            recomment.createDate.toString().split(" ")[0],
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                          recomment.creator == user.nickname ?
+                          _PopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id,board_id,flag)
+                              :_NoCreatorPopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id)
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+            ]
+        ),
       ),
     );
   }
