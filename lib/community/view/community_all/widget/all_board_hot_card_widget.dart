@@ -40,6 +40,7 @@ class TCommunityAllHotCardWidget extends StatelessWidget {
             height: imageHeight,
             fit: BoxFit.fill,
             borderRadius: 12.0,
+            isNetworkImage: isNetworkImage,
           ),
 
           const SizedBox(height: TSizes.spaceBtwItems / 2),
@@ -65,9 +66,13 @@ class TCommunityAllHotCardWidget extends StatelessWidget {
                   children: [
 
                     /// 닉네임
-                    Text(
-                      nickName,
-                      style: Theme.of(context).textTheme.labelLarge,
+                    Container(
+                      width: 100,
+                      child: Text(
+                        nickName,
+                        style: Theme.of(context).textTheme.labelLarge,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
 
                     /// 좋아요 갯수

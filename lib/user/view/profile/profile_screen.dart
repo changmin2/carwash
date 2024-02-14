@@ -64,7 +64,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                   
                   /// Logout Button
                   Container(
-                    padding: const EdgeInsets.all(TSizes.defalutSpace),
+                    padding: const EdgeInsets.only(top:TSizes.defalutSpace,left: TSizes.defalutSpace,right: TSizes.defalutSpace),
                     width: double.infinity,
                     child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
@@ -74,6 +74,76 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                       ),
                       onPressed: () => ref.read(userMeProvider.notifier).logout(),
                       child: const Text("로그아웃"),
+                    ),
+                  ),
+                  /// 회원탈퇴
+                  Container(
+                    padding: const EdgeInsets.only(top:8,left: TSizes.defalutSpace,right: TSizes.defalutSpace),
+                    width: double.infinity,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context){
+                              return AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)
+                                ),
+                                title: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    new Text("회원탈퇴")
+                                  ],
+                                ),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Text(
+                                        "정말 회원탈퇴를 하시겠습니까?"
+                                    )
+                                  ],
+                                ),
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: (){
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text(
+                                          '취소'
+                                      )
+                                  ),
+                                  TextButton(
+                                      onPressed: () async {
+                                        await ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text('회원탈퇴 완료'),
+                                              duration: Duration(seconds: 3),
+                                            )
+                                        );
+                                        await ref.read(userMeProvider.notifier).withDrawl();
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text(
+                                          '확인'
+                                      )
+                                  )
+                                ],
+                              );
+                            }
+                        );
+
+                      },
+                      child: Text(
+                        '회원탈퇴',
+                        style: TextStyle(
+                            color: Colors.black
+                        ),
+                      ),
+                      style: OutlinedButton.styleFrom(
+                          side: const BorderSide(
+                            color: Colors.black,
+                          )
+                      ),
                     ),
                   ),
                 ],

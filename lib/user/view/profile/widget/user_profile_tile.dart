@@ -13,10 +13,13 @@ class TUserProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Image(
-        image: AssetImage('asset/img/naver_logo.png'),
-        width: 50,
-        height: 50,
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image(
+          image: AssetImage('asset/img/profile_image.png'),
+          width: 50,
+          height: 50,
+        ),
       ),
       title: Text(title, style: Theme.of(context).textTheme.headlineSmall!.apply(color: Colors.white)),
       subtitle: Text(subtitle, style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white)),

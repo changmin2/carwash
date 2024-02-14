@@ -39,7 +39,7 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
                     width: 40,
                     height: 40,
                     fit: BoxFit.fill,
-                    imageUrl: 'asset/img/car_image.jpeg',
+                    imageUrl: 'asset/img/profile_image.png',
                     borderRadius: 100,
                   ),
                   const SizedBox(width: TSizes.spaceBtwItems / 2),

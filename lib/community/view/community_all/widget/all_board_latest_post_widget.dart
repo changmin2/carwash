@@ -17,6 +17,11 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    var imgs = '';
+    model.imgUrls?.length != 0
+        ?
+    imgs = model.imgUrls!.split('[')[1].split(']')[0].split(",")[0]
+        : null;
     return GestureDetector(
       onTap: (){
         context.goNamed(CommunityDetailScreen.routeName,
@@ -63,15 +68,18 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
               )
             ],
           ),
-
+          imgs == ''
+          ? Container()
+          :
           /// 사진
           Expanded(
             child: TRoundedImage(
-              imageUrl: 'asset/img/car_image.jpeg',
+              imageUrl: imgs,
               width: 70,
               height: 70,
               fit: BoxFit.fill,
               borderRadius: 12.0,
+              isNetworkImage: true,
             ),
           ),
           const SizedBox(width: 4)

@@ -1,6 +1,5 @@
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/community/provider/hot_all_community_provider.dart';
-import 'package:carwash/community/provider/hot_free_community_provider.dart';
 import 'package:carwash/community/view/community_free/widget/community_free_hot_card.dart';
 import 'package:carwash/community/view/community_free/widget/community_free_list_widget.dart';
 import 'package:carwash/community/view/widget/community_section_heading.dart';
@@ -29,6 +28,7 @@ class TCommunityFreeScreen extends ConsumerWidget {
             child: PaginationListView(
                 provider: communityProvider,
                 itemBuilder: <CommunityModel>(_, index, community) {
+
                   if (index == 0) {
                     return Column(
                       children: [
@@ -49,13 +49,19 @@ class TCommunityFreeScreen extends ConsumerWidget {
                             itemCount: hot.length,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (BuildContext context, int index) {
+                              var imgs = '';
+                              hot[index].imgUrls?.length != 0
+                                  ?
+                              imgs = hot[index].imgUrls!.split('[')[1].split(']')[0].split(",")[0]
+                                  : null;
                               return hot[index].category == "자유게시판"
                                   ? Padding(
                                       padding: EdgeInsets.only(right: TSizes.sm),
                                       child: TCommunityFreeHotCard(
-                                        imageUrl: 'asset/img/car_image.jpeg',
+                                        imageUrl: imgs == '' ? 'asset/img/no_image.png' : imgs,
                                         title: hot[index].title,
                                         model: hot[index],
+                                        isNetworkImage: imgs == '' ? false : true,
                                       ),
                                     )
                                   : Container();
@@ -78,7 +84,7 @@ class TCommunityFreeScreen extends ConsumerWidget {
                             hashtag: community.hastag,
                             date: community.createDate.split("T")[0],
                             title: community.title,
-                            imageUrl: 'asset/img/car_image.jpeg',
+                            imageUrl: 'asset/img/profile_image.png',
                             nickName: community.creator,
                             likeCount: community.favorite,
                             replyCount: community.commentCnt,
@@ -97,7 +103,7 @@ class TCommunityFreeScreen extends ConsumerWidget {
                       hashtag: community.hastag,
                       date: community.createDate.split("T")[0],
                       title: community.title,
-                      imageUrl: 'asset/img/car_image.jpeg',
+                      imageUrl: 'asset/img/profile_image.png',
                       nickName: community.creator,
                       likeCount: community.favorite,
                       replyCount: community.commentCnt,

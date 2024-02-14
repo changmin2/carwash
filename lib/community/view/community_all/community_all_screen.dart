@@ -53,14 +53,22 @@ class TCommunityAllScreen extends ConsumerWidget {
                         return const SizedBox(width: TSizes.sm);
                       },
                       itemBuilder: (BuildContext context, int index) {
+                        var imgs = '';
+                        hot[index].imgUrls?.length != 0
+                        ?
+                            imgs = hot[index].imgUrls!.split('[')[1].split(']')[0].split(",")[0]
+                        : null;
+
                         return GestureDetector(
                           onTap: () {
                             THelperFunctions.navigateToScreen(context, CommunityRecentScreen(model: hot[index],flag: 1,));
                           },
                           child: TCommunityAllHotCardWidget(
                             containerWidth: 200,
-                            imageUrl: 'asset/img/car_image.jpeg',
+                            imageUrl: imgs == '' ? 'asset/img/no_image.png'
+                            : imgs,
                             imageHeight: 200,
+                            isNetworkImage: imgs == '' ? false : true,
                             nickName: hot[index].creator,
                             title: hot[index].content,
                             likeCount: hot[index].favorite.toString(),

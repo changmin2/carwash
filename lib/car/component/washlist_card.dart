@@ -54,6 +54,6 @@ Widget renderIcon(int step) {
   } else if (step == 9) {
     return const Icon(Icons.filter_9_outlined);
   } else {
-    return const SizedBox();
+    return const Icon(Icons.filter_9_plus_outlined);
   }
 }
