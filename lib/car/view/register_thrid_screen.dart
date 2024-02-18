@@ -98,12 +98,20 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                       final selectedDate =
                       await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2099));
                       if (selectedDate != null) {
-                        setState(() {
-                          _prameterDay = selectedDate.toString();
-                          _day = TFormatter.formatDate(selectedDate);
-                          // _day =
-                          //     '${DateFormat('yyyy년 MM월 dd일 ').format(selectedDate)}(${DateFormat('E', 'ko').format(selectedDate)})';
-                        });
+                        if(selectedDate.isAfter(DateTime.now())) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("오늘 이후의 날짜는 선택할 수 없습니다."),
+                            duration: Duration(milliseconds: 500),
+                          ));
+                        }else{
+                          setState(() {
+                            _prameterDay = selectedDate.toString();
+                            _day = TFormatter.formatDate(selectedDate);
+                            // _day =
+                            //     '${DateFormat('yyyy년 MM월 dd일 ').format(selectedDate)}(${DateFormat('E', 'ko').format(selectedDate)})';
+                          });
+                        }
+
                       }
                     },
                   ),
