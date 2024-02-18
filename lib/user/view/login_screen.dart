@@ -252,10 +252,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   void _login_naver() async{
-    NaverLoginResult res = await FlutterNaverLogin.logIn();
-    final NaverLoginResult result = await FlutterNaverLogin.logIn();
+    final NaverLoginResult res = await FlutterNaverLogin.logIn();
+    //final NaverLoginResult result = await FlutterNaverLogin.logIn();
     print("로그인 결과");
-    print(result.toString());
+    print(res.toString());
     ref.read(userMeProvider.notifier).snslogin(username: res.account.id, password: res.account.mobile.toString()+res.account.id, context: context,nickname: res.account.nickname);
   }
 

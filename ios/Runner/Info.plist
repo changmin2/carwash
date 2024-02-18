@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>FLTEnableImpeller</key>
-    <true />
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -24,10 +22,48 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>carwash</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FLTEnableImpeller</key>
+	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>naversearchapp</string>
+		<string>naversearchthirdlogin</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>naver.com</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>naver.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>To capture profile photo please grant camera access</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -59,60 +95,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<!-- 추가 2024-->
-       <key>CFBundleURLTypes</key>
-        <array>
-          <dict>
-          <key>CFBundleURLSchemes</key>
-          <array>
-            <!-- naver login -->
-            <string>socialloginapp</string>
-          </array>
-          </dict>
-        </array>
-
-        <key>LSApplicationQueriesSchemes</key>
-        <array>
-           <string>naversearchapp</string>
-           <string>naversearchthirdlogin</string>
-        </array>
-
-        <key>naverServiceAppUrlScheme</key>
-        <string>carwash</string>
-
-        <!-- naver client_id -->
-        <key>naverConsumerKey</key>
-        <string>tBLub4cT_Km2hTKlZ3at</string>
-
-        <!-- naver client_secret -->
-        <key>naverConsumerSecret</key>
-        <string>1Zmjitgry3</string>
-
-        <key>naverServiceAppName</key>
-        <string>carwash</string>
-
-        <!-- http allows configurations -->
-        <key>NSAppTransportSecurity</key>
-        <dict>
-           <key>NSAllowsArbitraryLoads</key>
-           <true/>
-           <key>NSExceptionDomains</key>
-           <dict>
-              <key>naver.com</key>
-              <dict>
-                 <key>NSExceptionRequiresForwardSecrecy</key>
-                 <false/>
-                 <key>NSIncludesSubdomains</key>
-                 <true/>
-              </dict>
-              <key>naver.net</key>
-              <dict>
-                 <key>NSExceptionRequiresForwardSecrecy</key>
-                 <false/>
-                 <key>NSIncludesSubdomains</key>
-                 <true/>
-              </dict>
-            </dict>
-        </dict>
+	<key>naverConsumerKey</key>
+	<string>tBLub4cT_Km2hTKlZ3at</string>
+	<key>naverConsumerSecret</key>
+	<string>1Zmjitgry3</string>
+	<key>naverServiceAppName</key>
+	<string>carwash</string>
+	<key>naverServiceAppUrlScheme</key>
+	<string>carwash</string>
 </dict>
 </plist>
