@@ -1,14 +1,11 @@
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
-import 'package:carwash/common/model/cursor_pagination_model.dart';
-import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/community/component/comment_register_screen.dart';
 import 'package:carwash/community/provider/comment_provider.dart';
 import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';

@@ -71,6 +71,7 @@ dependencies:
   sign_in_with_apple: ^5.0.0
   image_cropper: ^5.0.1
   firebase_app_check: ^0.2.1+8
+  flutter_launcher_icons: ^0.13.1
 
 
 
@@ -78,7 +79,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_launcher_icons: "^0.13.1"
 
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -91,8 +91,13 @@ dev_dependencies:
   json_serializable: ^6.0.0
   retrofit_generator: '>=4.0.0 <5.0.0'
   riverpod_generator: ^1.0.4
+  flutter_launcher_icons: ^0.13.1
 
-
+flutter_icons:
+  ios: true
+  android: true
+  image_path: "asset/img/app_logo.png"
+  remove_alpha_ios: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
