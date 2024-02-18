@@ -26,12 +26,12 @@ class EventCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '자신만의 세차 방법을 공유해보세요',
+                '자신만의 세차 방법을 기록해 보세요!',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
               Text(
-                '세차를 공유하면 포인트를 드립니다!',
+                '세차 커뮤니티를 통해 소통해 보세요!',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ],
