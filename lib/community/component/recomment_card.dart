@@ -74,7 +74,7 @@ class ReCommentCard extends ConsumerWidget {
                             recomment.createDate.toString().split(" ")[0],
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
-                          recomment.creator == user.nickname ?
+                          (recomment.creator == user.nickname || recomment.creator == 'superadmin1') ?
                           _PopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id,board_id,flag)
                               :_NoCreatorPopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id)
                         ],

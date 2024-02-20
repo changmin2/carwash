@@ -30,43 +30,46 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              /// 게시판 종류 라벨
-              TRoundedContainer(
-                padding: const EdgeInsets.all(TSizes.xs),
-                radius: 5,
-                showBorder: true,
-                borderColor: model.category == '세차라이프' ? PRIMARY_COLOR
-                : model.category == '질문게시판' ? const Color(0xffE9C46A) : const Color(0xffF4A261),
-                child: Text(
-                  model.category,
-                  style: model.category == '세차라이프' ? Theme.of(context).textTheme.labelMedium!.apply(color: PRIMARY_COLOR)
-                  : model.category == '질문게시판' ? Theme.of(context).textTheme.labelMedium!.apply(color: const Color(0xffE9C46A))
-                  : Theme.of(context).textTheme.labelMedium!.apply(color: const Color(0xffF4A261)),
+          Container(
+            width: MediaQuery.of(context).size.width*0.65,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// 게시판 종류 라벨
+                TRoundedContainer(
+                  padding: const EdgeInsets.all(TSizes.xs),
+                  radius: 5,
+                  showBorder: true,
+                  borderColor: model.category == '세차라이프' ? PRIMARY_COLOR
+                  : model.category == '질문게시판' ? const Color(0xffE9C46A) : const Color(0xffF4A261),
+                  child: Text(
+                    model.category,
+                    style: model.category == '세차라이프' ? Theme.of(context).textTheme.labelMedium!.apply(color: PRIMARY_COLOR)
+                    : model.category == '질문게시판' ? Theme.of(context).textTheme.labelMedium!.apply(color: const Color(0xffE9C46A))
+                    : Theme.of(context).textTheme.labelMedium!.apply(color: const Color(0xffF4A261)),
+                  ),
                 ),
-              ),
-              const SizedBox(height: TSizes.sm),
+                const SizedBox(height: TSizes.sm),
 
-              /// 제목
-              SizedBox(
-                width: 250,
-                child: Text(
-                  model.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                /// 제목
+                SizedBox(
+                  width: 250,
+                  child: Text(
+                    model.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ),
-              ),
-              const SizedBox(height: TSizes.sm),
+                const SizedBox(height: TSizes.sm),
 
-              /// 닉네임
-              Text(
-                model.creator,
-                style: Theme.of(context).textTheme.labelMedium,
-              )
-            ],
+                /// 닉네임
+                Text(
+                  model.creator,
+                  style: Theme.of(context).textTheme.labelMedium,
+                )
+              ],
+            ),
           ),
           imgs == ''
           ? Container()

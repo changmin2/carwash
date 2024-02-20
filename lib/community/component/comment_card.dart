@@ -69,7 +69,7 @@ class CommentCard extends ConsumerWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      comment.creator == user.nickname ?
+                      (comment.creator == user.nickname || comment.creator == 'superadmin1') ?
                       _PopupMenuButtonPage(context, ref, comment.comment_id, board_id,recommentsCnt,flag)
                           :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id,flag)
                     ]

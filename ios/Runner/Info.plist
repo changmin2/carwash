@@ -65,13 +65,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>To capture profile photo please grant camera access</string>
+	<string>게시글 사진 첨부를 위한 카메라 접근을 허용하시겠습니까?</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This application requires location services to work</string>
+	<string>날씨 정보를 불러오기위한 위치 권한을 허용하시겠습니까?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This application requires location services to work</string>
+	<string>날씨 정보를 불러오기위한 위치 권한을 허용하시겠습니까?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App needs access to photo lib for profile images</string>
+	<string>게시글 사진 첨부를 위한 앨범 접근을 허용하시겠습니까?</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

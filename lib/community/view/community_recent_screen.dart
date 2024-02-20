@@ -55,7 +55,23 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
       imgs = widget.model.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
     }
     return DefaultLayoutV2(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          TextButton(
+              onPressed: ()async{
+                 ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content:  Text('신고되었습니다. 누적된 신고자는 블라인드 처리 됩니다.'),
+                      duration: Duration(seconds: 1),
+                    )
+                );
+              },
+              child: Text(
+                '신고'
+              )
+          )
+        ],
+      ),
       bottomNavagtionBar: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) => CommentRegisterScreen(id: widget.model.id, flag: widget.flag)));
