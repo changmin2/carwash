@@ -69,7 +69,7 @@ class CommentCard extends ConsumerWidget {
                         style: Theme.of(context).textTheme.bodySmall,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      (comment.creator == user.nickname || comment.creator == 'superadmin1') ?
+                      (comment.creator == user.nickname || user.nickname == '관리자') ?
                       _PopupMenuButtonPage(context, ref, comment.comment_id, board_id,recommentsCnt,flag)
                           :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id,flag)
                     ]
@@ -121,7 +121,7 @@ PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int com
       }else if(value=='신고'){
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('신고되었습니다. 누적된 신고자는 블라인드 처리 됩니다.'),
+              content: Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
               duration: Duration(seconds: 1),
             )
         );
@@ -158,7 +158,7 @@ PopupMenuButton _NoCreatorPopupMenuButtonPage (BuildContext context,WidgetRef re
       else if(value=='신고'){
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('신고되었습니다. 누적된 신고자는 블라인드 처리 됩니다.'),
+              content: Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
               duration: Duration(seconds: 1),
             )
         );

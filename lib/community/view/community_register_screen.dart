@@ -76,13 +76,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '부적절하거나 불쾌감을 줄 수 있는 컨텐츠는 제재를 받을 수 있습니다.',
-                style: TextStyle(
-                  color: Colors.red
-                ),
-              ),
-              SizedBox(height: 8,),
+
               /// 제목
               Row(
                 children: [
@@ -131,7 +125,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                       return "내용을 입력해주세요.";
                     }
                   },
-                  decoration: const InputDecoration(hintText: '자유롭게 내용을 작성하세요.'),
+                  decoration: const InputDecoration(hintText: '부적절하거나 불쾌감을 줄 수 있는 컨텐츠는 제재를 받을 수 있습니다.'),
                   keyboardType: TextInputType.multiline,
                   maxLines: 6,
                 ),

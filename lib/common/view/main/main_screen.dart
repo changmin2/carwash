@@ -180,14 +180,14 @@ AppBar renderAppBar(_context) {
       ),
     ),
     actions: [
-      IconButton(
-        onPressed: () {},
-        icon: const Icon(
-          // Icons.notifications_none_outlined,
-          Iconsax.notification_bing,
-          color: Colors.white,
-        ),
-      ),
+      // IconButton(
+      //   onPressed: () {},
+      //   icon: const Icon(
+      //     // Icons.notifications_none_outlined,
+      //     Iconsax.notification_bing,
+      //     color: Colors.white,
+      //   ),
+      // ),
       IconButton(
         onPressed: () {
           THelperFunctions.navigateToScreen(_context, const UserProfileScreen());

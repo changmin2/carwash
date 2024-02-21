@@ -72,6 +72,13 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                 '나만의 세차를\n기록하고 공유해보세요!',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
+              const SizedBox(height: 8),
+              Text(
+                '부적절하거나 불쾌감을 줄 수 있는 컨텐츠는 제재를 받을 수 있습니다.',
+                style: TextStyle(
+                  color: Colors.red
+                ),
+              ),
               
               const SizedBox(height: TSizes.spaceBtwSections),
               

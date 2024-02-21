@@ -74,7 +74,7 @@ class ReCommentCard extends ConsumerWidget {
                             recomment.createDate.toString().split(" ")[0],
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
-                          (recomment.creator == user.nickname || recomment.creator == 'superadmin1') ?
+                          (recomment.creator == user.nickname || user.nickname == '관리자') ?
                           _PopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id,board_id,flag)
                               :_NoCreatorPopupMenuButtonPage(context, ref, recomment.recomment_id, comment_id)
                         ],
@@ -98,7 +98,7 @@ PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int rec
       if(value=='신고') {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('신고되었습니다. 누적된 신고자는 블라인드 처리 됩니다.'),
+              content: Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
               duration: Duration(seconds: 1),
             )
         );
@@ -131,7 +131,7 @@ PopupMenuButton _NoCreatorPopupMenuButtonPage (BuildContext context,WidgetRef re
       if(value=='신고'){
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('신고되었습니다. 누적된 신고자는 블라인드 처리 됩니다.'),
+              content: Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
               duration: Duration(seconds: 1),
             )
         );

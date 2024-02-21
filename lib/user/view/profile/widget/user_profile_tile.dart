@@ -23,13 +23,13 @@ class TUserProfileTile extends StatelessWidget {
       ),
       title: Text(title, style: Theme.of(context).textTheme.headlineSmall!.apply(color: Colors.white)),
       subtitle: Text(subtitle, style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white)),
-      trailing: IconButton(
-        onPressed: () {},
-        icon: const Icon(
-          Iconsax.edit,
-          color: Colors.white,
-        ),
-      ),
+      // trailing: IconButton(
+      //   onPressed: () {},
+      //   icon: const Icon(
+      //     Iconsax.edit,
+      //     color: Colors.white,
+      //   ),
+      // ),
     );
   }
 }
