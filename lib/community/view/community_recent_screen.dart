@@ -6,11 +6,13 @@ import 'package:carwash/community/provider/comment_provider.dart';
 import 'package:carwash/community/provider/hot_free_community_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
 import '../../common/component/rounded_image.dart';
 import '../../user/model/user_model.dart';
+import '../../user/provider/block_provider.dart';
 import '../../user/provider/favorite_provider.dart';
 import '../../user/provider/user_me_provider.dart';
 import '../component/comment_card.dart';
@@ -18,6 +20,7 @@ import '../component/comment_register_screen.dart';
 import '../model/community_model.dart';
 import '../provider/communityProvider.dart';
 import '../provider/hot_all_community_provider.dart';
+import 'community_screen.dart';
 
 class CommunityRecentScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityRecentScreen';
@@ -47,7 +50,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
   Widget build(BuildContext context) {
     ref.invalidate(commentProvider);
     ref.watch(hotAllCommunityProvider);
-
+    final user = ref.read(userMeProvider) as UserModel;
     List<String> imgs = [];
     final favorites = ref.read(favoriteProvider);
     var check = favorites.indexOf(widget.model.id);
@@ -57,18 +60,88 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
     return DefaultLayoutV2(
       appBar: AppBar(
         actions: [
-          TextButton(
-              onPressed: ()async{
-                 ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content:  Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
-                      duration: Duration(seconds: 1),
-                    )
-                );
-              },
-              child: Text(
-                '신고'
-              )
+          Row(
+            children: [
+              user.nickname == widget.model.creator
+                  ? Container()
+                  :
+              TextButton(
+                onPressed: ()async{
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)
+                          ),
+                          title: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              new Text("유저 차단")
+                            ],
+                          ),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text(
+                                  "차단한 유저의 게시글은 숨김 처리 됩니다."
+                              )
+                            ],
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                                onPressed: (){
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text(
+                                    '취소'
+                                )
+                            ),
+                            TextButton(
+                                onPressed: () async {
+                                  await ref.read(blockProvider.notifier).addBlock(widget.model.creator);
+                                  await ref.read(hotAllCommunityProvider.notifier).getHotAll();
+                                  await ref.read(communityProvider.notifier).paginate(forceRefetch: true);
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                    '확인'
+                                )
+                            )
+                          ],
+                        );
+                      }
+                  );
+                },
+                child: Text(
+                  '차단',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: ()async{
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content:  Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
+                        duration: Duration(seconds: 1),
+                      )
+                  );
+                },
+                child: Text(
+                  '신고',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500
+                  ),
+                ),
+              ),
+            ],
           )
         ],
       ),

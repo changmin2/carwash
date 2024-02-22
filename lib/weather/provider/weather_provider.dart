@@ -4,6 +4,7 @@ import 'package:carwash/weather/model/weather_model.dart';
 import 'package:carwash/weather/repository/weather_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 final WeatherProvider = StateNotifierProvider<WeatherStateNotifier,List<WeatherModel>>(
         (ref) {
@@ -32,13 +33,10 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherModel>>{
       return;
     }else{
       var times = ['09','12','18'];
-      Stopwatch stopwatch = new Stopwatch();
 
-      // Stopwatch 시작
-      stopwatch.start();
       Position position;
-
       Position? lastPosition = await Geolocator.getLastKnownPosition();
+
 
       if(lastPosition != null){
 
@@ -47,10 +45,6 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherModel>>{
         position =  await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.low);
       }
-      print('doSomething() executed in ${stopwatch.elapsed}');
-
-      // 스톱워치 정지
-      stopwatch.stop();
 
       var pstate = await repository.readWeather(lat: position.latitude,
           lon: position.longitude,

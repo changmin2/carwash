@@ -64,9 +64,13 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
                 const SizedBox(height: TSizes.sm),
 
                 /// 닉네임
-                Text(
-                  model.creator,
-                  style: Theme.of(context).textTheme.labelMedium,
+                Container(
+                  width: MediaQuery.of(context).size.width/2,
+                  child: Text(
+                    model.creator,
+                    style: Theme.of(context).textTheme.labelMedium,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 )
               ],
             ),

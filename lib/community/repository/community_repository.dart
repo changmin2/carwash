@@ -2,7 +2,7 @@ import 'package:carwash/common/dio/dio.dart';
 import 'package:carwash/common/repository/base_pagination_repository.dart';
 import 'package:carwash/community/model/community_model.dart';
 import 'package:carwash/community/model/requestRegister_model.dart';
-import 'package:dio/dio.dart';
+import 'package:dio/dio.dart' hide Headers;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/http.dart';
 
@@ -35,6 +35,9 @@ abstract class CommunityRepository extends IBasePaginationRepository<CommunityMo
   );
 
   @GET('/recentCommunity')
+  @Headers({
+    'accessToken':'true'
+  })
   Future<List<CommunityModel>> recentCommunity();
 
   @GET('/recentFreeCommunity')

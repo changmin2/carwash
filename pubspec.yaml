@@ -72,6 +72,7 @@ dependencies:
   image_cropper: ^5.0.1
   firebase_app_check: ^0.2.1+8
   flutter_launcher_icons: ^0.13.1
+  permission_handler: ^11.3.0
 
 
 

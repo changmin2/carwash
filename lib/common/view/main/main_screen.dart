@@ -9,6 +9,7 @@ import 'package:carwash/common/view/main/widget/carwash_life_list_widget.dart';
 import 'package:carwash/common/view/main/widget/event_list_widget.dart';
 import 'package:carwash/common/view/main/widget/recent_carwash_list_widget.dart';
 import 'package:carwash/common/view/main/widget/top_menu_widget.dart';
+import 'package:carwash/community/provider/hot_all_community_provider.dart';
 import 'package:carwash/user/model/user_model.dart';
 import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
@@ -47,6 +48,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(WeatherProvider);
     ref.read(favoriteProvider.notifier).getFavorites();
+    ref.read(hotAllCommunityProvider.notifier).getHotAll();
     return DefaultLayoutV2(
       appBar: renderAppBar(context),
       backgroundColor: PRIMARY_COLOR,

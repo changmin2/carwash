@@ -89,7 +89,14 @@ class TCommunityFreeListWidget extends StatelessWidget {
             const SizedBox(width: TSizes.sm),
 
             /// 닉네임
-            Text(nickName, style: Theme.of(context).textTheme.bodySmall),
+            Container(
+              width: MediaQuery.of(context).size.width/2,
+                child: Text(
+                    nickName,
+                    style: Theme.of(context).textTheme.bodySmall,
+                    overflow: TextOverflow.ellipsis,
+                )
+            ),
             const SizedBox(width: TSizes.sm),
 
             Text('|', style: Theme.of(context).textTheme.bodySmall),

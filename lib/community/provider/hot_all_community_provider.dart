@@ -15,7 +15,7 @@ class HotAllCommunityNotifier extends StateNotifier<List<CommunityModel>>{
     getHotAll();
   }
 
-  void getHotAll() async{
+  Future<void> getHotAll() async{
     var resp = await repository.recentCommunity();
     state = resp;
   }

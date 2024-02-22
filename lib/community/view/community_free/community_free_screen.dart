@@ -42,6 +42,8 @@ class TCommunityFreeScreen extends ConsumerWidget {
 
                         const SizedBox(height: TSizes.spaceBtwItems),
 
+                        hot.length>0
+                        ?
                         /// HOT 전체 리스트
                         SizedBox(
                           height: 170,
@@ -67,7 +69,8 @@ class TCommunityFreeScreen extends ConsumerWidget {
                                   : Container();
                             },
                           ),
-                        ),
+                        )
+                        :Container(),
 
                         const SizedBox(height: TSizes.spaceBtwSections),
 

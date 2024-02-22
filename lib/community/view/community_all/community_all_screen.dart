@@ -42,7 +42,8 @@ class TCommunityAllScreen extends ConsumerWidget {
                   ),
 
                   const SizedBox(height: TSizes.spaceBtwItems),
-
+                  hot.length>0
+                  ?
                   /// HOT 전체 리스트
                   SizedBox(
                     height: 270,
@@ -77,8 +78,8 @@ class TCommunityAllScreen extends ConsumerWidget {
                         );
                       },
                     ),
-                  ),
-
+                  )
+                  :Container(),
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// 최신글
