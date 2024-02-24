@@ -87,8 +87,6 @@ class CommunityStateNotifier extends PaginationProvider<CommunityModel,Community
   }
 
   Future<void> downCommentCnt(int id,int count)async {
-    print(id);
-    print(count);
     var pState = state as CursorPagination;
     List<CommunityModel> tempList = [];
     for(int i =0; i<pState.data.length; i++){
@@ -105,4 +103,9 @@ class CommunityStateNotifier extends PaginationProvider<CommunityModel,Community
     );
   }
 
+  Future<void> deleteBoard(int id) async {
+
+    await repository.deleteBoard(id: id.toString());
+
+  }
 }

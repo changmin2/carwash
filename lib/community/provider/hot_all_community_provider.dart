@@ -83,4 +83,10 @@ class HotAllCommunityNotifier extends StateNotifier<List<CommunityModel>>{
     state  = tempList;
   }
 
+  Future<void> deleteBoard(int id) async {
+
+    await repository.deleteBoard(id: id.toString());
+
+  }
+
 }

@@ -33,12 +33,12 @@ class CommunityDetailScreen extends ConsumerStatefulWidget {
 
 class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     ref.invalidate(commentProvider);
@@ -55,87 +55,129 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
     return DefaultLayoutV2(
       appBar: AppBar(
         actions: [
-          Row(
-            children: [
-              user.nickname == state.creator
-              ? Container()
-              :
-              TextButton(
-                onPressed: ()async{
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context){
-                        return AlertDialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)
-                          ),
-                          title: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              new Text("유저 차단")
-                            ],
-                          ),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Text(
-                                  "차단한 유저의 게시글은 숨김 처리 됩니다."
+          Padding(
+              padding: EdgeInsets.only(right: 16),
+              child: PopupMenuButton(
+                child: Icon(
+                  Icons.menu,
+                  size: 30,
+                ),
+                itemBuilder: (BuildContext context) =>
+                (user.nickname == '관리자' || state.creator == user.nickname)
+                ?
+                [
+                  PopupMenuItem(value:2 ,child: Text("신고")),
+                  PopupMenuItem(value:3 ,child: Text("삭제"))
+                ]
+                    :
+                [
+                  PopupMenuItem(value: 1, child: Text("차단")),
+                  PopupMenuItem(value:2 ,child: Text("신고"))
+                ],
+                onSelected: (dynamic select) async {
+                  if(select == 1){
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context){
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)
+                            ),
+                            title: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                new Text("유저 차단")
+                              ],
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(
+                                    "차단한 유저의 게시글은 숨김 처리 됩니다."
+                                )
+                              ],
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                  onPressed: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                      '취소'
+                                  )
+                              ),
+                              TextButton(
+                                  onPressed: () async {
+                                    await ref.read(blockProvider.notifier).addBlock(state.creator);
+                                    ref.read(hotAllCommunityProvider.notifier).getHotAll();
+                                    ref.read(communityProvider.notifier).paginate(forceRefetch: true);
+                                    context.goNamed(CommunityScreen.routeName);
+                                  },
+                                  child: Text(
+                                      '확인'
+                                  )
                               )
                             ],
-                          ),
-                          actions: <Widget>[
-                            TextButton(
-                                onPressed: (){
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text(
-                                    '취소'
-                                )
+                          );
+                        }
+                    );
+                  }
+                  else if(select == 2){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content:  Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
+                          duration: Duration(seconds: 1),
+                        )
+                    );
+                  }else{
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context){
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)
                             ),
-                            TextButton(
-                                onPressed: () async {
-                                  await ref.read(blockProvider.notifier).addBlock(state.creator);
-                                  ref.read(hotAllCommunityProvider.notifier).getHotAll();
-                                  ref.read(communityProvider.notifier).paginate(forceRefetch: true);
-                                  context.goNamed(CommunityScreen.routeName);
-                                },
-                                child: Text(
-                                    '확인'
+                            title: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                new Text("글 삭제")
+                              ],
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Text(
+                                    "정말 삭제하시겠습니까?"
                                 )
-                            )
-                          ],
-                        );
-                      }
-                  );
+                              ],
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                  onPressed: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                      '취소'
+                                  )
+                              ),
+                              TextButton(
+                                  onPressed: () async {
+                                    await ref.read(communityProvider.notifier).deleteBoard(widget.id);
+                                    ref.read(hotAllCommunityProvider.notifier).getHotAll();
+                                    ref.read(communityProvider.notifier).paginate(forceRefetch: true);
+                                    context.goNamed(CommunityScreen.routeName);
+                                  },
+                                  child: Text(
+                                      '확인'
+                                  )
+                              )
+                            ],
+                          );
+                        }
+                    );
+                  }
                 },
-                child: Text(
-                  '차단',
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: ()async{
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content:  Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
-                        duration: Duration(seconds: 1),
-                      )
-                  );
-                },
-                child: Text(
-                  '신고',
-                  style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500
-                  ),
-                ),
-              ),
-            ],
+              )
           )
         ],
       ),
@@ -161,7 +203,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
             children: [
               const SizedBox(height: TSizes.spaceBtwItems),
               SizedBox(
-                height: 700,
+                height: MediaQuery.of(context).size.height,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -323,7 +365,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                         }),
                   ),
                   Container(
-                    height: 250
+                    height: 100
                   )
                   ]
                 ),
@@ -335,5 +377,6 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
         ),
       ),
     );
+
   }
 }

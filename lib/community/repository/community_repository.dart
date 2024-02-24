@@ -34,6 +34,11 @@ abstract class CommunityRepository extends IBasePaginationRepository<CommunityMo
     @Body() RequestRegisterParam param
   );
 
+  @GET('/delete/{id}')
+  Future<void> deleteBoard({
+    @Path() required String id
+  });
+
   @GET('/recentCommunity')
   @Headers({
     'accessToken':'true'
