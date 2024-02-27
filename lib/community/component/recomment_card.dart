@@ -50,9 +50,13 @@ class ReCommentCard extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        recomment.content,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.6 ,
+                        child: Text(
+                          recomment.content,
+                          maxLines: 5,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
 
                       const SizedBox(height: TSizes.spaceBtwItems),

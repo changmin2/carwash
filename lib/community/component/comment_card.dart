@@ -35,9 +35,14 @@ class CommentCard extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           /// 댓글 내용
-          Text(
-            comment.content,
-            style: Theme.of(context).textTheme.bodyMedium,
+          Container(
+            width: MediaQuery.of(context).size.width*0.8,
+            child: Text(
+              comment.content,
+              style: Theme.of(context).textTheme.bodyMedium,
+              maxLines: 5,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           const SizedBox(height: TSizes.spaceBtwItems),
 

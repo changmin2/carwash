@@ -11,6 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../common/const/colors.dart';
 import '../provider/user_me_provider.dart';
@@ -163,6 +164,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
               ),
 
+
               const SizedBox(height: TSizes.spaceBtwItems / 2),
 
               /// ----------------------------------------------------------------
@@ -190,6 +192,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ],
                 ),
               ),
+
 
               const SizedBox(height: TSizes.spaceBtwItems),
 

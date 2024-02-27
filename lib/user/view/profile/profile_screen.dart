@@ -9,6 +9,7 @@ import 'package:carwash/user/view/profile/widget/user_profile_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/widgets/appbar.dart';
 
@@ -62,7 +63,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                   const TSettingsMenuTile(icon: Iconsax.notification_1, title: "문의사항은 아래의 이메일로 문의해주세요.", subTitle: 'dlckdals9467@naver.com'),
 
 
-                  const SizedBox(height: TSizes.spaceBtwSections * 2),
+                  const SizedBox(height: TSizes.spaceBtwSections ),
                   
                   /// Logout Button
                   Container(
@@ -145,6 +146,26 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                           side: const BorderSide(
                             color: Colors.black,
                           )
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () async {
+
+                      var url = Uri.parse("https://changmin2.com/%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EB%B0%A9%EC%B9%A8/");
+                      if (await canLaunchUrl(url)) {
+                        launchUrl(url);
+                      }
+                    },
+                    child: Center(
+                      child: Text(
+                        "개인정보 처리방침",
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: PRIMARY_COLOR,
+                          decoration: TextDecoration.underline,
+                          decorationThickness: 5,
+                          decorationColor: PRIMARY_COLOR,
+                        ),
                       ),
                     ),
                   ),
