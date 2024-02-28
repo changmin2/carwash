@@ -314,9 +314,12 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                                               borderRadius: 100,
                                             ),
                                             const SizedBox(width: TSizes.sm),
-                                            Text(
-                                              widget.model.creator,
-                                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
+                                            Container(
+                                              width: MediaQuery.of(context).size.width*0.55,
+                                              child: Text(
+                                                widget.model.creator,
+                                                style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey,overflow: TextOverflow.ellipsis),
+                                              ),
                                             ),
                                           ],
                                         ),

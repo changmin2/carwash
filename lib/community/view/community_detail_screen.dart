@@ -306,7 +306,16 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
                                           const SizedBox(width: TSizes.sm),
 
-                                          Text(state.creator, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey)),
+                                          Container(
+                                              width: MediaQuery.of(context).size.width*0.55,
+                                              child: Text(
+                                                  state.creator,
+                                                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                                      color: Colors.grey,
+                                                      overflow: TextOverflow.ellipsis
+                                                  )
+                                              )
+                                          ),
                                         ],
                                       ),
 
