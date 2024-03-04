@@ -1,3 +1,4 @@
+import 'package:carwash/user/model/edit_request.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/http.dart';
@@ -34,6 +35,14 @@ abstract class UserMeRepository{
   @POST('/join')
   Future<String> join(
       @Body() JoinRequest joinRequest
+  );
+
+  @POST('/edit')
+  @Headers({
+    'accessToken':'true'
+  })
+  Future<String> edit(
+      @Body() EditRequest editRequest
   );
 
 }

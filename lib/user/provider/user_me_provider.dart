@@ -65,6 +65,16 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
     state = resp;
 
   }
+
+  Future<void> reloadMe() async {
+    final refreshToken = await storage.read(key: REFRESH_TOKEN_KEY);
+    final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
+
+    final resp = await userMeRepository.getMe();
+    state = resp;
+
+  }
+
   Future<UserModelBase> login({
     required String username,
     required String password,

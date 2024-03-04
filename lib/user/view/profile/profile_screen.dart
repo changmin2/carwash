@@ -12,6 +12,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/widgets/appbar.dart';
+import '../edit_user_screen.dart';
 
 class UserProfileScreen extends ConsumerStatefulWidget {
   static get routeName => 'userProfileScreen';
@@ -25,7 +26,7 @@ class UserProfileScreen extends ConsumerStatefulWidget {
 class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    final state = ref.read(userMeProvider) as UserModel;
+    final state = ref.watch(userMeProvider) as UserModel;
     return DefaultLayoutV2(
       backgroundColor: PRIMARY_COLOR,
       appBar: AppBar(
@@ -36,7 +37,6 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-
             /// Profile Tile
             TUserProfileTile(title: state.nickname, subtitle: "1단계 환자"),
 
@@ -57,11 +57,13 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                   const SizedBox(height: TSizes.spaceBtwSections),
                   
                   /// Setting Menus
-                  const TSettingsMenuTile(icon: Iconsax.box, title: "나의 장비", subTitle: '나만의 장비를 등록하고 관리해보세요!'),
-                  const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "나의 세차 루트", subTitle: '자주 사용하는 세차 루트를 등록해 보세요!'),
-                  const TSettingsMenuTile(icon: Iconsax.notification_bing, title: "알림 설정", subTitle: '알고 싶은 내용만 알림이 오게 관리해보세요!'),
+                  //const TSettingsMenuTile(icon: Iconsax.box, title: "나의 장비", subTitle: '나만의 장비를 등록하고 관리해보세요!'),
+                  //const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "나의 세차 루트", subTitle: '자주 사용하는 세차 루트를 등록해 보세요!'),
+                  //const TSettingsMenuTile(icon: Iconsax.notification_bing, title: "알림 설정", subTitle: '알고 싶은 내용만 알림이 오게 관리해보세요!'),
                   const TSettingsMenuTile(icon: Iconsax.notification_1, title: "문의사항은 아래의 이메일로 문의해주세요.", subTitle: 'dlckdals9467@naver.com'),
-
+                  SizedBox(
+                    height: 100,
+                  ),
 
                   const SizedBox(height: TSizes.spaceBtwSections ),
                   
