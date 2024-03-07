@@ -90,7 +90,7 @@ class TCommunityFreeListWidget extends StatelessWidget {
 
             /// 닉네임
             Container(
-              width: MediaQuery.of(context).size.width/2,
+              width: MediaQuery.of(context).size.width*0.49,
                 child: Text(
                     nickName,
                     style: Theme.of(context).textTheme.bodySmall,

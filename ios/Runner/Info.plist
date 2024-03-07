@@ -67,9 +67,9 @@
 	<key>NSCameraUsageDescription</key>
 	<string>게시글 사진 첨부를 위한 카메라 접근을 허용하시겠습니까?</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>날씨 정보를 불러오기위한 위치 권한을 허용하시겠습니까?</string>
+	<string>유저 위치 기반 날씨 정보를 불러오는 기능을 사용하기 위한 위치 권한 요청</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>날씨 정보를 불러오기위한 위치 권한을 허용하시겠습니까?</string>
+	<string>유저 위치 기반 날씨 정보를 불러오는 기능을 사용하기 위한 위치 권한 요청</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>게시글 사진 첨부를 위한 앨범 접근을 허용하시겠습니까?</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

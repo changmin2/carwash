@@ -173,7 +173,7 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
                         width: 30,
                         height: 30,
                         fit: BoxFit.fill,
-                        imageUrl: 'asset/img/car_image.jpeg',
+                        imageUrl: 'asset/img/profile_image.png',
                         borderRadius: 100,
                       ),
         

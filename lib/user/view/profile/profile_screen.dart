@@ -61,9 +61,9 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                   //const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "나의 세차 루트", subTitle: '자주 사용하는 세차 루트를 등록해 보세요!'),
                   //const TSettingsMenuTile(icon: Iconsax.notification_bing, title: "알림 설정", subTitle: '알고 싶은 내용만 알림이 오게 관리해보세요!'),
                   const TSettingsMenuTile(icon: Iconsax.notification_1, title: "문의사항은 아래의 이메일로 문의해주세요.", subTitle: 'dlckdals9467@naver.com'),
-                  SizedBox(
+                   SizedBox(
                     height: 100,
-                  ),
+                   ),
 
                   const SizedBox(height: TSizes.spaceBtwSections ),
                   

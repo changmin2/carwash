@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:72146841179:android:4ff70b5943477e9413597e",
         "android_client_info": {
-          "package_name": "com.example.carwashChangMin"
+          "package_name": "com.changmin.carwashChangMin"
         }
       },
       "oauth_client": [],
@@ -28,7 +28,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:72146841179:android:18688ab1a36857c213597e",
         "android_client_info": {
-          "package_name": "com.partner.carwashChangMin"
+          "package_name": "com.changmin.carwashChangMin"
         }
       },
       "oauth_client": [],

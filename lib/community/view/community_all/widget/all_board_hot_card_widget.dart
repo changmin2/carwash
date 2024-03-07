@@ -67,7 +67,7 @@ class TCommunityAllHotCardWidget extends StatelessWidget {
 
                     /// 닉네임
                     Container(
-                      width: 100,
+                      width: 90,
                       child: Text(
                         nickName,
                         style: Theme.of(context).textTheme.labelLarge,

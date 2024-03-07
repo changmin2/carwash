@@ -300,7 +300,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                             width: 30,
                                             height: 30,
                                             fit: BoxFit.fill,
-                                            imageUrl: 'asset/img/car_image.jpeg',
+                                            imageUrl: 'asset/img/profile_image.png',
                                             borderRadius: 100,
                                           ),
 

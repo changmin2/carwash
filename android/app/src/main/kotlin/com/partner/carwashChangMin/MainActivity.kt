@@ -1,4 +1,4 @@
-package com.partner.carwashChangMin
+package com.changmin.carwashChangMin
 
 //import io.flutter.embedding.android.FlutterActivity
 //class MainActivity: FlutterActivity() {
