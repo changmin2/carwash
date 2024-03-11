@@ -1,3 +1,4 @@
+import 'package:carwash/common/component/image_viewer_screen.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
@@ -9,6 +10,7 @@ import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../common/component/pagination_list_viewV2.dart';
@@ -256,25 +258,32 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                 const SizedBox(height: TSizes.spaceBtwSections),
                                 imgs.length > 0
                                     ?
-                                SizedBox(
-                                  height: 120,
-                                  child: ListView.separated(
-                                    shrinkWrap: true,
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: imgs.length,
-                                    separatorBuilder: (_, __) {
-                                      return const SizedBox(width: TSizes.spaceBtwItems / 2);
-                                    },
-                                    itemBuilder: (_, int index) {
-                                      return TRoundedImage(
-                                        imageUrl: imgs[index].toString().trim(),
-                                        width: 120,
-                                        height: 120,
-                                        fit: BoxFit.fill,
-                                        borderRadius: 12.0,
-                                        isNetworkImage: true,
-                                      );
-                                    },
+                                GestureDetector(
+                                  onTap:(){
+                                    Navigator.push(context,MaterialPageRoute(builder: (context)
+                                     => ImageViewerScreen(imgUrl: imgs[index].toString().trim())
+                                    ));
+                                  },
+                                  child: SizedBox(
+                                    height: 120,
+                                    child: ListView.separated(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: imgs.length,
+                                      separatorBuilder: (_, __) {
+                                        return const SizedBox(width: TSizes.spaceBtwItems / 2);
+                                      },
+                                      itemBuilder: (_, int index) {
+                                        return TRoundedImage(
+                                          imageUrl: imgs[index].toString().trim(),
+                                          width: 120,
+                                          height: 120,
+                                          fit: BoxFit.fill,
+                                          borderRadius: 12.0,
+                                          isNetworkImage: true,
+                                        );
+                                      },
+                                    ),
                                   ),
                                 )
                                     :
