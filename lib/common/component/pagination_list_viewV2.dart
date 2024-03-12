@@ -14,6 +14,7 @@ import '../const/sizes.dart';
 import '../model/cursor_pagination_model.dart';import '../model/model_with_idV2.dart';
 import '../provider/comment_pagination_provider.dart';
 import '../utils/pagination_utils.dart';
+import 'image_viewer_screen.dart';
 
 typedef PaginationWidgetBuilder<T extends IModelWithIdV2> =
 Widget Function(BuildContext context, int index,T model);
@@ -75,7 +76,7 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
     }
 
     if(state is CursorPaginationError){
-      var imgs = [];
+      List<String> imgs = [];
       if(widget.model!.imgUrls != ''){
         imgs = widget.model!.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
       }
@@ -123,25 +124,32 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
             const SizedBox(height: TSizes.spaceBtwSections),
             imgs.length > 0
                 ?
-            SizedBox(
-              height: 120,
-              child: ListView.separated(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: imgs.length,
-                separatorBuilder: (_, __) {
-                  return const SizedBox(width: TSizes.spaceBtwItems / 2);
-                },
-                itemBuilder: (_, int index) {
-                  return TRoundedImage(
-                    imageUrl: imgs[index].toString().trim(),
-                    width: 120,
-                    height: 120,
-                    fit: BoxFit.fill,
-                    borderRadius: 12.0,
-                    isNetworkImage: true,
-                  );
-                },
+            GestureDetector(
+              onTap:(){
+                Navigator.push(context,MaterialPageRoute(builder: (context)
+                => ImageViewerScreen(imgUrl: imgs)
+                ));
+              },
+              child: SizedBox(
+                height: 120,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: imgs.length,
+                  separatorBuilder: (_, __) {
+                    return const SizedBox(width: TSizes.spaceBtwItems / 2);
+                  },
+                  itemBuilder: (_, int index) {
+                    return TRoundedImage(
+                      imageUrl: imgs[index].toString().trim(),
+                      width: 120,
+                      height: 120,
+                      fit: BoxFit.fill,
+                      borderRadius: 12.0,
+                      isNetworkImage: true,
+                    );
+                  },
+                ),
               ),
             )
                 :

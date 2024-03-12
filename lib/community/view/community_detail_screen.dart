@@ -261,7 +261,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                 GestureDetector(
                                   onTap:(){
                                     Navigator.push(context,MaterialPageRoute(builder: (context)
-                                     => ImageViewerScreen(imgUrl: imgs[index].toString().trim())
+                                     => ImageViewerScreen(imgUrl: imgs)
                                     ));
                                   },
                                   child: SizedBox(

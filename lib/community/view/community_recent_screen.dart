@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../common/component/image_viewer_screen.dart';
 import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
 import '../../common/component/rounded_image.dart';
@@ -264,25 +265,32 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                                       ? Column(
                                           children: [
                                             const SizedBox(height: TSizes.spaceBtwSections),
-                                            SizedBox(
-                                              height: 120,
-                                              child: ListView.separated(
-                                                shrinkWrap: true,
-                                                scrollDirection: Axis.horizontal,
-                                                itemCount: imgs.length,
-                                                separatorBuilder: (_, __) {
-                                                  return const SizedBox(width: TSizes.spaceBtwItems / 2);
-                                                },
-                                                itemBuilder: (_, int index) {
-                                                  return TRoundedImage(
-                                                    imageUrl: imgs[index].toString().trim(),
-                                                    width: 120,
-                                                    height: 120,
-                                                    fit: BoxFit.fill,
-                                                    borderRadius: 12.0,
-                                                    isNetworkImage: true,
-                                                  );
-                                                },
+                                            GestureDetector(
+                                              onTap:(){
+                                                Navigator.push(context,MaterialPageRoute(builder: (context)
+                                                => ImageViewerScreen(imgUrl: imgs)
+                                                ));
+                                              },
+                                              child: SizedBox(
+                                                height: 120,
+                                                child: ListView.separated(
+                                                  shrinkWrap: true,
+                                                  scrollDirection: Axis.horizontal,
+                                                  itemCount: imgs.length,
+                                                  separatorBuilder: (_, __) {
+                                                    return const SizedBox(width: TSizes.spaceBtwItems / 2);
+                                                  },
+                                                  itemBuilder: (_, int index) {
+                                                    return TRoundedImage(
+                                                      imageUrl: imgs[index].toString().trim(),
+                                                      width: 120,
+                                                      height: 120,
+                                                      fit: BoxFit.fill,
+                                                      borderRadius: 12.0,
+                                                      isNetworkImage: true,
+                                                    );
+                                                  },
+                                                ),
                                               ),
                                             ),
                                           ],
