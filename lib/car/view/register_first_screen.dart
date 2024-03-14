@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../common/utils/helpers/helper_functions.dart';
+
 class RecordFirstScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordFirst';
 
@@ -17,31 +19,7 @@ class RecordFirstScreen extends ConsumerStatefulWidget {
 }
 
 class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
-  final washList = [
-    '매트세척',
-    '시트세정',
-    '시트코팅',
-    '휠세척',
-    '고압수',
-    '프리워시',
-    '스노우폼',
-    '본세차',
-    '철분제거',
-    '페인트클렌저',
-    '클레잉',
-    '유막제거',
-    '발수코팅',
-    '폴리싱',
-    '탈지',
-    '실런트',
-    '고체왁스',
-    '물왁스',
-    '드라잉',
-    '타이어코팅',
-    '휠코팅',
-    '엔진룸세척',
-    '트렁크정리'
-  ];
+  final washList = ['매트세척', '시트세정', '시트코팅', '휠세척', '고압수', '프리워시', '스노우폼', '미트세차', '철분제거', '페인트클렌저', '클레잉', '유막제거', '발수코팅', '폴리싱', '탈지', '실런트', '고체왁스', '물왁스', '드라잉', '타이어코팅', '휠코팅', '엔진룸세척', '트렁크정리'];
 
   @override
   void initState() {
@@ -49,6 +27,7 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
     super.initState();
     ref.read(SelectProvider).init();
   }
+
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(SelectProvider);
@@ -71,21 +50,20 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
 
               const SizedBox(height: TSizes.spaceBtwSections),
 
-              ///
+              /// 세차 목록
               Wrap(
-                  direction: Axis.horizontal, // 정렬 방향
-                  alignment: WrapAlignment.center, // 정렬 방식
-                  spacing: TSizes.sm, // 상하(좌우) 공간
-                  runSpacing: TSizes.sm, // 좌우(상하) 공간
-                  children: List.generate(
-                    washList.length,
-                    (i) => SelectCard(
-                      select: state.selects[i],
-                      index: i,
-                    ),
-                  )
-                  // WsmBoxWidget()
+                direction: Axis.horizontal, // 정렬 방향
+                alignment: WrapAlignment.center, // 정렬 방식
+                spacing: TSizes.sm, // 상하(좌우) 공간
+                runSpacing: TSizes.sm, // 좌우(상하) 공간
+                children: List.generate(
+                  washList.length,
+                  (i) => SelectCard(
+                    select: state.selects[i],
+                    index: i,
                   ),
+                ),
+              ),
 
               const SizedBox(height: TSizes.spaceBtwSections),
 
@@ -96,6 +74,12 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
                   onPressed: () async {
                     var newList = [];
                     newList = await washList.where((element) => state.selects[washList.indexOf(element)] == 1).toList();
+
+                    if(newList.isEmpty){
+                      THelperFunctions.showSnackBar(context, "세차 기록을 선택해주세요!");
+                      return;
+                    }
+
                     context.goNamed(RecordSecondScreen.routeName);
                   },
                   child: const Text('다음 단계'),

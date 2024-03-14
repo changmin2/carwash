@@ -6,6 +6,7 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/secure_storage/secure_storage.dart';
 import 'package:carwash/common/utils/formatters/formatter.dart';
+import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -72,24 +73,24 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                 '나만의 세차를\n기록하고 공유해보세요!',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
-              const SizedBox(height: 8),
+
+              const SizedBox(height: TSizes.spaceBtwItems),
+
               Text(
                 '부적절하거나 불쾌감을 줄 수 있는 컨텐츠는 제재를 받을 수 있습니다.',
-                style: TextStyle(
-                  color: Colors.red
-                ),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.red),
               ),
-              
+
               const SizedBox(height: TSizes.spaceBtwSections),
-              
+
               /// 세차일자 라벨
               Text(
                 '세차 일자',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              
+
               const SizedBox(height: TSizes.spaceBtwInputFields),
-              
+
               /// 세차일자
               TRoundedContainer(
                 radius: 14,
@@ -102,23 +103,16 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                   trailing: IconButton(
                     icon: const Icon(Icons.calendar_month),
                     onPressed: () async {
-                      final selectedDate =
-                      await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2099));
+                      final selectedDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2099));
                       if (selectedDate != null) {
-                        if(selectedDate.isAfter(DateTime.now())) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("오늘 이후의 날짜는 선택할 수 없습니다."),
-                            duration: Duration(milliseconds: 500),
-                          ));
-                        }else{
+                        if (selectedDate.isAfter(DateTime.now())) {
+                          THelperFunctions.showSnackBar(context, "오늘 이후의 날짜는 선택할 수 없습니다.");
+                        } else {
                           setState(() {
                             _prameterDay = selectedDate.toString();
                             _day = TFormatter.formatDate(selectedDate);
-                            // _day =
-                            //     '${DateFormat('yyyy년 MM월 dd일 ').format(selectedDate)}(${DateFormat('E', 'ko').format(selectedDate)})';
                           });
                         }
-
                       }
                     },
                   ),
@@ -126,15 +120,15 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
               ),
 
               const SizedBox(height: TSizes.spaceBtwItems),
-              
+
               /// 세차장소 라벨
               Text(
                 '세차 장소',
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              
+
               const SizedBox(height: TSizes.spaceBtwInputFields),
-              
+
               /// 세차장소 입력
               TextFormField(
                 onChanged: (value) {
@@ -237,7 +231,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: TSizes.spaceBtwSections),
 
               /// 완료 버튼
@@ -246,44 +240,29 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                 child: ElevatedButton(
                   onPressed: () async {
                     //await uploadImage();
-                    if(_day == ''){
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("세차일자를 선택하세요."),
-                        duration: Duration(milliseconds: 500),
-                      ));
+                    if (_day == '') {
+                      THelperFunctions.showSnackBar(context, "세차일자를 선택하세요.");
                       return;
-                    }
-                    else if(_place == ''){
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("세차 장소를 입력하세요."),
-                        duration: Duration(milliseconds: 500),
-                      ));
+                    } else if (_place == '') {
+                      THelperFunctions.showSnackBar(context, "세차 장소를 입력하세요.");
                       return;
-                    }
-                    else if(_image == null){
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("이미지를 선택하세요."),
-                        duration: Duration(milliseconds: 500),
-                      ));
+                    } else if (_image == null) {
+                      THelperFunctions.showSnackBar(context, "이미지를 선택하세요.");
                       return;
-                    }else{
+                    } else {
                       showModalBottomSheet(
                           context: context,
-                          builder: (BuildContext context){
-                            return Container(
+                          builder: (BuildContext context) {
+                            return const SizedBox(
                               height: 100,
                               child: Center(
-                                  child: Text(
-                                      '업로드중...'
-                                  )
+                                child: Text('업로드중...'),
                               ),
                             );
-                          }
-                      );
+                          });
 
                       await s3Upload();
-                      RecordRegisterParams params =
-                      RecordRegisterParams(image: _downloadUrl, place: _place.toString(), date: _prameterDay.toString(), washList: newList);
+                      RecordRegisterParams params = RecordRegisterParams(image: _downloadUrl, place: _place.toString(), date: _prameterDay.toString(), washList: newList);
                       recordDto re = await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
                       await ref.read(RecordProvider('true').notifier).getRecord(false);
                       ref.read(recentRecordProvider(user.username).notifier).add(re);
@@ -291,7 +270,6 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
 
                       context.go('/');
                     }
-
                   },
                   child: const Text('완료'),
                 ),
@@ -323,8 +301,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
     var request = new http.MultipartRequest("POST", uri);
 
     // multipart that takes file
-    var multipartFile = new http.MultipartFile('file', stream, length,
-        filename: basename(_image!.path));
+    var multipartFile = new http.MultipartFile('file', stream, length, filename: basename(_image!.path));
 
     // add file to multipart
     request.files.add(multipartFile);
@@ -337,17 +314,11 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   }
 
   Future getImage(ImageSource imageSource) async {
-    final XFile? pickedFile = await picker.pickImage(
-        source: imageSource,
-        imageQuality: 30,
-        maxHeight: 300,
-        maxWidth: 500
-    );
+    final XFile? pickedFile = await picker.pickImage(source: imageSource, imageQuality: 30, maxHeight: 300, maxWidth: 500);
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
       });
     }
   }
-
 }
