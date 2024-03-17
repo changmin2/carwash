@@ -27,7 +27,7 @@ class CommunityScreen extends ConsumerStatefulWidget {
 class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
   var category = ['','자유게시판','세차라이프','질문게시판'];
-
+  var nowScreen = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -51,6 +51,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
               alignment: Alignment.centerLeft,
               child: TTabBar(
                 onTap: (index){
+                  nowScreen = index;
                   ref.read(categoryProvider.notifier).update((state) => category[index]);
                 },
                 tabs: const [
@@ -77,24 +78,29 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
       ),
     );
   }
+  FloatingActionButton _floatingActionButton(BuildContext context) {
+
+    return FloatingActionButton.extended(
+      backgroundColor: PRIMARY_COLOR,
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CommunityRegisterScreen(
+              category: category[nowScreen] == '' ? '자유게시판' : category[nowScreen],
+            ))
+        );
+      },
+      label: Text(
+        '글쓰기',
+        style: Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white),
+      ),
+      icon: const Icon(
+        Iconsax.path,
+        color: Colors.white,
+      ),
+    );
+  }
+
 }
 
 
-FloatingActionButton _floatingActionButton(BuildContext context) {
-
-
-  return FloatingActionButton.extended(
-    backgroundColor: PRIMARY_COLOR,
-    onPressed: () {
-      context.goNamed(CommunityRegisterScreen.routeName);
-    },
-    label: Text(
-      '글쓰기',
-      style: Theme.of(context).textTheme.titleMedium!.apply(color: Colors.white),
-    ),
-    icon: const Icon(
-      Iconsax.path,
-      color: Colors.white,
-    ),
-  );
-}

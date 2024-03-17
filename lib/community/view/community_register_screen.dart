@@ -25,7 +25,10 @@ import '../../common/const/data.dart';
 
 class CommunityRegisterScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityRegisterScreen';
-  const CommunityRegisterScreen({Key? key}) : super(key: key);
+  String category;
+  CommunityRegisterScreen({
+    this.category = '자유게시판',
+    Key? key}) : super(key: key);
 
   @override
   ConsumerState<CommunityRegisterScreen> createState() => _CommunityRegisterState();
@@ -34,7 +37,6 @@ class CommunityRegisterScreen extends ConsumerStatefulWidget {
 class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
   String? title = '';
   String? content = '';
-  String category = '자유게시판';
   String? tag = '';
   final picker = ImagePicker();
   XFile? image; // 카메라로 촬영한 이미지를 저장할 변수
@@ -57,7 +59,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
         title: DropdownButton(
             underline: const SizedBox(),
             style: Theme.of(context).textTheme.titleLarge,
-            value: category,
+            value: widget.category,
             items: categories
                 .map((e) => DropdownMenuItem(
                       value: e,
@@ -66,7 +68,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                 .toList(),
             onChanged: (value) {
               setState(() {
-                category = value!;
+                widget.category = value!;
               });
             }),
       ),
@@ -293,7 +295,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                       final user = ref.read(userMeProvider) as UserModel;
 
 
-                      if(category == '세차라이프'){
+                      if(widget.category == '세차라이프'){
                         if(images.length == 0){
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text("세차라이프는 이미지를 하나 이상 선택해야합니다."),
@@ -314,7 +316,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                             creator: user.nickname,
                             content: content!,
                             title: title!,
-                            category: category,
+                            category: widget.category,
                             hastag: tag!,
                             imgUrl: _downloadUrls == null ? '' : _downloadUrls.toString()!,
                           );
@@ -322,7 +324,8 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                           await ref.read(communityRepositoryProvider).register(param);
                           //뒤로가기시 페이지 갱신
                           await ref.read(communityProvider.notifier).paginate(forceRefetch: true);
-                          context.goNamed(CommunityScreen.routeName);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
                         }
 
                       }else{
@@ -339,15 +342,15 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                           creator: user.nickname,
                           content: content!,
                           title: title!,
-                          category: category,
+                          category: widget.category,
                           hastag: tag!,
                           imgUrl: _downloadUrls == null ? '' : _downloadUrls.toString()!,
                         );
-
                         await ref.read(communityRepositoryProvider).register(param);
                         //뒤로가기시 페이지 갱신
                         await ref.read(communityProvider.notifier).paginate(forceRefetch: true);
-                        context.goNamed(CommunityScreen.routeName);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
                       }
 
                     }

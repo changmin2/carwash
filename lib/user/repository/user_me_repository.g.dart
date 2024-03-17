@@ -92,7 +92,8 @@ class _UserMeRepository implements UserMeRepository {
   Future<String> edit(editRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'accessToken': 'true'};
+    _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(editRequest.toJson());
     final _result = await _dio.fetch<String>(_setStreamType<String>(Options(

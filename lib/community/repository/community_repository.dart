@@ -25,6 +25,9 @@ abstract class CommunityRepository extends IBasePaginationRepository<CommunityMo
   = _CommunityRepository;
 
   @GET('/communityPaginate')
+  @Headers({
+    'accessToken':'true'
+  })
   Future<CursorPagination<CommunityModel>> paginate({
     @Queries() PaginationParams? paginationParams = const PaginationParams(),
   });
