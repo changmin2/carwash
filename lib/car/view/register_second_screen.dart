@@ -132,7 +132,11 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
 
                               /// - 버튼
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  selectList.removeAt(index);
+                                  setState(() {
+                                  });
+                                },
                                 icon: const Icon(Icons.remove),
                               ),
                             ],
