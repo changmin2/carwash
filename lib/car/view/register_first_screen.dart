@@ -79,8 +79,11 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
                       THelperFunctions.showSnackBar(context, "세차 기록을 선택해주세요!");
                       return;
                     }
-
-                    context.goNamed(RecordSecondScreen.routeName);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RecordSecondScreen()),
+                    );
+                    //context.goNamed(RecordSecondScreen.routeName);
                   },
                   child: const Text('다음 단계'),
                 ),

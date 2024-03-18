@@ -46,8 +46,8 @@ class _SelectCardState extends ConsumerState<SelectCard> {
     final state = ref.watch(SelectProvider);
 
     return GestureDetector(
-      onTap: () {
-        ref.read(SelectProvider.notifier).select(widget.index);
+      onTap: () async {
+        await state.select(widget.index);
       },
       child: SizedBox(
         width: washList[widget.index].length * 25,

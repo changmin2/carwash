@@ -5,6 +5,7 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
 class RecordSecondScreen extends ConsumerStatefulWidget {
@@ -23,6 +24,7 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
     // TODO: implement initState
     super.initState();
     final select = ref.read(SelectProvider).selects;
+
     for (var i = 0; i < washList.length; i++) {
       select[i] == 1 ? selectList.add(washList[i]) : null;
     }

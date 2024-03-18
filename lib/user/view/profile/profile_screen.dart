@@ -1,3 +1,4 @@
+import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
@@ -58,7 +59,18 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                   
                   /// Setting Menus
                   //const TSettingsMenuTile(icon: Iconsax.box, title: "나의 장비", subTitle: '나만의 장비를 등록하고 관리해보세요!'),
-                  //const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "나의 세차 루트", subTitle: '자주 사용하는 세차 루트를 등록해 보세요!'),
+                  GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RecordFirstScreen()),
+                        );
+                      },
+                      child: TSettingsMenuTile(icon: Iconsax.calendar_edit,
+                          title: "나의 세차 루트",
+                          subTitle: '자주 사용하는 세차 루트를 등록해 보세요!'
+                      )
+                  ),
                   //const TSettingsMenuTile(icon: Iconsax.notification_bing, title: "알림 설정", subTitle: '알고 싶은 내용만 알림이 오게 관리해보세요!'),
                   const TSettingsMenuTile(icon: Iconsax.notification_1, title: "문의사항은 아래의 이메일로 문의해주세요.", subTitle: 'dlckdals9467@naver.com'),
                    SizedBox(

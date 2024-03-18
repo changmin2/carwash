@@ -8,7 +8,7 @@ final SelectProvider  = ChangeNotifierProvider<SelectChangeNotifier>((ref) {
 class SelectChangeNotifier extends ChangeNotifier{
   List<int> selects = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
-  void select(int index){
+  Future<void> select(int index) async {
     selects[index] == 0 ? selects[index]=1 : selects[index] = 0;
     notifyListeners();
   }
