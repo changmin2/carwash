@@ -11,8 +11,10 @@ import '../../common/utils/helpers/helper_functions.dart';
 
 class RecordFirstScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordFirst';
-
-  const RecordFirstScreen({Key? key}) : super(key: key);
+  int flag;
+  RecordFirstScreen({
+    this.flag = 0,
+    Key? key}) : super(key: key);
 
   @override
   ConsumerState<RecordFirstScreen> createState() => _RecordFirstScreenState();
@@ -81,7 +83,9 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
                     }
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RecordSecondScreen()),
+                      MaterialPageRoute(builder: (context) => RecordSecondScreen(
+                        flag: widget.flag,
+                      )),
                     );
                     //context.goNamed(RecordSecondScreen.routeName);
                   },
