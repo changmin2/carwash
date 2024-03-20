@@ -23,6 +23,7 @@ import '../../../weather/provider/weather_provider.dart';
 
 
 class MainScreen extends ConsumerStatefulWidget {
+  static String get routeName => '/';
   const MainScreen({Key? key}) : super(key: key);
 
   @override

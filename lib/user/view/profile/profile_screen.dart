@@ -63,7 +63,9 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                       onTap: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => RecordFirstScreen()),
+                          MaterialPageRoute(builder: (context) => RecordFirstScreen(
+                            flag: 1,
+                          )),
                         );
                       },
                       child: TSettingsMenuTile(icon: Iconsax.calendar_edit,

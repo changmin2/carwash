@@ -3,6 +3,7 @@ import 'package:carwash/car/view/register_thrid_screen.dart';
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/user/view/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
@@ -10,8 +11,10 @@ import 'package:go_router/go_router.dart';
 
 class RecordSecondScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordTwo';
-
-  const RecordSecondScreen({Key? key}) : super(key: key);
+  int flag;
+  RecordSecondScreen({
+    this.flag = 0,
+    Key? key}) : super(key: key);
   @override
   ConsumerState<RecordSecondScreen> createState() => _RecordTwoScreenState();
 }
@@ -167,7 +170,8 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
             ),
 
             const SizedBox(height: TSizes.defalutSpace),
-
+            widget.flag == 0
+            ?
             /// 다음 단계 버튼
             SizedBox(
               width: double.infinity,
@@ -177,7 +181,27 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
                 },
                 child: const Text('다음 단계'),
               ),
-            ),
+            )
+            :
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  while(context.canPop()){
+                    context.pop();
+                  }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserProfileScreen(
+
+                    )),
+                  );
+
+
+                },
+                child: const Text('등록하기'),
+              ),
+            )
           ],
         ),
       ),
