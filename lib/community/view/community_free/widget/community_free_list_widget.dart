@@ -39,7 +39,8 @@ class TCommunityFreeListWidget extends StatelessWidget {
                         showBorder: true,
                         radius: 6,
                         borderColor: Colors.redAccent,
-                        child: Text('HOT', style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.redAccent)),
+                        backgroundColor: Colors.redAccent,
+                        child: Text('HOT', style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.white)),
                       ),
                       const SizedBox(width: TSizes.sm),
                     ],
@@ -65,59 +66,66 @@ class TCommunityFreeListWidget extends StatelessWidget {
             Text(date, style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.grey)),
           ],
         ),
+
         const SizedBox(height: TSizes.spaceBtwItems),
 
         /// 제목
         Text(title, style: Theme.of(context).textTheme.bodyMedium),
-        const SizedBox(height: TSizes.spaceBtwItems),
+
+        const SizedBox(height: TSizes.spaceBtwItems * 2),
 
         /// 유저사진, 닉네임, 좋아요, 댓글
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             /// 유저사진
-            imageUrl.isNotEmpty
-                ? TRoundedImage(
-                    width: 30,
-                    height: 30,
-                    fit: BoxFit.fill,
-                    imageUrl: imageUrl,
-                    borderRadius: 100,
-                    isNetworkImage: isNetworkImage,
-                  )
-                : const Icon(Iconsax.user_octagon, size: 24),
-            const SizedBox(width: TSizes.sm),
+            Row(
+              children: [
+                imageUrl.isNotEmpty
+                    ? TRoundedImage(
+                        width: 30,
+                        height: 30,
+                        fit: BoxFit.fill,
+                        imageUrl: imageUrl,
+                        borderRadius: 100,
+                        isNetworkImage: isNetworkImage,
+                      )
+                    : const Icon(Iconsax.user_octagon, size: 24),
+                const SizedBox(width: TSizes.sm),
 
-            /// 닉네임
-            Container(
-              width: MediaQuery.of(context).size.width*0.49,
-                child: Text(
+                /// 닉네임
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.49,
+                  child: Text(
                     nickName,
-                    style: Theme.of(context).textTheme.bodySmall,
+                    style: Theme.of(context).textTheme.labelLarge,
                     overflow: TextOverflow.ellipsis,
-                )
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(width: TSizes.sm),
 
-            Text('|', style: Theme.of(context).textTheme.bodySmall),
-            const SizedBox(width: TSizes.sm),
+            /// 좋아요 and 댓글
+            Row(
+              children: [
+                Text('좋아요', style: Theme.of(context).textTheme.labelMedium),
+                const SizedBox(width: TSizes.xs),
+                Text('$likeCount', style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.redAccent)),
+                const SizedBox(width: TSizes.spaceBtwItems),
 
-            /// 추천
-            const Icon(Iconsax.like_1, size: 14),
-            const SizedBox(width: TSizes.xs),
-            Text('$likeCount', style: Theme.of(context).textTheme.bodySmall),
-            const SizedBox(width: TSizes.sm),
-
-            Text('|', style: Theme.of(context).textTheme.bodySmall),
-            const SizedBox(width: TSizes.sm),
-
-            /// 댓글
-            const Icon(Iconsax.message4, size: 14),
-            const SizedBox(width: TSizes.xs),
-            Text('$replyCount', style: Theme.of(context).textTheme.bodySmall),
+                /// 댓글
+                Text('댓글', style: Theme.of(context).textTheme.labelMedium),
+                const SizedBox(width: TSizes.xs),
+                Text('$replyCount', style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.blueAccent)),
+              ],
+            ),
           ],
         ),
-        Divider()
+
+        const SizedBox(height: TSizes.spaceBtwItems),
+
+        const Divider(thickness: 0.5),
       ],
     );
   }

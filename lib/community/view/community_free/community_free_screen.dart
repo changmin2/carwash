@@ -19,163 +19,173 @@ class TCommunityFreeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final hot = ref.watch(hotAllCommunityProvider);
-    final hotLists = hot.map((element) =>  element.id);
+    final hotLists = hot.map((element) => element.id);
 
     ref.watch(communityProvider);
     return hot.isNotEmpty
         ? Padding(
             padding: const EdgeInsets.all(TSizes.defalutSpace),
             child: PaginationListView(
-                provider: communityProvider,
-                itemBuilder: <CommunityModel>(_, index, community) {
+              provider: communityProvider,
+              itemBuilder: <CommunityModel>(_, index, community) {
+                if (index == 0) {
+                  return Column(
+                    children: [
+                      /// HOT 자유게시판
+                      /// HOT section header
+                      const TCommunitySectionHeading(
+                        firstTitle: 'HOT',
+                        firstTitleColor: Colors.red,
+                        secondTitle: '자유게시판',
+                      ),
 
-                  if (index == 0) {
-                    return Column(
-                      children: [
-                        /// HOT 자유게시판
-                        /// HOT section header
-                        const TCommunitySectionHeading(
-                          firstTitle: 'HOT',
-                          firstTitleColor: Colors.red,
-                          secondTitle: '자유게시판',
+                      const SizedBox(height: TSizes.spaceBtwItems),
+
+                      hot.isNotEmpty
+                          ?
+
+                          /// HOT 전체 리스트
+                          SizedBox(
+                              height: 170,
+                              child: ListView.builder(
+                                itemCount: hot.length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var imgs = '';
+                                  hot[index].imgUrls?.length != 0 ? imgs = hot[index].imgUrls!.split('[')[1].split(']')[0].split(",")[0] : null;
+
+                                  return hot[index].category == "자유게시판"
+                                      ? Padding(
+                                          padding: const EdgeInsets.only(right: TSizes.sm),
+                                          child: TCommunityFreeHotCard(
+                                            imageUrl: imgs == '' ? 'asset/img/no_image.png' : imgs,
+                                            title: hot[index].title,
+                                            model: hot[index],
+                                            isNetworkImage: imgs == '' ? false : true,
+                                          ),
+                                        )
+                                      : Container();
+                                },
+                              ),
+                            )
+                          : Container(),
+
+                      const SizedBox(height: TSizes.spaceBtwItems),
+
+                      const Divider(thickness: 0.5),
+
+                      const SizedBox(height: TSizes.spaceBtwItems),
+
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent, //전체영역 클릭
+                        onTap: () {
+                          context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
+                        },
+                        child: TCommunityFreeListWidget(
+                          hotYn: hotLists.contains(community.id) ? true : false,
+                          hashtag: community.hastag,
+                          date: community.createDate.split("T")[0],
+                          title: community.title,
+                          imageUrl: 'asset/img/profile_image.png',
+                          nickName: community.creator,
+                          likeCount: community.favorite,
+                          replyCount: community.commentCnt,
                         ),
-
-                        const SizedBox(height: TSizes.spaceBtwItems),
-
-                        hot.length>0
-                        ?
-                        /// HOT 전체 리스트
-                        SizedBox(
-                          height: 170,
-                          child: ListView.builder(
-                            itemCount: hot.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (BuildContext context, int index) {
-                              var imgs = '';
-                              hot[index].imgUrls?.length != 0
-                                  ?
-                              imgs = hot[index].imgUrls!.split('[')[1].split(']')[0].split(",")[0]
-                                  : null;
-                              return hot[index].category == "자유게시판"
-                                  ? Padding(
-                                      padding: EdgeInsets.only(right: TSizes.sm),
-                                      child: TCommunityFreeHotCard(
-                                        imageUrl: imgs == '' ? 'asset/img/no_image.png' : imgs,
-                                        title: hot[index].title,
-                                        model: hot[index],
-                                        isNetworkImage: imgs == '' ? false : true,
-                                      ),
-                                    )
-                                  : Container();
-                            },
-                          ),
-                        )
-                        :Container(),
-
-                        const SizedBox(height: TSizes.spaceBtwSections),
-
-                        const Divider(thickness: 1),
-
-                        const SizedBox(height: TSizes.spaceBtwItems),
-
-                        GestureDetector(
-                          onTap: () {
-                            context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
-                          },
-                          child: TCommunityFreeListWidget(
-                            hotYn: hotLists.contains(community.id) ? true : false,
-                            hashtag: community.hastag,
-                            date: community.createDate.split("T")[0],
-                            title: community.title,
-                            imageUrl: 'asset/img/profile_image.png',
-                            nickName: community.creator,
-                            likeCount: community.favorite,
-                            replyCount: community.commentCnt,
-                          ),
-                        )
-                      ],
-                    );
-                  }
-
-                  return GestureDetector(
-                    onTap: () {
-                      context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
-                    },
-                    child: TCommunityFreeListWidget(
-                      hotYn: hotLists.contains(community.id) ? true : false,
-                      hashtag: community.hastag,
-                      date: community.createDate.split("T")[0],
-                      title: community.title,
-                      imageUrl: 'asset/img/profile_image.png',
-                      nickName: community.creator,
-                      likeCount: community.favorite,
-                      replyCount: community.commentCnt,
-                    ),
+                      )
+                    ],
                   );
-                }),
+                }
+
+                return GestureDetector(
+                  behavior: HitTestBehavior.translucent, //전체영역 클릭
+                  onTap: () {
+                    context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
+                  },
+                  child: TCommunityFreeListWidget(
+                    hotYn: hotLists.contains(community.id) ? true : false,
+                    hashtag: community.hastag,
+                    date: community.createDate.split("T")[0],
+                    title: community.title,
+                    imageUrl: 'asset/img/profile_image.png',
+                    nickName: community.creator,
+                    likeCount: community.favorite,
+                    replyCount: community.commentCnt,
+                  ),
+                );
+              },
+            ),
           )
         : Padding(
             padding: const EdgeInsets.all(TSizes.defalutSpace),
             child: PaginationListView(
-                provider: communityProvider,
-                itemBuilder: <CommunityModel>(_, index, community) {
-                  if (index == 0) {
-                    return Column(
-                      children: [
-                        /// HOT 자유게시판
-                        /// HOT section header
-                        const TCommunitySectionHeading(
-                          firstTitle: 'HOT',
-                          firstTitleColor: Colors.red,
-                          secondTitle: '자유게시판',
+              provider: communityProvider,
+              itemBuilder: <CommunityModel>(_, index, community) {
+                if (index == 0) {
+                  return Column(
+                    children: [
+                      /// HOT 자유게시판
+                      /// HOT section header
+                      const TCommunitySectionHeading(
+                        firstTitle: 'HOT',
+                        firstTitleColor: Colors.red,
+                        secondTitle: '자유게시판',
+                      ),
+
+                      const SizedBox(height: TSizes.spaceBtwItems),
+
+                      /// HOT 전체 리스트
+                      const SizedBox(
+                        height: 170,
+                        child: SizedBox(
+                          height: 50,
+                          child: CircularProgressIndicator(),
                         ),
+                      ),
 
-                        const SizedBox(height: TSizes.spaceBtwItems),
+                      const SizedBox(height: TSizes.spaceBtwItems),
 
-                        /// HOT 전체 리스트
-                        SizedBox(height: 170, child: Container(height: 50, child: CircularProgressIndicator())),
+                      const Divider(thickness: 0.5),
 
-                        const SizedBox(height: TSizes.spaceBtwSections),
+                      const SizedBox(height: TSizes.spaceBtwItems),
 
-                        const Divider(thickness: 1),
-
-                        const SizedBox(height: TSizes.spaceBtwItems),
-
-                        GestureDetector(
-                          onTap: () {
-                            context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
-                          },
-                          child: TCommunityFreeListWidget(
-                            hotYn: hotLists.contains(community.id) ? true : false,
-                            hashtag: community.hastag,
-                            date: community.createDate.split("T")[0],
-                            title: community.title,
-                            imageUrl: 'asset/img/car_image.jpeg',
-                            nickName: community.creator,
-                            likeCount: 10,
-                            replyCount: 10,
-                          ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent, //전체영역 클릭
+                        onTap: () {
+                          context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
+                        },
+                        child: TCommunityFreeListWidget(
+                          hotYn: hotLists.contains(community.id) ? true : false,
+                          hashtag: community.hastag,
+                          date: community.createDate.split("T")[0],
+                          title: community.title,
+                          imageUrl: 'asset/img/car_image.jpeg',
+                          nickName: community.creator,
+                          likeCount: 10,
+                          replyCount: 10,
                         ),
-                      ],
-                    );
-                  }
-
-                  return GestureDetector(
-                    onTap: () {
-                      context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
-                    },
-                    child: TCommunityFreeListWidget(
-                      hotYn: hotLists.contains(community.id) ? true : false,
-                      hashtag: community.hastag,
-                      date: community.createDate.split("T")[0],
-                      title: community.title,
-                      imageUrl: 'asset/img/car_image.jpeg',
-                      nickName: community.creator,
-                      likeCount: 10,
-                      replyCount: 10,
-                    ),
+                      ),
+                    ],
                   );
-                }),
+                }
+
+                return GestureDetector(
+                  behavior: HitTestBehavior.translucent, // 추가
+                  onTap: () {
+                    context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
+                  },
+                  child: TCommunityFreeListWidget(
+                    hotYn: hotLists.contains(community.id) ? true : false,
+                    hashtag: community.hastag,
+                    date: community.createDate.split("T")[0],
+                    title: community.title,
+                    imageUrl: 'asset/img/car_image.jpeg',
+                    nickName: community.creator,
+                    likeCount: 10,
+                    replyCount: 10,
+                  ),
+                );
+              },
+            ),
           );
   }
 }
