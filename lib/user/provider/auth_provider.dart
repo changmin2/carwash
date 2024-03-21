@@ -133,6 +133,7 @@ class AuthProviderNotifier extends ChangeNotifier{
     //   ref.read(WeatherProvider.notifier).getWeather();
     // }
     final UserModelBase? user = ref.read(userMeProvider);
+
     //로그인 중
     final logginIn = state.location == '/login';
     //회원가입 페이지 이동중인지

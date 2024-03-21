@@ -44,5 +44,13 @@ abstract class RecordRepository{
     @Body() RecentRecordDto param = const RecentRecordDto()
   });
 
+  @GET("/myrecord/register/{washList}")
+  @Headers({
+    'accessToken':'true'
+  })
+  Future<void> registerMyRecord({
+    @Path() required String washList
+  });
+
 
 }

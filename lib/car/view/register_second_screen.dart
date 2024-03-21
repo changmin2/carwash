@@ -9,6 +9,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 
+import '../provider/myrecord_provider.dart';
+
 class RecordSecondScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordTwo';
   int flag;
@@ -35,6 +37,7 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return DefaultLayoutV2(
       appBar: AppBar(),
       child: Padding(
@@ -186,7 +189,10 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  await ref.read(MyRecordProvider.notifier).registerRecord(selectList.toString());
+
+
                   while(context.canPop()){
                     context.pop();
                   }
