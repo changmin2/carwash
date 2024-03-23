@@ -17,53 +17,6 @@ class TopMenuWidget extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        // /// 세차기록
-        // SizedBox(
-        //   width: 150,
-        //   child: OutlinedButton.icon(
-        //     // 텍스트버튼에 아이콘 넣기
-        //     onPressed: () =>context.goNamed(RecordFirstScreen.routeName),
-        //     style: const ButtonStyle(
-        //       backgroundColor: MaterialStatePropertyAll(Colors.white),
-        //     ),
-        //     icon: const Icon(
-        //       Icons.airport_shuttle,
-        //       color: Colors.deepOrangeAccent,
-        //     ),
-        //     label: Padding(
-        //       padding: const EdgeInsets.only(left: TSizes.sm),
-        //       child: Text(
-        //         '세차기록',
-        //         style: Theme.of(context).textTheme.headlineSmall,
-        //       ),
-        //     ),
-        //   ),
-        // ),
-
-        // /// 커뮤니티
-        // SizedBox(
-        //   width: 150,
-        //   child: OutlinedButton.icon(
-        //     // 텍스트버튼에 아이콘 넣기
-        //     onPressed: () {
-        //       context.goNamed(CommunityScreen.routeName);
-        //     },
-        //     style: const ButtonStyle(
-        //       backgroundColor: MaterialStatePropertyAll(Colors.white),
-        //     ),
-        //     icon: const Icon(
-        //       Icons.family_restroom_outlined,
-        //       color: Colors.deepOrangeAccent,
-        //     ),
-        //     label: Padding(
-        //       padding: const EdgeInsets.only(left: TSizes.sm),
-        //       child: Text(
-        //         '커뮤니티',
-        //         style: Theme.of(context).textTheme.headlineSmall,
-        //       ),
-        //     ),
-        //   ),
-        // ),
         
         /// 세차기록
         GestureDetector(
@@ -80,7 +33,7 @@ class TopMenuWidget extends ConsumerWidget {
                 const SizedBox(height: TSizes.sm),
                 Text(
                   '세차기록',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.titleLarge,
                 )
               ],
             ),
@@ -102,7 +55,7 @@ class TopMenuWidget extends ConsumerWidget {
                 const SizedBox(height: TSizes.sm),
                 Text(
                   '커뮤니티',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.titleLarge,
                 )
               ],
             ),
@@ -124,7 +77,7 @@ class TopMenuWidget extends ConsumerWidget {
                 const SizedBox(height: TSizes.sm),
                 Text(
                   '희석비율',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.titleLarge,
                 )
               ],
             ),

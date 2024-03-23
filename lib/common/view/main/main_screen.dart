@@ -1,5 +1,6 @@
 import 'package:carwash/car/model/recentRecordDto.dart';
 import 'package:carwash/car/repository/record_repository.dart';
+import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
@@ -20,7 +21,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../weather/provider/weather_provider.dart';
-
 
 class MainScreen extends ConsumerStatefulWidget {
   static String get routeName => '/';
@@ -50,6 +50,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final state = ref.watch(WeatherProvider);
     ref.read(favoriteProvider.notifier).getFavorites();
     ref.read(hotAllCommunityProvider.notifier).getHotAll();
+
     return DefaultLayoutV2(
       appBar: renderAppBar(context),
       backgroundColor: PRIMARY_COLOR,
@@ -87,56 +88,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       /// ----------------------------------------------------------------
                       /// 날씨 정보
                       /// ----------------------------------------------------------------
-                      state.length != 0
-                          ? Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      'asset/img/weather_best.png',
-                                      width: 30,
-                                      height: 30,
-                                    ),
-                                    const SizedBox(width: TSizes.spaceBtwItems),
-                                    Text(
-                                      '오늘 날씨를 확인하고 세차해요!',
-                                      style: Theme.of(context).textTheme.titleLarge,
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(height: TSizes.spaceBtwItems),
-                                SizedBox(
-                                  height: 130,
-                                  child: ListView.builder(
-                                    itemCount: state[0].list.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(right: 10),
-                                        child: Weather(
-                                          weatherInfo: state[0].list[index],
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            )
-                          : SizedBox(
-                              height: 130,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    '날씨 정보 불러오는중...',
-                                    style: Theme.of(context).textTheme.headlineSmall,
-                                  ),
-                                  const SizedBox(height: TSizes.spaceBtwItems),
-                                  const CircularProgressIndicator()
-                                ],
-                              ),
-                            ),
-
+                      _WeatherListWidget(context, state),
                       const SizedBox(height: TSizes.spaceBtwSections),
 
                       /// ----------------------------------------------------------------
@@ -165,6 +117,80 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       ),
     );
   }
+}
+
+Widget _WeatherListWidget(context, state) {
+  return state.length != 0
+      ? Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'asset/img/weather_best.png',
+                  width: 30,
+                  height: 30,
+                ),
+                const SizedBox(width: TSizes.spaceBtwItems),
+                Text(
+                  '오늘 날씨를 확인하고 세차해요!',
+                  style: Theme.of(context).textTheme.titleLarge,
+                )
+              ],
+            ),
+
+            const SizedBox(height: TSizes.spaceBtwItems),
+
+            // SizedBox(
+            //   height: 130,
+            //   child: ListView.builder(
+            //     itemCount: state[0].list.length,
+            //     scrollDirection: Axis.horizontal,
+            //     itemBuilder: (BuildContext context, int index) {
+            //       return Padding(
+            //         padding: const EdgeInsets.only(right: 10),
+            //         child: Weather(
+            //           weatherInfo: state[0].list[index],
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // ),
+
+            TRoundedContainer(
+              padding: const EdgeInsets.all(TSizes.md),
+              showBorder: true,
+              height: 260,
+              child: ListView.separated(
+                // itemCount: state[0].list.length,
+                itemCount: 7,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (_, __) {
+                  return const SizedBox(height: 10);
+                },
+                itemBuilder: (_, int index) {
+                  return Weather(
+                    weatherInfo: state[0].list[index],
+                  );
+                },
+              ),
+            ),
+          ],
+        )
+      : SizedBox(
+          height: 130,
+          child: Column(
+            children: [
+              Text(
+                '날씨 정보 불러오는중...',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: TSizes.spaceBtwItems),
+              const CircularProgressIndicator()
+            ],
+          ),
+        );
 }
 
 AppBar renderAppBar(_context) {
