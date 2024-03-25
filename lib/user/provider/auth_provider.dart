@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:carwash/car/provider/myrecord_provider.dart';
 import 'package:carwash/car/view/carwash_record_screen.dart';
 import 'package:carwash/car/view/record_detail_screen.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
@@ -132,6 +133,7 @@ class AuthProviderNotifier extends ChangeNotifier{
     // if(weather.length == 0){
     //   ref.read(WeatherProvider.notifier).getWeather();
     // }
+    ref.read(MyRecordProvider);
     final UserModelBase? user = ref.read(userMeProvider);
 
     //로그인 중

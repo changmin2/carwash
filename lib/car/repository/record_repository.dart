@@ -52,5 +52,11 @@ abstract class RecordRepository{
     @Path() required String washList
   });
 
+  @GET("/myrecord")
+  @Headers({
+    'accessToken':'true'
+  })
+  Future<String> getMyRecord();
+
 
 }

@@ -1,3 +1,4 @@
+import 'package:carwash/car/provider/myrecord_provider.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
@@ -25,9 +26,12 @@ class UserProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
+
   @override
   Widget build(BuildContext context) {
+    var record = ref.read(MyRecordProvider);
     final state = ref.watch(userMeProvider) as UserModel;
+    print(record);
     return DefaultLayoutV2(
       backgroundColor: PRIMARY_COLOR,
       appBar: AppBar(
