@@ -1,5 +1,6 @@
 import 'package:carwash/car/provider/myrecord_provider.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
+import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
@@ -66,6 +67,16 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
 
                   GestureDetector(
                     onTap: () {
+
+                      record.length != 0
+                      ?
+                      THelperFunctions.navigateToScreen(
+                        context,
+                        RecordSecondScreen(
+                          flag: 2,
+                        ),
+                      )
+                      :
                       THelperFunctions.navigateToScreen(
                         context,
                         RecordFirstScreen(

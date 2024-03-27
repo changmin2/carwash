@@ -39,4 +39,8 @@ class MyRecordStateNotifier extends StateNotifier<List<String>>{
     }
   }
 
+  void change(List<String> selectList) {
+    state = selectList ;
+  }
+
 }

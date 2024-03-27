@@ -1,4 +1,5 @@
 import 'package:carwash/car/provider/select_provider.dart';
+import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/car/view/register_thrid_screen.dart';
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/sizes.dart';
@@ -23,15 +24,18 @@ class RecordSecondScreen extends ConsumerStatefulWidget {
 
 class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
   final washList = ['매트세척', '시트세정', '시트코팅', '휠세척', '고압수', '프리워시', '스노우폼', '본세차', '철분제거', '페인트클렌저', '클레잉', '유막제거', '발수코팅', '폴리싱', '탈지', '실런트', '고체왁스', '물왁스', '드라잉', '타이어코팅', '휠코팅', '엔진룸세척', '트렁크정리'];
-  var selectList = [];
+  List<String> selectList = [];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     final select = ref.read(SelectProvider).selects;
-
-    for (var i = 0; i < washList.length; i++) {
-      select[i] == 1 ? selectList.add(washList[i]) : null;
+    if(widget.flag == 2){
+      selectList = ref.read(MyRecordProvider);
+    }else{
+      for (var i = 0; i < washList.length; i++) {
+        select[i] == 1 ? selectList.add(washList[i]) : null;
+      }
     }
   }
 
@@ -186,12 +190,14 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
               ),
             )
             :
+            widget.flag == 1
+            ?
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
                   await ref.read(MyRecordProvider.notifier).registerRecord(selectList.toString());
-
+                  ref.read(MyRecordProvider.notifier).change(selectList);
 
                   while(context.canPop()){
                     context.pop();
@@ -206,6 +212,23 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
 
                 },
                 child: const Text('등록하기'),
+              ),
+            )
+            :
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RecordFirstScreen(
+                      flag: 1,
+
+                    )),
+                  );
+
+                },
+                child: const Text('변경하기'),
               ),
             )
           ],
