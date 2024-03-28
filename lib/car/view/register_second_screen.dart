@@ -30,7 +30,7 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
     // TODO: implement initState
     super.initState();
     final select = ref.read(SelectProvider).selects;
-    if(widget.flag == 2){
+    if(widget.flag == 2 || widget.flag == 3){
       selectList = ref.read(MyRecordProvider);
     }else{
       for (var i = 0; i < washList.length; i++) {
@@ -177,7 +177,7 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
             ),
 
             const SizedBox(height: TSizes.defalutSpace),
-            widget.flag == 0
+            widget.flag == 0 || widget.flag == 3
             ?
             /// 다음 단계 버튼
             SizedBox(

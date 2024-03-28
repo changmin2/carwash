@@ -1,3 +1,4 @@
+import 'package:carwash/car/provider/myrecord_provider.dart';
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
@@ -20,7 +21,9 @@ class TopMenuWidget extends ConsumerWidget {
         
         /// 세차기록
         GestureDetector(
-          onTap: () => context.goNamed(RecordFirstScreen.routeName),
+          onTap: (){
+            context.goNamed(RecordFirstScreen.routeName);
+          },
           child: TRoundedContainer(
             width: 100,
             padding: const EdgeInsets.all(TSizes.md),

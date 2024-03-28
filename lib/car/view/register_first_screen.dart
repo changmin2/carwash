@@ -1,4 +1,5 @@
 import 'package:carwash/car/component/select_card.dart';
+import 'package:carwash/car/provider/myrecord_provider.dart';
 import 'package:carwash/car/provider/select_provider.dart';
 import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/common/const/sizes.dart';
@@ -22,7 +23,7 @@ class RecordFirstScreen extends ConsumerStatefulWidget {
 
 class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
   final washList = ['매트세척', '시트세정', '시트코팅', '휠세척', '고압수', '프리워시', '스노우폼', '미트세차', '철분제거', '페인트클렌저', '클레잉', '유막제거', '발수코팅', '폴리싱', '탈지', '실런트', '고체왁스', '물왁스', '드라잉', '타이어코팅', '휠코팅', '엔진룸세척', '트렁크정리'];
-
+  var check = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -33,7 +34,12 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(SelectProvider);
+    final myrecord = ref.read(MyRecordProvider);
+    if(myrecord.length != 0 && check == 0) {
 
+      Future.delayed(Duration.zero, () => showAlert(context));
+      check = 1;
+    }
     return DefaultLayoutV2(
       /// 앱바
       appBar: AppBar(),
@@ -97,6 +103,32 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
         ),
       ),
     );
+  }
+  void showAlert(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RecordSecondScreen(
+                      flag: 3,
+                    )),
+                  );
+                },
+                child: Text('예')
+            ),
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('아니오')
+            )
+          ],
+          content: Text("나만의 세차 순서가 있습니다.\n 그대로 사용하시겠습니까?"),
+        ));
   }
 }
 //
