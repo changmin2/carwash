@@ -34,7 +34,8 @@ import '../repository/record_repository.dart';
 class RecordThridScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordThrid';
   final query;
-  const RecordThridScreen({required this.query, Key? key}) : super(key: key);
+  RecordThridScreen({
+    required this.query, Key? key}) : super(key: key);
 
   @override
   ConsumerState<RecordThridScreen> createState() => _RecordThridScreenState();
@@ -61,7 +62,9 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   Widget build(BuildContext context) {
     final user = ref.read(userMeProvider) as UserModel;
     return DefaultLayoutV2(
-      appBar: AppBar(),
+      appBar: AppBar(
+
+      ),
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defalutSpace),

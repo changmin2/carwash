@@ -27,14 +27,20 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
   List<String> selectList = [];
   @override
   void initState() {
+
     // TODO: implement initState
     super.initState();
     final select = ref.read(SelectProvider).selects;
+
+
     if(widget.flag == 2 || widget.flag == 3){
       selectList = ref.read(MyRecordProvider);
     }else{
       for (var i = 0; i < washList.length; i++) {
         select[i] == 1 ? selectList.add(washList[i]) : null;
+      }
+      if(widget.flag == 0 && selectList.length == 0){
+        context.pop();
       }
     }
   }
@@ -184,7 +190,14 @@ class _RecordTwoScreenState extends ConsumerState<RecordSecondScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  context.goNamed(RecordThridScreen.routeName, queryParameters: {"query": selectList.toString()});
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RecordThridScreen(
+                      query: selectList.toString(),
+                    )),
+                  );
+
+                  //context.goNamed(RecordThridScreen.routeName, queryParameters: {"query": selectList.toString()});
                 },
                 child: const Text('다음 단계'),
               ),
