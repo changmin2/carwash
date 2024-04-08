@@ -60,6 +60,8 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(_selectedDay.toString().split(" ")[0]);
+
     /// 세차 기록 보기
     return DefaultLayoutV2(
       /// 앱바
