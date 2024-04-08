@@ -1,12 +1,13 @@
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/sizes.dart';
+import 'package:carwash/weather/model/weatherView_model.dart';
 import 'package:carwash/weather/model/weather_model.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
 class Weather extends StatelessWidget {
-  final WeatherInfo weatherInfo;
+  final WeatherViewModel weatherInfo;
 
   const Weather({required this.weatherInfo, Key? key}) : super(key: key);
 
@@ -39,45 +40,40 @@ class Weather extends StatelessWidget {
 
             /// 습도인데 강수확률로 변경 요청
             Text(
-              '${weatherInfo.main.humidity}%',
+              '${weatherInfo.humidity}%',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),
-        const Icon(
+
+        /// 오전 날씨 아이콘
+        weatherInfo.m_weather == 'Clear'
+            ? const Icon(
           Iconsax.sun_14,
           color: Colors.red,
+          size: 24,
+        )
+            : weatherInfo.m_weather == 'Clouds'
+            ? const Icon(
+          Iconsax.cloud,
+          color: Colors.grey,
+          size: 24,
+        )
+            : const Icon(
+          Iconsax.cloud_drizzle,
+          color: Colors.blue,
           size: 24,
         ),
 
 
-        /// 오전 12시 날씨 아이콘
-        // weatherInfo.weather[0].main == 'Clear'
-        //     ? const Icon(
-        //         Iconsax.sun_14,
-        //         color: Colors.red,
-        //         size: 25,
-        //       )
-        //     : weatherInfo.weather[0].main == 'Clouds'
-        //         ? const Icon(
-        //             Iconsax.cloud,
-        //             color: Colors.grey,
-        //             size: 25,
-        //           )
-        //         : const Icon(
-        //             Iconsax.cloud_drizzle,
-        //             color: Colors.blue,
-        //             size: 25,
-        //           ),
-
         /// 오후 6시 날씨 아이콘
-        weatherInfo.weather[0].main == 'Clear'
+        weatherInfo.a_weather == 'Clear'
             ? const Icon(
                 Iconsax.sun_14,
                 color: Colors.red,
                 size: 24,
               )
-            : weatherInfo.weather[0].main == 'Clouds'
+            : weatherInfo.a_weather == 'Clouds'
                 ? const Icon(
                     Iconsax.cloud,
                     color: Colors.grey,
@@ -96,7 +92,7 @@ class Weather extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                '${(weatherInfo.main.temp_min - 273.15).floor()}℃',
+                '${(weatherInfo.temp_min - 273.15).floor()}℃',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
@@ -110,7 +106,7 @@ class Weather extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                '${(weatherInfo.main.temp_max - 273.15).floor()}℃',
+                '${(weatherInfo.temp_max - 273.15).floor()}℃',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
