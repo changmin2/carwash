@@ -141,29 +141,12 @@ Widget _WeatherListWidget(context, state) {
 
             const SizedBox(height: TSizes.spaceBtwItems),
 
-            // SizedBox(
-            //   height: 130,
-            //   child: ListView.builder(
-            //     itemCount: state[0].list.length,
-            //     scrollDirection: Axis.horizontal,
-            //     itemBuilder: (BuildContext context, int index) {
-            //       return Padding(
-            //         padding: const EdgeInsets.only(right: 10),
-            //         child: Weather(
-            //           weatherInfo: state[0].list[index],
-            //         ),
-            //       );
-            //     },
-            //   ),
-            // ),
-
             TRoundedContainer(
               padding: const EdgeInsets.all(TSizes.md),
               showBorder: true,
-              height: 260,
+              height: 200,
               child: ListView.separated(
-                // itemCount: state[0].list.length,
-                itemCount: 7,
+                itemCount: 5,
                 scrollDirection: Axis.vertical,
                 physics: const NeverScrollableScrollPhysics(),
                 separatorBuilder: (_, __) {

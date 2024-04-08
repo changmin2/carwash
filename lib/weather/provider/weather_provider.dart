@@ -32,7 +32,7 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherModel>>{
     if(state.length!=0){
       return;
     }else{
-      var times = ['09','12','18'];
+      var times = ['12'];
 
       Position position;
       Position? lastPosition = await Geolocator.getLastKnownPosition();

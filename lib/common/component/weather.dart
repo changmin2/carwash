@@ -3,6 +3,7 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/weather/model/weather_model.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
 
 class Weather extends StatelessWidget {
   final WeatherInfo weatherInfo;
@@ -11,15 +12,17 @@ class Weather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final day = weatherInfo.dt_txt.split(" ")[0].split("-");
     final time = weatherInfo.dt_txt.split(" ")[1].split(":");
+    final week = DateFormat('E','ko_KR').format(DateTime.parse(day[0] +'-' + day[1] + '-' +day[2]));
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         /// 날짜
         Text(
-          '${day[1]}/${day[2]}(월)',
+          '${day[1]}/${day[2]}(${week})',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
 
@@ -86,20 +89,6 @@ class Weather extends StatelessWidget {
                     size: 24,
                   ),
 
-        /// 최고 온도
-        SizedBox(
-          width: 30,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                '${(weatherInfo.main.temp - 273.15).floor()}℃',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ],
-          ),
-        ),
-
         /// 최저 온도
         SizedBox(
           width: 30,
@@ -107,7 +96,21 @@ class Weather extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                '${(weatherInfo.main.temp - 273.15).floor()}℃',
+                '${(weatherInfo.main.temp_min - 273.15).floor()}℃',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ],
+          ),
+        ),
+
+        /// 최고 온도
+        SizedBox(
+          width: 30,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                '${(weatherInfo.main.temp_max - 273.15).floor()}℃',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
