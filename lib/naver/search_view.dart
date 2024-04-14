@@ -12,7 +12,67 @@ class SearchScreen extends ConsumerStatefulWidget {
 }
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
+  int now = 0;
   var itemlist = [];
+  var totalCount = 0;
+  int _page = 1;
+  final int _limit = 20;
+  bool _hasNextPage = true;
+  bool _isFirstLoadRunning = false;
+  bool _isLoadMoreRunning = false;
+  late ScrollController _controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller = ScrollController()..addListener(_nextLoad);
+  }
+
+  void _nextLoad() async {
+    if (_hasNextPage && !_isFirstLoadRunning && !_isLoadMoreRunning &&
+        _controller.position.extentAfter < 10) {
+
+      setState(() {
+        _isLoadMoreRunning = true;
+      });
+
+      _page += 1;
+
+      try {
+        var res = await ref.read(searchRepositoryProvider).searchProduct(item: ref.read(QueryProvider).query,start: now+1);
+        if (res.items.isNotEmpty) {
+          setState(() {
+            now+=res.items.length;
+            itemlist.addAll(res.items);
+          });
+        } else {
+          setState(() {
+            _hasNextPage = false;
+          });
+        }
+      } catch (e) {
+        print(e.toString());
+      }
+      setState(() {
+        _isLoadMoreRunning = false;
+      });
+    }
+  }
+
+  // 스크롤 위치를 맨위로 이동시킵니다.
+  void _scrollToTop() {
+    setState(() {
+      _controller.jumpTo(0);
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.removeListener(_nextLoad);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final query = ref.read(QueryProvider);
@@ -38,19 +98,39 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         actions: [
           IconButton(
               onPressed: () async {
+                totalCount = 0;
+                itemlist = [];
+                now = 0;
                 var items = await ref.read(searchRepositoryProvider).searchProduct(item: query.query);
+                totalCount = items.total;
                 itemlist = items.items;
+                now+=itemlist.length;
                 setState(() {
-
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  _scrollToTop();
                 });
               },
               icon: Icon(Icons.search_rounded))
         ],
       ),
-      body: Column(
+      body: itemlist.length == 0
+      ?
+          Container()
+      :
+      Column(
         children: [
+          const SizedBox(height: 8),
+          Text(
+            '총 $totalCount 건',
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 18
+            ),
+          ),
+          const SizedBox(height: 8),
           Expanded(
               child: GridView.builder(
+                  controller: _controller,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1 / 1.5,
@@ -85,7 +165,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             ),
                           ),
                         ));
-                  }))
+                  }
+              )
+          ),
         ],
       ),
     );

@@ -24,6 +24,7 @@ abstract class SearchRepository{
     'searchShopping' : 'true'
   })
   Future<SearchModel> searchProduct({
-    @Query('query') required String item
+    @Query('query') required String item,
+    @Query('start') int start = 1
   });
 }

@@ -19,9 +19,15 @@ class _SearchRepository implements SearchRepository {
   String? baseUrl;
 
   @override
-  Future<SearchModel> searchProduct({required item}) async {
+  Future<SearchModel> searchProduct({
+    required item,
+    start = 1,
+  }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'query': item};
+    final queryParameters = <String, dynamic>{
+      r'query': item,
+      r'start': start,
+    };
     final _headers = <String, dynamic>{r'searchShopping': 'true'};
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
