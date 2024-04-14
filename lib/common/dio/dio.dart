@@ -1,12 +1,6 @@
-
-
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:go_router/go_router.dart';
-
-
 import '../../user/provider/auth_provider.dart';
 import '../const/data.dart';
 import '../secure_storage/secure_storage.dart';
@@ -44,6 +38,15 @@ class CustomInterceptor extends Interceptor{
 
       options.headers.addAll({
         'authorization': 'Bearer $token',
+      });
+    }
+
+    if(options.headers['searchShopping']=='true'){
+      options.headers.remove('searchShopping');
+
+      options.headers.addAll({
+        'X-Naver-Client-Id':'tBLub4cT_Km2hTKlZ3at',
+        'X-Naver-Client-Secret':'1Zmjitgry3'
       });
     }
 

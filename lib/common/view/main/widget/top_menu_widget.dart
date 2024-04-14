@@ -4,6 +4,9 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/common/view/dilution/dilution_screen.dart';
 import 'package:carwash/community/view/community_screen.dart';
+import 'package:carwash/naver/model/search_model.dart';
+import 'package:carwash/naver/repository/search_repository.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -21,7 +24,9 @@ class TopMenuWidget extends ConsumerWidget {
         
         /// 세차기록
         GestureDetector(
-          onTap: (){
+          onTap: () async {
+            //네이버쇼핑 테스트
+            //SearchModel res = await ref.read(searchRepositoryProvider).searchProduct(item: "세차용품");
             context.goNamed(RecordFirstScreen.routeName);
           },
           child: TRoundedContainer(

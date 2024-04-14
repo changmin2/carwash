@@ -35,7 +35,7 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(SelectProvider);
     final myrecord = ref.read(MyRecordProvider);
-    if(myrecord.length != 0 && check == 0) {
+    if(myrecord.length != 0 && check == 0 && widget.flag != 1) {
 
       Future.delayed(Duration.zero, () => showAlert(context));
       check = 1;

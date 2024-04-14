@@ -14,6 +14,7 @@ import '../provider/myrecord_provider.dart';
 
 class RecordSecondScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordTwo';
+  // 0 : 기본 세차 등록할 때, 1 : 나의 세차 루트가 있을때 세차 등록 할 떄, 2: 나의 세차루트 등록 or 변경
   int flag;
   RecordSecondScreen({
     this.flag = 0,
