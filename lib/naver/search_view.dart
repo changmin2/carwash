@@ -40,7 +40,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               onPressed: () async {
                 var items = await ref.read(searchRepositoryProvider).searchProduct(item: query.query);
                 itemlist = items.items;
+                setState(() {
 
+                });
               },
               icon: Icon(Icons.search_rounded))
         ],
@@ -65,11 +67,15 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Image.network(itemlist[index].image),
+                                SizedBox(
+                                  child: Image.network(itemlist[index].image),
+                                  height: 200,
+                                ),
                                 Text(
                                   itemlist[index].title.toString().replaceAll('<b>','')
                                       .replaceAll('</b>', ''),
                                   style: TextStyle(fontSize: 12),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
                                   itemlist[index].lprice.toString() + '원',
