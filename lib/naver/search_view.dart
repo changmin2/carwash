@@ -18,7 +18,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   int _page = 1;
   final int _limit = 20;
   bool _hasNextPage = true;
-  bool _isFirstLoadRunning = false;
+  bool _isFirstLoadRunning = true;
   bool _isLoadMoreRunning = false;
   late ScrollController _controller;
 
@@ -98,6 +98,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         actions: [
           IconButton(
               onPressed: () async {
+                _isFirstLoadRunning = true;
                 totalCount = 0;
                 itemlist = [];
                 now = 0;
@@ -106,8 +107,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 itemlist = items.items;
                 now+=itemlist.length;
                 setState(() {
+                  _isFirstLoadRunning = false;
                   FocusManager.instance.primaryFocus?.unfocus();
-                  _scrollToTop();
+                  //_scrollToTop();
                 });
               },
               icon: Icon(Icons.search_rounded))
@@ -116,6 +118,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       body: itemlist.length == 0
       ?
           Container()
+      :
+      _isFirstLoadRunning
+      ? Center(child: CircularProgressIndicator())
       :
       Column(
         children: [
@@ -129,44 +134,66 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
           ),
           const SizedBox(height: 8),
           Expanded(
-              child: GridView.builder(
-                  controller: _controller,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1 / 1.5,
+            child: Column(
+              children: [
+                  Expanded(
+                    child: GridView.builder(
+                        controller: _controller,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1 / 1.5,
+                        ),
+                        itemCount: itemlist.length,
+                        itemBuilder: (context, index) {
+                          return GridTile(
+                              child: InkWell(
+                                onTap: () {
+            
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        child: Image.network(itemlist[index].image),
+                                        height: 200,
+                                      ),
+                                      Text(
+                                        itemlist[index].title.toString().replaceAll('<b>','')
+                                            .replaceAll('</b>', ''),
+                                        style: TextStyle(fontSize: 12),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      Text(
+                                        itemlist[index].lprice.toString() + '원',
+                                        style: TextStyle(fontSize: 16, color: Colors.red),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ));
+                        }
+                    )
+                ),
+                if (_isLoadMoreRunning == true)
+                  Container(
+                    padding: const EdgeInsets.all(30),
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
-                  itemCount: itemlist.length,
-                  itemBuilder: (context, index) {
-                    return GridTile(
-                        child: InkWell(
-                          onTap: () {
-
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  child: Image.network(itemlist[index].image),
-                                  height: 200,
-                                ),
-                                Text(
-                                  itemlist[index].title.toString().replaceAll('<b>','')
-                                      .replaceAll('</b>', ''),
-                                  style: TextStyle(fontSize: 12),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Text(
-                                  itemlist[index].lprice.toString() + '원',
-                                  style: TextStyle(fontSize: 16, color: Colors.red),
-                                )
-                              ],
-                            ),
-                          ),
-                        ));
-                  }
-              )
+                if (_hasNextPage == false)
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    color: Colors.blue,
+                    child: const Center(
+                      child: Text('No more data to be fetched.',
+                      style: TextStyle(color: Colors.white)),
+                    ),
+                ),
+              ]
+            ),
           ),
         ],
       ),
