@@ -1,10 +1,12 @@
 // screens/screen_search.dart
 import 'package:carwash/naver/provider/query_provider.dart';
 import 'package:carwash/naver/repository/search_repository.dart';
+import 'package:carwash/naver/view/search_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'model/search_model.dart';
+import '../../common/utils/helpers/helper_functions.dart';
+import '../model/search_model.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   @override
@@ -80,16 +82,19 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       appBar: AppBar(
         title: Column(
           children: [
-            TextField(
-              onChanged: (text) {
-                query.updateText(text);
-              },
-              autofocus: true,
-              decoration: InputDecoration(
-                hintText: 'search keyword',
-                border: InputBorder.none,
+            Container(
+              height: 50,
+              child: TextField(
+                onChanged: (text) {
+                  query.updateText(text);
+                },
+                autofocus: true,
+                decoration: InputDecoration(
+                  hintText: 'search keyword',
+                  border: InputBorder.none,
+                ),
+                cursorColor: Colors.grey,
               ),
-              cursorColor: Colors.grey,
             )
           ],
         ),
@@ -148,7 +153,12 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                           return GridTile(
                               child: InkWell(
                                 onTap: () {
-            
+                                  THelperFunctions.navigateToScreen(
+                                      context,
+                                      SearchProductDetailScreen(
+                                        item: itemlist[index],
+                                      )
+                                  );
                                 },
                                 child: Container(
                                   padding: EdgeInsets.all(10),

@@ -15,7 +15,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/widgets/appbar.dart';
-import '../../../naver/search_view.dart';
+import '../../../naver/view/search_view.dart';
 import '../edit_user_screen.dart';
 
 class UserProfileScreen extends ConsumerStatefulWidget {
@@ -35,6 +35,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
     final state = ref.watch(userMeProvider) as UserModel;
 
     return DefaultLayoutV2(
+      safeAreaColor: PRIMARY_COLOR,
       backgroundColor: PRIMARY_COLOR,
       appBar: AppBar(
         iconTheme: const IconThemeData(

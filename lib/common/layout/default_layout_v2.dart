@@ -1,3 +1,4 @@
+import 'package:carwash/common/const/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,8 +8,10 @@ class DefaultLayoutV2 extends ConsumerWidget {
   final AppBar? appBar;
   final FloatingActionButton? floatingActionButton;
   final Widget? bottomNavagtionBar;
+  final Color? safeAreaColor;
 
   const DefaultLayoutV2({
+    this.safeAreaColor = Colors.white,
     this.appBar =null,
     this.backgroundColor,
     required this.child,
@@ -19,15 +22,18 @@ class DefaultLayoutV2 extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: appBar==null ? null
-        : appBar,
-        body: SafeArea(child: child),
-        // backgroundColor: backgroundColor ?? Colors.white,
-        backgroundColor: backgroundColor,
-        floatingActionButton: floatingActionButton,
-        bottomNavigationBar: bottomNavagtionBar,
+    return Container(
+      color: safeAreaColor,
+      child: SafeArea(
+        child: Scaffold(
+          appBar: appBar==null ? null
+          : appBar,
+          body: SafeArea(child: child),
+          // backgroundColor: backgroundColor ?? Colors.white,
+          backgroundColor: backgroundColor,
+          floatingActionButton: floatingActionButton,
+          bottomNavigationBar: bottomNavagtionBar,
+        ),
       ),
     );
   }

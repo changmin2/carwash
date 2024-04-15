@@ -52,6 +52,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     ref.read(hotAllCommunityProvider.notifier).getHotAll();
 
     return DefaultLayoutV2(
+      safeAreaColor: PRIMARY_COLOR,
       appBar: renderAppBar(context),
       backgroundColor: PRIMARY_COLOR,
       child: Column(
