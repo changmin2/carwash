@@ -1,4 +1,5 @@
 import 'package:carwash/car/provider/myrecord_provider.dart';
+import 'package:carwash/car/view/accountBook/account_book_screen.dart';
 import 'package:carwash/car/view/register_first_screen.dart';
 import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/common/const/colors.dart';
@@ -86,24 +87,25 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                         ),
                       );
                     },
-                    child: const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "나의 세차 루트", subTitle: '자주 사용하는 세차 루트를 등록해 보세요!'),
+                    child: const TSettingsMenuTile(icon: Iconsax.route_square, title: "나의 세차 루트", subTitle: '자주 사용하는 세차 루트를 등록해 보세요!'),
                   ),
 
                   GestureDetector(
                     onTap: () {
+                      THelperFunctions.navigateToScreen(
+                        context,
+                        AccountBookScreen(
+                        ),
+                      );
+                    },
+                    child: const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "차계부", subTitle: '나의 차량 지출 비용을 관리해보세요!'),
+                  ),
 
-                      record.length != 0
-                          ?
+                  GestureDetector(
+                    onTap: () {
                       THelperFunctions.navigateToScreen(
                         context,
                         SearchScreen()
-                      )
-                          :
-                      THelperFunctions.navigateToScreen(
-                        context,
-                        RecordFirstScreen(
-                          flag: 1,
-                        ),
                       );
                     },
                     child: const TSettingsMenuTile(icon: Iconsax.search_favorite, title: "상품 검색", subTitle: '원하는 상품을 검색해보세요!'),
@@ -111,7 +113,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
 
                   const TSettingsMenuTile(icon: Iconsax.notification_1, title: "문의사항은 아래의 이메일로 문의해주세요.", subTitle: 'dlckdals9467@naver.com'),
 
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                  //const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// Logout Button
                   Container(
