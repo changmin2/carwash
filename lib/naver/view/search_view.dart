@@ -103,6 +103,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         actions: [
           IconButton(
               onPressed: () async {
+
                 _isFirstLoadRunning = true;
                 totalCount = 0;
                 itemlist = [];
@@ -112,6 +113,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 itemlist = items.items;
                 now+=itemlist.length;
                 setState(() {
+                  _hasNextPage = true;
                   _isFirstLoadRunning = false;
                   FocusManager.instance.primaryFocus?.unfocus();
                   //_scrollToTop();
