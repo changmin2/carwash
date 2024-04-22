@@ -93,33 +93,35 @@ FloatingActionButton _floatingActionButton(BuildContext context) {
   return FloatingActionButton(
     backgroundColor: PRIMARY_COLOR,
     onPressed: () {
-      showDialog(
-          context: context,
-          builder: (BuildContext context){
-            return AlertDialog.adaptive(
-              backgroundColor: Colors.white,
-              content: Text(
-                  '원하는 지출항목을 선택하세요.',
-                textAlign: TextAlign.center,
-              ),
-              actions: [
-                Center(
-                  child: Row(
-                    children: [
-                      TextButton(
-                          onPressed: (){
-                            context.pop();
-                            THelperFunctions.navigateToScreen(context, AccountRegisterScreen());
-                          },
-                          child: Text('hi')
-                      )
-                    ],
-                  ),
-                )
-              ],
-            );
-          }
-      );
+      THelperFunctions.navigateToScreen(context, AccountRegisterScreen());
+      // showDialog(
+      //     context: context,
+      //     builder: (BuildContext context){
+      //       THelperFunctions.navigateToScreen(context, AccountRegisterScreen());
+      //       return AlertDialog.adaptive(
+      //         backgroundColor: Colors.white,
+      //         content: Text(
+      //             '원하는 지출항목을 선택하세요.',
+      //           textAlign: TextAlign.center,
+      //         ),
+      //         actions: [
+      //           Center(
+      //             child: Row(
+      //               children: [
+      //                 TextButton(
+      //                     onPressed: (){
+      //                       context.pop();
+      //                       THelperFunctions.navigateToScreen(context, AccountRegisterScreen());
+      //                     },
+      //                     child: Text('hi')
+      //                 )
+      //               ],
+      //             ),
+      //           )
+      //         ],
+      //       );
+      //     }
+      // );
     },
     child: Icon(
       Icons.add,
