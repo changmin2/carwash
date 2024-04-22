@@ -1,8 +1,10 @@
+import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../common/component/rounded_container.dart';
 import '../../../common/utils/formatters/formatter.dart';
@@ -20,7 +22,7 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
   var category = '지출';
   var _day = TFormatter.formatDate(DateTime.now());
   var _prameterDay = '';
-  var _cost = 0;
+  var _cost;
   var _cate = '';
   var _memo = '';
   final categories = ['지출', '정비', '주유'];
@@ -29,6 +31,14 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
   Widget build(BuildContext context) {
     return DefaultLayoutV2(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            context.pop();
+          },
+          icon: Icon(
+            Icons.arrow_back
+          )
+        ),
         centerTitle: true,
         title: DropdownButton(
             underline: const SizedBox(),
@@ -45,6 +55,28 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
                 category = value!;
               });
             }),
+        actions: [
+          IconButton(
+              onPressed: (){
+                if (_day == '') {
+                  THelperFunctions.showSnackBar(context, "세차일자를 선택하세요.");
+                  return;
+                }
+                if (_cate == '') {
+                  THelperFunctions.showSnackBar(context, "카테고리를 입력하세요.");
+                  return;
+                }
+                if (_cost == null) {
+                  THelperFunctions.showSnackBar(context, "지출 비용을 입력하세요.");
+                  return;
+                }
+              },
+              icon: Icon(
+                Icons.check,
+                color: PRIMARY_COLOR,
+              )),
+          SizedBox(width: 10,)
+        ],
       ),
       child:
         SingleChildScrollView(
@@ -139,9 +171,11 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
                     ],
                     keyboardType: TextInputType.number,
                     onChanged: (value){
+                      value = value!.split('￦')[1].replaceAll(",", "");
                       _cost = int.parse(value!);
                     },
                     onSaved: (value){
+                      value = value!.split('￦')[1].replaceAll(",", "");
                       _cost = int.parse(value!);
                     },
                     textAlign: TextAlign.right,
@@ -151,32 +185,38 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
                 ),
                 const SizedBox(height: 16),
                 /// 메모
-                TextFormField(
-                  decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      hintText: '메모 할 내용을 입력하세요',
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide(width: 2,color: Colors.blue)
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          borderSide: BorderSide(width: 1,color: Colors.grey)
-                      )
-                    // suffixIcon: const Icon(
-                    //   Icons.ice_skating
-                    // )
+                SizedBox(
+                  height: MediaQuery.of(context).size.height/2,
+                  child: TextFormField(
+                    expands: true,
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        hintText: '메모 할 내용을 입력하세요',
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(width: 2,color: Colors.blue)
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            borderSide: BorderSide(width: 1,color: Colors.grey)
+                        )
+                      // suffixIcon: const Icon(
+                      //   Icons.ice_skating
+                      // )
+                    ),
+                    maxLines: null,
+                    keyboardType: TextInputType.multiline,
+                    textAlign: TextAlign.start,
+                    textAlignVertical: TextAlignVertical(y: -1.0),
+                    onChanged: (value){
+                      _memo = value!;
+                    },
+                    onSaved: (value){
+                      _memo = value!;
+                    },
+                    style: Theme.of(context).textTheme.titleSmall,
+
                   ),
-                  maxLines: null,
-                  keyboardType: TextInputType.multiline,
-                  onChanged: (value){
-                    _memo = value!;
-                  },
-                  onSaved: (value){
-                    _memo = value!;
-                  },
-                  style: Theme.of(context).textTheme.titleSmall,
-          
                 ),
               ],
             )
