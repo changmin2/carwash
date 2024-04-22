@@ -1,4 +1,6 @@
 // screens/screen_search.dart
+import 'package:carwash/common/const/colors.dart';
+import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/naver/provider/query_provider.dart';
 import 'package:carwash/naver/repository/search_repository.dart';
 import 'package:carwash/naver/view/search_detail.dart';
@@ -9,6 +11,8 @@ import '../../common/utils/helpers/helper_functions.dart';
 import '../model/search_model.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
+  const SearchScreen({Key? key}) : super(key: key);
+
   @override
   ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
@@ -32,9 +36,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   }
 
   void _nextLoad() async {
-    if (_hasNextPage && !_isFirstLoadRunning && !_isLoadMoreRunning &&
-        _controller.position.extentAfter < 10) {
-
+    if (_hasNextPage && !_isFirstLoadRunning && !_isLoadMoreRunning && _controller.position.extentAfter < 10) {
       setState(() {
         _isLoadMoreRunning = true;
       });
@@ -42,10 +44,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       _page += 1;
 
       try {
-        var res = await ref.read(searchRepositoryProvider).searchProduct(item: ref.read(QueryProvider).query,start: now+1);
+        var res = await ref.read(searchRepositoryProvider).searchProduct(item: ref.read(QueryProvider).query, start: now + 1);
         if (res.items.isNotEmpty) {
           setState(() {
-            now+=res.items.length;
+            now += res.items.length;
             itemlist.addAll(res.items);
           });
         } else {
@@ -78,137 +80,119 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final query = ref.read(QueryProvider);
+
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          children: [
-            Container(
-              height: 50,
-              child: TextField(
-                onChanged: (text) {
-                  query.updateText(text);
-                },
-                autofocus: true,
-                decoration: InputDecoration(
-                  hintText: 'search keyword',
-                  border: InputBorder.none,
-                ),
-                cursorColor: Colors.grey,
-              ),
-            )
-          ],
-        ),
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
-        actions: [
-          IconButton(
-              onPressed: () async {
+        title: SearchBar(
+          autoFocus: true,
+          // backgroundColor: const MaterialStatePropertyAll(Color(0xffF8F8FA)),
+          backgroundColor: const MaterialStatePropertyAll(Colors.white),
+          leading: const Icon(Icons.search_rounded),
+          elevation: const MaterialStatePropertyAll(0),
+          side: MaterialStateProperty.all(
+            const BorderSide(color: PRIMARY_COLOR),
+          ),
+          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 10)),
+          constraints: const BoxConstraints(minHeight: 40),
+          onSubmitted: (value) async {
+            _isFirstLoadRunning = true;
+            totalCount = 0;
+            itemlist = [];
+            now = 0;
+            var items = await ref.read(searchRepositoryProvider).searchProduct(item: value);
+            totalCount = items.total;
+            itemlist = items.items;
+            now += itemlist.length;
+            setState(() {
+              _hasNextPage = true;
+              _isFirstLoadRunning = false;
+              FocusManager.instance.primaryFocus?.unfocus();
+              //_scrollToTop();
+            });
+          },
+        ),
+      ),
 
-                _isFirstLoadRunning = true;
-                totalCount = 0;
-                itemlist = [];
-                now = 0;
-                var items = await ref.read(searchRepositoryProvider).searchProduct(item: query.query);
-                totalCount = items.total;
-                itemlist = items.items;
-                now+=itemlist.length;
-                setState(() {
-                  _hasNextPage = true;
-                  _isFirstLoadRunning = false;
-                  FocusManager.instance.primaryFocus?.unfocus();
-                  //_scrollToTop();
-                });
-              },
-              icon: Icon(Icons.search_rounded))
-        ],
-      ),
-      body: itemlist.length == 0
-      ?
-          Container()
-      :
-      _isFirstLoadRunning
-      ? Center(child: CircularProgressIndicator())
-      :
-      Column(
-        children: [
-          const SizedBox(height: 8),
-          Text(
-            '총 $totalCount 건',
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 18
-            ),
-          ),
-          const SizedBox(height: 8),
-          Expanded(
-            child: Column(
-              children: [
-                  Expanded(
-                    child: GridView.builder(
-                        controller: _controller,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 1 / 1.5,
-                        ),
-                        itemCount: itemlist.length,
-                        itemBuilder: (context, index) {
-                          return GridTile(
-                              child: InkWell(
-                                onTap: () {
-                                  THelperFunctions.navigateToScreen(
-                                      context,
-                                      SearchProductDetailScreen(
-                                        item: itemlist[index],
-                                      )
-                                  );
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(10),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        child: Image.network(itemlist[index].image),
-                                        height: 200,
-                                      ),
-                                      Text(
-                                        itemlist[index].title.toString().replaceAll('<b>','')
-                                            .replaceAll('</b>', ''),
-                                        style: TextStyle(fontSize: 12),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      Text(
-                                        itemlist[index].lprice.toString() + '원',
-                                        style: TextStyle(fontSize: 16, color: Colors.red),
-                                      )
-                                    ],
-                                  ),
+      body: itemlist.isEmpty
+          ? const Center(child: Text('검색 결과가 없습니다.\n다른 검색어로 다시 검색해 보세요!'))
+          : _isFirstLoadRunning
+              ? const Center(child: CircularProgressIndicator())
+              : Column(
+                  children: [
+                    // const SizedBox(height: 8),
+                    // Text(
+                    //   '총 $totalCount 건',
+                    //   style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w500),
+                    // ),
+                    // const SizedBox(height: 8),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: GridView.builder(
+                                controller: _controller,
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 1 / 1.5,
                                 ),
-                              ));
-                        }
-                    )
-                ),
-                if (_isLoadMoreRunning == true)
-                  Container(
-                    padding: const EdgeInsets.all(30),
-                    child: const Center(
-                      child: CircularProgressIndicator(),
+                                itemCount: itemlist.length,
+                                itemBuilder: (context, index) {
+                                  return GridTile(
+                                    child: InkWell(
+                                      onTap: () {
+                                        THelperFunctions.navigateToScreen(
+                                          context,
+                                          SearchProductDetailScreen(
+                                            item: itemlist[index],
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(TSizes.spaceBtwItems),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 200,
+                                              child: Image.network(itemlist[index].image),
+                                            ),
+                                            Text(
+                                              itemlist[index].title.toString().replaceAll('<b>', '').replaceAll('</b>', ''),
+                                              style: Theme.of(context).textTheme.bodyMedium,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            Text(
+                                              '${itemlist[index].lprice}원',
+                                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          ),
+                          if (_isLoadMoreRunning == true)
+                            Container(
+                              padding: const EdgeInsets.all(30),
+                              child: const Center(
+                                child: CircularProgressIndicator(),
+                              ),
+                            ),
+                          if (_hasNextPage == false)
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              color: Colors.blue,
+                              child: const Center(
+                                child: Text('No more data to be fetched.', style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                if (_hasNextPage == false)
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    color: Colors.blue,
-                    child: const Center(
-                      child: Text('No more data to be fetched.',
-                      style: TextStyle(color: Colors.white)),
-                    ),
+                  ],
                 ),
-              ]
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
