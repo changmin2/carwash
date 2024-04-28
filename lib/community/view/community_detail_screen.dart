@@ -291,63 +291,65 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                 const SizedBox(height: TSizes.spaceBtwSections * 2),
 
                                 /// 추천 버튼 클릭시
-                                GestureDetector(
-                                  onTap: () {
-                                    ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
-                                    check == -1
-                                    ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
-                                    : ref.read(communityProvider.notifier).downFavorite(widget.id);
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const TRoundedImage(
+                                          width: 30,
+                                          height: 30,
+                                          fit: BoxFit.fill,
+                                          imageUrl: 'asset/img/profile_image.png',
+                                          borderRadius: 100,
+                                        ),
+
+                                        const SizedBox(width: TSizes.sm),
+
+                                        Container(
+                                            width: MediaQuery.of(context).size.width*0.55,
+                                            child: Text(
+                                                state.creator,
+                                                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                                    color: Colors.grey,
+                                                    overflow: TextOverflow.ellipsis
+                                                )
+                                            )
+                                        ),
+                                      ],
+                                    ),
+                                    //좋아요 버튼
+                                    //좋아요 버튼 누를시
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                            onPressed: () {
+                                              ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
+                                              check == -1
+                                                  ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
+                                                  : ref.read(communityProvider.notifier).downFavorite(widget.id);
 
 
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const TRoundedImage(
-                                            width: 30,
-                                            height: 30,
-                                            fit: BoxFit.fill,
-                                            imageUrl: 'asset/img/profile_image.png',
-                                            borderRadius: 100,
-                                          ),
+                                            },
+                                            icon: Icon(
+                                                  check == -1
+                                                  ? Iconsax.like_1
+                                                      : Iconsax.like_11,
+                                                  size: 22,
+                                                  color: Colors.grey,
 
-                                          const SizedBox(width: TSizes.sm),
+                                                  ),
+                                        ),
 
-                                          Container(
-                                              width: MediaQuery.of(context).size.width*0.55,
-                                              child: Text(
-                                                  state.creator,
-                                                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                                      color: Colors.grey,
-                                                      overflow: TextOverflow.ellipsis
-                                                  )
-                                              )
-                                          ),
-                                        ],
-                                      ),
+                                        const SizedBox(width: TSizes.xs),
 
-                                      Row(
-                                        crossAxisAlignment: CrossAxisAlignment.end,
-                                        children: [
-                                          Icon(
-                                            check == -1
-                                            ? Iconsax.like_1
-                                            : Iconsax.like_11,
-                                            size: 22,
-                                            color: Colors.grey,
-
-                                          ),
-                                          const SizedBox(width: TSizes.xs),
-                                          Text(
-                                            state.favorite.toString(),
-                                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                        Text(
+                                          state.favorite.toString(),
+                                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
 
                                 const SizedBox(height: TSizes.spaceBtwItems),

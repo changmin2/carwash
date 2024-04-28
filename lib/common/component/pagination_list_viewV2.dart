@@ -157,57 +157,57 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
             const SizedBox(height: TSizes.spaceBtwSections * 2),
         
             /// 추천 버튼 클릭시
-            GestureDetector(
-              onTap: (){
-                ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
-                widget.flag == true
-                ?
-                check == -1
-                    ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
-                    : ref.read(communityProvider.notifier).downFavorite(widget.id)
-                :
-                check == -1
-                ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.id)
-                    : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.id);
-        
-        
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const TRoundedImage(
-                        width: 30,
-                        height: 30,
-                        fit: BoxFit.fill,
-                        imageUrl: 'asset/img/profile_image.png',
-                        borderRadius: 100,
-                      ),
-        
-                      const SizedBox(width: TSizes.sm),
-        
-                      Text(widget.model!.creator, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey)),
-                    ],
-                  ),
-        
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                       Icon(
-                        check == -1 ? Iconsax.like_1 : Iconsax.like_11,
-                        size: 22,
-                        color: Colors.grey,
-                      ),
-                      const SizedBox(width: TSizes.xs),
-                      Text(
-                        widget.model!.favorite.toString(),
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    const TRoundedImage(
+                      width: 30,
+                      height: 30,
+                      fit: BoxFit.fill,
+                      imageUrl: 'asset/img/profile_image.png',
+                      borderRadius: 100,
+                    ),
+
+                    const SizedBox(width: TSizes.sm),
+
+                    Text(widget.model!.creator, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey)),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: (){
+                        ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
+                        widget.flag == true
+                        ?
+                        check == -1
+                        ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
+                            : ref.read(communityProvider.notifier).downFavorite(widget.id)
+                            :
+                        check == -1
+                        ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.id)
+                            : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.id);
+
+
+                        },
+                        icon: Icon(
+                          check == -1 ? Iconsax.like_1 : Iconsax.like_11,
+                          size: 22,
+                          color: Colors.grey,
+                        ),
+                    ),
+
+                    const SizedBox(width: TSizes.xs),
+                    Text(
+                      widget.model!.favorite.toString(),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ],
             ),
         
             const SizedBox(height: TSizes.spaceBtwItems),

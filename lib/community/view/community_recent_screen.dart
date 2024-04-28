@@ -300,56 +300,59 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                                   const SizedBox(height: TSizes.spaceBtwSections * 2),
 
                                   /// 추천 버튼 클릭시
-                                  GestureDetector(
-                                    onTap: () {
-                                      check == -1
-                                          ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id)
-                                          : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.model.id);
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      /// 닉네임
+                                      Row(
+                                        children: [
+                                          const TRoundedImage(
+                                            width: 30,
+                                            height: 30,
+                                            fit: BoxFit.fill,
+                                            imageUrl: 'asset/img/profile_image.png',
+                                            borderRadius: 100,
+                                          ),
+                                          const SizedBox(width: TSizes.sm),
+                                          Container(
+                                            width: MediaQuery.of(context).size.width*0.55,
+                                            child: Text(
+                                              widget.model.creator,
+                                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey,overflow: TextOverflow.ellipsis),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
 
-                                      ref.read(favoriteProvider.notifier).updateFavorites(widget.model.id);
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        /// 닉네임
-                                        Row(
-                                          children: [
-                                            const TRoundedImage(
-                                              width: 30,
-                                              height: 30,
-                                              fit: BoxFit.fill,
-                                              imageUrl: 'asset/img/profile_image.png',
-                                              borderRadius: 100,
-                                            ),
-                                            const SizedBox(width: TSizes.sm),
-                                            Container(
-                                              width: MediaQuery.of(context).size.width*0.55,
-                                              child: Text(
-                                                widget.model.creator,
-                                                style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey,overflow: TextOverflow.ellipsis),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                      /// 추천
+                                      Row(
+                                        //crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {
+                                                check == -1
+                                                    ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id)
+                                                    : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.model.id);
 
-                                        /// 추천
-                                        Row(
-                                          crossAxisAlignment: CrossAxisAlignment.end,
-                                          children: [
-                                            Icon(
-                                              check == -1 ? Iconsax.like_1 : Iconsax.like_11,
-                                              size: 22,
-                                              color: Colors.grey,
-                                            ),
-                                            const SizedBox(width: TSizes.xs),
-                                            Text(
-                                              widget.model.favorite.toString(),
-                                              style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                                                ref.read(favoriteProvider.notifier).updateFavorites(widget.model.id);
+                                              }
+                                              ,icon: Icon(
+                                            check == -1 ? Iconsax.like_1 : Iconsax.like_11,
+                                            size: 22,
+                                            color: Colors.grey,
+                                          ),
+
+
+                                          ),
+
+                                          const SizedBox(width: TSizes.xs),
+                                          Text(
+                                            widget.model.favorite.toString(),
+                                            style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
 
                                   const SizedBox(height: TSizes.spaceBtwItems),
