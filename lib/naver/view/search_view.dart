@@ -85,7 +85,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: SearchBar(
-          autoFocus: true,
+          //autoFocus: true,
           // backgroundColor: const MaterialStatePropertyAll(Color(0xffF8F8FA)),
           backgroundColor: const MaterialStatePropertyAll(Colors.white),
           leading: const Icon(Icons.search_rounded),

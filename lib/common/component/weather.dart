@@ -105,7 +105,7 @@ class Weather extends StatelessWidget {
 
         /// 최고 온도 / 최저 온도
         Text(
-          '${(weatherInfo.temp_max - 273.15).floor()}℃ / ${(weatherInfo.temp_min - 273.15).floor()}℃',
+          '${(weatherInfo.temp_min - 273.15).floor()}℃ / ${(weatherInfo.temp_max - 273.15).floor()}℃',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
 
