@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/utils/helpers/helper_functions.dart';
-import '../model/search_model.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -105,6 +104,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             itemlist = items.items;
             now += itemlist.length;
             setState(() {
+              ref.read(QueryProvider.notifier).updateText(value);
               _hasNextPage = true;
               _isFirstLoadRunning = false;
               FocusManager.instance.primaryFocus?.unfocus();
