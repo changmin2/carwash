@@ -102,12 +102,23 @@ class Weather extends StatelessWidget {
                       ),
           ],
         ),
-
-        /// 최고 온도 / 최저 온도
-        Text(
-          '${(weatherInfo.temp_min - 273.15).floor()}℃ / ${(weatherInfo.temp_max - 273.15).floor()}℃',
-          style: Theme.of(context).textTheme.bodyMedium,
+        Row(
+          children: [
+            Text(
+              '${(weatherInfo.temp_min - 273.15).floor()}'.padLeft(2," ")+'℃',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            Text(
+              ' / ',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            Text(
+              '${(weatherInfo.temp_max - 273.15).floor()}'.padLeft(2," ")+'℃',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ],
         ),
+
 
 
       ],
