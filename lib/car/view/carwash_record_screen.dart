@@ -30,9 +30,11 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
     DateTime.now().day,
   );
 
+
   DateTime _focusedDay = DateTime.now();
   Map<String, List<Event>> events = {};
-  var eventList = [];
+  Map<String, List<Event>> targetEvents = {};
+  List<recordDto> eventList = [];
 
   @override
   void initState() {
@@ -42,25 +44,40 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
 
   Future<String> init() async {
     events = new Map<String, List<Event>>();
+    targetEvents = new Map<String, List<Event>>();
     var flag = ref.watch(stateProvider);
     eventList = await ref.watch(RecordProvider('false').notifier).getRecord(flag.flag);
+    //날짜 내림차순 정렬
+    eventList.sort((a, b) => b.date.compareTo(a.date));
     if (flag.flag == true) {
       ref.read(stateProvider).change();
     }
     for (var o in eventList) {
       o = o as recordDto;
+      //달력에 점 표시하기 위한 이벤트 리스트
       if (events.containsKey(o.date.toString().split(" ")[0])) {
         events[o.date.toString().split(" ")[0]]!.add(Event(o.id, o.memberId, o.imgUrl, o.washList, o.place, o.date));
       } else {
         events[o.date.toString().split(" ")[0]] = [Event(o.id, o.memberId, o.imgUrl, o.washList, o.place, o.date)];
       }
+
+      //달력 하단에 달 마다 리스트를 보여주기 위한 이벤트 리스트
+      if (targetEvents.containsKey(o.date.toString().split(" ")[0].substring(0,7))) {
+        targetEvents[o.date.toString().split(" ")[0].substring(0,7)]!.add(Event(o.id, o.memberId, o.imgUrl, o.washList, o.place, o.date));
+      } else {
+        targetEvents[o.date.toString().split(" ")[0].substring(0,7)] = [Event(o.id, o.memberId, o.imgUrl, o.washList, o.place, o.date)];
+      }
     }
+
+
+
     return "sucess";
   }
 
   @override
   Widget build(BuildContext context) {
-    print(_selectedDay.toString().split(" ")[0]);
+    //달력에서 그 달의 모든 세차기록을 보여주기 위한 기준 달
+    var targetDay = _selectedDay.toString().split(" ")[0].substring(0,7);
 
     /// 세차 기록 보기
     return DefaultLayoutV2(
@@ -129,18 +146,18 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
                   const SizedBox(height: TSizes.spaceBtwSections),
 
                   /// 해당일의 세차 기록 리스트
-                  events[_selectedDay.toString().split(" ")[0]] == null
+                  targetEvents[targetDay] == null
                       ? const SizedBox()
                       : Expanded(
                           child: ListView.builder(
-                              itemCount: events[_selectedDay.toString().split(" ")[0]]!.length,
+                              itemCount: targetEvents[targetDay]!.length,
                               itemBuilder: (BuildContext context, int idx) {
                                 return GestureDetector(
                                   onTap: () {
                                     context.pushNamed(RecordDetail.routeName,
-                                        pathParameters: {'id': events[_selectedDay.toString().split(" ")[0]]![idx].id.toString()});
+                                        pathParameters: {'id': targetEvents[targetDay]![idx].id.toString()});
                                   },
-                                  child: RecordCard(record: events[_selectedDay.toString().split(" ")[0]]![idx]),
+                                  child: RecordCard(record: targetEvents[targetDay]![idx]),
                                 );
                               }),
                         ),
