@@ -1,3 +1,5 @@
+import 'package:carwash/car/model/accountBookDto.dart';
+import 'package:carwash/car/provider/accountBook_provider.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
@@ -21,7 +23,7 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
   //1: 지출, 2: 정비, 3: 주유
   var category = '지출';
   var _day = TFormatter.formatDate(DateTime.now());
-  var _prameterDay = '';
+  DateTime _prameterDay = DateTime.now();
   var _cost;
   var _cate = '';
   var _memo = '';
@@ -70,6 +72,11 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
                   THelperFunctions.showSnackBar(context, "지출 비용을 입력하세요.");
                   return;
                 }
+
+                ref.read(accountBookProvider.notifier).add(
+                  AccountBookDto(date: _prameterDay, category: _cate, cost: _cost,memo: _memo)
+                );
+                context.pop();
               },
               icon: Icon(
                 Icons.check,
@@ -104,7 +111,7 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
                             THelperFunctions.showSnackBar(context, "오늘 이후의 날짜는 선택할 수 없습니다.");
                           } else {
                             setState(() {
-                              _prameterDay = selectedDate.toString();
+                              _prameterDay = selectedDate;
                               _day = TFormatter.formatDate(selectedDate);
                             });
                           }
