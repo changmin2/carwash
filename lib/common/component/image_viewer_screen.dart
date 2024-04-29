@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ImageViewerScreen extends StatefulWidget {
@@ -20,21 +21,26 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height*0.85; // 화면의 높이
-    return DefaultLayoutV2(
-      appBar: AppBar(),
-      child: Stack(
-        children: [
-          slider(
-          widget.imgUrl
-          , screenHeight),
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: indicator(widget.imgUrl),
-            ),
-          )
-        ],
-      )
+    return WillPopScope(
+      onWillPop: () async {
+        return true;
+      },
+      child: DefaultLayoutV2(
+        appBar: AppBar(),
+        child: Stack(
+          children: [
+            slider(
+            widget.imgUrl
+            , screenHeight),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: indicator(widget.imgUrl),
+              ),
+            )
+          ],
+        )
+      ),
     );
   }
 

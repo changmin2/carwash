@@ -20,6 +20,18 @@ class HotAllCommunityNotifier extends StateNotifier<List<CommunityModel>>{
     state = resp;
   }
 
+  CommunityModel? getModelById(int id){
+    var pState = state;
+    for(int i = 0; i<pState.length; i++){
+      if(pState[i].id == id){
+        return pState[i];
+      }
+    }
+    return null;
+  }
+
+
+
   void clickFavorite(int id){
 
     var pState = state;
