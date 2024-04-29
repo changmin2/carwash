@@ -49,6 +49,8 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    var gModel = ref.watch(hotAllCommunityProvider.notifier).getModelById(widget.model.id);
     ref.invalidate(commentProvider);
     ref.watch(hotAllCommunityProvider);
     final user = ref.read(userMeProvider) as UserModel;
@@ -299,7 +301,6 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
 
                                   const SizedBox(height: TSizes.spaceBtwSections * 2),
 
-                                  /// 추천 버튼 클릭시
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -324,7 +325,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                                         ],
                                       ),
 
-                                      /// 추천
+                                      /// 추천 버튼
                                       Row(
                                         //crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
@@ -347,7 +348,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
 
                                           const SizedBox(width: TSizes.xs),
                                           Text(
-                                            widget.model.favorite.toString(),
+                                            gModel!.favorite.toString(),
                                             style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
                                           ),
                                         ],

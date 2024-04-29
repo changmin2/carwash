@@ -71,57 +71,7 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
                         eventCounterViewType: DayEventCounterViewType.LABEL
                     ),
                     showLoadingForEvent: true,
-                    events: [
-                      Event(
-                        pay: 2000,
-                        child: Text('hi'),
-                        dateTime: CalendarDateTime(
-                          year: 2024,
-                          month: 4,
-                          day: 14,
-                          calendarType: CalendarType.GREGORIAN,
-
-                        ),
-
-
-                      ),
-                      Event(
-                        pay: 2000,
-                        child: Text('hi'),
-                        dateTime: CalendarDateTime(
-                          year: 2024,
-                          month: 4,
-                          day: 15,
-                          calendarType: CalendarType.GREGORIAN,
-
-                        ),
-
-
-                      ),
-                      Event(
-                        pay: 2000,
-                        child: Text('hi'),
-                        dateTime: CalendarDateTime(
-                          year: 2024,
-                          month: 4,
-                          day: 16,
-                          calendarType: CalendarType.GREGORIAN,
-
-                        ),
-
-
-                      ),
-                      Event(
-                          pay: 4000,
-                          child: Text('hi'),
-                          dateTime: CalendarDateTime(
-                              year: 2024,
-                              month: 4,
-                              day: 16,
-                              calendarType: CalendarType.GREGORIAN
-                          )
-                      )
-                    ],
+                    events: events
                   )
                 ],
               ),
