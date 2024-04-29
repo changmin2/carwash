@@ -8,6 +8,7 @@ import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/user/model/user_model.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
+import 'package:carwash/user/view/my_products/my_products_screen.dart';
 import 'package:carwash/user/view/profile/widget/setting_menu_tile.dart';
 import 'package:carwash/user/view/profile/widget/user_profile_tile.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,6 @@ class UserProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
-
   @override
   Widget build(BuildContext context) {
     var record = ref.read(MyRecordProvider);
@@ -70,45 +70,41 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
 
                   GestureDetector(
                     onTap: () {
-
                       record.length != 0
-                      ?
-                      THelperFunctions.navigateToScreen(
-                        context,
-                        RecordSecondScreen(
-                          flag: 2,
-                        ),
-                      )
-                      :
-                      THelperFunctions.navigateToScreen(
-                        context,
-                        RecordFirstScreen(
-                          flag: 1,
-                        ),
-                      );
+                          ? THelperFunctions.navigateToScreen(
+                              context,
+                              RecordSecondScreen(
+                                flag: 2,
+                              ),
+                            )
+                          : THelperFunctions.navigateToScreen(
+                              context,
+                              RecordFirstScreen(
+                                flag: 1,
+                              ),
+                            );
                     },
-                    child: const TSettingsMenuTile(icon: Iconsax.route_square, title: "나의 세차 루트", subTitle: '자주 사용하는 세차 루트를 등록해 보세요!'),
+                    child: const TSettingsMenuTile(icon: Iconsax.route_square, title: "나의 세차 순서", subTitle: '자주 사용하는 세차 순서를 등록해 보세요!'),
                   ),
 
                   GestureDetector(
                     onTap: () {
                       THelperFunctions.navigateToScreen(
                         context,
-                        AccountBookScreen(
-                        ),
+                        const MyProductsScreen(),
+                      );
+                    },
+                    child: const TSettingsMenuTile(icon: Iconsax.broom, title: "나의 세차 용품", subTitle: '내가 사용하는 세차 용품을 등록해 보세요!'),
+                  ),
+
+                  GestureDetector(
+                    onTap: () {
+                      THelperFunctions.navigateToScreen(
+                        context,
+                        const AccountBookScreen(),
                       );
                     },
                     child: const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "차계부", subTitle: '나의 차량 지출 비용을 관리해보세요!'),
-                  ),
-
-                  GestureDetector(
-                    onTap: () {
-                      THelperFunctions.navigateToScreen(
-                        context,
-                        SearchScreen()
-                      );
-                    },
-                    child: const TSettingsMenuTile(icon: Iconsax.search_favorite, title: "상품 검색", subTitle: '원하는 상품을 검색해보세요!'),
                   ),
 
                   const TSettingsMenuTile(icon: Iconsax.notification_1, title: "문의사항은 아래의 이메일로 문의해주세요.", subTitle: 'dlckdals9467@naver.com'),

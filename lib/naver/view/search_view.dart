@@ -6,6 +6,7 @@ import 'package:carwash/naver/repository/search_repository.dart';
 import 'package:carwash/naver/view/search_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../common/utils/helpers/helper_functions.dart';
 
@@ -26,6 +27,8 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   bool _isFirstLoadRunning = true;
   bool _isLoadMoreRunning = false;
   late ScrollController _controller;
+
+  var f = NumberFormat('###,###,###,###');
 
   @override
   void initState() {
@@ -163,7 +166,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                             Text(
-                                              '${itemlist[index].lprice}원',
+                                              '${f.format(int.parse(itemlist[index].lprice))}원',
                                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                                             )
                                           ],

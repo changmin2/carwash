@@ -5,7 +5,8 @@ class TTextFieldTheme {
 
   static InputDecorationTheme lightTextFieldTheme = InputDecorationTheme(
     filled: true,
-    fillColor: const Color(0xffF8F8FA),
+    // fillColor: const Color(0xffF8F8FA),
+    fillColor: Colors.white,
     errorMaxLines: 3,
     prefixIconColor: Colors.grey,
     suffixIconColor: Colors.grey,

@@ -9,6 +9,8 @@ class TBottomSheetTheme {
     modalBackgroundColor: Colors.white,
     constraints: const BoxConstraints(minWidth: double.infinity),
     shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(16)),
+    
+    surfaceTintColor: Colors.white,
   );
 
 
