@@ -21,21 +21,26 @@ class _ImageViewerScreenState extends State<ImageViewerScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height*0.85; // 화면의 높이
-    return DefaultLayoutV2(
-      appBar: AppBar(),
-      child: Stack(
-        children: [
-          slider(
-          widget.imgUrl
-          , screenHeight),
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: indicator(widget.imgUrl),
-            ),
-          )
-        ],
-      )
+    return WillPopScope(
+      onWillPop: () async {
+        return true;
+      },
+      child: DefaultLayoutV2(
+        appBar: AppBar(),
+        child: Stack(
+          children: [
+            slider(
+            widget.imgUrl
+            , screenHeight),
+            Positioned.fill(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: indicator(widget.imgUrl),
+              ),
+            )
+          ],
+        )
+      ),
     );
   }
 
