@@ -15,25 +15,27 @@ import '../../user/provider/user_me_provider.dart';
 import '../provider/comment_provider.dart';
 
 class CommentRegisterScreen extends ConsumerWidget {
-  final int id;
-  int? comment_id;
-  int? flag; // 0: 일반 게시판,
   CommentRegisterScreen({
     required this.id,
     this.comment_id = -1,
     this.flag = 0,
-    Key? key}) : super(key: key);
+    Key? key,
+  }) : super(key: key);
+
+  final int id;
+  int? comment_id;
+  int? flag; // 0: 일반 게시판,
+
   final _formKey = GlobalKey<FormState>();
   var _content;
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayoutV2(
-      child: TRoundedContainer(
-        height: THelperFunctions.screenHeight(context),
+      child: Padding(
         padding: const EdgeInsets.all(TSizes.defalutSpace),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Expanded(
               child: Form(
@@ -49,13 +51,14 @@ class CommentRegisterScreen extends ConsumerWidget {
                   },
                   decoration: const InputDecoration(
                     hintText: '부적절하거나 불쾌감을 줄 수 있는 컨텐츠는 제재를 받을 수 있습니다.',
-                    filled: false,
-                    border: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
+                    // filled: false,
+                    // border: InputBorder.none,
+                    // enabledBorder: InputBorder.none,
+                    // focusedBorder: InputBorder.none,
                   ),
                   keyboardType: TextInputType.multiline,
                   maxLines: 5,
+                  autofocus: true,
                 ),
               ),
             ),
@@ -65,38 +68,43 @@ class CommentRegisterScreen extends ConsumerWidget {
             /// 댓글 등록
             GestureDetector(
               onTap: () async {
-
                 _formKey.currentState!.save();
                 if (_formKey.currentState!.validate()) {
                   //일반 댓글 등록
-                  if(comment_id == -1){
+                  if (comment_id == -1) {
                     final state = ref.watch(userMeProvider);
                     final pState = state as UserModel;
 
-                    await ref.read(commentProvider(id).notifier)
-                        .createComment(pState.nickname, _content);
-                    await flag == 0 ? ref.read(communityProvider.notifier).upCommentCnt(id)
-                        : flag == 1 ? ref.read(hotAllCommunityProvider.notifier).upCommentCnt(id): ref.read(hotFreeCommunityProvider.notifier).upCommentCnt(id);
-
+                    await ref.read(commentProvider(id).notifier).createComment(pState.nickname, _content);
+                    flag == 0
+                        ? ref.read(communityProvider.notifier).upCommentCnt(id)
+                        : flag == 1
+                            ? ref.read(hotAllCommunityProvider.notifier).upCommentCnt(id)
+                            : ref.read(hotFreeCommunityProvider.notifier).upCommentCnt(id);
                   }
                   //대댓글
-                  else{
-
+                  else {
                     final state = ref.watch(userMeProvider);
                     final pState = state as UserModel;
-                    await ref.read(commentProvider(id).notifier).createRecommend(pState.nickname,_content, comment_id!);
-                    await flag == 0 ? ref.read(communityProvider.notifier).upCommentCnt(id)
-                        : flag == 1 ? ref.read(hotAllCommunityProvider.notifier).upCommentCnt(id): ref.read(hotFreeCommunityProvider.notifier).upCommentCnt(id);
-
+                    await ref.read(commentProvider(id).notifier).createRecommend(pState.nickname, _content, comment_id!);
+                    flag == 0
+                        ? ref.read(communityProvider.notifier).upCommentCnt(id)
+                        : flag == 1
+                            ? ref.read(hotAllCommunityProvider.notifier).upCommentCnt(id)
+                            : ref.read(hotFreeCommunityProvider.notifier).upCommentCnt(id);
                   }
-
+                  THelperFunctions.showSnackBar(context, "댓글 달기 성공!");
                   Navigator.pop(context);
                 }
               },
-              child: const Icon(
-                Iconsax.edit,
-                size: 35,
-                color: PRIMARY_COLOR,
+              child: TRoundedContainer(
+                showBorder: true,
+                borderColor: PRIMARY_COLOR,
+                padding: const EdgeInsets.all(TSizes.md),
+                child: Text(
+                  "등록",
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(color: PRIMARY_COLOR),
+                ),
               ),
             ),
           ],

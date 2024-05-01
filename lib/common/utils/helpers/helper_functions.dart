@@ -7,7 +7,7 @@ class THelperFunctions {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
           content: Text(message),
-          duration: Duration(milliseconds: 50),
+          duration: const Duration(seconds: 2),
       ),
     );
   }

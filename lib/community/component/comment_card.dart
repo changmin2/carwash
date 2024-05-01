@@ -1,8 +1,12 @@
+import 'package:carwash/common/component/rounded_image.dart';
+import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/community/component/comment_register_screen.dart';
 import 'package:carwash/community/component/recomment_card.dart';
 import 'package:carwash/community/model/comment_model.dart';
 import 'package:carwash/community/provider/communityProvider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../common/const/sizes.dart';
@@ -17,169 +21,249 @@ class CommentCard extends ConsumerWidget {
   final List<Recomment>? recomments;
   final int board_id;
   int flag;
+
   CommentCard({
     required this.comment,
     required this.recomments,
     required this.board_id,
     this.flag = 0,
-    Key? key}) : super(key: key);
+    Key? key,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.read(userMeProvider) as UserModel;
-    int recommentsCnt = recomments == null ? 1 : recomments!.length+1;
-    return Padding(
-      padding: EdgeInsets.only(left: 10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /// 댓글 내용
-          Container(
-            width: MediaQuery.of(context).size.width*0.8,
-            child: Text(
-              comment.content,
-              style: Theme.of(context).textTheme.bodyMedium,
-              maxLines: 5,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          const SizedBox(height: TSizes.spaceBtwItems),
+    int recommentsCnt = recomments == null ? 1 : recomments!.length + 1;
 
-          /// 댓글 아이디
-          Container(
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width/3.5,
-                      child: Text(
-                        comment.creator,
-                        style: Theme.of(context).textTheme.bodySmall,
-                        overflow: TextOverflow.ellipsis,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        /// 유저 사진
+        const TRoundedImage(
+          imageUrl: 'asset/img/no_image.png',
+          borderRadius: 100,
+          width: 30,
+          height: 30,
+        ),
+
+        const SizedBox(width: TSizes.spaceBtwItems / 2),
+
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// 유저 닉네임
+              SizedBox(
+                width: THelperFunctions.screenWidth(context) * 0.7,
+                child: Text(
+                  comment.creator,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+
+              const SizedBox(height: TSizes.xs),
+
+              /// 댓글내용
+              Text(
+                comment.content.trim(),
+                style: Theme.of(context).textTheme.bodyMedium,
+                maxLines: 5,
+                overflow: TextOverflow.ellipsis,
+              ),
+
+              const SizedBox(height: TSizes.xs),
+
+              Row(
+                children: [
+                  /// 날짜
+                  Text(
+                    comment.createDate.toString().split(" ")[0],
+                    style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.grey),
+                  ),
+
+                  const SizedBox(width: TSizes.xs),
+
+                  Text(
+                    "·",
+                    style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.grey),
+                  ),
+
+                  const SizedBox(width: TSizes.xs),
+
+                  GestureDetector(
+                    onTap: () => THelperFunctions.navigateToScreen(
+                      context,
+                      CommentRegisterScreen(
+                        id: board_id,
+                        comment_id: comment.comment_id,
+                        flag: flag,
                       ),
                     ),
-                    const SizedBox(width: TSizes.spaceBtwItems),
+                    child: Text(
+                      "답글달기",
+                      style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.grey),
+                    ),
+                  ),
 
-                  ],
-                ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        comment.createDate.toString().split(" ")[0],
-                        style: Theme.of(context).textTheme.bodySmall,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      (comment.creator == user.nickname || user.nickname == '관리자') ?
-                      _PopupMenuButtonPage(context, ref, comment.comment_id, board_id,recommentsCnt,flag)
-                          :_NoCreatorPopupMenuButtonPage(context, ref, comment.comment_id, board_id,flag)
-                    ]
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: TSizes.spaceBtwItems),
+                  const SizedBox(width: TSizes.xs),
 
-          const Divider(color: Colors.grey),
+                  Text(
+                    "·",
+                    style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.grey),
+                  ),
 
-          const SizedBox(height: TSizes.spaceBtwItems),
+                  const SizedBox(width: TSizes.xs),
 
+                  GestureDetector(
+                    onTap: () => THelperFunctions.showSnackBar(context, '신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
+                    child: Text(
+                      "신고하기",
+                      style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.grey),
+                    ),
+                  ),
 
-          /// 대댓글 내용
-          recomments?.length != 0
-          ?
-                  ListView.builder(
+                  (comment.creator == user.nickname || user.nickname == '관리자')
+                      ? Row(
+                          children: [
+                            const SizedBox(width: TSizes.xs),
+                            Text(
+                              "·",
+                              style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.grey),
+                            ),
+                            const SizedBox(width: TSizes.xs),
+
+                            GestureDetector(
+                              onTap: () async {
+                                if (context.mounted) {
+                                  await ref.read(commentProvider(board_id).notifier).deleteComment(comment.comment_id);
+                                  flag == 0
+                                      ? ref.read(communityProvider.notifier).downCommentCnt(board_id, recommentsCnt)
+                                      : flag == 1
+                                          ? ref.read(hotAllCommunityProvider.notifier).downCommentCnt(board_id, recommentsCnt)
+                                          : ref.read(hotFreeCommunityProvider.notifier).downCommentCnt(board_id, recommentsCnt);
+
+                                  THelperFunctions.showSnackBar(context, "댓글 삭제 성공");
+                                }
+                              },
+                              child: Text(
+                                "삭제",
+                                style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.grey),
+                              ),
+                            ),
+                          ],
+                        )
+                      : const SizedBox(),
+                ],
+              ),
+
+              const SizedBox(height: TSizes.spaceBtwItems),
+
+              /// 대댓글 내용
+              recomments!.isNotEmpty
+                  ? ListView.separated(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: recomments!.length,
-                      itemBuilder: (BuildContext context,int index){
+                      separatorBuilder: (_, __) => const SizedBox(height: TSizes.spaceBtwItems),
+                      itemBuilder: (BuildContext context, int index) {
                         return ReCommentCard(
-                            board_id : board_id,
-                            recomment: recomments![index],
-                            username: 'cc',
-                            comment_id: comment.comment_id,
-                            flag: flag
+                          board_id: board_id,
+                          recomment: recomments![index],
+                          username: 'cc',
+                          comment_id: comment.comment_id,
+                          flag: flag,
                         );
-                      }): Container(),
-          const SizedBox(height: TSizes.spaceBtwItems),
-        ],
-      )
+                      })
+                  : Container(),
+              // const SizedBox(height: TSizes.spaceBtwItems),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
 
-PopupMenuButton _PopupMenuButtonPage (BuildContext context,WidgetRef ref,int comment_id,int board_id,int recommentsCnt,flag){
-  return PopupMenuButton(
-    onSelected: (value) async {
-      if(value=='삭제') {
-        if(context.mounted){
-          await ref.read(commentProvider(board_id).notifier).deleteComment(comment_id);
-          await flag == 0 ? ref.read(communityProvider.notifier).downCommentCnt(board_id,recommentsCnt)
-              : flag == 1 ? ref.read(hotAllCommunityProvider.notifier).downCommentCnt(board_id,recommentsCnt): ref.read(hotFreeCommunityProvider.notifier).downCommentCnt(board_id,recommentsCnt);
-
-        }
-        //댓글 밑에 달린 대댓글 갯수를 가져오지 않고 다시 업데이트
-      }else if(value=='신고'){
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
-              duration: Duration(seconds: 1),
-            )
-        );
-      }else  if(value=='대댓글'){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => CommentRegisterScreen(id: board_id,comment_id : comment_id,flag: flag,)));
-      }
-    },
-    itemBuilder: (context) {
-      return [
-        PopupMenuItem(
-          value: '대댓글',
-          child: Text('대댓글'),
-        ),
-        PopupMenuItem(
-          value: '신고',
-          child: Text('신고'),
-        ),
-        PopupMenuItem(
-          value: '삭제',
-          child: Text('삭제'),
-        )
-      ];
-    },
-  );
-}
-
-
-PopupMenuButton _NoCreatorPopupMenuButtonPage (BuildContext context,WidgetRef ref,int comment_id,int recipe_id,int flag){
-  return PopupMenuButton(
-    onSelected: (value){
-      if(value=='대댓글'){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => CommentRegisterScreen(id: recipe_id,comment_id : comment_id,flag: flag,)));
-      }
-      else if(value=='신고'){
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
-              duration: Duration(seconds: 1),
-            )
-        );
-      }
-    },
-    itemBuilder: (context) {
-      return [
-        PopupMenuItem(
-          value: '대댓글',
-          child: Text('대댓글'),
-        ),
-        PopupMenuItem(
-          value: '신고',
-          child: Text('신고'),
-        ),
-      ];
-    },
-  );
-}
+// PopupMenuButton _PopupMenuButtonPage(BuildContext context, WidgetRef ref, int comment_id, int board_id, int recommentsCnt, flag) {
+//   return PopupMenuButton(
+//     onSelected: (value) async {
+//       if (value == '삭제') {
+//         if (context.mounted) {
+//           await ref.read(commentProvider(board_id).notifier).deleteComment(comment_id);
+//           await flag == 0
+//               ? ref.read(communityProvider.notifier).downCommentCnt(board_id, recommentsCnt)
+//               : flag == 1
+//                   ? ref.read(hotAllCommunityProvider.notifier).downCommentCnt(board_id, recommentsCnt)
+//                   : ref.read(hotFreeCommunityProvider.notifier).downCommentCnt(board_id, recommentsCnt);
+//         }
+//         //댓글 밑에 달린 대댓글 갯수를 가져오지 않고 다시 업데이트
+//       } else if (value == '신고') {
+//         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+//           content: Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
+//           duration: Duration(seconds: 1),
+//         ));
+//       } else if (value == '대댓글') {
+//         Navigator.push(
+//             context,
+//             MaterialPageRoute(
+//                 builder: (context) => CommentRegisterScreen(
+//                       id: board_id,
+//                       comment_id: comment_id,
+//                       flag: flag,
+//                     )));
+//       }
+//     },
+//     itemBuilder: (context) {
+//       return [
+//         PopupMenuItem(
+//           value: '대댓글',
+//           child: Text('대댓글'),
+//         ),
+//         PopupMenuItem(
+//           value: '신고',
+//           child: Text('신고'),
+//         ),
+//         PopupMenuItem(
+//           value: '삭제',
+//           child: Text('삭제'),
+//         )
+//       ];
+//     },
+//   );
+// }
+//
+// PopupMenuButton _NoCreatorPopupMenuButtonPage(BuildContext context, WidgetRef ref, int comment_id, int recipe_id, int flag) {
+//   return PopupMenuButton(
+//     onSelected: (value) {
+//       if (value == '대댓글') {
+//         Navigator.push(
+//             context,
+//             MaterialPageRoute(
+//                 builder: (context) => CommentRegisterScreen(
+//                       id: recipe_id,
+//                       comment_id: comment_id,
+//                       flag: flag,
+//                     )));
+//       } else if (value == '신고') {
+//         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+//           content: Text('신고되었습니다. 검토까지는 최대 24시간 소요되며 신고가 누적된 사용자는 글을 작성할 수 없게 됩니다.'),
+//           duration: Duration(seconds: 1),
+//         ));
+//       }
+//     },
+//     itemBuilder: (context) {
+//       return [
+//         PopupMenuItem(
+//           value: '대댓글',
+//           child: Text('대댓글'),
+//         ),
+//         PopupMenuItem(
+//           value: '신고',
+//           child: Text('신고'),
+//         ),
+//       ];
+//     },
+//   );
+// }
