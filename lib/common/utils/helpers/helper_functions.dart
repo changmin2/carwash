@@ -24,6 +24,7 @@ class THelperFunctions {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
