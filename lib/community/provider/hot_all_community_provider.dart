@@ -1,6 +1,7 @@
 import 'package:carwash/community/model/community_model.dart';
 import 'package:carwash/community/repository/community_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 final hotAllCommunityProvider = StateNotifierProvider<HotAllCommunityNotifier,List<CommunityModel>>((ref) {
   final repository = ref.watch(communityRepositoryProvider);
@@ -16,8 +17,11 @@ class HotAllCommunityNotifier extends StateNotifier<List<CommunityModel>>{
   }
 
   Future<void> getHotAll() async{
-    var resp = await repository.recentCommunity();
-    state = resp;
+    if(state.length == 0){
+      var resp = await repository.recentCommunity();
+      state = resp;
+    }
+
   }
 
   CommunityModel? getModelById(int id){

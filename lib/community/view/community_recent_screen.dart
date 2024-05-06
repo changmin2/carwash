@@ -27,6 +27,7 @@ import '../provider/communityProvider.dart';
 import '../provider/hot_all_community_provider.dart';
 import 'community_screen.dart';
 
+//HOT 커뮤니티 전용 상세 화면
 class CommunityRecentScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityRecentScreen';
   final CommunityModel model;
@@ -53,7 +54,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var gModel = ref.watch(hotAllCommunityProvider.notifier).getModelById(widget.model.id);
+    var gModel = ref.read(hotAllCommunityProvider.notifier).getModelById(widget.model.id);
     final button =ref.watch(buttonProvider);
     final user = ref.read(userMeProvider) as UserModel;
     List<String> imgs = [];
@@ -65,7 +66,6 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
     if (widget.model.imgUrls != '') {
       imgs = widget.model.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
     }
-
     return DefaultLayoutV2(
       appBar: _renderAppbar(user, context),
       bottomNavagtionBar: _renderBottomNavagtionBar(context),

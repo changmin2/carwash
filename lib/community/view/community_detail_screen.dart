@@ -43,7 +43,6 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
   }
   @override
   Widget build(BuildContext context) {
-
     ref.watch(communityProvider);
     //게시글 정보 가져오기
     final state = ref.read(communityProvider.notifier).getDetail(widget.id);

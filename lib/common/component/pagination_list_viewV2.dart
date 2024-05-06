@@ -74,8 +74,8 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
         child: CircularProgressIndicator(),
       );
     }
-
-    if(state is CursorPaginationError){
+    //댓글이 아예 없거나 댓글을 단 후 삭제시 댓글이 0개가 되었을때
+    if(state is CursorPaginationError || widget.model?.commentCnt == 0){
       List<String> imgs = [];
       if(widget.model!.imgUrls != ''){
         imgs = widget.model!.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
