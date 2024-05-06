@@ -17,6 +17,7 @@ import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
 import '../../common/component/rounded_image.dart';
 import '../component/comment_card.dart';
+import '../provider/button_provider.dart';
 import '../provider/communityProvider.dart';
 import '../provider/hot_all_community_provider.dart';
 import 'community_screen.dart';
@@ -44,10 +45,11 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
   @override
   Widget build(BuildContext context) {
     ref.watch(communityProvider);
+    final button =ref.watch(buttonProvider);
     //게시글 정보 가져오기
     final state = ref.read(communityProvider.notifier).getDetail(widget.id);
     //좋아요 정보
-    final favorites = ref.read(favoriteProvider);
+    final favorites = ref.watch(favoriteProvider);
     final user = ref.read(userMeProvider) as UserModel;
     var check = favorites.indexOf(widget.id);
     List<String> imgs = [];
@@ -220,133 +222,30 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                           if(index == 0){
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Text(state.createDate.split("T")[0], style: Theme.of(context).textTheme.labelLarge!.copyWith(color: Colors.grey)),
-                                const SizedBox(width: TSizes.sm),
-
-                                const SizedBox(height: TSizes.spaceBtwItems),
-
                                 /// 제목
-                                Text(state.title, style: Theme.of(context).textTheme.titleMedium),
+                                Text(state.title, style: Theme.of(context).textTheme.headlineMedium),
 
                                 const SizedBox(height: TSizes.spaceBtwItems),
 
-                                /// 태그
-                                state.hastag != ''
-                                    ?
-                                TRoundedContainer(
-                                  padding: const EdgeInsets.all(TSizes.xs),
-                                  showBorder: true,
-                                  radius: 6,
-                                  borderColor: PRIMARY_COLOR,
-                                  child: Text(
-                                    state.hastag!,
-                                    style: Theme.of(context).textTheme.labelLarge!.copyWith(color: PRIMARY_COLOR),
-                                  ),
-                                )
-                                    :
-                                Container(),
-
-                                const SizedBox(height: TSizes.spaceBtwItems),
-
-                                /// 글 내용
-                                Text(
-                                  state.content,
-                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(height: 1.5),
-                                ),
-
-                                const SizedBox(height: TSizes.spaceBtwSections),
-                                imgs.length > 0
-                                    ?
-                                GestureDetector(
-                                  onTap:(){
-                                    Navigator.push(context,MaterialPageRoute(builder: (context)
-                                     => ImageViewerScreen(imgUrl: imgs)
-                                    ));
-                                  },
-                                  child: SizedBox(
-                                    height: 120,
-                                    child: ListView.separated(
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: imgs.length,
-                                      separatorBuilder: (_, __) {
-                                        return const SizedBox(width: TSizes.spaceBtwItems / 2);
-                                      },
-                                      itemBuilder: (_, int index) {
-                                        return TRoundedImage(
-                                          imageUrl: imgs[index].toString().trim(),
-                                          width: 120,
-                                          height: 120,
-                                          fit: BoxFit.fill,
-                                          borderRadius: 12.0,
-                                          isNetworkImage: true,
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                )
-                                    :
-                                Container(),
-                                const SizedBox(height: TSizes.spaceBtwSections * 2),
-
-                                /// 추천 버튼 클릭시
+                                /// 닉네임
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      children: [
-                                        const TRoundedImage(
-                                          width: 30,
-                                          height: 30,
-                                          fit: BoxFit.fill,
-                                          imageUrl: 'asset/img/profile_image.png',
-                                          borderRadius: 100,
-                                        ),
-
-                                        const SizedBox(width: TSizes.sm),
-
-                                        Container(
-                                            width: MediaQuery.of(context).size.width*0.55,
-                                            child: Text(
-                                                state.creator,
-                                                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                                                    color: Colors.grey,
-                                                    overflow: TextOverflow.ellipsis
-                                                )
-                                            )
-                                        ),
-                                      ],
+                                    const TRoundedImage(
+                                      width: 24,
+                                      height: 24,
+                                      fit: BoxFit.fill,
+                                      imageUrl: 'asset/img/no_image.png',
+                                      borderRadius: 100,
                                     ),
-                                    //좋아요 버튼
-                                    //좋아요 버튼 누를시
-                                    Row(
+                                    const SizedBox(width: TSizes.sm),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        IconButton(
-                                            onPressed: () {
-                                              ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
-                                              check == -1
-                                                  ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
-                                                  : ref.read(communityProvider.notifier).downFavorite(widget.id);
-
-
-                                            },
-                                            icon: Icon(
-                                                  check == -1
-                                                  ? Iconsax.like_1
-                                                      : Iconsax.like_11,
-                                                  size: 22,
-                                                  color: Colors.grey,
-
-                                                  ),
-                                        ),
-
-                                        const SizedBox(width: TSizes.xs),
-
                                         Text(
-                                          state.favorite.toString(),
-                                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.grey),
+                                          state.creator,
+                                          style: Theme.of(context).textTheme.bodyLarge,
                                         ),
                                       ],
                                     ),
@@ -355,9 +254,142 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
 
                                 const SizedBox(height: TSizes.spaceBtwItems),
 
-                                Divider(thickness: 5, color: Colors.grey.withOpacity(0.3)),
+                                /// 날짜, 좋아요
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      state.createDate.split("T")[0],
+                                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.grey),
+                                    ),
+                                    GestureDetector(
+
+                                      onTap: button.disable==false ? () async {
+                                        //버튼 비활성화
+                                        button.change();
+                                        await check == -1
+                                            ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
+                                            : ref.read(communityProvider.notifier).downFavorite(widget.id);
+                                        await ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
+                                        //버튼 활성화
+                                        button.change();
+                                      } : null,
+                                      child: check == -1
+                                          ? TRoundedContainer(
+                                        showBorder: true,
+                                        padding: const EdgeInsets.all(TSizes.sm),
+                                        borderColor: Colors.redAccent,
+                                        radius: 10,
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '좋아요',
+                                              style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.redAccent),
+                                            ),
+                                            const SizedBox(width: TSizes.xs),
+                                            Text(
+                                              state.favorite.toString(),
+                                              style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.redAccent),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                          : TRoundedContainer(
+                                        padding: const EdgeInsets.all(TSizes.sm),
+                                        backgroundColor: Colors.redAccent,
+                                        radius: 10,
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '좋아요',
+                                              style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.white),
+                                            ),
+                                            const SizedBox(width: TSizes.xs),
+                                            Text(
+                                              state.favorite.toString(),
+                                              style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
 
                                 const SizedBox(height: TSizes.spaceBtwItems),
+
+                                const Divider(thickness: 0.5),
+
+                                const SizedBox(height: TSizes.spaceBtwSections),
+
+                                /// 태그
+                                state.hastag != ''
+                                    ? TRoundedContainer(
+                                  padding: const EdgeInsets.all(TSizes.xs),
+                                  showBorder: true,
+                                  radius: 6,
+                                  borderColor: PRIMARY_COLOR,
+                                  child: Text(
+                                    '#${state.hastag!}',
+                                    style: Theme.of(context).textTheme.labelLarge!.copyWith(color: PRIMARY_COLOR),
+                                  ),
+                                )
+                                    : const SizedBox(),
+
+                                const SizedBox(height: TSizes.spaceBtwItems),
+
+                                /// 등록 사진
+                                imgs.isNotEmpty
+                                    ? Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(context,MaterialPageRoute(builder: (context)
+                                        => ImageViewerScreen(imgUrl: imgs)
+                                        ));
+                                      },
+                                      child: SizedBox(
+                                        height: 120,
+                                        child: ListView.separated(
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: imgs.length,
+                                          separatorBuilder: (_, __) {
+                                            return const SizedBox(width: TSizes.spaceBtwItems / 2);
+                                          },
+                                          itemBuilder: (_, int index) {
+                                            return TRoundedImage(
+                                              imageUrl: imgs[index].toString().trim(),
+                                              width: 120,
+                                              height: 120,
+                                              fit: BoxFit.fill,
+                                              borderRadius: 12.0,
+                                              isNetworkImage: true,
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                                    : const SizedBox(),
+
+                                const SizedBox(height: TSizes.spaceBtwSections),
+
+                                /// 글 내용
+                                Text(
+                                  state.content.trim(),
+                                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(height: 1.5),
+                                ),
+
+                                const SizedBox(height: TSizes.spaceBtwSections),
+
+                                const Divider(thickness: 0.5),
+
+                                const SizedBox(height: TSizes.spaceBtwItems),
+
                                 /// 댓글 0이 아닐 경우
                                 Row(
                                   children: [
@@ -374,7 +406,6 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                     recomments:comment.commentList,
                                     board_id: widget.id
                                 )
-
                               ],
                             );
                           }
