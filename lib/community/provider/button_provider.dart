@@ -14,4 +14,8 @@ class StateChangeNotifier extends ChangeNotifier{
     disable = disable ? false : true;
     notifyListeners();
   }
+
+  void init(){
+    disable = false;
+  }
 }

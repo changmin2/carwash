@@ -71,6 +71,11 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
     ref.watch(communityProvider);
     final state = ref.watch(widget.provider);
     final button = ref.watch(buttonProvider);
+    ref.read(buttonProvider.notifier).init();
+
+    //좋아요 정보
+    final favorites = ref.watch(favoriteProvider);
+    var check = favorites.indexOf(widget.id);
     //완전 처음 로딩 일때
     if(state is CursorPaginationLoading){
       return Center(
@@ -133,16 +138,16 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
                   onTap: button.disable==false ? () async {
                     //버튼 비활성화
                     button.change();
-                    ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
+                    await ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
                     await widget.flag == true
                         ?
-                    check == -1
-                        ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
-                        : ref.read(communityProvider.notifier).downFavorite(widget.id)
+                          await check == -1
+                            ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
+                            : ref.read(communityProvider.notifier).downFavorite(widget.id)
                         :
-                    check == -1
-                        ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.id)
-                        : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.id);
+                          await check == -1
+                            ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.id)
+                            : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.id);
 
                     //버튼 활성화
                     button.change();
