@@ -28,16 +28,16 @@ class FavoriteStateNotifier extends StateNotifier<List<int>>{
 
   }
 
-  void updateFavorites(int id){
+  Future<void> updateFavorites(int id) async {
     if(state.length==0){
-      favoriteRepository.addFavorites(id: id);
+      await favoriteRepository.addFavorites(id: id);
       state.add(id);
     }else{
       if(state.indexOf(id)==-1){
-        favoriteRepository.addFavorites(id: id);
+        await favoriteRepository.addFavorites(id: id);
         state.add(id);
       }else{
-        favoriteRepository.deleteFavorites(id: id);
+        await favoriteRepository.deleteFavorites(id: id);
         state.remove(id);
       }
     }

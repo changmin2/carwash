@@ -35,12 +35,14 @@ class Recomment{
   final String creator;
   final String content;
   final DateTime createDate;
+  final String target;
 
   Recomment({
     required this.recomment_id,
     required this.creator,
     required this.content,
     required this.createDate,
+    required this.target
   });
 
   factory Recomment.fromJson(Map<String,dynamic> json)

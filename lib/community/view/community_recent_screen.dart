@@ -3,6 +3,7 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/community/component/recomment_card.dart';
+import 'package:carwash/community/provider/button_provider.dart';
 import 'package:carwash/community/provider/comment_provider.dart';
 import 'package:carwash/community/provider/hot_free_community_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -53,12 +54,14 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
   @override
   Widget build(BuildContext context) {
     var gModel = ref.watch(hotAllCommunityProvider.notifier).getModelById(widget.model.id);
-    ref.invalidate(commentProvider);
-    ref.watch(hotAllCommunityProvider);
+    final button =ref.watch(buttonProvider);
     final user = ref.read(userMeProvider) as UserModel;
     List<String> imgs = [];
-    final favorites = ref.read(favoriteProvider);
+    final favorites = ref.watch(favoriteProvider);
+    //현재 해당글이 좋아요 상태인지 아닌지 판단
     var check = favorites.indexOf(widget.model.id);
+    // 좋아요 버튼 클릭시 비활성화
+
     if (widget.model.imgUrls != '') {
       imgs = widget.model.imgUrls!.split("[")[1].split("]")[0].split(",").toList();
     }
@@ -118,10 +121,15 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                           style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.grey),
                         ),
                         GestureDetector(
-                          onTap: () {
-                            check == -1 ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id) : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.model.id);
-                            ref.read(favoriteProvider.notifier).updateFavorites(widget.model.id);
-                          },
+
+                          onTap: button.disable==false ? () async {
+                            //버튼 비활성화
+                            button.change();
+                            await check == -1 ? ref.read(hotAllCommunityProvider.notifier).clickFavorite(widget.model.id) : ref.read(hotAllCommunityProvider.notifier).downFavorite(widget.model.id);
+                            await ref.read(favoriteProvider.notifier).updateFavorites(widget.model.id);
+                            //버튼 활성화
+                            button.change();
+                          } : null,
                           child: check == -1
                               ? TRoundedContainer(
                                   showBorder: true,
@@ -194,7 +202,9 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  THelperFunctions.navigateToScreen(context, ImageViewerScreen(imgUrl: imgs));
+                                  Navigator.push(context,MaterialPageRoute(builder: (context)
+                                  => ImageViewerScreen(imgUrl: imgs)
+                                  ));
                                 },
                                 child: SizedBox(
                                   height: 120,
@@ -241,7 +251,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                       children: [
                         Text('댓글', style: Theme.of(context).textTheme.bodyLarge),
                         const SizedBox(width: TSizes.spaceBtwItems / 2),
-                        Text(widget.model.commentCnt.toString(), style: Theme.of(context).textTheme.bodyLarge),
+                        Text(gModel.commentCnt.toString(), style: Theme.of(context).textTheme.bodyLarge),
                       ],
                     ),
 

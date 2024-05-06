@@ -73,10 +73,11 @@ class CommentStateNotifier extends CommentPaginationProvider<CommentModel,Commen
   }
 
   //대댓글 등록
-  Future<void> createRecommend(String creator,String content, int comment_id) async {
+  Future<void> createRecommend(String creator,String content, int comment_id,String target) async {
     CommentParam commentParam = new CommentParam(
         creator: creator,
-        content: content
+        content: content,
+        target:  target
     );
     final resp =  await repository.createReComment(comment_id: comment_id,commentParam: commentParam);
     final pState = state as CursorPagination;

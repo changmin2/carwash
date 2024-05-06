@@ -32,6 +32,7 @@ class CommentCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     final user = ref.read(userMeProvider) as UserModel;
     int recommentsCnt = recomments == null ? 1 : recomments!.length + 1;
 
@@ -41,7 +42,7 @@ class CommentCard extends ConsumerWidget {
       children: [
         /// 유저 사진
         const TRoundedImage(
-          imageUrl: 'asset/img/no_image.png',
+          imageUrl: 'asset/img/profile_image.png',
           borderRadius: 100,
           width: 30,
           height: 30,
@@ -93,14 +94,19 @@ class CommentCard extends ConsumerWidget {
                   const SizedBox(width: TSizes.xs),
 
                   GestureDetector(
-                    onTap: () => THelperFunctions.navigateToScreen(
-                      context,
-                      CommentRegisterScreen(
-                        id: board_id,
-                        comment_id: comment.comment_id,
-                        flag: flag,
-                      ),
-                    ),
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context)
+                         => CommentRegisterScreen(
+                           id: board_id,
+                           comment_id: comment.comment_id,
+                           flag: flag,
+                           creator: comment.creator,
+                         ),
+                        )
+                      );
+                    },
                     child: Text(
                       "답글달기",
                       style: Theme.of(context).textTheme.labelMedium!.copyWith(color: Colors.grey),
@@ -171,7 +177,7 @@ class CommentCard extends ConsumerWidget {
                         return ReCommentCard(
                           board_id: board_id,
                           recomment: recomments![index],
-                          username: 'cc',
+                          username: comment.creator,
                           comment_id: comment.comment_id,
                           flag: flag,
                         );

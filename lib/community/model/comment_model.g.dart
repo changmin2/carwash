@@ -32,6 +32,7 @@ Recomment _$RecommentFromJson(Map<String, dynamic> json) => Recomment(
       creator: json['creator'] as String,
       content: json['content'] as String,
       createDate: DateTime.parse(json['createDate'] as String),
+      target: json['target'] as String,
     );
 
 Map<String, dynamic> _$RecommentToJson(Recomment instance) => <String, dynamic>{
@@ -39,4 +40,5 @@ Map<String, dynamic> _$RecommentToJson(Recomment instance) => <String, dynamic>{
       'creator': instance.creator,
       'content': instance.content,
       'createDate': instance.createDate.toIso8601String(),
+      'target': instance.target,
     };

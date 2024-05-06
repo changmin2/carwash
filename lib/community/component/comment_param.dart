@@ -6,10 +6,12 @@ part 'comment_param.g.dart';
 class CommentParam{
   final String? creator;
   final String? content;
+  final String? target;
 
   const CommentParam({
     this.creator,
     this.content,
+    this.target = ''
   });
 
   factory CommentParam.fromJson(Map<String,dynamic> json)

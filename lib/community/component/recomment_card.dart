@@ -23,14 +23,21 @@ class ReCommentCard extends ConsumerWidget {
   final int board_id;
   int flag;
 
-  ReCommentCard({required this.board_id, required this.recomment, required this.username, required this.comment_id, this.flag = 0, Key? key}) : super(key: key);
+  ReCommentCard({
+    required this.board_id,
+    required this.recomment,
+    required this.username,
+    required this.comment_id,
+    this.flag = 0,
+    Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     ref.watch(commentProvider(board_id));
     final user = ref.read(userMeProvider) as UserModel;
-
     return TRoundedContainer(
+
       padding: const EdgeInsets.all(TSizes.sm),
       backgroundColor: Colors.grey.shade100,
       child: Row(
@@ -39,7 +46,7 @@ class ReCommentCard extends ConsumerWidget {
         children: [
           /// 유저 사진
           const TRoundedImage(
-            imageUrl: 'asset/img/no_image.png',
+            imageUrl: 'asset/img/profile_image.png',
             borderRadius: 100,
             width: 30,
             height: 30,
@@ -71,7 +78,7 @@ class ReCommentCard extends ConsumerWidget {
                   TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                        text: '@이창민 ',
+                        text: '@'+recomment.target+' ',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: PRIMARY_COLOR),
                       ),
                       TextSpan(
@@ -109,6 +116,7 @@ class ReCommentCard extends ConsumerWidget {
                         id: board_id,
                         comment_id: comment_id,
                         flag: flag,
+                        creator: recomment.creator,
                       ),
                     ),
                     child: Text(

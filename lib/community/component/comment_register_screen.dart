@@ -19,12 +19,14 @@ class CommentRegisterScreen extends ConsumerWidget {
     required this.id,
     this.comment_id = -1,
     this.flag = 0,
+    this.creator ='',
     Key? key,
   }) : super(key: key);
 
   final int id;
   int? comment_id;
   int? flag; // 0: 일반 게시판,
+  String? creator;
 
   final _formKey = GlobalKey<FormState>();
   var _content;
@@ -42,7 +44,7 @@ class CommentRegisterScreen extends ConsumerWidget {
                 ? Column(
                     children: [
                       Text(
-                        '@이창민 ',
+                        '@'+creator!+' ',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: PRIMARY_COLOR),
                       ),
                       const SizedBox(height: TSizes.spaceBtwItems),
@@ -91,7 +93,7 @@ class CommentRegisterScreen extends ConsumerWidget {
                         final pState = state as UserModel;
 
                         await ref.read(commentProvider(id).notifier).createComment(pState.nickname, _content);
-                        flag == 0
+                        await flag == 0
                             ? ref.read(communityProvider.notifier).upCommentCnt(id)
                             : flag == 1
                                 ? ref.read(hotAllCommunityProvider.notifier).upCommentCnt(id)
@@ -101,8 +103,8 @@ class CommentRegisterScreen extends ConsumerWidget {
                       else {
                         final state = ref.watch(userMeProvider);
                         final pState = state as UserModel;
-                        await ref.read(commentProvider(id).notifier).createRecommend(pState.nickname, _content, comment_id!);
-                        flag == 0
+                        await ref.read(commentProvider(id).notifier).createRecommend(pState.nickname, _content, comment_id!,creator!);
+                        await flag == 0
                             ? ref.read(communityProvider.notifier).upCommentCnt(id)
                             : flag == 1
                                 ? ref.read(hotAllCommunityProvider.notifier).upCommentCnt(id)
