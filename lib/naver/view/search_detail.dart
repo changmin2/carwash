@@ -31,10 +31,10 @@ class SearchProductDetailScreen extends StatelessWidget {
                   /// ---------------------------------------------
                   TRoundedImage(
                     border: Border.all(color: Colors.grey, width: 0.5),
-                    height: 400,
+                    height: MediaQuery.of(context).size.height/3,
                     imageUrl: item.image,
                     isNetworkImage: true,
-                    fit: BoxFit.contain,
+                    fit: BoxFit.fill,
                   ),
 
                   const SizedBox(height: TSizes.spaceBtwSections),
@@ -69,7 +69,7 @@ class SearchProductDetailScreen extends StatelessWidget {
               width: THelperFunctions.screenWidth(context),
               child: ElevatedButton(
                 onPressed: () {
-                  _showModalBottomSheet(context);
+                  _showModalBottomSheet(context,item.title.toString().replaceAll('<b>', '').replaceAll('</b>', ''),item.image);
                 },
                 child: const Text('용품 추가하기'),
               ),
@@ -81,7 +81,7 @@ class SearchProductDetailScreen extends StatelessWidget {
   }
 
 
-  void _showModalBottomSheet(BuildContext context) {
+  void _showModalBottomSheet(BuildContext context,String productName,String imgUrl) {
 
     showModalBottomSheet(
       /// 바텀시트가 아닌 부분을 클릭했을 때
@@ -101,83 +101,88 @@ class SearchProductDetailScreen extends StatelessWidget {
       builder: (context) {
         return Padding(
           padding: const EdgeInsets.all(TSizes.defalutSpace),
-          child: Column(
-            children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+          child: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.8 +MediaQuery.of(context).viewInsets.bottom/2,
+              child: Column(
                 children: [
-                  Text('상품명'),
-                  Text(
-                    ' *',
-                    style: TextStyle(color: Colors.red),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('상품명'),
+                      Text(
+                        ' *',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ],
                   ),
+            
+                  const SizedBox(height: TSizes.sm),
+            
+                  /// 상품명
+                  TextFormField(
+                    initialValue: productName,
+                    decoration: const InputDecoration(
+                      hintText: '상품명을 입력하세요.',
+                    ),
+                  ),
+            
+                  const SizedBox(height: TSizes.spaceBtwInputFields),
+            
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('카테고리'),
+                      Text(
+                        ' *',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                    ],
+                  ),
+            
+                  const SizedBox(height: TSizes.sm),
+            
+                  /// 카테고리
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: '예) 카샴푸',
+                    ),
+                  ),
+            
+                  const SizedBox(height: TSizes.spaceBtwInputFields),
+            
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('사용주기'),
+                    ],
+                  ),
+            
+                  const SizedBox(height: TSizes.sm),
+            
+                  /// 사용주기
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: '예) 1개월, 매번',
+                    ),
+                  ),
+            
+                  const SizedBox(height: TSizes.spaceBtwSections),
+            
+                  TRoundedContainer(
+                    width: THelperFunctions.screenWidth(context),
+                    child: OutlinedButton(
+                      onPressed: (){},
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: PRIMARY_COLOR),
+                      ),
+                      child: const Text('용품 추가 완료'),
+                    )
+                  ),
+            
                 ],
               ),
-
-              const SizedBox(height: TSizes.sm),
-
-              /// 상품명
-              TextFormField(
-                initialValue: '카프로 리셋 1L 유리막에 안전한 고농축 카샴푸',
-                decoration: const InputDecoration(
-                  hintText: '카프로 리셋 1L 유리막에 안전한 고농축 카샴푸',
-                ),
-              ),
-
-              const SizedBox(height: TSizes.spaceBtwInputFields),
-
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('카테고리'),
-                  Text(
-                    ' *',
-                    style: TextStyle(color: Colors.red),
-                  ),
-                ],
-              ),
-
-              const SizedBox(height: TSizes.sm),
-
-              /// 카테고리
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: '예) 카샴푸',
-                ),
-              ),
-
-              const SizedBox(height: TSizes.spaceBtwInputFields),
-
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('사용주기'),
-                ],
-              ),
-
-              const SizedBox(height: TSizes.sm),
-
-              /// 사용주기
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: '예) 1개월, 매번',
-                ),
-              ),
-
-              const SizedBox(height: TSizes.spaceBtwSections),
-
-              TRoundedContainer(
-                width: THelperFunctions.screenWidth(context),
-                child: OutlinedButton(
-                  onPressed: (){},
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: PRIMARY_COLOR),
-                  ),
-                  child: const Text('용품 추가 완료'),
-                )
-              ),
-
-            ],
+            ),
           ),
         );
       },
