@@ -3,6 +3,11 @@ import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:flutter/material.dart';
 
+///-------------------------------------------------------
+///-------------------------------------------------------
+/// 다른 회원 정보 화면의 세차순서 위젯
+///-------------------------------------------------------
+///-------------------------------------------------------
 class MemberInfoCarWashSeqWidget extends StatelessWidget {
   const MemberInfoCarWashSeqWidget({
     super.key,

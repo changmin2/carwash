@@ -6,7 +6,9 @@ import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 ///-------------------------------------------------------
+///-------------------------------------------------------
 /// 다른 회원 정보 화면의 세차용품 위젯
+///-------------------------------------------------------
 ///-------------------------------------------------------
 class MemberInfoCarWashGoodsWidget extends StatelessWidget {
   const MemberInfoCarWashGoodsWidget({
@@ -200,6 +202,9 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
 
             const SizedBox(height: TSizes.spaceBtwItems),
 
+            ///-------------------------------------------------------
+            /// 전체보기 버튼
+            ///-------------------------------------------------------
             TRoundedContainer(
               width: double.infinity,
               padding: const EdgeInsets.all(TSizes.md),
