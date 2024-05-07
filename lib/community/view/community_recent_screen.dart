@@ -6,6 +6,7 @@ import 'package:carwash/community/component/recomment_card.dart';
 import 'package:carwash/community/provider/button_provider.dart';
 import 'package:carwash/community/provider/comment_provider.dart';
 import 'package:carwash/community/provider/hot_free_community_provider.dart';
+import 'package:carwash/user/view/user_info/member_info_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -87,27 +88,30 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
                     const SizedBox(height: TSizes.spaceBtwItems),
 
                     /// 닉네임
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const TRoundedImage(
-                          width: 24,
-                          height: 24,
-                          fit: BoxFit.fill,
-                          imageUrl: 'asset/img/no_image.png',
-                          borderRadius: 100,
-                        ),
-                        const SizedBox(width: TSizes.sm),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.model.creator,
-                              style: Theme.of(context).textTheme.bodyLarge,
-                            ),
-                          ],
-                        ),
-                      ],
+                    GestureDetector(
+                      onTap: () => THelperFunctions.navigateToScreen(context, const UserInfoScreen()),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const TRoundedImage(
+                            width: 24,
+                            height: 24,
+                            fit: BoxFit.fill,
+                            imageUrl: 'asset/img/no_image.png',
+                            borderRadius: 100,
+                          ),
+                          const SizedBox(width: TSizes.sm),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.model.creator,
+                                style: Theme.of(context).textTheme.bodyLarge,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
 
                     const SizedBox(height: TSizes.spaceBtwItems),
