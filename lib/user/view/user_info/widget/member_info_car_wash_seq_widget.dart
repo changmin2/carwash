@@ -3,7 +3,6 @@ import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:flutter/material.dart';
 
-
 class MemberInfoCarWashSeqWidget extends StatelessWidget {
   const MemberInfoCarWashSeqWidget({
     super.key,
@@ -40,39 +39,53 @@ class MemberInfoCarWashSeqWidget extends StatelessWidget {
 
         const SizedBox(height: TSizes.spaceBtwItems),
 
-
         /// 세차 순서 리스트
         _carWashSeqList(context),
       ],
     );
   }
 
-
   SizedBox _carWashSeqList(context) {
-
     ///*************************************
     /// 1. 본인 세차용품 등록 X
     ///*************************************
     if (regYn == 'N') {
-
       return SizedBox(
-        height: 100,
-        child: Center(
-          child: Text(
-            '회원님의 세차순서를 먼저 등록해주세요.',
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.redAccent),
-          ),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 100,
+              child: Center(
+                child: Text(
+                  '회원님의 세차순서를 먼저 등록해주세요.',
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.redAccent),
+                ),
+              ),
+            ),
+            const SizedBox(height: TSizes.spaceBtwSections),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Colors.redAccent),
+                ),
+                onPressed: () {},
+                child: Text(
+                  '등록하기',
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.redAccent),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ],
         ),
       );
-
     } else {
-
       ///*************************************
       /// 2-1. 본인 세차순서 등록 O
       ///      건수가 없으면 없다는 글만.
       ///*************************************
       if (listCnt == 0) {
-
         return SizedBox(
           height: 100,
           child: Center(
@@ -82,9 +95,7 @@ class MemberInfoCarWashSeqWidget extends StatelessWidget {
             ),
           ),
         );
-
       } else {
-
         ///*************************************
         /// 2-2. 본인 세차순서 등록 O
         ///      건수가 있으면 리스트 생성
@@ -100,11 +111,7 @@ class MemberInfoCarWashSeqWidget extends StatelessWidget {
             }).toList(),
           ),
         );
-
       }
     }
   }
-
-
-
 }

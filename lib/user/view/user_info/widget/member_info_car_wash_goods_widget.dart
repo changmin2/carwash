@@ -29,7 +29,9 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
               '세차 용품',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
+
             const SizedBox(width: TSizes.sm),
+
             ///*************************************
             /// 세차 용품 갯수 - 그냥 무조건 숫자 보여줘~
             ///*************************************
@@ -39,6 +41,7 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
             ),
           ],
         ),
+
         const SizedBox(height: TSizes.spaceBtwItems),
 
         /// 세차 용품 리스트
@@ -63,6 +66,23 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
               child: Text(
                 '회원님의 세차용품을 먼저 등록해주세요.',
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.redAccent),
+              ),
+            ),
+          ),
+
+          const SizedBox(height: TSizes.spaceBtwSections),
+
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(color: Colors.redAccent),
+              ),
+              onPressed: () {},
+              child: Text(
+                '등록하기',
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.redAccent),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
