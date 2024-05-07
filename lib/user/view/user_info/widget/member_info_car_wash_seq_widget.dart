@@ -62,7 +62,12 @@ class MemberInfoCarWashSeqWidget extends StatelessWidget {
                 ),
               ),
             ),
+
             const SizedBox(height: TSizes.spaceBtwSections),
+
+            ///-------------------------------------------------------
+            /// 등록하기 버튼
+            ///-------------------------------------------------------
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
