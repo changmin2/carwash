@@ -8,11 +8,13 @@ class MyProductDto {
   final String? productName;
   final String? category;
   final String? cycle;
+  final String? imgUrl;
 
   const MyProductDto({
     this.productName,
     this.category,
-    this.cycle
+    this.cycle,
+    this.imgUrl
   });
 
   factory MyProductDto.fromJson(Map<String, dynamic> json)
