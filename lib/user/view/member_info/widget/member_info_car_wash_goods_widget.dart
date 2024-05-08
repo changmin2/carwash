@@ -52,14 +52,11 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
     );
   }
 
-
   Column _carWashGoodsList(BuildContext context) {
-
     ///*************************************
     /// 1. 본인 세차용품 등록 X
     ///*************************************
     if (regYn == 'N') {
-
       return Column(
         children: [
           SizedBox(
@@ -71,9 +68,7 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(height: TSizes.spaceBtwSections),
-
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
@@ -90,9 +85,7 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
           ),
         ],
       );
-
     } else {
-
       ///*************************************
       /// 2-1. 본인 세차용품 등록 O
       ///      건수가 없으면 없다는 글만.
@@ -111,9 +104,7 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
             ),
           ],
         );
-
       } else {
-
         ///*************************************
         /// 2-2. 본인 세차용품 등록 O
         ///      건수가 있으면 무조건 두개만 보여주고 버튼
@@ -205,23 +196,25 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
             ///-------------------------------------------------------
             /// 전체보기 버튼
             ///-------------------------------------------------------
-            TRoundedContainer(
+            SizedBox(
               width: double.infinity,
-              padding: const EdgeInsets.all(TSizes.md),
-              backgroundColor: const Color(0xffF5F5F5),
-              child: Text(
-                '전체보기',
-                style: Theme.of(context).textTheme.titleMedium,
-                textAlign: TextAlign.center,
+              child: TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color(0xffF5F5F5),
+                  padding: const EdgeInsets.all(TSizes.md),
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+                ),
+                child: Text(
+                  '전체보기',
+                  style: Theme.of(context).textTheme.titleMedium,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
           ],
         );
-
       }
     }
   }
-
-
-
 }
