@@ -2,17 +2,11 @@ import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
-import 'package:carwash/community/component/recomment_card.dart';
 import 'package:carwash/community/provider/button_provider.dart';
 import 'package:carwash/community/provider/comment_provider.dart';
-import 'package:carwash/community/provider/hot_free_community_provider.dart';
-import 'package:carwash/user/view/user_info/member_info_screen.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:carwash/user/view/member_info/member_info_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../common/component/image_viewer_screen.dart';
 import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
@@ -26,7 +20,6 @@ import '../component/comment_register_screen.dart';
 import '../model/community_model.dart';
 import '../provider/communityProvider.dart';
 import '../provider/hot_all_community_provider.dart';
-import 'community_screen.dart';
 
 //HOT 커뮤니티 전용 상세 화면
 class CommunityRecentScreen extends ConsumerStatefulWidget {
@@ -89,7 +82,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
 
                     /// 닉네임
                     GestureDetector(
-                      onTap: () => THelperFunctions.navigateToScreen(context, const UserInfoScreen()),
+                      onTap: () => THelperFunctions.navigateToScreen(context, const MemberInfoScreen()),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [

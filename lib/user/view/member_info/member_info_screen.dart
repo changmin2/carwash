@@ -1,16 +1,15 @@
-import 'package:carwash/car/component/washlist_card.dart';
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
-import 'package:carwash/user/view/user_info/widget/member_info_car_wash_goods_widget.dart';
-import 'package:carwash/user/view/user_info/widget/member_info_car_wash_seq_widget.dart';
+import 'package:carwash/user/view/member_info/widget/member_info_car_wash_goods_widget.dart';
+import 'package:carwash/user/view/member_info/widget/member_info_car_wash_seq_widget.dart';
 import 'package:flutter/material.dart';
 
-class UserInfoScreen extends StatelessWidget {
-  const UserInfoScreen({Key? key}) : super(key: key);
+class MemberInfoScreen extends StatelessWidget {
+  const MemberInfoScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
