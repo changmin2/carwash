@@ -3,6 +3,7 @@ import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/user/view/member_info/member_all_goods_screen.dart';
 import 'package:flutter/material.dart';
 
 ///-------------------------------------------------------
@@ -199,7 +200,7 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () => THelperFunctions.navigateToScreen(context, const MemberAllGoodsScreen()),
                 style: TextButton.styleFrom(
                   backgroundColor: const Color(0xffF5F5F5),
                   padding: const EdgeInsets.all(TSizes.md),
