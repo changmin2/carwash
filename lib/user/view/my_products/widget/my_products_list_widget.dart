@@ -1,4 +1,5 @@
 import 'package:carwash/common/component/rounded_container.dart';
+import 'package:carwash/user/model/myProductDto.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/component/rounded_image.dart';
@@ -8,12 +9,15 @@ import '../../../../common/const/sizes.dart';
 /// 나의 세차 용품 리스트에 나오는 카드 위젯
 /// -----------------------------------------------------
 class MyProductsListWidget extends StatelessWidget {
-  const MyProductsListWidget({
+  MyProductDto item;
+  MyProductsListWidget({
     super.key,
+    required this.item
   });
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         
@@ -27,7 +31,7 @@ class MyProductsListWidget extends StatelessWidget {
               borderColor: Colors.blueAccent,
               backgroundColor: Colors.blueAccent,
               child: Text(
-                '카샴푸',
+                item.category!,
                 style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),
               ),
             ),
@@ -40,11 +44,12 @@ class MyProductsListWidget extends StatelessWidget {
         Row(
           children: [
             TRoundedImage(
-              imageUrl: 'asset/img/no_image.png',
+              imageUrl: item.imgUrl!,
               width: 100,
               height: 100,
               border: Border.all(color: Colors.grey.withOpacity(0.5)),
               borderRadius: 0,
+              isNetworkImage: true,
             ),
 
             const SizedBox(width: TSizes.spaceBtwItems),
@@ -53,9 +58,13 @@ class MyProductsListWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// 세차용품 이름 
-                Text(
-                  '카프로 리셋 카샴푸',
-                  style: Theme.of(context).textTheme.titleLarge,
+                Container(
+                  width: MediaQuery.of(context).size.width/2,
+                  child: Text(
+                    item.productName!,
+                    style: Theme.of(context).textTheme.titleLarge,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 
                 const SizedBox(height: TSizes.spaceBtwItems / 2),
@@ -70,7 +79,7 @@ class MyProductsListWidget extends StatelessWidget {
                 
                 /// 세차용품 사용 주기
                 Text(
-                  '사용주기 : 매번',
+                  '사용주기 : '+item.cycle!,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],

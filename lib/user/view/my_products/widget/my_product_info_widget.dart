@@ -8,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 class MyProductInfoWidget extends StatelessWidget {
-  const MyProductInfoWidget({
+  var cnt = 0;
+  MyProductInfoWidget({
     super.key,
+    required this.cnt
   });
 
   @override
@@ -37,7 +39,10 @@ class MyProductInfoWidget extends StatelessWidget {
                 ],
               ),
               Text(
-                '7 개',
+                cnt == 0
+                ? '불러오는중....'
+                :
+                cnt.toString()+' 개',
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.white),
               ),
             ],

@@ -7,6 +7,7 @@ import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/user/model/user_model.dart';
+import 'package:carwash/user/provider/myProduct_provider.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/my_products/my_products_screen.dart';
 import 'package:carwash/user/view/profile/widget/setting_menu_tile.dart';
@@ -33,6 +34,7 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
     var record = ref.read(MyRecordProvider);
+    var myProducts = ref.read(myProductProvider);
     final state = ref.watch(userMeProvider) as UserModel;
 
     return DefaultLayoutV2(
