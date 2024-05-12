@@ -24,9 +24,6 @@ class MyRecordStateNotifier extends StateNotifier<List<String>>{
     getMyRecord();
   }
 
-  // Future<List<String>> getRecord()async {
-  //
-  // }
 
   Future<void> registerRecord(String washList) async {
     repository.registerMyRecord(washList: washList);

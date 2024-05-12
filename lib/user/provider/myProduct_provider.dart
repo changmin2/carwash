@@ -17,11 +17,23 @@ class MyProductStateNotifier extends StateNotifier<List<MyProductDto>>{
     required this.myProductRepository
   }):super(
       []
-  );
+  ){
+    getMyProduct();
+  }
 
   Future<void> addProduct(MyProductDto myProductDto) async {
+    state = [
+      ...state,
+      myProductDto
+    ];
     await myProductRepository.registerMyProduct(param: myProductDto);
-    state.add(myProductDto);
+
+  }
+
+  Future<void> getMyProduct() async {
+    final resp = await myProductRepository.getMyProduct();
+
+    state = resp;
   }
 
 
