@@ -78,7 +78,12 @@ class _SearchProductDetailScreenState extends ConsumerState<SearchProductDetailS
               width: THelperFunctions.screenWidth(context),
               child: ElevatedButton(
                 onPressed: () {
-                  _showModalBottomSheet(context,widget.item.title.toString().replaceAll('<b>', '').replaceAll('</b>', ''),widget.item.image);
+                  _showModalBottomSheet(
+                      context,widget.item.title.toString().replaceAll('<b>', '').replaceAll('</b>', '')
+                      ,widget.item.image
+                      ,'#${widget.item.category1} #${widget.item.category2} #${widget.item.category3} #${widget.item.category4}'
+                      ,widget.item.link
+                  );
                 },
                 child: const Text('용품 추가하기'),
               ),
@@ -89,13 +94,13 @@ class _SearchProductDetailScreenState extends ConsumerState<SearchProductDetailS
     );
   }
 
-  void _showModalBottomSheet(BuildContext context,String productName,String imgUrl) {
+  void _showModalBottomSheet(BuildContext context,String productName,String imgUrl,String category,String link) {
     final _nameFormKey = GlobalKey<FormState>();
     final _categoryFormKey = GlobalKey<FormState>();
     final _cycleFormKey = GlobalKey<FormState>();
 
     var _productName = productName;
-    var _category = '';
+    var _category = category;
     var _cycle = '';
 
     showModalBottomSheet(
@@ -172,6 +177,7 @@ class _SearchProductDetailScreenState extends ConsumerState<SearchProductDetailS
                   Form(
                     key: _categoryFormKey,
                     child: TextFormField(
+                      initialValue: category,
                       decoration: const InputDecoration(
                         hintText: '예) 카샴푸',
                       ),
@@ -220,16 +226,17 @@ class _SearchProductDetailScreenState extends ConsumerState<SearchProductDetailS
                   TRoundedContainer(
                     width: THelperFunctions.screenWidth(context),
                     child: OutlinedButton(
-                      onPressed: (){
+                      onPressed: () async {
                         if (_nameFormKey.currentState!.validate() &&
                             _categoryFormKey.currentState!.validate() &&
                             _cycleFormKey.currentState!.validate()){
-                          ref.read(myProductProvider.notifier).addProduct(
+                          await ref.read(myProductProvider.notifier).addProduct(
                             new MyProductDto(
                               productName: productName,
                               category:_category,
                               cycle: _cycle,
-                              imgUrl: imgUrl
+                              imgUrl: imgUrl,
+                              link: link
                             )
                           );
 

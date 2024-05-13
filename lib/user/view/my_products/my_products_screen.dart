@@ -25,6 +25,7 @@ class _MyProductsScreenState extends ConsumerState<MyProductsScreen> {
     final myProducts = ref.watch(myProductProvider);
 
     return DefaultLayoutV2(
+
       appBar: AppBar(),
       child: Padding(
         padding: const EdgeInsets.all(TSizes.defalutSpace),

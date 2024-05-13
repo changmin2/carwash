@@ -11,6 +11,9 @@ MyProductDto _$MyProductDtoFromJson(Map<String, dynamic> json) => MyProductDto(
       category: json['category'] as String?,
       cycle: json['cycle'] as String?,
       imgUrl: json['imgUrl'] as String?,
+      link: json['link'] as String?,
+      id: json['id'] as int?,
+      memberId: json['memberId'] as String?,
     );
 
 Map<String, dynamic> _$MyProductDtoToJson(MyProductDto instance) =>
@@ -19,4 +22,7 @@ Map<String, dynamic> _$MyProductDtoToJson(MyProductDto instance) =>
       'category': instance.category,
       'cycle': instance.cycle,
       'imgUrl': instance.imgUrl,
+      'link': instance.link,
+      'id': instance.id,
+      'memberId': instance.memberId,
     };

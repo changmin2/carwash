@@ -22,12 +22,13 @@ class MyProductStateNotifier extends StateNotifier<List<MyProductDto>>{
   }
 
   Future<void> addProduct(MyProductDto myProductDto) async {
+
+
+    final resp = await myProductRepository.registerMyProduct(param: myProductDto);
     state = [
       ...state,
-      myProductDto
+      resp
     ];
-    await myProductRepository.registerMyProduct(param: myProductDto);
-
   }
 
   Future<void> getMyProduct() async {

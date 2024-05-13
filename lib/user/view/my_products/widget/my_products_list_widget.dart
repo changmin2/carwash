@@ -17,7 +17,6 @@ class MyProductsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         
@@ -59,7 +58,7 @@ class MyProductsListWidget extends StatelessWidget {
               children: [
                 /// 세차용품 이름 
                 Container(
-                  width: MediaQuery.of(context).size.width/2,
+                  width: MediaQuery.of(context).size.width*0.55,
                   child: Text(
                     item.productName!,
                     style: Theme.of(context).textTheme.titleLarge,
@@ -69,10 +68,14 @@ class MyProductsListWidget extends StatelessWidget {
                 
                 const SizedBox(height: TSizes.spaceBtwItems / 2),
 
-                /// 세차용품 최근 사용한 날짜 
-                Text(
-                  '최근 사용일자 : 2024.04.24',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                /// 세차용품 최근 사용한 날짜 , 최근 사용날짜 미정으로 카테고릴 값으로 대체
+                Container(
+                  width: MediaQuery.of(context).size.width*0.55,
+                  child: Text(
+                    '카테고리 : '+item.category!,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 
                 const SizedBox(height: TSizes.spaceBtwItems / 2),
