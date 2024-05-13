@@ -10,9 +10,7 @@ import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
 import '../../common/component/rounded_image.dart';
@@ -41,9 +39,11 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    ref.read(buttonProvider.notifier).init();
   }
   @override
   Widget build(BuildContext context) {
+
     ref.watch(communityProvider);
     final button =ref.watch(buttonProvider);
     //게시글 정보 가져오기
@@ -265,14 +265,18 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                                     GestureDetector(
 
                                       onTap: button.disable==false ? () async {
+
                                         //버튼 비활성화
-                                        button.change();
+                                        await button.change();
+
                                         await check == -1
-                                            ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
-                                            : ref.read(communityProvider.notifier).downFavorite(widget.id);
+                                           ? ref.read(communityProvider.notifier).clickFavorite(widget.id)
+                                           : ref.read(communityProvider.notifier).downFavorite(widget.id);
                                         await ref.read(favoriteProvider.notifier).updateFavorites(widget.id);
                                         //버튼 활성화
-                                        button.change();
+                                        await button.change();
+
+
                                       } : null,
                                       child: check == -1
                                           ? TRoundedContainer(

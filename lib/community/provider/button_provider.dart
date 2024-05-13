@@ -10,12 +10,15 @@ final buttonProvider  = ChangeNotifierProvider<StateChangeNotifier>((ref) {
 class StateChangeNotifier extends ChangeNotifier{
   bool disable = false;
 
-  void change(){
-    disable = disable ? false : true;
+  Future<void> change() async {
+
+    disable = await disable ? false : true;
+
     notifyListeners();
   }
 
   void init(){
+
     disable = false;
   }
 }
