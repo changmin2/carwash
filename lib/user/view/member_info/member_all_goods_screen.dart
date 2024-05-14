@@ -2,6 +2,7 @@ import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/user/model/myProductDto.dart';
 import 'package:carwash/user/view/my_products/widget/my_products_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
@@ -72,7 +73,7 @@ class MemberAllGoodsScreen extends StatelessWidget {
                     ],
                   ),
                   itemBuilder: (_, __) {
-                    return const MyProductsListWidget();
+                    return MyProductsListWidget(item: MyProductDto(),);
                   }
               ),
             ),
