@@ -22,7 +22,7 @@ abstract class MyProductRepository{
   @Headers({
     'accessToken':'true'
   })
-  Future<void> registerMyProduct({
+  Future<MyProductDto> registerMyProduct({
     @Body() MyProductDto param = const MyProductDto()
   });
 

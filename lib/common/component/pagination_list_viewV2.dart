@@ -71,7 +71,6 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
     ref.watch(communityProvider);
     final state = ref.watch(widget.provider);
     final button = ref.watch(buttonProvider);
-    ref.read(buttonProvider.notifier).init();
 
     //좋아요 정보
     final favorites = ref.watch(favoriteProvider);
