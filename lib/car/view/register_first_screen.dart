@@ -4,18 +4,14 @@ import 'package:carwash/car/provider/select_provider.dart';
 import 'package:carwash/car/view/register_second_screen.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
+import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-
-import '../../common/utils/helpers/helper_functions.dart';
 
 class RecordFirstScreen extends ConsumerStatefulWidget {
   static get routeName => 'recordFirst';
   int flag;
-  RecordFirstScreen({
-    this.flag = 0,
-    Key? key}) : super(key: key);
+  RecordFirstScreen({this.flag = 0, Key? key}) : super(key: key);
 
   @override
   ConsumerState<RecordFirstScreen> createState() => _RecordFirstScreenState();
@@ -35,8 +31,7 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(SelectProvider);
     final myrecord = ref.read(MyRecordProvider);
-    if(myrecord.length != 0 && check == 0 && widget.flag != 1) {
-
+    if (myrecord.length != 0 && check == 0 && widget.flag != 1) {
       Future.delayed(Duration.zero, () => showAlert(context));
       check = 1;
     }
@@ -81,19 +76,19 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
                 child: ElevatedButton(
                   onPressed: () async {
                     var newList = [];
-                    newList = await washList.where((element) => state.selects[washList.indexOf(element)] == 1).toList();
+                    newList = washList.where((element) => state.selects[washList.indexOf(element)] == 1).toList();
 
-                    if(newList.isEmpty){
+                    if (newList.isEmpty) {
                       THelperFunctions.showSnackBar(context, "세차 기록을 선택해주세요!");
                       return;
                     }
-                    Navigator.push(
+
+                    THelperFunctions.navigateToScreen(
                       context,
-                      MaterialPageRoute(builder: (context) => RecordSecondScreen(
+                      RecordSecondScreen(
                         flag: widget.flag,
-                      )),
+                      ),
                     );
-                    //context.goNamed(RecordSecondScreen.routeName);
                   },
                   child: const Text('다음 단계'),
                 ),
@@ -104,31 +99,42 @@ class _RecordFirstScreenState extends ConsumerState<RecordFirstScreen> {
       ),
     );
   }
+
   void showAlert(BuildContext context) {
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          actions: [
-            TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RecordSecondScreen(
-                      flag: 3,
-                    )),
-                  );
-                },
-                child: Text('예')
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
+        actions: [
+          TextButton(
+            onPressed: () => THelperFunctions.navigateToScreen(
+              context,
+              RecordSecondScreen(
+                flag: 3,
+              ),
             ),
-            TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('아니오')
-            )
-          ],
-          content: Text("나만의 세차 순서가 있습니다.\n 그대로 사용하시겠습니까?"),
-        ));
+            child: Text(
+              '예',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              '아니오',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          )
+        ],
+        content: Text(
+          "나만의 세차 순서가 있습니다.\n그대로 사용하시겠습니까?",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+      ),
+    );
   }
 }
 //
