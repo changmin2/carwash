@@ -76,6 +76,7 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
     final favorites = ref.watch(favoriteProvider);
     var check = favorites.indexOf(widget.id);
     //완전 처음 로딩 일때
+
     if(state is CursorPaginationLoading){
       return Center(
         child: CircularProgressIndicator(),
@@ -284,7 +285,9 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
     }
 
     final cp = state as CursorPagination<T>;
+
     return Padding(
+
       padding: const EdgeInsets.symmetric(horizontal: 0),
       child:  ListView.separated(
         controller: controller,

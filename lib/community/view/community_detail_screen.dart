@@ -192,6 +192,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
             Navigator.push(context, MaterialPageRoute(builder: (context) => CommentRegisterScreen( id: widget.id)));
           },
           child: TRoundedContainer(
+            height: 60,
             backgroundColor: const Color(0xffF8F8FA),
             padding: const EdgeInsets.all(TSizes.defalutSpace),
             radius: 0,
@@ -421,7 +422,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                         }),
                   ),
                   Container(
-                    height: 150
+                    height: 210
                   )
                   ]
                 ),
