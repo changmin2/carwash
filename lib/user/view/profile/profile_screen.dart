@@ -99,15 +99,15 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                     child: const TSettingsMenuTile(icon: Iconsax.broom, title: "나의 세차 용품", subTitle: '내가 사용하는 세차 용품을 등록해 보세요!'),
                   ),
 
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     THelperFunctions.navigateToScreen(
-                  //       context,
-                  //       const AccountBookScreen(),
-                  //     );
-                  //   },
-                  //   child: const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "차계부", subTitle: '나의 차량 지출 비용을 관리해보세요!'),
-                  // ),
+                  GestureDetector(
+                    onTap: () {
+                      THelperFunctions.navigateToScreen(
+                        context,
+                        const AccountBookScreen(),
+                      );
+                    },
+                    child: const TSettingsMenuTile(icon: Iconsax.calendar_edit, title: "차계부", subTitle: '나의 차량 지출 비용을 관리해보세요!'),
+                  ),
 
                   const TSettingsMenuTile(icon: Iconsax.notification_1, title: "문의사항은 아래의 이메일로 문의해주세요.", subTitle: 'dlckdals9467@naver.com'),
 
