@@ -71,58 +71,58 @@ class MemberInfoScreen extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: TSizes.spaceBtwItems),
-                
-                TRoundedContainer(
-                  backgroundColor: Colors.transparent,
-                  padding: const EdgeInsets.all(TSizes.md),
-                  showBorder: true,
-                  borderColor: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            '팔로워',
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
-                          ),
-                          const SizedBox(height: TSizes.xs),
-                          Text(
-                            '0',
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            '팔로잉',
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
-                          ),
-                          const SizedBox(height: TSizes.xs),
-                          Text(
-                            '0',
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            '게시물',
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
-                          ),
-                          const SizedBox(height: TSizes.xs),
-                          Text(
-                            '0',
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                //const SizedBox(height: TSizes.spaceBtwItems),
+                // 추후 업데이트 예정
+                // TRoundedContainer(
+                //   backgroundColor: Colors.transparent,
+                //   padding: const EdgeInsets.all(TSizes.md),
+                //   showBorder: true,
+                //   borderColor: Colors.white,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //     children: [
+                //       Column(
+                //         children: [
+                //           Text(
+                //             '팔로워',
+                //             style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                //           ),
+                //           const SizedBox(height: TSizes.xs),
+                //           Text(
+                //             '0',
+                //             style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                //           ),
+                //         ],
+                //       ),
+                //       Column(
+                //         children: [
+                //           Text(
+                //             '팔로잉',
+                //             style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                //           ),
+                //           const SizedBox(height: TSizes.xs),
+                //           Text(
+                //             '0',
+                //             style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                //           ),
+                //         ],
+                //       ),
+                //       Column(
+                //         children: [
+                //           Text(
+                //             '게시물',
+                //             style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                //           ),
+                //           const SizedBox(height: TSizes.xs),
+                //           Text(
+                //             '0',
+                //             style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                //           ),
+                //         ],
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
