@@ -14,6 +14,8 @@ import 'package:go_router/go_router.dart';
 import '../../common/component/pagination_list_viewV2.dart';
 import '../../common/component/rounded_container.dart';
 import '../../common/component/rounded_image.dart';
+import '../../common/utils/helpers/helper_functions.dart';
+import '../../user/view/member_info/member_info_screen.dart';
 import '../component/comment_card.dart';
 import '../provider/button_provider.dart';
 import '../provider/communityProvider.dart';
@@ -222,27 +224,30 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityDetailScreen> {
                         const SizedBox(height: TSizes.spaceBtwItems),
 
                         /// 닉네임
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const TRoundedImage(
-                              width: 24,
-                              height: 24,
-                              fit: BoxFit.fill,
-                              imageUrl: 'asset/img/no_image.png',
-                              borderRadius: 100,
-                            ),
-                            const SizedBox(width: TSizes.sm),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  state.creator,
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                              ],
-                            ),
-                          ],
+                        GestureDetector(
+                          onTap: () => THelperFunctions.navigateToScreen(context, MemberInfoScreen(nickname: state.creator,)),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const TRoundedImage(
+                                width: 24,
+                                height: 24,
+                                fit: BoxFit.fill,
+                                imageUrl: 'asset/img/no_image.png',
+                                borderRadius: 100,
+                              ),
+                              const SizedBox(width: TSizes.sm),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    state.creator,
+                                    style: Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
 
                         const SizedBox(height: TSizes.spaceBtwItems),

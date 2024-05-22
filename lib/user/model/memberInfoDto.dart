@@ -7,11 +7,11 @@ part 'memberInfoDto.g.dart';
 @JsonSerializable()
 class MemberInfoDto{
   final String record;
-  final MyProductDto myProdcuts;
+  final List<MyProductDto> myProduct;
 
   MemberInfoDto({
     required this.record,
-    required this.myProdcuts
+    required this.myProduct
   });
 
 

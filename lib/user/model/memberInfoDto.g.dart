@@ -9,12 +9,13 @@ part of 'memberInfoDto.dart';
 MemberInfoDto _$MemberInfoDtoFromJson(Map<String, dynamic> json) =>
     MemberInfoDto(
       record: json['record'] as String,
-      myProdcuts:
-          MyProductDto.fromJson(json['myProdcuts'] as Map<String, dynamic>),
+      myProduct: (json['myProduct'] as List<dynamic>)
+          .map((e) => MyProductDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$MemberInfoDtoToJson(MemberInfoDto instance) =>
     <String, dynamic>{
       'record': instance.record,
-      'myProdcuts': instance.myProdcuts,
+      'myProduct': instance.myProduct,
     };

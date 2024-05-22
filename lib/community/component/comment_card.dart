@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../common/const/sizes.dart';
 import '../../user/model/user_model.dart';
 import '../../user/provider/user_me_provider.dart';
+import '../../user/view/member_info/member_info_screen.dart';
 import '../provider/comment_provider.dart';
 import '../provider/hot_all_community_provider.dart';
 import '../provider/hot_free_community_provider.dart';
@@ -41,11 +42,14 @@ class CommentCard extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         /// 유저 사진
-        const TRoundedImage(
-          imageUrl: 'asset/img/profile_image.png',
-          borderRadius: 100,
-          width: 30,
-          height: 30,
+        GestureDetector(
+          onTap: () => THelperFunctions.navigateToScreen(context, MemberInfoScreen(nickname: comment.creator,)),
+          child: TRoundedImage(
+            imageUrl: 'asset/img/profile_image.png',
+            borderRadius: 100,
+            width: 30,
+            height: 30,
+          ),
         ),
 
         const SizedBox(width: TSizes.spaceBtwItems / 2),

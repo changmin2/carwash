@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 
 import '../../common/const/sizes.dart';
 import '../../user/model/user_model.dart';
+import '../../user/view/member_info/member_info_screen.dart';
 import '../model/comment_model.dart';
 import '../provider/comment_provider.dart';
 import '../provider/hot_all_community_provider.dart';
@@ -45,11 +46,14 @@ class ReCommentCard extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           /// 유저 사진
-          const TRoundedImage(
-            imageUrl: 'asset/img/profile_image.png',
-            borderRadius: 100,
-            width: 30,
-            height: 30,
+          GestureDetector(
+            onTap: () => THelperFunctions.navigateToScreen(context, MemberInfoScreen(nickname: recomment.creator,)),
+            child: TRoundedImage(
+              imageUrl: 'asset/img/profile_image.png',
+              borderRadius: 100,
+              width: 30,
+              height: 30,
+            ),
           ),
 
           const SizedBox(width: TSizes.spaceBtwItems / 2),

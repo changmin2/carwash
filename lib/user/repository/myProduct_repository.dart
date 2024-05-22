@@ -1,3 +1,4 @@
+import 'package:carwash/user/model/memberInfoDto.dart';
 import 'package:carwash/user/model/myProductDto.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,5 +33,8 @@ abstract class MyProductRepository{
   })
   Future<List<MyProductDto>> getMyProduct();
 
-
+  @GET('/getUserInfo/{nickname}')
+  Future<MemberInfoDto> getUserInfo({
+    @Path() required String nickname
+  });
 }

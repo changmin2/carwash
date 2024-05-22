@@ -13,7 +13,10 @@ import 'package:iconsax/iconsax.dart';
 ///-------------------------------------------------
 ///-------------------------------------------------
 class MemberAllGoodsScreen extends StatelessWidget {
-  const MemberAllGoodsScreen({Key? key}) : super(key: key);
+  final List<MyProductDto> myProduct;
+  MemberAllGoodsScreen({
+    required this.myProduct,
+    Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,7 @@ class MemberAllGoodsScreen extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    '7 개',
+                    myProduct.length.toString() +' 개',
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.white),
                   ),
                 ],
@@ -61,7 +64,7 @@ class MemberAllGoodsScreen extends StatelessWidget {
             /// ---------------------------------------------
             Expanded(
               child: ListView.separated(
-                  itemCount: 10,
+                  itemCount: myProduct.length,
                   separatorBuilder: (_, __) => const Column(
                     children: [
                       SizedBox(height: TSizes.spaceBtwItems),
@@ -72,8 +75,8 @@ class MemberAllGoodsScreen extends StatelessWidget {
                       SizedBox(height: TSizes.spaceBtwItems),
                     ],
                   ),
-                  itemBuilder: (_, __) {
-                    return MyProductsListWidget(item: MyProductDto(),);
+                  itemBuilder: (_, index) {
+                    return MyProductsListWidget(item: myProduct[index],);
                   }
               ),
             ),

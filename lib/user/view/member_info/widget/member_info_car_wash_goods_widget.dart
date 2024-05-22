@@ -6,21 +6,20 @@ import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/user/view/member_info/member_all_goods_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../model/myProductDto.dart';
+
 ///-------------------------------------------------------
 ///-------------------------------------------------------
 /// 다른 회원 정보 화면의 세차용품 위젯
 ///-------------------------------------------------------
 ///-------------------------------------------------------
 class MemberInfoCarWashGoodsWidget extends StatelessWidget {
-  const MemberInfoCarWashGoodsWidget({
+  final List<MyProductDto> myProduct;
+  MemberInfoCarWashGoodsWidget({
     super.key,
+    required this.myProduct
   });
 
-  ///*************************************
-  /// 임의로 만든 변수
-  ///*************************************
-  final int listCnt = 1;
-  final String regYn = 'Y';
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
             /// 세차 용품 갯수 - 그냥 무조건 숫자 보여줘~
             ///*************************************
             Text(
-              '3',
+              myProduct.length.toString(),
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: PRIMARY_COLOR),
             ),
           ],
@@ -57,7 +56,7 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
     ///*************************************
     /// 1. 본인 세차용품 등록 X
     ///*************************************
-    if (regYn == 'N') {
+    if (myProduct.length == -1) {
       return Column(
         children: [
           SizedBox(
@@ -91,7 +90,7 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
       /// 2-1. 본인 세차용품 등록 O
       ///      건수가 없으면 없다는 글만.
       ///*************************************
-      if (listCnt == 0) {
+      if (myProduct.length == 0) {
         return Column(
           children: [
             SizedBox(
@@ -129,29 +128,32 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
                             borderColor: Colors.blueAccent,
                             radius: 10,
                             child: Text(
-                              '카샴푸',
+                              myProduct[0].category.toString(),
                               style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.blueAccent),
                             ),
                           ),
                           const SizedBox(height: TSizes.sm),
                           TRoundedImage(
-                            imageUrl: 'asset/img/no_image.png',
+                            imageUrl: myProduct[0].imgUrl.toString(),
                             width: 140,
                             height: 140,
                             border: Border.all(color: Colors.grey.shade300),
                             borderRadius: 0,
+                            isNetworkImage: true,
                           ),
                         ],
                       ),
                       const SizedBox(height: TSizes.sm),
                       Text(
-                        '카프로 리셋 카샴푸',
+                        myProduct[0].productName.toString(),
                         style: Theme.of(context).textTheme.bodyMedium,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
                 ),
+                myProduct.length>1
+                ?
                 TRoundedContainer(
                   width: (THelperFunctions.screenWidth(context) - 40) / 2,
                   child: Column(
@@ -166,29 +168,30 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
                             borderColor: Colors.blueAccent,
                             radius: 10,
                             child: Text(
-                              '물왁스',
+                              myProduct[1].category.toString(),
                               style: Theme.of(context).textTheme.labelLarge!.apply(color: Colors.blueAccent),
                             ),
                           ),
                           const SizedBox(height: TSizes.sm),
                           TRoundedImage(
-                            imageUrl: 'asset/img/no_image.png',
+                            imageUrl: myProduct[1].imgUrl.toString(),
                             width: 140,
                             height: 140,
                             border: Border.all(color: Colors.grey.shade300),
                             borderRadius: 0,
+                            isNetworkImage: true,
                           ),
                         ],
                       ),
                       const SizedBox(height: TSizes.sm),
                       Text(
-                        '카티바 웻 왁스',
+                        myProduct[1].productName.toString(),
                         style: Theme.of(context).textTheme.bodyMedium,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
-                ),
+                ):Container()
               ],
             ),
 
@@ -200,7 +203,7 @@ class MemberInfoCarWashGoodsWidget extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: TextButton(
-                onPressed: () => THelperFunctions.navigateToScreen(context, const MemberAllGoodsScreen()),
+                onPressed: () => THelperFunctions.navigateToScreen(context, MemberAllGoodsScreen(myProduct: myProduct,)),
                 style: TextButton.styleFrom(
                   backgroundColor: const Color(0xffF5F5F5),
                   padding: const EdgeInsets.all(TSizes.md),

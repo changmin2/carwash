@@ -9,15 +9,12 @@ import 'package:flutter/material.dart';
 ///-------------------------------------------------------
 ///-------------------------------------------------------
 class MemberInfoCarWashSeqWidget extends StatelessWidget {
-  const MemberInfoCarWashSeqWidget({
+  final List<String> records;
+  MemberInfoCarWashSeqWidget({
     super.key,
+    required this.records
   });
 
-  ///*************************************
-  /// 임의로 만든 변수
-  ///*************************************
-  final int listCnt = 1;
-  final String regYn = 'Y';
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +30,10 @@ class MemberInfoCarWashSeqWidget extends StatelessWidget {
             const SizedBox(width: TSizes.sm),
 
             ///*************************************
-            /// 세차 용품 갯수 - 그냥 무조건 숫자 보여줘~
+            /// 세차 순서 갯수 - 그냥 무조건 숫자 보여줘~
             ///*************************************
             Text(
-              '9',
+              records.length.toString(),
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: PRIMARY_COLOR),
             ),
           ],
@@ -54,7 +51,7 @@ class MemberInfoCarWashSeqWidget extends StatelessWidget {
     ///*************************************
     /// 1. 본인 세차용품 등록 X
     ///*************************************
-    if (regYn == 'N') {
+    if (records.length == -1) {
       return SizedBox(
         child: Column(
           children: [
@@ -95,7 +92,7 @@ class MemberInfoCarWashSeqWidget extends StatelessWidget {
       /// 2-1. 본인 세차순서 등록 O
       ///      건수가 없으면 없다는 글만.
       ///*************************************
-      if (listCnt == 0) {
+      if (records.length == 0) {
         return SizedBox(
           height: 100,
           child: Center(
@@ -116,8 +113,8 @@ class MemberInfoCarWashSeqWidget extends StatelessWidget {
             spacing: 3,
             runSpacing: 3,
             alignment: WrapAlignment.start,
-            children: List.generate(9, (index) {
-              return WashListCard(step: index + 1, wash: '매트세척');
+            children: List.generate(records.length, (index) {
+              return WashListCard(step: index + 1, wash: records[index].trim());
             }).toList(),
           ),
         );

@@ -82,7 +82,7 @@ class _CommunityDetailScreenState extends ConsumerState<CommunityRecentScreen> {
 
                     /// 닉네임
                     GestureDetector(
-                      onTap: () => THelperFunctions.navigateToScreen(context, const MemberInfoScreen()),
+                      onTap: () => THelperFunctions.navigateToScreen(context, MemberInfoScreen(nickname: widget.model.creator,)),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
