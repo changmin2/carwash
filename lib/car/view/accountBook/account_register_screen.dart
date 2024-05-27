@@ -25,7 +25,7 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
   var _day = TFormatter.formatDate(DateTime.now());
   DateTime _prameterDay = DateTime.now();
   var _cost;
-  var _cate = '';
+  var _title = '';
   var _memo = '';
   final categories = ['지출', '정비', '주유'];
 
@@ -64,8 +64,8 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
                   THelperFunctions.showSnackBar(context, "세차일자를 선택하세요.");
                   return;
                 }
-                if (_cate == '') {
-                  THelperFunctions.showSnackBar(context, "카테고리를 입력하세요.");
+                if (_title == '') {
+                  THelperFunctions.showSnackBar(context, "지출 항목을 입력하세요.");
                   return;
                 }
                 if (_cost == null) {
@@ -74,7 +74,7 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
                 }
 
                 ref.read(accountBookProvider.notifier).add(
-                  AccountBookDto(date: _prameterDay, category: _cate, cost: _cost,memo: _memo)
+                  AccountBookDto(date: _prameterDay, category: category, cost: _cost,memo: _memo,title: _title)
                 );
                 context.pop();
               },
@@ -89,7 +89,7 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
         SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(left: 16,right: 16),
-            child: category == '지출'
+            child: category != '임시'
                 ?
             Column(
               children: [
@@ -126,7 +126,7 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
           
                     decoration: InputDecoration(
                         fillColor: Colors.white,
-                        hintText: '카테고리를 입력하세요',
+                        hintText: '지출항목을 입력하세요',
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
                           borderSide: BorderSide(width: 2,color: Colors.blue)
@@ -137,10 +137,10 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
                       )
                     ),
                     onChanged: (value){
-                      _cate = value!;
+                      _title = value!;
                     },
                     onSaved: (value){
-                      _cate = value!;
+                      _title = value!;
                     },
                     style: Theme.of(context).textTheme.titleSmall,
           
