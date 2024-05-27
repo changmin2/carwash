@@ -22,6 +22,7 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
   List<Event> events = [];
 
   Future<String> init() async {
+    events = [];
     eventList = ref.read(accountBookProvider.notifier).get();
 
     for (var o in eventList) {
