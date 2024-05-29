@@ -7,6 +7,7 @@ class AccountBookDto {
 
   final DateTime date;
   final String category;
+  final String title;
   final int cost;
   String? memo;
 
@@ -14,6 +15,7 @@ class AccountBookDto {
     required this.date,
     required this.category,
     required this.cost,
+    required this.title,
     this.memo = ""
   });
 

@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../car/view/register_first_screen.dart';
+import '../../../../community/provider/category_provider.dart';
 
 class TopMenuWidget extends ConsumerWidget {
   const TopMenuWidget({Key? key}) : super(key: key);
@@ -50,7 +51,11 @@ class TopMenuWidget extends ConsumerWidget {
 
         /// 커뮤니티
         GestureDetector(
-          onTap: () => context.goNamed(CommunityScreen.routeName),
+          onTap: () async {
+            //카테고리 초기화
+            await ref.read(categoryProvider.notifier).update((state) => '');
+            context.goNamed(CommunityScreen.routeName);
+          } ,
           child: TRoundedContainer(
             width: 100,
             padding: const EdgeInsets.all(TSizes.md),

@@ -22,13 +22,51 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
   List<Event> events = [];
 
   Future<String> init() async {
+    events = [];
     eventList = ref.read(accountBookProvider.notifier).get();
 
     for (var o in eventList) {
       events.add(
         Event(
             pay: o.cost,
-            child: Text(o.category),
+            child: Card(
+              color: Colors.white,
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: o.category == '지출'
+                      ? Color.fromRGBO(255, 250, 230, 100)
+                      : o.category == '정비'
+                      ? Color.fromRGBO(248, 244, 225, 100)
+                      : Color.fromRGBO(255, 249, 208, 100),
+                  radius: 30,
+                  child: FittedBox(
+                    child: o.category == '지출'
+                           ? Icon(
+                              Icons.shopping_cart_outlined,
+                              color: Color.fromRGBO(255, 95, 0 , 100),
+                            )
+                            : o.category == '정비'
+                          ? Icon(
+                              Icons.build_outlined,
+                              color: Color.fromRGBO(116,81, 45 , 100),
+                            )
+                        :   Icon(
+                              Icons.water_drop_outlined,
+                              color: Color.fromRGBO(90,178, 255 , 100),
+                            )
+                  ),
+                ),
+                title: Text(
+                  o.title
+                ),
+                subtitle: Text(
+                  o.date.toString().split(" ")[0]
+                ),
+                trailing: Text(
+                  '￦ -' + o.cost.toString()
+                ),
+              ),
+            ),
             dateTime: CalendarDateTime(
               year: int.parse(o.date.toString().split(" ")[0].substring(0,4)),
               month: int.parse(o.date.toString().split(" ")[0].substring(5,7)),
@@ -52,14 +90,14 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
       child: FutureBuilder(
         future: init(),
         builder: (BuildContext context, AsyncSnapshot snapshot){
-          print(snapshot);
+
           if (snapshot.hasData == false) {
             return const Center(child: CircularProgressIndicator());
           } else {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  EventCalendar(
+            return Column(
+              children: [
+                Flexible(
+                  child: EventCalendar(
                     calendarType: CalendarType.GREGORIAN,
                     calendarLanguage: 'en',
                     calendarOptions: CalendarOptions(
@@ -72,9 +110,9 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
                     ),
                     showLoadingForEvent: true,
                     events: events
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             );
           }
         }
@@ -84,6 +122,7 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
 }
 
 FloatingActionButton _floatingActionButton(BuildContext context) {
+
   return FloatingActionButton(
     backgroundColor: PRIMARY_COLOR,
     onPressed: () {

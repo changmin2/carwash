@@ -23,6 +23,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../community/provider/category_provider.dart';
+import '../../../community/provider/communityProvider.dart';
 import '../../../weather/provider/weather_provider.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
@@ -53,6 +55,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final state = ref.watch(WeatherProvider);
     ref.read(favoriteProvider.notifier).getFavorites();
     ref.read(hotAllCommunityProvider.notifier).getHotAll();
+
 
     return DefaultLayoutV2(
       safeAreaColor: PRIMARY_COLOR,
