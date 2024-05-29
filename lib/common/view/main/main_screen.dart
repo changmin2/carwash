@@ -1,6 +1,7 @@
 import 'package:carwash/car/model/recentRecordDto.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:carwash/common/component/rounded_container.dart';
+import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
@@ -8,6 +9,7 @@ import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/common/view/main/widget/carwash_life_list_widget.dart';
 import 'package:carwash/common/view/main/widget/event_list_widget.dart';
+import 'package:carwash/common/view/main/widget/most_registration_product_list_widget.dart';
 import 'package:carwash/common/view/main/widget/recent_carwash_list_widget.dart';
 import 'package:carwash/common/view/main/widget/top_menu_widget.dart';
 import 'package:carwash/community/provider/hot_all_community_provider.dart';
@@ -16,6 +18,7 @@ import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/profile/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
@@ -58,7 +61,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-
           const SizedBox(height: TSizes.md),
 
           /// ----------------------------------------------------------------
@@ -66,8 +68,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           /// ----------------------------------------------------------------
           const TopMenuWidget(),
           const SizedBox(height: TSizes.spaceBtwSections),
-          /// ----------------------------------------------------------------
 
+          /// ----------------------------------------------------------------
 
           /// ----------------------------------------------------------------
           /// 컨텐츠 영역
@@ -104,6 +106,13 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       const CarWashLifeListWidget(),
                       const SizedBox(height: TSizes.spaceBtwSections),
 
+
+                      /// ----------------------------------------------------------------
+                      /// 최다 등록 용품
+                      /// ----------------------------------------------------------------
+                      const MostRegistrationProductListWidget(),
+                      const SizedBox(height: TSizes.spaceBtwSections),
+
                       /// ----------------------------------------------------------------
                       /// 최근 세차
                       /// ----------------------------------------------------------------
@@ -119,6 +128,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     );
   }
 }
+
 
 Widget _WeatherListWidget(context, state) {
   return state.length != 0
@@ -139,9 +149,7 @@ Widget _WeatherListWidget(context, state) {
                 )
               ],
             ),
-
             const SizedBox(height: TSizes.spaceBtwItems),
-
             TRoundedContainer(
               padding: const EdgeInsets.all(TSizes.md),
               showBorder: true,
