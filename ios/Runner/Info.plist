@@ -1,107 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>ko_KR</string>
-	<key>CFBundleDisplayName</key>
-	<string>세차파트너</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>carwash</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>carwash</string>
-			</array>
-		</dict>
-	</array>
-	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>FLTEnableImpeller</key>
-	<true/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>naversearchapp</string>
-		<string>naversearchthirdlogin</string>
-	</array>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
+		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true/>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>naver.com</key>
+		<key>CFBundleDevelopmentRegion</key>
+		<string>ko_KR</string>
+		<key>CFBundleDisplayName</key>
+		<string>세차파트너</string>
+		<key>CFBundleExecutable</key>
+		<string>$(EXECUTABLE_NAME)</string>
+		<key>CFBundleIdentifier</key>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+		<key>CFBundleName</key>
+		<string>carwash</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleShortVersionString</key>
+		<string>$(FLUTTER_BUILD_NAME)</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundleURLTypes</key>
+		<array>
 			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>carwash</string>
+				</array>
 			</dict>
-			<key>naver.net</key>
+		</array>
+		<key>CFBundleVersion</key>
+		<string>$(FLUTTER_BUILD_NUMBER)</string>
+		<key>FLTEnableImpeller</key>
+		<true/>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>naversearchapp</string>
+			<string>naversearchthirdlogin</string>
+		</array>
+		<key>LSRequiresIPhoneOS</key>
+		<true/>
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+			<key>NSExceptionDomains</key>
 			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
+				<key>naver.com</key>
+				<dict>
+					<key>NSExceptionRequiresForwardSecrecy</key>
+					<false/>
+					<key>NSIncludesSubdomains</key>
+					<true/>
+				</dict>
+				<key>naver.net</key>
+				<dict>
+					<key>NSExceptionRequiresForwardSecrecy</key>
+					<false/>
+					<key>NSIncludesSubdomains</key>
+					<true/>
+				</dict>
 			</dict>
 		</dict>
+		<key>NSCameraUsageDescription</key>
+		<string>게시글 사진 첨부를 위한 카메라 접근을 허용하시겠습니까?</string>
+		<key>NSLocationAlwaysUsageDescription</key>
+		<string>유저 위치 기반 날씨 정보를 불러오는 기능을 사용하기 위한 위치 권한 요청</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>유저 위치 기반 날씨 정보를 불러오는 기능을 사용하기 위한 위치 권한 요청</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>게시글 사진 첨부를 위한 앨범 접근을 허용하시겠습니까?</string>
+		<key>UIApplicationSupportsIndirectInputEvents</key>
+		<true/>
+		<key>UILaunchStoryboardName</key>
+		<string>LaunchScreen</string>
+		<key>UIMainStoryboardFile</key>
+		<string>Main</string>
+		<key>UIStatusBarHidden</key>
+		<false/>
+		<key>UISupportedInterfaceOrientations</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>UISupportedInterfaceOrientations~ipad</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+			<string>UIInterfaceOrientationPortraitUpsideDown</string>
+			<string>UIInterfaceOrientationLandscapeLeft</string>
+			<string>UIInterfaceOrientationLandscapeRight</string>
+		</array>
+		<key>UIViewControllerBasedStatusBarAppearance</key>
+		<false/>
+		<key>naverConsumerKey</key>
+		<string>tBLub4cT_Km2hTKlZ3at</string>
+		<key>naverConsumerSecret</key>
+		<string>1Zmjitgry3</string>
+		<key>naverServiceAppName</key>
+		<string>carwash</string>
+		<key>naverServiceAppUrlScheme</key>
+		<string>carwash</string>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>게시글 사진 첨부를 위한 카메라 접근을 허용하시겠습니까?</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>유저 위치 기반 날씨 정보를 불러오는 기능을 사용하기 위한 위치 권한 요청</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>유저 위치 기반 날씨 정보를 불러오는 기능을 사용하기 위한 위치 권한 요청</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>게시글 사진 첨부를 위한 앨범 접근을 허용하시겠습니까?</string>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UIStatusBarHidden</key>
-	<false/>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>naverConsumerKey</key>
-	<string>tBLub4cT_Km2hTKlZ3at</string>
-	<key>naverConsumerSecret</key>
-	<string>1Zmjitgry3</string>
-	<key>naverServiceAppName</key>
-	<string>carwash</string>
-	<key>naverServiceAppUrlScheme</key>
-	<string>carwash</string>
-</dict>
 </plist>

@@ -63,7 +63,12 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
                   o.date.toString().split(" ")[0]
                 ),
                 trailing: Text(
-                  '￦ -' + o.cost.toString()
+                  '- ' + o.cost.toString()+' 원',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: Color.fromRGBO(0,103, 105 , 100)
+                  ),
                 ),
               ),
             ),
