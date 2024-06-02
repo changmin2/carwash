@@ -188,7 +188,7 @@ AppBar renderAppBar(_context) {
     title: const Padding(
       padding: EdgeInsets.only(left: TSizes.md),
       child: Text(
-        '세차파트너',
+        '세차노트',
         style: TextStyle(
           color: Colors.white,
           fontSize: 20,
