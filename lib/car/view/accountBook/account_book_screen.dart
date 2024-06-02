@@ -29,48 +29,60 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
       events.add(
         Event(
             pay: o.cost,
-            child: Card(
-              color: Colors.white,
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: o.category == '지출'
-                      ? Color.fromRGBO(255, 250, 230, 100)
-                      : o.category == '정비'
-                      ? Color.fromRGBO(248, 244, 225, 100)
-                      : Color.fromRGBO(255, 249, 208, 100),
-                  radius: 30,
-                  child: FittedBox(
-                    child: o.category == '지출'
-                           ? Icon(
-                              Icons.shopping_cart_outlined,
-                              color: Color.fromRGBO(255, 95, 0 , 100),
-                            )
+            child: Stack(
+              children:[
+                  Card(
+                    color: Colors.white,
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: o.category == '지출'
+                            ? Color.fromRGBO(255, 250, 230, 100)
                             : o.category == '정비'
-                          ? Icon(
-                              Icons.build_outlined,
-                              color: Color.fromRGBO(116,81, 45 , 100),
-                            )
-                        :   Icon(
-                              Icons.water_drop_outlined,
-                              color: Color.fromRGBO(90,178, 255 , 100),
-                            )
-                  ),
+                            ? Color.fromRGBO(248, 244, 225, 100)
+                            : Color.fromRGBO(255, 249, 208, 100),
+                        radius: 30,
+                        child: FittedBox(
+                          child: o.category == '지출'
+                                 ? Icon(
+                                    Icons.shopping_cart_outlined,
+                                    color: Color.fromRGBO(255, 95, 0 , 100),
+                                  )
+                                  : o.category == '정비'
+                                ? Icon(
+                                    Icons.build_outlined,
+                                    color: Color.fromRGBO(116,81, 45 , 100),
+                                  )
+                              :   Icon(
+                                    Icons.water_drop_outlined,
+                                    color: Color.fromRGBO(90,178, 255 , 100),
+                                  )
+                        ),
+                      ),
+                      title: Text(
+                        o.title
+                      ),
+                      subtitle: Text(
+                        o.date.toString().split(" ")[0]
+                      ),
+                      trailing: Text(
+                        '- ' + o.cost.toString()+' 원',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(0,103, 105 , 100)
+                        ),
+                      ),
+                    ),
                 ),
-                title: Text(
-                  o.title
+                Positioned(
+                    right: 0,
+                    child: Icon(
+                      Icons.delete_forever,
+                      color: Colors.red,
+                      size: 30,
+                    )
                 ),
-                subtitle: Text(
-                  o.date.toString().split(" ")[0]
-                ),
-                trailing: Text(
-                  '- ' + o.cost.toString()+' 원',
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                    color: Color.fromRGBO(0,103, 105 , 100)
-                  ),
-                ),
-              ),
+              ]
             ),
             dateTime: CalendarDateTime(
               year: int.parse(o.date.toString().split(" ")[0].substring(0,4)),
