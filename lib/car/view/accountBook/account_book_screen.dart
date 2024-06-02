@@ -75,11 +75,16 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
                     ),
                 ),
                 Positioned(
-                    right: 0,
-                    child: Icon(
-                      Icons.delete_forever,
-                      color: Colors.red,
-                      size: 30,
+                    right: -10,
+                    top: -10,
+                    child: IconButton(
+                      onPressed: (){},
+                      icon: Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+
+                      ),
+
                     )
                 ),
               ]
