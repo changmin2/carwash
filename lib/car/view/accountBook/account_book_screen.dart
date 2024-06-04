@@ -23,12 +23,12 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
 
   Future<String> init() async {
     events = [];
-    eventList = ref.read(accountBookProvider.notifier).get();
+    final eventList = ref.read(accountBookProvider) as List<AccountBookDto>;
 
     for (var o in eventList) {
       events.add(
         Event(
-            pay: o.cost,
+            pay: o.cost!,
             child: Stack(
               children:[
                   Card(
@@ -59,7 +59,7 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
                         ),
                       ),
                       title: Text(
-                        o.title
+                        o.title!
                       ),
                       subtitle: Text(
                         o.date.toString().split(" ")[0]
@@ -78,7 +78,9 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
                     right: -10,
                     top: -10,
                     child: IconButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        ref.read(accountBookProvider.notifier).delete(o.id!);
+                      },
                       icon: Icon(
                         Icons.cancel,
                         color: Colors.red,

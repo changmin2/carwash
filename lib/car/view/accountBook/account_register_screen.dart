@@ -107,14 +107,12 @@ class _AccountRegisterScreenState extends ConsumerState<AccountRegisterScreen> {
                       onPressed: () async {
                         final selectedDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2099));
                         if (selectedDate != null) {
-                          if (selectedDate.isAfter(DateTime.now())) {
-                            THelperFunctions.showSnackBar(context, "오늘 이후의 날짜는 선택할 수 없습니다.");
-                          } else {
+
                             setState(() {
                               _prameterDay = selectedDate;
                               _day = TFormatter.formatDate(selectedDate);
                             });
-                          }
+
                         }
                       },
                     ),
