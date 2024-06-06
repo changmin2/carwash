@@ -1,4 +1,5 @@
 import 'package:carwash/common/const/sizes.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 class TRoundedImage extends StatelessWidget {
@@ -45,10 +46,34 @@ class TRoundedImage extends StatelessWidget {
           width: double.infinity,
           child: ClipRRect(
             borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
-            child: Image(
+            child: isNetworkImage
+            ?
+            ExtendedImage.network(
               fit: fit,
-              image: isNetworkImage ? NetworkImage(imageUrl) : AssetImage(imageUrl) as ImageProvider,
-            ),
+              imageUrl,
+              cache: true,
+              loadStateChanged: (ExtendedImageState state){
+                switch (state.extendedImageLoadState){
+                  case LoadState.loading:
+                    return Image.asset(
+                      "asset/gif/loading.gif",
+                      fit: fit,
+                    );
+                    break;
+                  case LoadState.failed:
+                    return Image.asset(
+                      "asset/img/failed.png",
+                      fit: fit,
+                    );
+                  break;
+                }
+              },
+            )
+            : Image(
+              fit: fit,
+              image: AssetImage(imageUrl) as ImageProvider,
+            )
+
           ),
         ),
       ),

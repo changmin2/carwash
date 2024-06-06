@@ -1,6 +1,7 @@
 import 'package:carwash/car/component/washlist_card.dart';
 import 'package:carwash/car/provider/record_provider.dart';
 import 'package:carwash/common/component/rounded_container.dart';
+import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -78,31 +79,37 @@ class _RecordDetailState extends ConsumerState<RecordDetail> {
               ),
 
               const SizedBox(height: TSizes.spaceBtwInputFields),
-
-              DottedBorder(
-                  color: Colors.grey,
-                  dashPattern: const [5, 3],
-                  borderType: BorderType.RRect,
-                  radius: const Radius.circular(12),
-                  child: Container(
-                    width: 400,
-                    height: 200,
-                    child: Image.network(
-                      state.imgUrl,
-                      fit: BoxFit.fill,
-                      loadingBuilder: (BuildContext context,Widget child,ImageChunkEvent? loadingProgress){
-                        if(loadingProgress == null){
-                          return child;
-                        }
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
-                          ),
-                        );
-                      },
-                    ),
-                  )
+              TRoundedImage(
+                imageUrl: state.imgUrl,
+                width: 400,
+                height: 200,
+                isNetworkImage: true,
+                fit: BoxFit.fill,
               ),
+              // DottedBorder(
+              //     color: Colors.grey,
+              //     dashPattern: const [5, 3],
+              //     borderType: BorderType.RRect,
+              //     radius: const Radius.circular(12),
+              //     child: Container(
+              //       width: 400,
+              //       height: 200,
+              //       child: Image.network(
+              //         state.imgUrl,
+              //         fit: BoxFit.fill,
+              //         loadingBuilder: (BuildContext context,Widget child,ImageChunkEvent? loadingProgress){
+              //           if(loadingProgress == null){
+              //             return child;
+              //           }
+              //           return Center(
+              //             child: CircularProgressIndicator(
+              //               value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
+              //             ),
+              //           );
+              //         },
+              //       ),
+              //     )
+              // ),
               
               const SizedBox(height: TSizes.spaceBtwInputFields),
               

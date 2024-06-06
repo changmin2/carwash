@@ -309,18 +309,18 @@ packages:
     dependency: "direct main"
     description:
       name: extended_image
-      sha256: a6b738d9b8d5513be72c545cc3e9c5c451fbee77c8db3cbec7c32ae85b82fb93
+      sha256: "9786aab821aac117763d6e4419cd49f5031fbaacfe3fd212c5b313d0334c37a9"
       url: "https://pub.dev"
     source: hosted
-    version: "6.4.1"
+    version: "8.2.1"
   extended_image_library:
     dependency: transitive
     description:
       name: extended_image_library
-      sha256: "8bf87c0b14dcb59200c923a9a3952304e4732a0901e40811428834ef39018ee1"
+      sha256: "9b55fc5ebc65fad984de66b8f177a1bef2a84d79203c9c213f75ff83c2c29edd"
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.0"
+    version: "4.0.1"
   extension:
     dependency: transitive
     description:
