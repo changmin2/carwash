@@ -1,6 +1,7 @@
 import 'package:carwash/common/theme/theme.dart';
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -8,8 +9,9 @@ import 'common/provider/go_router.dart';
 import 'firebase_options.dart';
 
 void main() async{
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await initializeDateFormatting();
   // await FirebaseAppCheck.instance.activate(
   //   // You can also use a `ReCaptchaEnterpriseProvider` provider instance as an
@@ -29,6 +31,7 @@ void main() async{
   //   // 4. App Attest provider with fallback to Device Check provider (App Attest provider is only available on iOS 14.0+, macOS 14.0+)
   //   appleProvider: AppleProvider.appAttest,
   // );
+
   runApp(
       const ProviderScope(child: _App())
   );
@@ -37,10 +40,12 @@ void main() async{
 class _App extends ConsumerWidget {
   const _App({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    final router = ref.watch(routerProvider);
 
+    final router = ref.watch(routerProvider);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
     // final state = ref.watch(secureStorageProvider);
     // state.deleteAll();
     return MaterialApp.router(

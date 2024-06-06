@@ -51,9 +51,9 @@ dependencies:
   dotted_border: ^2.0.0+3
   geolocator: ^7.3.3
   table_calendar: ^3.0.6
-  cloud_firestore: ^4.4.5
-  firebase_core: ^2.7.0
-  firebase_storage: ^11.1.1
+  #cloud_firestore: ^4.4.5
+  #firebase_core: ^2.7.0
+  # firebase_storage: ^11.1.1
   lottie: ^2.6.0
   pdfx: ^2.4.0
   extended_image: ^8.2.1
@@ -71,7 +71,7 @@ dependencies:
   firebase_auth: ^4.15.3
   sign_in_with_apple: ^5.0.0
   image_cropper: ^5.0.1
-  firebase_app_check: ^0.2.1+8
+  # firebase_app_check: ^0.2.1+8
   flutter_launcher_icons: ^0.13.1
   permission_handler: ^11.3.0
   carousel_slider: ^4.2.1
@@ -107,6 +107,8 @@ flutter_icons:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+
+
 flutter:
 
   # The following line ensures that the Material Icons font is

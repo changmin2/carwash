@@ -9,7 +9,7 @@ import 'package:carwash/common/utils/formatters/formatter.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:dio/dio.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+//import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,7 +43,7 @@ class RecordThridScreen extends ConsumerStatefulWidget {
 
 class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   File? _image;
-  var _day = '';
+  var _day = TFormatter.formatDate(DateTime.now());
   var _prameterDay = '';
   var _place = '';
   var newList = [];
@@ -317,7 +317,8 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   }
 
   Future getImage(ImageSource imageSource) async {
-    final XFile? pickedFile = await picker.pickImage(source: imageSource, imageQuality: 30, maxHeight: 300, maxWidth: 500);
+
+    final XFile? pickedFile = await picker.pickImage(source: imageSource, imageQuality: 70, maxHeight: 1080, maxWidth: 1920);
     if (pickedFile != null) {
       setState(() {
         _image = File(pickedFile.path);
