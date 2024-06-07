@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:carwash/common/const/sizes.dart';
+import 'package:carwash/common/const/text_strings.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/user/model/user_model.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../common/const/colors.dart';
 import '../provider/user_me_provider.dart';
@@ -36,11 +36,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     var state = ref.read(userMeProvider);
 
     return DefaultLayoutV2(
-
-
       child: SingleChildScrollView(
         // 키보드가 올라오고 화면을 드래그하면 키보드가 사라짐.
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+
         child: Padding(
           padding: const EdgeInsets.all(TSizes.defalutSpace),
           child: Column(
@@ -65,28 +64,28 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 'Welcome back ,',
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
+
               const SizedBox(height: TSizes.spaceBtwItems / 2),
+
               Text(
-                '세차파트너에 오신걸 환영합니다.',
+                '${TTextStrings.appName}에 오신걸 환영합니다.',
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
+
               //아이디 또는 비밀번호가 다를 경우
               state is UserModelError
-                  ? Column(
-                     children: [
-                       const SizedBox(height: 8),
-                       Text(
-                         '아이디 또는 비밀번호를 확인하세요!!',
-                         style: TextStyle(
-                           color: Colors.red,
-                           fontWeight: FontWeight.w700
-                         ),
-                       )
-                     ],
-                  )
-                  :Container(),
-              const SizedBox(height: TSizes.spaceBtwSections),
+                  ? const Column(
+                      children: [
+                        SizedBox(height: 8),
+                        Text(
+                          '아이디 또는 비밀번호를 확인하세요!!',
+                          style: TextStyle(color: Colors.red, fontWeight: FontWeight.w700),
+                        )
+                      ],
+                    )
+                  : Container(),
 
+              const SizedBox(height: TSizes.spaceBtwSections),
 
               /// ----------------------------------------------------------------
               /// 아이디
@@ -157,13 +156,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   onPressed: () async {
                     if (_idFormKey.currentState!.validate() && _psFormKey.currentState!.validate()) {
                       await ref.read(userMeProvider.notifier).login(username: username, password: password, context: context);
-
                     }
                   },
                   child: const Text('로그인'),
                 ),
               ),
-
 
               const SizedBox(height: TSizes.spaceBtwItems / 2),
 
@@ -176,7 +173,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "세차파트너에 처음이신가요?",
+                      '${TTextStrings.appName}에 처음이신가요?',
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(width: TSizes.spaceBtwInputFields),
@@ -192,7 +189,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ],
                 ),
               ),
-
 
               const SizedBox(height: TSizes.spaceBtwItems),
 
@@ -217,30 +213,30 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 16),
-                  Platform.isIOS ?
-                  Card(
-                    elevation: 5.0,
-                    shape: const CircleBorder(),
-                    clipBehavior: Clip.antiAlias,
-                    child: Ink.image(
-                      image: const AssetImage('asset/img/apple_logo.png'),
-                      width: 50,
-                      height: 50,
-                      child: InkWell(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(35.0),
-                        ),
-                        onTap: () async {
-                          var res = await _login_apple();
-                          String id = res.user!.email!;
-                          String ps = res.user!.uid!;
-                          ref.read(userMeProvider.notifier).snslogin(username: ps, password: id, nickname: id, context: context);
-                        },
-                      ),
-                    ),
-                  )
-                  : Container()    ,
+                  const SizedBox(width: TSizes.spaceBtwItems),
+                  Platform.isIOS
+                      ? Card(
+                          elevation: 5.0,
+                          shape: const CircleBorder(),
+                          clipBehavior: Clip.antiAlias,
+                          child: Ink.image(
+                            image: const AssetImage('asset/img/apple_logo.png'),
+                            width: 50,
+                            height: 50,
+                            child: InkWell(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(35.0),
+                              ),
+                              onTap: () async {
+                                var res = await _login_apple();
+                                String id = res.user!.email!;
+                                String ps = res.user!.uid!;
+                                ref.read(userMeProvider.notifier).snslogin(username: ps, password: id, nickname: id, context: context);
+                              },
+                            ),
+                          ),
+                        )
+                      : Container(),
                 ],
               ),
             ],
@@ -254,13 +250,18 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     return RegExp(r"^(?=.*[a-zA-Z])(?=.*[0-9])").hasMatch(word);
   }
 
-  void _login_naver() async{
+  void _login_naver() async {
     final NaverLoginResult res = await FlutterNaverLogin.logIn();
     //final NaverLoginResult result = await FlutterNaverLogin.logIn();
-    ref.read(userMeProvider.notifier).snslogin(username: res.account.id, password: res.account.mobile.toString()+res.account.id, context: context,nickname: res.account.nickname);
+    ref.read(userMeProvider.notifier).snslogin(
+          username: res.account.id,
+          password: res.account.mobile.toString() + res.account.id,
+          context: context,
+          nickname: res.account.nickname,
+        );
   }
 
-  Future<UserCredential> _login_apple() async{
+  Future<UserCredential> _login_apple() async {
     final appleCredential = await SignInWithApple.getAppleIDCredential(
       scopes: [
         AppleIDAuthorizationScopes.email,
@@ -279,4 +280,3 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
   }
 }
-
