@@ -1,23 +1,50 @@
-import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/common/const/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../weather/provider/weather_provider.dart';
-
 
 class SplashScreen extends ConsumerWidget {
+  const SplashScreen({super.key});
+
   static String get routeName => 'splash';
 
-
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
-
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       color: Colors.white,
-      child: Image.asset(
-                    'asset/img/intro.png',
-                    fit: BoxFit.cover,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Image.asset(
+            'asset/img/intro.png',
+            fit: BoxFit.cover,
+          ),
+          const Positioned(
+            bottom: 80,
+            child: Column(
+              children: [
+                DefaultTextStyle(
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
                   ),
+                  child: Text("테스트 버전"),
+                ),
+                SizedBox(height: TSizes.sm),
+                DefaultTextStyle(
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                  child: Text("1.1.0"),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
