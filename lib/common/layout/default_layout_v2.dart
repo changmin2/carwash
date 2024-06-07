@@ -24,16 +24,14 @@ class DefaultLayoutV2 extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     return Container(
       color: safeAreaColor,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: appBar==null ? null
-          : appBar,
-          body: SafeArea(child: child),
-          // backgroundColor: backgroundColor ?? Colors.white,
-          backgroundColor: backgroundColor,
-          floatingActionButton: floatingActionButton,
-          bottomNavigationBar: bottomNavagtionBar,
-        ),
+      child: Scaffold(
+        appBar: appBar==null ? null
+        : appBar,
+        body: child,
+        // backgroundColor: backgroundColor ?? Colors.white,
+        backgroundColor: backgroundColor,
+        floatingActionButton: floatingActionButton,
+        bottomNavigationBar: bottomNavagtionBar,
       ),
     );
   }

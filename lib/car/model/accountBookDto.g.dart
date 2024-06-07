@@ -8,16 +8,19 @@ part of 'accountBookDto.dart';
 
 AccountBookDto _$AccountBookDtoFromJson(Map<String, dynamic> json) =>
     AccountBookDto(
-      date: DateTime.parse(json['date'] as String),
-      category: json['category'] as String,
-      cost: json['cost'] as int,
-      title: json['title'] as String,
+      id: json['id'] as int?,
+      date:
+          json['date'] == null ? null : DateTime.parse(json['date'] as String),
+      category: json['category'] as String?,
+      cost: json['cost'] as int?,
+      title: json['title'] as String?,
       memo: json['memo'] as String? ?? "",
     );
 
 Map<String, dynamic> _$AccountBookDtoToJson(AccountBookDto instance) =>
     <String, dynamic>{
-      'date': instance.date.toIso8601String(),
+      'id': instance.id,
+      'date': instance.date?.toIso8601String(),
       'category': instance.category,
       'title': instance.title,
       'cost': instance.cost,

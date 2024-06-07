@@ -17,7 +17,7 @@ flutter_native_splash:
   ##  필수 매개변수 color / background_image
   # 둘 중 하나만 사용할 수 있으며 색상과 background_image를 둘 다 설정할 수 없습니다.
   #color: "#FFFFFF"
-  background_image: "asset/img/splash.png"
+  background_image: "asset/img/intro.png"
 
 
   ## 이후 내용은 선택적 매개변수들 입니다.
@@ -90,7 +90,7 @@ flutter_native_splash:
     # 직경 640픽셀.
     # 아이콘 배경이 없는 앱 아이콘: 1152×1152 픽셀이어야 하며 원 안에 맞아야 합니다.
     # 직경 768픽셀.
-    image: asset/img/splash.png
+    image: asset/img/intro.png
 
   # Splash screen background color.
   # 스플래시 화면 배경색.

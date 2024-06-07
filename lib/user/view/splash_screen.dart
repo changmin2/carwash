@@ -15,7 +15,7 @@ class SplashScreen extends ConsumerWidget {
     return Container(
       color: Colors.white,
       child: Image.asset(
-                    'asset/img/splash.png',
+                    'asset/img/intro.png',
                     fit: BoxFit.cover,
                   ),
     );

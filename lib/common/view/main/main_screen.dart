@@ -20,6 +20,7 @@ import 'package:carwash/user/view/profile/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -196,7 +197,7 @@ AppBar renderAppBar(_context) {
     title: const Padding(
       padding: EdgeInsets.only(left: TSizes.md),
       child: Text(
-        '세차파트너',
+        '세차노트',
         style: TextStyle(
           color: Colors.white,
           fontSize: 20,

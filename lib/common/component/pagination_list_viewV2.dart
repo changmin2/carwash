@@ -11,10 +11,12 @@ import '../../community/component/comment_card.dart';
 import '../../community/model/community_model.dart';
 import '../../community/provider/communityProvider.dart';
 import '../../user/provider/favorite_provider.dart';
+import '../../user/view/member_info/member_info_screen.dart';
 import '../const/colors.dart';
 import '../const/sizes.dart';
 import '../model/cursor_pagination_model.dart';import '../model/model_with_idV2.dart';
 import '../provider/comment_pagination_provider.dart';
+import '../utils/helpers/helper_functions.dart';
 import '../utils/pagination_utils.dart';
 import 'image_viewer_screen.dart';
 
@@ -100,27 +102,30 @@ class _PaginationListViewStateV2<T extends IModelWithIdV2> extends ConsumerState
             const SizedBox(height: TSizes.spaceBtwItems),
 
             /// 닉네임
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const TRoundedImage(
-                  width: 24,
-                  height: 24,
-                  fit: BoxFit.fill,
-                  imageUrl: 'asset/img/no_image.png',
-                  borderRadius: 100,
-                ),
-                const SizedBox(width: TSizes.sm),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.model!.creator,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ],
-                ),
-              ],
+            GestureDetector(
+              onTap: () => THelperFunctions.navigateToScreen(context, MemberInfoScreen(nickname: widget.model!.creator)),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const TRoundedImage(
+                    width: 24,
+                    height: 24,
+                    fit: BoxFit.fill,
+                    imageUrl: 'asset/img/no_image.png',
+                    borderRadius: 100,
+                  ),
+                  const SizedBox(width: TSizes.sm),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.model!.creator,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
 
             const SizedBox(height: TSizes.spaceBtwItems),

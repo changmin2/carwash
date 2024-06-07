@@ -10,7 +10,7 @@ import 'package:carwash/community/repository/community_repository.dart';
 import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/model/user_model.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+//import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -43,7 +43,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
   List<XFile?> multiImage = []; // 갤러리에서 여러 장의 사진을 선택해서 저장할 변수
   List<XFile?> images = []; // 가져온 사진들을 보여주기 위한 변수
   List<String?> _downloadUrls = [];
-  FirebaseStorage storage = FirebaseStorage.instance;
+  //FirebaseStorage storage = FirebaseStorage.instance;
 
   final _titleKey = GlobalKey<FormState>();
   final _contentKey = GlobalKey<FormState>();
@@ -174,9 +174,11 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                     backgroundColor: const Color(0xff2F80ED),
                     child: IconButton(
                       onPressed: () async {
-                        image = await picker.pickImage(source: ImageSource.camera, imageQuality: 30,
-                            maxHeight: 300,
-                            maxWidth: 500);
+                        image = await picker.pickImage(
+                            source: ImageSource.camera,
+                            imageQuality: 75,
+                            maxHeight: 1080,
+                            maxWidth: 1920);
                         //카메라로 촬영하지 않고 뒤로가기 버튼을 누를 경우, null값이 저장되므로 if문을 통해 null이 아닐 경우에만 images변수로 저장하도록 합니다
                         if (image != null) {
                           if (images.length > 2) {
@@ -206,9 +208,9 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                     child: IconButton(
                       onPressed: () async {
                         multiImage = await picker.pickMultiImage(
-                            imageQuality: 30,
-                            maxHeight: 300,
-                            maxWidth: 500
+                            imageQuality: 75,
+                            maxHeight: 1080,
+                            maxWidth: 1920
                         );
                         if (multiImage.length > 3 || (multiImage.length - images.length).abs() > 3) {
                           THelperFunctions.showSnackBar(context, '사진은 3개까지 등록 할 수 있습니다.');
@@ -365,19 +367,19 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
     );
   }
 
-  Future<void> uploadImage() async {
-    final now = DateTime.now();
-    if (images.isNotEmpty) {
-      for (int i = 0; i < images.length; i++) {
-        File _file = File(images[i]!.path);
-
-        var ref = storage.ref().child('washRecord/$now' + i.toString() + '.png');
-        await ref.putFile(_file);
-
-        _downloadUrls.add(await ref.getDownloadURL());
-      }
-    }
-  }
+  // Future<void> uploadImage() async {
+  //   final now = DateTime.now();
+  //   if (images.isNotEmpty) {
+  //     for (int i = 0; i < images.length; i++) {
+  //       File _file = File(images[i]!.path);
+  //
+  //       //var ref = storage.ref().child('washRecord/$now' + i.toString() + '.png');
+  //       await ref.putFile(_file);
+  //
+  //       _downloadUrls.add(await ref.getDownloadURL());
+  //     }
+  //   }
+  // }
 
   Future<void> s3Upload() async {
     if (images.isNotEmpty) {

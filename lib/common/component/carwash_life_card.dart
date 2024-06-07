@@ -1,4 +1,5 @@
 import 'package:carwash/common/component/rounded_container.dart';
+import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
 import 'package:carwash/community/model/community_model.dart';
@@ -31,15 +32,14 @@ class CarWashLife extends StatelessWidget {
             padding: const EdgeInsets.all(TSizes.sm),
             child: Column(
               children: [
-                /// 사진
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12.0),
-                  child: Image.network(
-                    model.imgUrls.toString().split(",")[0].split("[")[1].split("]")[0],
-                    fit: BoxFit.fill,
-                    height: 200,
-                    width: double.infinity,
-                  ),
+                //사진
+                TRoundedImage(
+                  imageUrl: model.imgUrls.toString().split(",")[0].split("[")[1].split("]")[0],
+                  fit: BoxFit.fill,
+                  height: 200,
+                  width: double.infinity,
+                  isNetworkImage: true,
+
                 ),
 
                 const SizedBox(height: TSizes.md),
