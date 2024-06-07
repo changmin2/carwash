@@ -26,9 +26,7 @@ import '../../common/const/data.dart';
 class CommunityRegisterScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityRegisterScreen';
   String category;
-  CommunityRegisterScreen({
-    this.category = '자유게시판',
-    Key? key}) : super(key: key);
+  CommunityRegisterScreen({this.category = '자유게시판', Key? key}) : super(key: key);
 
   @override
   ConsumerState<CommunityRegisterScreen> createState() => _CommunityRegisterState();
@@ -78,13 +76,12 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 '부적절하거나 불쾌감을 줄 수 있는 컨텐츠는 제재를 받을 수 있습니다.',
-                style: TextStyle(
-                    color: Colors.red
-                ),
+                style: TextStyle(color: Colors.red),
               ),
               const SizedBox(height: 16),
+
               /// 제목
               Row(
                 children: [
@@ -152,11 +149,11 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                   decoration: const InputDecoration(
                     hintText: '태그를 입력하세요.',
                   ),
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "태그를 하나 입력하세요.";
-                    }
-                  },
+                  // validator: (value) {
+                  //   if (value!.isEmpty) {
+                  //     return "태그를 하나 입력하세요.";
+                  //   }
+                  // },
                 ),
               ),
               const SizedBox(height: TSizes.spaceBtwInputFields),
@@ -174,11 +171,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                     backgroundColor: const Color(0xff2F80ED),
                     child: IconButton(
                       onPressed: () async {
-                        image = await picker.pickImage(
-                            source: ImageSource.camera,
-                            imageQuality: 75,
-                            maxHeight: 1080,
-                            maxWidth: 1920);
+                        image = await picker.pickImage(source: ImageSource.camera, imageQuality: 75, maxHeight: 1080, maxWidth: 1920);
                         //카메라로 촬영하지 않고 뒤로가기 버튼을 누를 경우, null값이 저장되므로 if문을 통해 null이 아닐 경우에만 images변수로 저장하도록 합니다
                         if (image != null) {
                           if (images.length > 2) {
@@ -207,11 +200,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                     backgroundColor: const Color(0xff2F80ED),
                     child: IconButton(
                       onPressed: () async {
-                        multiImage = await picker.pickMultiImage(
-                            imageQuality: 75,
-                            maxHeight: 1080,
-                            maxWidth: 1920
-                        );
+                        multiImage = await picker.pickMultiImage(imageQuality: 75, maxHeight: 1080, maxWidth: 1920);
                         if (multiImage.length > 3 || (multiImage.length - images.length).abs() > 3) {
                           THelperFunctions.showSnackBar(context, '사진은 3개까지 등록 할 수 있습니다.');
                         }
@@ -296,21 +285,22 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                     if (_titleKey.currentState!.validate() && _contentKey.currentState!.validate() && _tagKey.currentState!.validate()) {
                       final user = ref.read(userMeProvider) as UserModel;
 
-
-                      if(widget.category == '세차라이프'){
-                        if(images.length == 0){
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      if (widget.category == '세차라이프') {
+                        if (images.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                             content: Text("세차라이프는 이미지를 하나 이상 선택해야합니다."),
                             duration: Duration(milliseconds: 500),
                           ));
                           return;
-                        }else{
+                        } else {
                           showModalBottomSheet(
                               context: context,
                               builder: (BuildContext context) {
                                 return const SizedBox(
                                   height: 100,
-                                  child: Center(child: Text('업로드 중...')),
+                                  child: Center(
+                                    child: Text('업로드 중...'),
+                                  ),
                                 );
                               });
                           await s3Upload();
@@ -329,8 +319,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                           Navigator.pop(context);
                           Navigator.pop(context);
                         }
-
-                      }else{
+                      } else {
                         showModalBottomSheet(
                             context: context,
                             builder: (BuildContext context) {
@@ -354,7 +343,6 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
                         Navigator.pop(context);
                         Navigator.pop(context);
                       }
-
                     }
                   },
                   child: const Text('등록'),
@@ -396,8 +384,7 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
         var request = new http.MultipartRequest("POST", uri);
 
         // multipart that takes file
-        var multipartFile = new http.MultipartFile('file', stream, length,
-            filename: basename(images[i]!.path));
+        var multipartFile = new http.MultipartFile('file', stream, length, filename: basename(images[i]!.path));
 
         // add file to multipart
         request.files.add(multipartFile);
@@ -410,6 +397,5 @@ class _CommunityRegisterState extends ConsumerState<CommunityRegisterScreen> {
         });
       }
     }
-
   }
 }
