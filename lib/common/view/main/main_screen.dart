@@ -12,6 +12,7 @@ import 'package:carwash/common/view/main/widget/recent_carwash_list_widget.dart'
 import 'package:carwash/community/provider/hot_all_community_provider.dart';
 import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:carwash/user/view/profile/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -593,7 +594,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 }
 
 Widget _WeatherListWidget(context, state) {
-  return state.length != 0
+
+  return state.containsKey('weatherInfo') == true
       ? Column(
           children: [
             Row(
@@ -615,40 +617,19 @@ Widget _WeatherListWidget(context, state) {
             TRoundedContainer(
               padding: const EdgeInsets.all(TSizes.md),
               showBorder: true,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Icon(
-                        Iconsax.location,
-                        size: 20,
-                      ),
-                      const SizedBox(width: TSizes.xs),
-                      Text(
-                        '부산 강서구 명지동',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: TSizes.spaceBtwItems),
-                  SizedBox(
-                    height: 150,
-                    child: ListView.separated(
-                      itemCount: 5,
-                      scrollDirection: Axis.vertical,
-                      physics: const NeverScrollableScrollPhysics(),
-                      separatorBuilder: (_, __) {
-                        return const SizedBox(height: TSizes.sm);
-                      },
-                      itemBuilder: (_, int index) {
-                        return Weather(
-                          weatherInfo: state[index],
-                        );
-                      },
-                    ),
-                  ),
-                ],
+              height: 200,
+              child: ListView.separated(
+                itemCount: 5,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (_, __) {
+                  return const SizedBox(height: 10);
+                },
+                itemBuilder: (_, int index) {
+                  return Weather(
+                    weatherInfo: state[index],
+                  );
+                },
               ),
             ),
           ],

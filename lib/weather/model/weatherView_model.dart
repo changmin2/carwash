@@ -10,6 +10,8 @@ class WeatherViewModel{
   final String m_weather;
   final String a_weather;
   final int humidity;
+  final String? gu;
+  final String? si;
 
 
   WeatherViewModel({
@@ -18,7 +20,9 @@ class WeatherViewModel{
     required this.dt_txt,
     required this.m_weather,
     required this.a_weather,
-    required this.humidity
+    required this.humidity,
+    this.gu = "",
+    this.si = ""
   });
 
   factory WeatherViewModel.fromJson(Map<String,dynamic> json)

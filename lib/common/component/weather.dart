@@ -13,6 +13,7 @@ class Weather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final day = weatherInfo.dt_txt.split(" ")[0].split("-");
     final time = weatherInfo.dt_txt.split(" ")[1].split(":");
     final week = DateFormat('E', 'ko_KR').format(DateTime.parse('${day[0]}-${day[1]}-${day[2]}'));

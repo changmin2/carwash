@@ -1,16 +1,16 @@
-import 'dart:ffi';
-import 'dart:math';
+import 'dart:convert';
 
-import 'package:carwash/common/component/weather.dart';
 import 'package:carwash/common/const/data.dart';
 import 'package:carwash/weather/model/weatherView_model.dart';
-import 'package:carwash/weather/model/weather_model.dart';
 import 'package:carwash/weather/repository/weather_repository.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:get/get_connect/http/src/response/response.dart';
+import 'package:get/get.dart' hide Response;
 
-final WeatherProvider = StateNotifierProvider<WeatherStateNotifier,List<WeatherViewModel>>(
+
+final WeatherProvider = StateNotifierProvider<WeatherStateNotifier,Map<String,dynamic>>(
         (ref) {
           final repository = ref.watch(weatherRepositoryProvider);
 
@@ -20,7 +20,7 @@ final WeatherProvider = StateNotifierProvider<WeatherStateNotifier,List<WeatherV
         }
 );
 
-class WeatherStateNotifier extends StateNotifier<List<WeatherViewModel>>{
+class WeatherStateNotifier extends StateNotifier<Map<String,dynamic>>{
 
   final WeatherRepository repository;
 
@@ -28,7 +28,7 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherViewModel>>{
     required this.repository
   })
   : super(
-    []
+      {}
   );
 
 
@@ -49,6 +49,33 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherViewModel>>{
         position =  await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.low);
       }
+
+      //지역 이름 가져오기 시작
+      Dio dio = Dio();
+      double absLongtitude = position.longitude.abs();
+      //테스트 유알엘
+      var reverseGocdoeUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=128.861599,35.262303&sourcecrs=epsg:4326&output=json";
+      //실제 유알엘
+      //var reverseGocdoeUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=${absLongtitude},${position.latitude}&sourcecrs=epsg:4326&output=json";
+
+      var res = await dio.get(
+        reverseGocdoeUrl,
+        options: Options(
+          headers: {
+            "X-NCP-APIGW-API-KEY-ID": "lotl3e7a5e", // 개인 클라이언트 아이디
+            "X-NCP-APIGW-API-KEY": "F6cfPrUw5bqj4x1ROid5CMCHMCwrNlFSJNEQvqFz" // 개인 시크릿 키
+          },
+        )
+      );
+
+      var myJson_gu =
+      jsonDecode(res.toString())["results"][1]['region']['area2']['name'];
+      var myJson_si =
+      jsonDecode(res.toString())["results"][1]['region']['area1']['name'];
+
+      List<String> gusi = [myJson_si, myJson_gu];
+
+      //끝
 
       var pstate = await repository.readWeather(lat: position.latitude,
           lon: position.longitude,
@@ -100,7 +127,11 @@ class WeatherStateNotifier extends StateNotifier<List<WeatherViewModel>>{
         }
 
       }
-      state = weatherViewModel;
+      state = {
+        'weatherInfo' : weatherViewModel,
+        'gusi'        : gusi
+      };
+
     }
 
   }

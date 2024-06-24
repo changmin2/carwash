@@ -23,6 +23,16 @@ import NaverThirdPartyLogin
          applicationResult = super.application(app, open: url, options: options)
       }
       return applicationResult
+
+      if (CLLocationManager.locationServicesEnabled()) {
+          switch CLLocationManager.authorizationStatus() {
+          case .denied, .notDetermined, .restricted:
+              self.manager.requestAlwaysAuthorization()
+              break
+          default:
+              break
+          }
+      }
   }
 }
 
