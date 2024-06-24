@@ -45,7 +45,7 @@ class _App extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
 
     final router = ref.watch(routerProvider);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    //SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
     // final state = ref.watch(secureStorageProvider);
     // state.deleteAll();
     return MaterialApp.router(

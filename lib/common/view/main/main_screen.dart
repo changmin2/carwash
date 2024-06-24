@@ -627,7 +627,7 @@ Widget _WeatherListWidget(context, state) {
                 },
                 itemBuilder: (_, int index) {
                   return Weather(
-                    weatherInfo: state[index],
+                    weatherInfo: state['weatherInfo'][index],
                   );
                 },
               ),

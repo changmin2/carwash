@@ -41,9 +41,5 @@
        <meta-data
            android:name="com.naver.sdk.clientName"
            android:value="@string/client_name" />
-       <meta-data
-           android:name="com.naver.maps.map.CLIENT_ID"
-           android:value="@string/client_id"/>
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 </manifest>
