@@ -25,101 +25,98 @@ final authProvider = ChangeNotifierProvider<AuthProviderNotifier>((ref) {
   return AuthProviderNotifier(ref: ref);
 });
 
-class AuthProviderNotifier extends ChangeNotifier{
+class AuthProviderNotifier extends ChangeNotifier {
   final Ref ref;
 
-  AuthProviderNotifier({
-    required this.ref
-  }){
+  AuthProviderNotifier({required this.ref}) {
     ref.listen<UserModelBase?>(userMeProvider, (previous, next) {
-      if(previous!=next){
+      if (previous != next) {
         notifyListeners();
       }
     });
   }
 
   List<GoRoute> get routes => [
-    GoRoute(
-      path: '/',
-      name: RootTab.routeName,
-      builder: (_,__) => MainScreen(),
-      routes: [
         GoRoute(
-          path: 'profile',
-          name: UserProfileScreen.routeName,
-          builder: (_,__) => UserProfileScreen(),
-        ),
-        GoRoute(
-          path: 'community',
-          name: CommunityScreen.routeName,
-          builder: (_,__) => CommunityScreen(),
+          path: '/',
+          name: RootTab.routeName,
+          // builder: (_,__) => MainScreen(),
+          builder: (_, __) => const RootTab(),
           routes: [
             GoRoute(
-                path: 'community/:id',
-                name: CommunityDetailScreen.routeName,
-                builder: (_,state) => CommunityDetailScreen(
-                    id: int.parse(state.pathParameters['id']!)
-                )
+              path: 'profile',
+              name: UserProfileScreen.routeName,
+              builder: (_, __) => const UserProfileScreen(),
             ),
             GoRoute(
-                path: 'community1/communityRegister',
-                name: CommunityRegisterScreen.routeName,
-                builder: (_,__) => CommunityRegisterScreen()
+              path: 'community',
+              name: CommunityScreen.routeName,
+              builder: (_, __) => const CommunityScreen(),
+              routes: [
+                GoRoute(
+                  path: 'community/:id',
+                  name: CommunityDetailScreen.routeName,
+                  builder: (_, state) => CommunityDetailScreen(
+                    id: int.parse(state.pathParameters['id']!),
+                  ),
+                ),
+                GoRoute(
+                  path: 'community1/communityRegister',
+                  name: CommunityRegisterScreen.routeName,
+                  builder: (_, __) => CommunityRegisterScreen(),
+                ),
+              ],
             ),
-          ]
+            GoRoute(
+              path: 'recordScreen',
+              name: CarWashRecordScreen.routeName,
+              builder: (_, __) => const CarWashRecordScreen(),
+              routes: [
+                GoRoute(
+                  path: 'recordDetail/:id',
+                  name: RecordDetail.routeName,
+                  builder: (_, state) => RecordDetail(
+                    id: int.parse(state.pathParameters['id']!),
+                  ),
+                )
+              ],
+            ),
+            GoRoute(
+              path: 'record/register',
+              name: RecordFirstScreen.routeName,
+              builder: (_, state) => RecordFirstScreen(),
+              routes: [
+                GoRoute(
+                  path: 'record/register/two',
+                  name: RecordSecondScreen.routeName,
+                  builder: (_, state) => RecordSecondScreen(),
+                  routes: [
+                    GoRoute(
+                      path: 'record/register/thrid',
+                      name: RecordThridScreen.routeName,
+                      builder: (_, state) => RecordThridScreen(
+                        query: state.queryParameters['query'],
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            )
+          ],
         ),
         GoRoute(
-            path: 'recordScreen',
-            name: CarWashRecordScreen.routeName,
-            builder: (_,__) => CarWashRecordScreen(),
-            routes: [
-              GoRoute(
-                path: 'recordDetail/:id',
-                name: RecordDetail.routeName,
-                builder: (_,state) => RecordDetail(
-                    id: int.parse(state.pathParameters['id']!)
-                  //rid: 123
-                ),
-              )
-            ]
+          path: '/splash',
+          name: SplashScreen.routeName,
+          builder: (_, __) => const SplashScreen(),
         ),
         GoRoute(
-            path: 'record/register',
-            name: RecordFirstScreen.routeName,
-            builder: (_,state) => RecordFirstScreen(),
-            routes: [
-              GoRoute(
-                path: 'record/register/two',
-                name: RecordSecondScreen.routeName,
-                builder: (_,state) => RecordSecondScreen(
-                ),
-                routes: [
-                  GoRoute(
-                    path: 'record/register/thrid',
-                    name: RecordThridScreen.routeName,
-                    builder: (_,state) => RecordThridScreen(
-                      query: state.queryParameters['query']
-                    )
-                  )
-                ]
-              )
-            ]
+          path: '/login',
+          name: LoginScreen.routeName,
+          builder: (_, __) => const LoginScreen(),
         )
-      ]
-    ),
-    GoRoute(
-        path: '/splash',
-        name: SplashScreen.routeName,
-        builder: (_,__) => SplashScreen()
-    ),
-    GoRoute(
-        path: '/login',
-        name: LoginScreen.routeName,
-        builder: (_,__) => LoginScreen(),
-    )
-  ];
+      ];
 
-  void logout(){
+  void logout() {
     ref.read(userMeProvider.notifier).logout();
   }
 
@@ -128,7 +125,7 @@ class AuthProviderNotifier extends ChangeNotifier{
   //토큰이 존재하는지 확인하고
   //로그인 스크린으로 보내줄지
   //홈스크린으로 보내줄지 확인하는 과정이 필요
-  FutureOr<String?> redirectLogic(BuildContext context,GoRouterState state)  {
+  FutureOr<String?> redirectLogic(BuildContext context, GoRouterState state) {
     // final weather =  ref.read(WeatherProvider);
     // if(weather.length == 0){
     //   ref.read(WeatherProvider.notifier).getWeather();
@@ -143,11 +140,9 @@ class AuthProviderNotifier extends ChangeNotifier{
     //유저 정보가 없는데
     //로그인중이면 그대로 로그인 페이지에 두고
     //만약 로그인중이 아니라면 로그인 페이지로 이동
-    if(user == null && !joinIn){
-
+    if (user == null && !joinIn) {
       return logginIn ? null : '/login';
     }
-
 
     //user가 null이 아님
 
@@ -155,13 +150,13 @@ class AuthProviderNotifier extends ChangeNotifier{
     //사용자 정보가 있는상태면
     //로그인 중이거나 현재 위치가 SplashScreen이면
     //홈으로 이동
-    if(user is UserModel){
+    if (user is UserModel) {
       return logginIn || state.location == '/splash' ? '/' : null;
     }
 
     //UserModelError
-    if(user is UserModelError){
-      if(joinIn){
+    if (user is UserModelError) {
+      if (joinIn) {
         return '/login/join';
       }
       return logginIn ? null : '/login';

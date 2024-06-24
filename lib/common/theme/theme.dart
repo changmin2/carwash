@@ -15,7 +15,8 @@ class TAppTheme {
   static ThemeData lightTheme = ThemeData(
     // 이거 쓰니 상태바가 이상함..
     // useMaterial3: true,
-    fontFamily: 'SeoulNamsan',
+    // fontFamily: 'SeoulNamsan',
+    fontFamily: 'Pretendard',
     brightness: Brightness.light,
     primaryColor: const Color(0xff2A9D8F),
     scaffoldBackgroundColor: Colors.white,
@@ -33,7 +34,8 @@ class TAppTheme {
 
   static ThemeData darkTheme = ThemeData(
     // useMaterial3: true,
-    fontFamily: 'SeoulNamsan',
+    // fontFamily: 'SeoulNamsan',
+    fontFamily: 'Pretendard',
     brightness: Brightness.dark,
     primaryColor: const Color(0xff2A9D8F),
     scaffoldBackgroundColor: Colors.black,

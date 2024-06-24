@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../../../../car/model/recentRecordDto.dart';
 import '../../../../car/model/recordDto.dart';
@@ -30,94 +31,76 @@ class _RecentCarWashListWidgetState extends ConsumerState<RecentCarWashListWidge
     final user = ref.read(userMeProvider) as UserModel;
     var record = ref.watch(recentRecordProvider(user.username));
 
-    return record.isEmpty
-        ? Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '최근 세차',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontWeight: FontWeight.w700),
                 ),
-                TextButton(
-                  onPressed: () {
-                    THelperFunctions.navigateToScreen(context, const CarWashRecordScreen());
-                  },
-                  child: Text(
-                    'See all',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.blue),
-                  ),
-                )
+                const SizedBox(height: TSizes.xs),
+                Text(
+                  '회원님이 세차한 기록이에요',
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(color: const Color(0xff9E9E9E)),
+                ),
               ],
             ),
-            const SizedBox(height: TSizes.spaceBtwItems),
-            const CircularProgressIndicator(),
-          ])
-        : record[0].id == 00
-            ? Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '최근 세차',
-                      style: Theme.of(context).textTheme.headlineSmall,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        THelperFunctions.navigateToScreen(context, const CarWashRecordScreen());
-                      },
-                      child: Text(
-                        'See all',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.blue),
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(height: TSizes.spaceBtwItems),
-                const Text(
-                  '최근 세차가 없습니다.',
-                  style: TextStyle(fontSize: 20),
-                )
-              ])
-            : Column(
+            TextButton(
+              onPressed: () {
+                THelperFunctions.navigateToScreen(context, const CarWashRecordScreen());
+              },
+              child: Row(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '최근 세차',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          THelperFunctions.navigateToScreen(context, const CarWashRecordScreen());
-                        },
-                        child: Text(
-                          'See all',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.blue),
-                        ),
-                      )
-                    ],
+                  Text(
+                    '더보기',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.blue),
                   ),
+                  const Icon(
+                    Icons.keyboard_arrow_right,
+                    color: Colors.blue,
+                    size: 20,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
 
-                  const SizedBox(height: TSizes.spaceBtwItems),
+        const SizedBox(height: TSizes.spaceBtwItems),
 
-                  SizedBox(
-                    height: (82 * record.length).toDouble(),
+        /// ----------------------------------------------------------------
+        /// 세차 기록 리스트
+        /// ----------------------------------------------------------------
+        record.isEmpty
+            ? const CircularProgressIndicator()
+            : record[0].id == 00
+                ? Text(
+                    '세차기록이 없습니다.',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  )
+                : SizedBox(
+                    height: (70 * record.length).toDouble(),
                     child: ListView.builder(
                         itemCount: record.length,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, idx) {
-                          return record[idx].id != 00
-                              ? GestureDetector(
-                                  onTap: () {
-                                    THelperFunctions.navigateToScreen(context, RecordRecent(model: record[idx]));
-                                  },
-                                  child: RecentCarWashCard(record: record[idx]))
-                              : Container();
+                          return GestureDetector(
+                            onTap: () {
+                              THelperFunctions.navigateToScreen(
+                                context,
+                                RecordRecent(model: record[idx]),
+                              );
+                            },
+                            child: RecentCarWashCard(record: record[idx]),
+                          );
                         }),
                   )
-                ],
-              );
+      ],
+    );
   }
 }

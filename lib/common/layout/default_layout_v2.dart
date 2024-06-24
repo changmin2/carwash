@@ -11,28 +11,23 @@ class DefaultLayoutV2 extends ConsumerWidget {
   final Color? safeAreaColor;
 
   const DefaultLayoutV2({
-    this.safeAreaColor = Colors.white,
-    this.appBar =null,
+    this.safeAreaColor = Colors.transparent,
+    this.appBar,
     this.backgroundColor,
     required this.child,
-    this.floatingActionButton=null,
-    this.bottomNavagtionBar=null,
+    this.floatingActionButton,
+    this.bottomNavagtionBar,
     Key? key
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    return Container(
-      color: safeAreaColor,
-      child: Scaffold(
-        appBar: appBar==null ? null
-        : appBar,
-        body: child,
-        // backgroundColor: backgroundColor ?? Colors.white,
-        backgroundColor: backgroundColor,
-        floatingActionButton: floatingActionButton,
-        bottomNavigationBar: bottomNavagtionBar,
-      ),
+    return Scaffold(
+      appBar: appBar,
+      body: SafeArea(child: child),
+      backgroundColor: backgroundColor,
+      floatingActionButton: floatingActionButton,
+      bottomNavigationBar: bottomNavagtionBar,
     );
   }
 }

@@ -12,24 +12,28 @@ import '../../community/view/community_detail_screen.dart';
 
 class CarWashLife extends StatelessWidget {
   final CommunityModel model;
-  const CarWashLife({
-    required this.model,
-    Key? key}) : super(key: key);
+  const CarWashLife({required this.model, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityRecentScreen(model: model,flag: 1,)));
-        },
+      onTap: () {
+        THelperFunctions.navigateToScreen(
+          context,
+          CommunityRecentScreen(
+            model: model,
+            flag: 1,
+          ),
+        );
+      },
       child: Row(
         children: [
           TRoundedContainer(
-            width: 230,
-            height: 320,
-            radius: 12.0,
+            width: 250,
+            radius: 10.0,
             showBorder: true,
             padding: const EdgeInsets.all(TSizes.sm),
+            borderColor: const Color(0xffDADADA),
             child: Column(
               children: [
                 //사진
@@ -39,7 +43,7 @@ class CarWashLife extends StatelessWidget {
                   height: 200,
                   width: double.infinity,
                   isNetworkImage: true,
-
+                  borderRadius: 10.0,
                 ),
 
                 const SizedBox(height: TSizes.md),
@@ -54,7 +58,10 @@ class CarWashLife extends StatelessWidget {
                           /// 닉네임
                           Row(
                             children: [
-                              const Icon(Icons.face),
+                              const Icon(
+                                Icons.face,
+                                size: 20,
+                              ),
                               const SizedBox(width: TSizes.xs),
                               Text(
                                 model.creator,
@@ -69,6 +76,7 @@ class CarWashLife extends StatelessWidget {
                               const Icon(
                                 Icons.favorite,
                                 color: Colors.red,
+                                size: 20,
                               ),
                               const SizedBox(width: TSizes.xs),
                               Text(
@@ -80,11 +88,10 @@ class CarWashLife extends StatelessWidget {
                         ],
                       ),
 
-                      const SizedBox(height: TSizes.md),
+                      const SizedBox(height: TSizes.sm),
 
                       /// 글 내용
                       SizedBox(
-                        height: 25,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -101,8 +108,8 @@ class CarWashLife extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 16)
-        ]
+          const SizedBox(width: TSizes.spaceBtwItems),
+        ],
       ),
     );
   }

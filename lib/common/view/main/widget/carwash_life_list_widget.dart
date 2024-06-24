@@ -18,64 +18,67 @@ class CarWashLifeListWidget extends ConsumerStatefulWidget {
 class _CarWashLifeListWidgetState extends ConsumerState<CarWashLifeListWidget> {
   @override
   Widget build(BuildContext context) {
-
     var community = ref.watch(hotAllCommunityProvider);
 
-    return community.length == 0
-        ? Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '세차 라이프',
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: TSizes.xs),
+                Text(
+                  '세차이야기를 나눠보세요',
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(color: const Color(0xff9E9E9E)),
+                ),
+              ],
+            ),
+            TextButton(
+              onPressed: () {
+                // THelperFunctions.navigateToScreen(context, const TCommunityCarWashLifeScreen());
+                THelperFunctions.navigateToScreen(context, const CommunityScreen());
+              },
+              child: Row(
                 children: [
                   Text(
-                    '세차 라이프',
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    '더보기',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.blue),
                   ),
-                  TextButton(
-                    onPressed: () => THelperFunctions.navigateToScreen(context, const TCommunityCarWashLifeScreen()),
-                    child: Text(
-                      'See all',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.blue),
-                    ),
-                  )
+                  const Icon(
+                    Icons.keyboard_arrow_right,
+                    color: Colors.blue,
+                    size: 20,
+                  ),
                 ],
               ),
-              const SizedBox(height: TSizes.spaceBtwItems),
-              const CircularProgressIndicator(),
-            ],
-          )
-        : Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '세차 라이프',
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  TextButton(
-                    onPressed: () => THelperFunctions.navigateToScreen(context, const CommunityScreen()),
-                    child: Text(
-                      'See all',
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.blue),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: TSizes.spaceBtwItems),
-              SizedBox(
+            )
+          ],
+        ),
+
+        const SizedBox(height: TSizes.spaceBtwItems),
+
+        /// ----------------------------------------------------------------
+        /// 세차 라이프 리스트
+        /// ----------------------------------------------------------------
+        community.isEmpty
+            ? const CircularProgressIndicator()
+            : SizedBox(
                 height: 300,
-                child: ListView.separated(
+                child: ListView.builder(
                   itemCount: community.length,
                   scrollDirection: Axis.horizontal,
-                  separatorBuilder: (_, __) => const SizedBox(width: 0),
                   itemBuilder: (BuildContext context, int index) {
-
                     return community[index].category == "세차라이프" ? CarWashLife(model: community[index]) : Container();
                   },
                 ),
-              ),
-            ],
-          );
+              )
+      ],
+    );
   }
 }

@@ -30,7 +30,6 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
     DateTime.now().day,
   );
 
-
   DateTime _focusedDay = DateTime.now();
   Map<String, List<Event>> events = {};
   Map<String, List<Event>> targetEvents = {};
@@ -43,8 +42,8 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
   }
 
   Future<String> init() async {
-    events = new Map<String, List<Event>>();
-    targetEvents = new Map<String, List<Event>>();
+    events = Map<String, List<Event>>();
+    targetEvents = Map<String, List<Event>>();
     var flag = ref.watch(stateProvider);
     eventList = await ref.watch(RecordProvider('false').notifier).getRecord(flag.flag);
     //날짜 내림차순 정렬
@@ -62,32 +61,26 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
       }
 
       //달력 하단에 달 마다 리스트를 보여주기 위한 이벤트 리스트
-      if (targetEvents.containsKey(o.date.toString().split(" ")[0].substring(0,7))) {
-        targetEvents[o.date.toString().split(" ")[0].substring(0,7)]!.add(Event(o.id, o.memberId, o.imgUrl, o.washList, o.place, o.date));
+      if (targetEvents.containsKey(o.date.toString().split(" ")[0].substring(0, 7))) {
+        targetEvents[o.date.toString().split(" ")[0].substring(0, 7)]!.add(Event(o.id, o.memberId, o.imgUrl, o.washList, o.place, o.date));
       } else {
-        targetEvents[o.date.toString().split(" ")[0].substring(0,7)] = [Event(o.id, o.memberId, o.imgUrl, o.washList, o.place, o.date)];
+        targetEvents[o.date.toString().split(" ")[0].substring(0, 7)] = [Event(o.id, o.memberId, o.imgUrl, o.washList, o.place, o.date)];
       }
     }
-
-
-
     return "sucess";
   }
 
   @override
   Widget build(BuildContext context) {
     //달력에서 그 달의 모든 세차기록을 보여주기 위한 기준 달
-    var targetDay = _selectedDay.toString().split(" ")[0].substring(0,7);
+    var targetDay = _selectedDay.toString().split(" ")[0].substring(0, 7);
 
     /// 세차 기록 보기
     return DefaultLayoutV2(
-      /// 앱바
-      appBar: AppBar(),
 
       /// 작성하기 버튼
       floatingActionButton: _floatingActionButton(context),
 
-      ///
       child: FutureBuilder(
         future: init(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -95,7 +88,7 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
             return const Center(child: CircularProgressIndicator());
           } else {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: TSizes.defalutSpace),
+              padding: const EdgeInsets.all(TSizes.defalutSpace),
               child: Column(
                 children: [
                   /// 달력
@@ -154,8 +147,7 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
                               itemBuilder: (BuildContext context, int idx) {
                                 return GestureDetector(
                                   onTap: () {
-                                    context.pushNamed(RecordDetail.routeName,
-                                        pathParameters: {'id': targetEvents[targetDay]![idx].id.toString()});
+                                    context.pushNamed(RecordDetail.routeName, pathParameters: {'id': targetEvents[targetDay]![idx].id.toString()});
                                   },
                                   child: RecordCard(record: targetEvents[targetDay]![idx]),
                                 );
@@ -172,7 +164,6 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
 }
 
 FloatingActionButton _floatingActionButton(BuildContext context) {
-
   return FloatingActionButton.extended(
     backgroundColor: PRIMARY_COLOR,
     onPressed: () {

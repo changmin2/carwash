@@ -1,4 +1,5 @@
 import 'package:carwash/common/const/colors.dart';
+import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/community/provider/communityProvider.dart';
 import 'package:carwash/community/view/community_carwash_life/community_carwash_life_screen.dart';
@@ -7,7 +8,6 @@ import 'package:carwash/community/view/community_register_screen.dart';
 import 'package:carwash/community/view/community_free/community_free_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../common/widgets/tabbar.dart';
@@ -37,16 +37,15 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     ref.read(communityProvider.notifier).init();
+
     return DefaultTabController(
       length: 4,
       child: DefaultLayoutV2(
         appBar: AppBar(
-
           centerTitle: true,
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(50),
+            preferredSize: const Size.fromHeight(TSizes.defalutSpace),
             child: Align(
               alignment: Alignment.centerLeft,
               child: TTabBar(

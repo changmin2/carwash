@@ -142,6 +142,26 @@ flutter:
           weight: 200
         - asset: asset/font/SeoulNamsanvert.ttf
           weight: 100
+    - family: Pretendard
+      fonts:
+        - asset: asset/font/Pretendard-Thin.ttf
+          weight: 100
+        - asset: asset/font/Pretendard-ExtraLight.ttf
+          weight: 200
+        - asset: asset/font/Pretendard-Light.ttf
+          weight: 300
+        - asset: asset/font/Pretendard-Regular.ttf
+          weight: 400
+        - asset: asset/font/Pretendard-Medium.ttf
+          weight: 500
+        - asset: asset/font/Pretendard-SemiBold.ttf
+          weight: 600
+        - asset: asset/font/Pretendard-Bold.ttf
+          weight: 700
+        - asset: asset/font/Pretendard-ExtraBold.ttf
+          weight: 800
+        - asset: asset/font/Pretendard-Black.ttf
+          weight: 900
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
