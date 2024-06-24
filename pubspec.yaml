@@ -77,6 +77,9 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_event_calendar: ^1.0.0
   currency_text_input_formatter: ^2.1.8
+  naver_map_plugin:
+    git: https://github.com/LBSTECH/naver_map_plugin.git
+
 
 
 

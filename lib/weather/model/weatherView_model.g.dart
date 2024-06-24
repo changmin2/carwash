@@ -14,6 +14,8 @@ WeatherViewModel _$WeatherViewModelFromJson(Map<String, dynamic> json) =>
       m_weather: json['m_weather'] as String,
       a_weather: json['a_weather'] as String,
       humidity: json['humidity'] as int,
+      gu: json['gu'] as String? ?? "",
+      si: json['si'] as String? ?? "",
     );
 
 Map<String, dynamic> _$WeatherViewModelToJson(WeatherViewModel instance) =>
@@ -24,4 +26,6 @@ Map<String, dynamic> _$WeatherViewModelToJson(WeatherViewModel instance) =>
       'm_weather': instance.m_weather,
       'a_weather': instance.a_weather,
       'humidity': instance.humidity,
+      'gu': instance.gu,
+      'si': instance.si,
     };

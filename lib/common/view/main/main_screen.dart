@@ -15,6 +15,7 @@ import 'package:carwash/user/model/user_model.dart';
 import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/profile/profile_screen.dart';
+import 'package:carwash/weather/model/weatherView_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -53,7 +54,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     final state = ref.watch(WeatherProvider);
     ref.read(favoriteProvider.notifier).getFavorites();
     ref.read(hotAllCommunityProvider.notifier).getHotAll();
-
 
     return DefaultLayoutV2(
       safeAreaColor: PRIMARY_COLOR,
@@ -125,7 +125,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 }
 
 Widget _WeatherListWidget(context, state) {
-  return state.length != 0
+
+  return state.containsKey('weatherInfo') == true
       ? Column(
           children: [
             Row(
@@ -159,7 +160,7 @@ Widget _WeatherListWidget(context, state) {
                 },
                 itemBuilder: (_, int index) {
                   return Weather(
-                    weatherInfo: state[index],
+                    weatherInfo: state['weatherInfo'][index],
                   );
                 },
               ),
