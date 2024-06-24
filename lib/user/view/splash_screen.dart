@@ -20,21 +20,21 @@ class SplashScreen extends ConsumerWidget {
             fit: BoxFit.cover,
           ),
           const Positioned(
-            bottom: 80,
+            bottom: 60,
             child: Column(
               children: [
                 DefaultTextStyle(
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
-                  child: Text("테스트 버전"),
+                  child: Text("베타 버전"),
                 ),
                 SizedBox(height: TSizes.sm),
                 DefaultTextStyle(
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
