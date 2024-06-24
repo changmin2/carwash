@@ -54,9 +54,9 @@ class WeatherStateNotifier extends StateNotifier<Map<String,dynamic>>{
       Dio dio = Dio();
       double absLongtitude = position.longitude.abs();
       //테스트 유알엘
-      var reverseGocdoeUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=128.861599,35.262303&sourcecrs=epsg:4326&output=json";
+      //var reverseGocdoeUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=128.861599,35.262303&sourcecrs=epsg:4326&output=json";
       //실제 유알엘
-      //var reverseGocdoeUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=${absLongtitude},${position.latitude}&sourcecrs=epsg:4326&output=json";
+      var reverseGocdoeUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=${absLongtitude},${position.latitude}&sourcecrs=epsg:4326&output=json";
 
       var res = await dio.get(
         reverseGocdoeUrl,
@@ -67,13 +67,18 @@ class WeatherStateNotifier extends StateNotifier<Map<String,dynamic>>{
           },
         )
       );
+      List<String> gusi = [];
+      if(jsonDecode(res.toString())["results"].length == 0){
+        gusi =['지역정보가','없습니다'];
+      }else{
+        var myJson_gu =
+        jsonDecode(res.toString())["results"][1]['region']['area2']['name'];
+        var myJson_si =
+        jsonDecode(res.toString())["results"][1]['region']['area1']['name'];
 
-      var myJson_gu =
-      jsonDecode(res.toString())["results"][1]['region']['area2']['name'];
-      var myJson_si =
-      jsonDecode(res.toString())["results"][1]['region']['area1']['name'];
+        gusi = [myJson_si, myJson_gu];
+      }
 
-      List<String> gusi = [myJson_si, myJson_gu];
 
       //끝
 

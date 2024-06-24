@@ -610,8 +610,13 @@ Widget _WeatherListWidget(context, state) {
                 Text(
                   '오늘 날씨를 확인하고 세차해요!',
                   style: Theme.of(context).textTheme.titleLarge,
-                )
+                ),
               ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              state['gusi'][0] +' ' +  state['gusi'][1],
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: TSizes.spaceBtwItems),
             TRoundedContainer(
