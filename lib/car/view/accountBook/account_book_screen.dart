@@ -28,7 +28,7 @@ class _AccountBookScreenState extends ConsumerState<AccountBookScreen> {
     for (var o in eventList) {
       events.add(
         Event(
-            pay: o.cost!,
+            // pay: o.cost!,
             child: Stack(
               children:[
                   Card(
