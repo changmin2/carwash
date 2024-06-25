@@ -49,7 +49,7 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   var newList = [];
   var _downloadUrl = '';
   final ImagePicker picker = ImagePicker();
-
+  //FirebaseStorage storage = FirebaseStorage.instance;
 
   @override
   void initState() {
@@ -271,7 +271,6 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
                       recordDto re = await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
 
                       await ref.read(RecordProvider('true').notifier).getRecord(false);
-
                       ref.read(recentRecordProvider(user.username).notifier).add(re);
                       ref.read(stateProvider).change();
 

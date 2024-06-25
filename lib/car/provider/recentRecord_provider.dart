@@ -1,6 +1,7 @@
 import 'package:carwash/car/model/recordDto.dart';
 import 'package:carwash/car/repository/record_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 import '../model/recentRecordDto.dart';
 
@@ -35,6 +36,7 @@ class RecentRecordNotifier extends StateNotifier<List<recordDto>>{
   }
 
   void add(recordDto re) {
+
     var pState = state as List<recordDto>;
     if(pState.length < 3){
       state = [
@@ -42,11 +44,20 @@ class RecentRecordNotifier extends StateNotifier<List<recordDto>>{
         ...pState
       ];
     }else{
-      pState.removeAt(0);
+
       state = [
         re,
         ...pState
       ];
+
+      //날짜 순 정렬 과거 날짜가 입력 될 수 있어서
+      state.sort((a,b) => a.date.compareTo(b.date));
+
+      //메인 화면엔 3개만 보여주므로 가장 과거날짜 제거
+      state.removeAt(0);
+      //내림차순 정렬
+      state = List.from(state.reversed);
+
     }
   }
 
