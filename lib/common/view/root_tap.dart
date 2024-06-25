@@ -2,6 +2,7 @@ import 'package:carwash/car/view/carwash_record_screen.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/view/main/main_screen.dart';
 import 'package:carwash/community/view/community_screen.dart';
+import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

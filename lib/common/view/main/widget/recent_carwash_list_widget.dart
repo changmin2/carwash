@@ -19,7 +19,10 @@ import '../../../utils/helpers/helper_functions.dart';
 
 /// main_screen 에서 최근 세차 영억
 class RecentCarWashListWidget extends ConsumerStatefulWidget {
-  const RecentCarWashListWidget({Key? key}) : super(key: key);
+
+
+  RecentCarWashListWidget({
+  Key? key}) : super(key: key);
 
   @override
   ConsumerState<RecentCarWashListWidget> createState() => _RecentCarWashListWidgetState();
@@ -29,8 +32,7 @@ class _RecentCarWashListWidgetState extends ConsumerState<RecentCarWashListWidge
   @override
   Widget build(BuildContext context) {
     final user = ref.read(userMeProvider) as UserModel;
-    var record = ref.watch(recentRecordProvider(user.username));
-
+    final record = ref.watch(recentRecordProvider(user.username));
     return Column(
       children: [
         Row(

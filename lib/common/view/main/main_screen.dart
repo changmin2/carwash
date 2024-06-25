@@ -1,3 +1,4 @@
+import 'package:carwash/car/provider/myrecord_provider.dart';
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/component/rounded_image.dart';
 import 'package:carwash/common/component/weather.dart';
@@ -12,13 +13,15 @@ import 'package:carwash/common/view/main/widget/recent_carwash_list_widget.dart'
 import 'package:carwash/community/provider/hot_all_community_provider.dart';
 import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:carwash/user/view/profile/profile_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
+import '../../../car/provider/recentRecord_provider.dart';
+import '../../../user/model/user_model.dart';
+import '../../../user/provider/user_me_provider.dart';
 import '../../../weather/provider/weather_provider.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
@@ -36,6 +39,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     // TODO: implement initState
     super.initState();
     ref.read(WeatherProvider.notifier).getWeather();
+    ref.read(MyRecordProvider.notifier).getMyRecord();
   }
 
   @override
@@ -48,6 +52,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   Widget build(BuildContext context) {
 
     final state = ref.watch(WeatherProvider);
+
+
     ref.read(favoriteProvider.notifier).getFavorites();
     ref.read(hotAllCommunityProvider.notifier).getHotAll();
 
@@ -131,7 +137,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               /// ----------------------------------------------------------------
               /// 최근 세차
               /// ----------------------------------------------------------------
-              const RecentCarWashListWidget(),
+              RecentCarWashListWidget(),
 
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),

@@ -44,12 +44,12 @@ class RecordThridScreen extends ConsumerStatefulWidget {
 class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
   File? _image;
   var _day = TFormatter.formatDate(DateTime.now());
-  var _prameterDay = '';
+  var _prameterDay = DateTime.now().toString();
   var _place = '';
   var newList = [];
   var _downloadUrl = '';
   final ImagePicker picker = ImagePicker();
-  //FirebaseStorage storage = FirebaseStorage.instance;
+
 
   @override
   void initState() {
@@ -266,8 +266,12 @@ class _RecordThridScreenState extends ConsumerState<RecordThridScreen> {
 
                       await s3Upload();
                       RecordRegisterParams params = RecordRegisterParams(image: _downloadUrl, place: _place.toString(), date: _prameterDay.toString(), washList: newList);
+                      //문제 발생지점
+
                       recordDto re = await ref.read(recordRepositoryProvider).recordRegister(recordRegisterParams: params);
+
                       await ref.read(RecordProvider('true').notifier).getRecord(false);
+
                       ref.read(recentRecordProvider(user.username).notifier).add(re);
                       ref.read(stateProvider).change();
 

@@ -35,7 +35,6 @@ class CustomInterceptor extends Interceptor{
       options.headers.remove('accessToken');
 
       final token = await storage.read(key:ACCESS_TOKEN_KEY);
-
       options.headers.addAll({
         'authorization': 'Bearer $token',
       });

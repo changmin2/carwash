@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final MyRecordProvider = StateNotifierProvider<MyRecordStateNotifier,List<String>>(
         (ref) {
       final repository = ref.watch(recordRepositoryProvider);
-      ref.watch(userMeProvider);
+
       final notifier = MyRecordStateNotifier(repository: repository);
 
       return notifier;
@@ -30,6 +30,7 @@ class MyRecordStateNotifier extends StateNotifier<List<String>>{
   }
 
   Future<void> getMyRecord() async {
+
     var result = await repository.getMyRecord();
     if(result != ""){
       state = result.split("[")[1].split("]")[0].split(",").toList();

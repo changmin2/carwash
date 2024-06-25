@@ -120,7 +120,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                       /// ----------------------------------------------------------------
                       /// 최근 세차
                       /// ----------------------------------------------------------------
-                      const RecentCarWashListWidget(),
+                      //const RecentCarWashListWidget(),
                     ],
                   ),
                 ),
