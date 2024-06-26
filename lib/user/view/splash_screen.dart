@@ -38,7 +38,7 @@ class SplashScreen extends ConsumerWidget {
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
-                  child: Text("1.1.0"),
+                  child: Text("1.0.14"),
                 ),
               ],
             ),
