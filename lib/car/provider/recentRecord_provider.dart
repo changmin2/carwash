@@ -38,7 +38,11 @@ class RecentRecordNotifier extends StateNotifier<List<recordDto>>{
   void add(recordDto re) {
 
     var pState = state as List<recordDto>;
-    if(pState.length < 3){
+    //처음 데이터가 아무것도 없을때 임시로 넣어둔 데이터삭제
+    if(pState[0].date == '00'){
+      state = [re];
+    }
+    else if(pState.length < 3){
       state = [
         re,
         ...pState

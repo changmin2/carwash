@@ -22,20 +22,6 @@
 		<string>$(FLUTTER_BUILD_NAME)</string>
 		<key>CFBundleSignature</key>
 		<string>????</string>
-		<key>NMFClientId</key>
-        <string>lotl3e7a5e</string>
-        <key>io.flutter.embedded_views_preview</key>
-        <true/>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-        <dict>
-            <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-        	<string>USAGE PERPOSE</string>
-        	<key>NSLocationAlwaysUsageDescription</key>
-        	<string>USAGE PERPOSE</string>
-        	<key>NSLocationWhenInUseUsageDescription</key>
-        	<string>USAGE PERPOSE</string>
-        </dict>
 		<key>CFBundleURLTypes</key>
 		<array>
 			<dict>

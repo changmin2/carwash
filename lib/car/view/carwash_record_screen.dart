@@ -89,60 +89,64 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
           } else {
             return Padding(
               padding: const EdgeInsets.all(TSizes.defalutSpace),
-              child: Column(
-                children: [
-                  /// 달력
-                  TableCalendar(
-                    headerStyle: HeaderStyle(
-                      titleCentered: true,
-                      formatButtonVisible: false,
-                      // titleTextFormatter: (date, locale) => DateFormat.yMMMMd(locale).format(date),
-                      titleTextFormatter: (date, locale) => DateFormat.yMMMM(locale).format(date),
-                      titleTextStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                      headerPadding: const EdgeInsets.only(bottom: 20),
-                      // leftChevronPadding: const EdgeInsets.only(left: 50),
-                      // rightChevronPadding: const EdgeInsets.only(right: 50),
-                      leftChevronIcon: const Icon(
-                        Icons.arrow_left,
-                        size: 40.0,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    /// 달력
+                    TableCalendar(
+                        headerStyle: HeaderStyle(
+                          titleCentered: true,
+                          formatButtonVisible: false,
+                          // titleTextFormatter: (date, locale) => DateFormat.yMMMMd(locale).format(date),
+                          titleTextFormatter: (date, locale) => DateFormat.yMMMM(locale).format(date),
+                          titleTextStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                          headerPadding: const EdgeInsets.only(bottom: 20),
+                          // leftChevronPadding: const EdgeInsets.only(left: 50),
+                          // rightChevronPadding: const EdgeInsets.only(right: 50),
+                          leftChevronIcon: const Icon(
+                            Icons.arrow_left,
+                            size: 40.0,
+                          ),
+                          rightChevronIcon: const Icon(
+                            Icons.arrow_right,
+                            size: 40.0,
+                          ),
+                        ),
+                        onPageChanged: (focusedDay) {
+                          setState(() {
+                            _selectedDay = focusedDay;
+                            _focusedDay = focusedDay;
+                          });
+                        },
+                        locale: 'ko_KR',
+                        focusedDay: _focusedDay,
+                        firstDay: DateTime.utc(2021, 10, 16),
+                        lastDay: DateTime.utc(2030, 3, 14),
+                        onDaySelected: (DateTime selectedDay, DateTime focusedDay) {
+                          setState(() {
+                            _selectedDay = selectedDay;
+                            _focusedDay = focusedDay;
+                          });
+                        },
+                        selectedDayPredicate: (DateTime day) {
+                          // selectedDay 와 동일한 날짜의 모양을 바꿔줍니다.
+                          return isSameDay(_selectedDay, day);
+                        },
+                        eventLoader: (day) {
+                          return events[day.toString().split(" ")[0]] ?? [];
+                        },
                       ),
-                      rightChevronIcon: const Icon(
-                        Icons.arrow_right,
-                        size: 40.0,
-                      ),
-                    ),
-                    onPageChanged: (focusedDay) {
-                      setState(() {
-                        _selectedDay = focusedDay;
-                        _focusedDay = focusedDay;
-                      });
-                    },
-                    locale: 'ko_KR',
-                    focusedDay: _focusedDay,
-                    firstDay: DateTime.utc(2021, 10, 16),
-                    lastDay: DateTime.utc(2030, 3, 14),
-                    onDaySelected: (DateTime selectedDay, DateTime focusedDay) {
-                      setState(() {
-                        _selectedDay = selectedDay;
-                        _focusedDay = focusedDay;
-                      });
-                    },
-                    selectedDayPredicate: (DateTime day) {
-                      // selectedDay 와 동일한 날짜의 모양을 바꿔줍니다.
-                      return isSameDay(_selectedDay, day);
-                    },
-                    eventLoader: (day) {
-                      return events[day.toString().split(" ")[0]] ?? [];
-                    },
-                  ),
 
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                    const SizedBox(height: TSizes.spaceBtwSections),
 
-                  /// 해당일의 세차 기록 리스트
-                  targetEvents[targetDay] == null
-                      ? const SizedBox()
-                      : Expanded(
+                    /// 해당일의 세차 기록 리스트
+                    targetEvents[targetDay] == null
+                        ? const SizedBox()
+                        : Container(
+                          height: 88 * targetEvents[targetDay]!.length.toDouble(),
                           child: ListView.builder(
+                              shrinkWrap: true,
+                              primary: false,
                               itemCount: targetEvents[targetDay]!.length,
                               itemBuilder: (BuildContext context, int idx) {
                                 return GestureDetector(
@@ -153,7 +157,8 @@ class _CarWashRecordScreenState extends ConsumerState<CarWashRecordScreen> {
                                 );
                               }),
                         ),
-                ],
+                  ],
+                ),
               ),
             );
           }

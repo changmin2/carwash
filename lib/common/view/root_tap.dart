@@ -32,8 +32,8 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
       /// 탭 변경 애니메이션 시간
       animationDuration: const Duration(milliseconds: 0),
     );
+    _tabController.addListener(tabListener);
     _tabController.animateTo(_selectIndex);
-    // ref.read(WeatherProvider.notifier).getWeather();
   }
 
   @override
@@ -52,6 +52,7 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+
     return DefaultLayoutV2(
       bottomNavagtionBar: Theme(
         data: ThemeData(
@@ -66,7 +67,7 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
           backgroundColor: Colors.white,
           onTap: (int index) {
             _tabController.animateTo(index);
-            _tabController.addListener(tabListener);
+
           },
           currentIndex: _selectIndex,
           items: const [

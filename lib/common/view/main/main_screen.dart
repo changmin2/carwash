@@ -57,6 +57,21 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     ref.read(favoriteProvider.notifier).getFavorites();
     ref.read(hotAllCommunityProvider.notifier).getHotAll();
 
+    final user = ref.read(userMeProvider) as UserModel;
+    final record = ref.watch(recentRecordProvider(user.username));
+
+    var diffDay;
+
+    //세차 기록이 있을때
+    if(record.length != 0){
+      //최근 세차 기록이 없을때(임시데이터로 판별)
+      if(record[0].imgUrl =='00') {
+        diffDay = -1;
+      }else{
+        diffDay = DateTime.now().difference(record[0].date).inDays;
+      }
+    }
+
     return DefaultLayoutV2(
       child: SingleChildScrollView(
         child: Padding(
@@ -85,6 +100,47 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                         style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontWeight: FontWeight.w700),
                       ),
                       const SizedBox(height: TSizes.sm),
+                      diffDay == -1
+                      ?
+                      //세차를 진행한 적이 없을때
+                      Row(
+                        children: [
+                          Text(
+                            '아직 ',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          Text(
+                            '세차',
+                            style: Theme.of(context).textTheme.titleLarge!.copyWith(color: PRIMARY_COLOR),
+                          ),
+                          Text(
+                            '를 한 적이 없어요!',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ],
+                      )
+                      :
+                      //오늘 세차를 했을때
+                      diffDay == 0
+                      ?
+                      Row(
+                        children: [
+                          Text(
+                            '오늘 ',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          Text(
+                            '세차',
+                            style: Theme.of(context).textTheme.titleLarge!.copyWith(color: PRIMARY_COLOR),
+                          ),
+                          Text(
+                            '를 하셨네요!',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ],
+                      )
+                      :
+                      //오늘이 아닌 다른 날 세차를 했을때
                       Row(
                         children: [
                           Text(
@@ -92,7 +148,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                           Text(
-                            '12일',
+                            diffDay.toString() +'일',
                             style: Theme.of(context).textTheme.titleLarge!.copyWith(color: PRIMARY_COLOR),
                           ),
                           Text(
@@ -137,7 +193,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               /// ----------------------------------------------------------------
               /// 최근 세차
               /// ----------------------------------------------------------------
-              RecentCarWashListWidget(),
+              RecentCarWashListWidget(record : record),
 
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
@@ -153,8 +209,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
                 child: Divider(thickness: 3, color: Color(0xffFAFAFA)),
-              ),
-
+              )
+              /*
               /// ----------------------------------------------------------------
               /// 인기 등록 용품
               /// ----------------------------------------------------------------
@@ -591,6 +647,8 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               ),
 
               const SizedBox(height: TSizes.spaceBtwSections),
+
+               */
             ],
           ),
         ),

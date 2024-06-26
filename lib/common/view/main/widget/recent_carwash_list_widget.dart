@@ -20,9 +20,11 @@ import '../../../utils/helpers/helper_functions.dart';
 /// main_screen 에서 최근 세차 영억
 class RecentCarWashListWidget extends ConsumerStatefulWidget {
 
-
+  final List<recordDto> record;
   RecentCarWashListWidget({
-  Key? key}) : super(key: key);
+    required this.record,
+    Key? key
+  }) : super(key: key);
 
   @override
   ConsumerState<RecentCarWashListWidget> createState() => _RecentCarWashListWidgetState();
@@ -31,8 +33,7 @@ class RecentCarWashListWidget extends ConsumerStatefulWidget {
 class _RecentCarWashListWidgetState extends ConsumerState<RecentCarWashListWidget> {
   @override
   Widget build(BuildContext context) {
-    final user = ref.read(userMeProvider) as UserModel;
-    final record = ref.watch(recentRecordProvider(user.username));
+
     return Column(
       children: [
         Row(
@@ -78,27 +79,27 @@ class _RecentCarWashListWidgetState extends ConsumerState<RecentCarWashListWidge
         /// ----------------------------------------------------------------
         /// 세차 기록 리스트
         /// ----------------------------------------------------------------
-        record.isEmpty
+        widget.record.isEmpty
             ? const CircularProgressIndicator()
-            : record[0].id == 00
+            : widget.record[0].id == 00
                 ? Text(
                     '세차기록이 없습니다.',
                     style: Theme.of(context).textTheme.bodyMedium,
                   )
                 : SizedBox(
-                    height: (70 * record.length).toDouble(),
+                    height: (70 * widget.record.length).toDouble(),
                     child: ListView.builder(
-                        itemCount: record.length,
+                        itemCount: widget.record.length,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, idx) {
                           return GestureDetector(
                             onTap: () {
                               THelperFunctions.navigateToScreen(
                                 context,
-                                RecordRecent(model: record[idx]),
+                                RecordRecent(model: widget.record[idx]),
                               );
                             },
-                            child: RecentCarWashCard(record: record[idx]),
+                            child: RecentCarWashCard(record: widget.record[idx]),
                           );
                         }),
                   )
