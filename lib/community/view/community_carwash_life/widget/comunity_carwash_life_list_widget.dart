@@ -85,7 +85,16 @@ class TCommunityCarWashLifeListWidget extends StatelessWidget {
 
         /// 사진
         GestureDetector(
-          onTap: () => context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': model.id.toString()}),
+          onTap: () {
+            Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => CommunityDetailScreen(
+                  id: model.id,
+
+                )
+              ),
+            );
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

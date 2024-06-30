@@ -20,8 +20,13 @@ class TCommunityQuestionListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        context.goNamed(CommunityDetailScreen.routeName,
-            pathParameters: {'id':model.id.toString()});
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => CommunityDetailScreen(
+              id: model.id,
+            )
+          ),
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

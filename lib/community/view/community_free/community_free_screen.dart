@@ -99,7 +99,13 @@ class TCommunityFreeScreen extends ConsumerWidget {
                 return GestureDetector(
                   behavior: HitTestBehavior.translucent, //전체영역 클릭
                   onTap: () {
-                    context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => CommunityDetailScreen(
+                          id: community.id,
+                        )
+                      ),
+                    );
                   },
                   child: TCommunityFreeListWidget(
                     hotYn: hotLists.contains(community.id) ? true : false,

@@ -6,6 +6,7 @@ import 'package:carwash/community/view/community_all/widget/all_board_latest_pos
 import 'package:carwash/community/view/widget/community_section_heading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../common/utils/helpers/helper_functions.dart';
 import '../../../common/view/pagination_list_view.dart';
@@ -62,11 +63,12 @@ class TCommunityAllScreen extends ConsumerWidget {
                             return GestureDetector(
                               behavior: HitTestBehavior.translucent,
                               onTap: () {
-                                THelperFunctions.navigateToScreen(
-                                  context,
-                                  CommunityRecentScreen(
-                                    model: hot[index],
-                                    flag: 1,
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => CommunityRecentScreen(
+                                      model: hot[index],
+                                      flag: 1,
+                                    )
                                   ),
                                 );
                               },

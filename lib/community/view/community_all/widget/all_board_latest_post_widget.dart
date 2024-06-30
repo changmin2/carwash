@@ -24,8 +24,14 @@ class TCommunityAllLatestPostWidget extends StatelessWidget {
         : null;
     return GestureDetector(
       onTap: (){
-        context.goNamed(CommunityDetailScreen.routeName,
-            pathParameters: {'id':model.id.toString()});
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => CommunityDetailScreen(
+              id: model.id,
+            )
+          ),
+        );
+
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
