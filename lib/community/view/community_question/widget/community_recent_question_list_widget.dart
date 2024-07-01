@@ -122,13 +122,18 @@ class _TCommunityRecentQuestionListWidgetState extends ConsumerState<TCommunityR
                               ],
                             ),
                           ),
-                          const TRoundedImage(
-                            imageUrl: 'asset/img/car_image.jpeg',
+                          community[index].imgUrls != ""
+                          ?
+                          TRoundedImage(
+                            isNetworkImage: true,
+                            imageUrl: community[index].imgUrls.toString().split(",")[0].split("[")[1].split("]")[0],
                             width: 50,
                             height: 50,
                             fit: BoxFit.fill,
                             borderRadius: 0,
                           )
+                          :
+                          Container()
                         ],
                       ),
                     ),
