@@ -20,6 +20,7 @@ class RootTab extends ConsumerStatefulWidget {
 class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int _selectIndex = 0;
+  int _nowscreen = 0;
 
   @override
   void initState() {
@@ -48,6 +49,11 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
     setState(() {
       _selectIndex = _tabController.index;
     });
+  }
+
+  void changeTab(int index,int? nowscreen){
+    _nowscreen = nowscreen!;
+    _tabController.animateTo(index);
   }
 
   @override
@@ -83,10 +89,10 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
         child: TabBarView(
           physics: const NeverScrollableScrollPhysics(),
           controller: _tabController,
-          children: const [
-            MainScreen(),
+          children:  [
+            MainScreen(tabController: changeTab),
             CarWashRecordScreen(),
-            CommunityScreen(),
+            CommunityScreen(nowscreen: _nowscreen),
             UserProfileScreen(),
           ],
         ),

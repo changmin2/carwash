@@ -17,8 +17,10 @@ import 'community_all/community_all_screen.dart';
 
 class CommunityScreen extends ConsumerStatefulWidget {
   static get routeName => 'communityScreen';
-
-  const CommunityScreen({Key? key}) : super(key: key);
+  var nowscreen;
+  CommunityScreen({
+    this.nowscreen = 0,
+    Key? key}) : super(key: key);
 
   @override
   ConsumerState<CommunityScreen> createState() => _CommunityScreenState();
@@ -27,7 +29,8 @@ class CommunityScreen extends ConsumerStatefulWidget {
 class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
   var category = ['','자유게시판','세차라이프','질문게시판'];
-  var nowScreen = 0;
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -37,6 +40,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     ref.read(communityProvider.notifier).init();
 
     return DefaultTabController(
@@ -50,7 +54,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
               alignment: Alignment.centerLeft,
               child: TTabBar(
                 onTap: (index){
-                  nowScreen = index;
+                  widget.nowscreen = index;
                   ref.read(categoryProvider.notifier).update((state) => category[index]);
                 },
                 tabs: const [
@@ -85,7 +89,7 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
         Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => CommunityRegisterScreen(
-              category: category[nowScreen] == '' ? '자유게시판' : category[nowScreen],
+              category: category[widget.nowscreen] == '' ? '자유게시판' : category[widget.nowscreen],
             ))
         );
       },

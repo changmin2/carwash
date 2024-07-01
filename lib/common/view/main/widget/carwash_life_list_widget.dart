@@ -1,4 +1,5 @@
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/community/provider/category_provider.dart';
 import 'package:carwash/community/provider/hot_all_community_provider.dart';
 import 'package:carwash/community/view/community_carwash_life/community_carwash_life_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,10 @@ import '../../../component/carwash_life_card.dart';
 import '../../../const/sizes.dart';
 
 class CarWashLifeListWidget extends ConsumerStatefulWidget {
-  const CarWashLifeListWidget({Key? key}) : super(key: key);
+  final Function tabController;
+  CarWashLifeListWidget({
+    required this.tabController,
+    Key? key}) : super(key: key);
 
   @override
   ConsumerState<CarWashLifeListWidget> createState() => _CarWashLifeListWidgetState();
@@ -40,9 +44,14 @@ class _CarWashLifeListWidgetState extends ConsumerState<CarWashLifeListWidget> {
               ],
             ),
             TextButton(
-              onPressed: () {
+              onPressed: () async {
+                //await ref.read(categoryProvider.notifier).update((state) => "자유게시판");
+                widget.tabController(
+                  2,2
+                );
+
                 // THelperFunctions.navigateToScreen(context, const TCommunityCarWashLifeScreen());
-                THelperFunctions.navigateToScreen(context, const CommunityScreen());
+                //THelperFunctions.navigateToScreen(context, const CommunityScreen());
               },
               child: Row(
                 children: [

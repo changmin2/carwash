@@ -51,7 +51,7 @@ class AuthProviderNotifier extends ChangeNotifier {
             GoRoute(
               path: 'community',
               name: CommunityScreen.routeName,
-              builder: (_, __) => const CommunityScreen(),
+              builder: (_, __) => CommunityScreen(),
               routes: [
                 GoRoute(
                   path: 'community/:id',

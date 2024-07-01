@@ -20,13 +20,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../car/provider/recentRecord_provider.dart';
+import '../../../community/view/community_question/widget/community_recent_question_list_widget.dart';
 import '../../../user/model/user_model.dart';
 import '../../../user/provider/user_me_provider.dart';
 import '../../../weather/provider/weather_provider.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
   static String get routeName => '/';
-  const MainScreen({Key? key}) : super(key: key);
+  final Function tabController;
+   MainScreen({
+    required this.tabController,
+    Key? key}) : super(key: key);
 
   @override
   ConsumerState<MainScreen> createState() => _MainScreenState();
@@ -204,12 +208,15 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               /// ----------------------------------------------------------------
               /// 세차 라이프
               /// ----------------------------------------------------------------
-              const CarWashLifeListWidget(),
+              CarWashLifeListWidget(tabController: widget.tabController),
 
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
                 child: Divider(thickness: 3, color: Color(0xffFAFAFA)),
-              )
+              ),
+
+              const TCommunityRecentQuestionListWidget()
+
               /*
               /// ----------------------------------------------------------------
               /// 인기 등록 용품
