@@ -197,7 +197,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               /// ----------------------------------------------------------------
               /// 최근 세차
               /// ----------------------------------------------------------------
-              RecentCarWashListWidget(record : record),
+              RecentCarWashListWidget(record : record,tabController: widget.tabController),
 
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: TSizes.spaceBtwSections),
@@ -215,7 +215,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 child: Divider(thickness: 3, color: Color(0xffFAFAFA)),
               ),
 
-              const TCommunityRecentQuestionListWidget()
+              TCommunityRecentQuestionListWidget(tabController: widget.tabController)
 
               /*
               /// ----------------------------------------------------------------

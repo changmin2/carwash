@@ -21,8 +21,10 @@ import '../../../utils/helpers/helper_functions.dart';
 class RecentCarWashListWidget extends ConsumerStatefulWidget {
 
   final List<recordDto> record;
+  final Function tabController;
   RecentCarWashListWidget({
     required this.record,
+    required this.tabController,
     Key? key
   }) : super(key: key);
 
@@ -55,7 +57,8 @@ class _RecentCarWashListWidgetState extends ConsumerState<RecentCarWashListWidge
             ),
             TextButton(
               onPressed: () {
-                THelperFunctions.navigateToScreen(context, const CarWashRecordScreen());
+                widget.tabController(1,2);
+                //THelperFunctions.navigateToScreen(context, const CarWashRecordScreen());
               },
               child: Row(
                 children: [

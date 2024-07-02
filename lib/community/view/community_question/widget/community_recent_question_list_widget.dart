@@ -12,7 +12,9 @@ import '../../community_recent_screen.dart';
 
 class TCommunityRecentQuestionListWidget extends ConsumerStatefulWidget {
 
-  const TCommunityRecentQuestionListWidget({
+  final Function tabController;
+  TCommunityRecentQuestionListWidget({
+    required this.tabController,
     super.key
   });
 
@@ -46,24 +48,26 @@ class _TCommunityRecentQuestionListWidgetState extends ConsumerState<TCommunityR
                 ),
               ],
             ),
-            // TextButton(
-            //   onPressed: () {
-            //
-            //   },
-            //   child: Row(
-            //     children: [
-            //       Text(
-            //         '더보기',
-            //         style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.blue),
-            //       ),
-            //       const Icon(
-            //         Icons.keyboard_arrow_right,
-            //         color: Colors.blue,
-            //         size: 20,
-            //       ),
-            //     ],
-            //   ),
-            // )
+            TextButton(
+              onPressed: () {
+                widget.tabController(
+                    2,2
+                );
+              },
+              child: Row(
+                children: [
+                  Text(
+                    '더보기',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.blue),
+                  ),
+                  const Icon(
+                    Icons.keyboard_arrow_right,
+                    color: Colors.blue,
+                    size: 20,
+                  ),
+                ],
+              ),
+            )
           ],
         ),
 
