@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
 import 'common/provider/go_router.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'firebase_options.dart';
 
 void main() async{
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
   await WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await initializeDateFormatting();
   // await FirebaseAppCheck.instance.activate(
   //   // You can also use a `ReCaptchaEnterpriseProvider` provider instance as an

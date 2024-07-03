@@ -1,6 +1,8 @@
 import 'package:carwash/user/provider/loginCheck_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -132,7 +134,8 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
       storage.delete(key: REFRESH_TOKEN_KEY),
       storage.delete(key: ACCESS_TOKEN_KEY)
     ]);
-
+    await FlutterNaverLogin.logOut();
+    await FirebaseAuth.instance.signOut();
     //await storage.delete(key: REFRESH_TOKEN_KEY);
     //await storage.delete(key: ACCESS_TOKEN_KEY);
   }

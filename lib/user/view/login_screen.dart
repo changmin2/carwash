@@ -16,6 +16,12 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../../common/const/colors.dart';
 import '../provider/user_me_provider.dart';
 
+enum LoginPlatform {
+  naver,
+  apple,
+  none, // logout
+}
+
 class LoginScreen extends ConsumerStatefulWidget {
   static String get routeName => 'login';
   const LoginScreen({Key? key}) : super(key: key);
@@ -25,6 +31,8 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
+  LoginPlatform _loginPlatform = LoginPlatform.none;
+
   String username = '';
   String password = '';
 
@@ -228,9 +236,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 Radius.circular(35.0),
                               ),
                               onTap: () async {
-                                var res = await _login_apple();
+                                var res =  await _login_apple();
+
                                 String id = res.user!.email!;
                                 String ps = res.user!.uid!;
+
                                 ref.read(userMeProvider.notifier).snslogin(username: ps, password: id, nickname: id, context: context);
                               },
                             ),
@@ -246,6 +256,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
   }
 
+
   bool isValidEmailFormat(String word) {
     return RegExp(r"^(?=.*[a-zA-Z])(?=.*[0-9])").hasMatch(word);
   }
@@ -259,6 +270,26 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           context: context,
           nickname: res.account.nickname,
         );
+  }
+
+  void _login_apple_before() async {
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+      webAuthenticationOptions: WebAuthenticationOptions(
+        clientId: "carwash.example.com",
+        redirectUri: Uri.parse(
+          "https://carwashChangMin.glitch.me/callbacks/sign_in_with_apple",
+        ),
+      ),
+    );
+    print(appleCredential.state);
+    print(appleCredential.givenName);
+    print(appleCredential.userIdentifier);
+    print(appleCredential.email);
+    print(appleCredential.identityToken);
   }
 
   Future<UserCredential> _login_apple() async {
