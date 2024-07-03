@@ -26,17 +26,33 @@ class CommunityScreen extends ConsumerStatefulWidget {
   ConsumerState<CommunityScreen> createState() => _CommunityScreenState();
 }
 
-class _CommunityScreenState extends ConsumerState<CommunityScreen> {
+class _CommunityScreenState extends ConsumerState<CommunityScreen> with TickerProviderStateMixin{
 
   var category = ['','자유게시판','세차라이프','질문게시판'];
-
+  late TabController tabController;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    tabController = TabController(
+      length: 4,
+      vsync: this,
+      initialIndex: widget.nowscreen,
+    );
 
+    tabController.addListener(tabListener);
+    tabController.animateTo(widget.nowscreen);
   }
+
+  void tabListener() {
+    setState(() {
+      widget.nowscreen = tabController.index;
+    });
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,21 +70,28 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
               alignment: Alignment.centerLeft,
               child: TTabBar(
                 onTap: (index){
-                  widget.nowscreen = index;
-                  ref.read(categoryProvider.notifier).update((state) => category[index]);
+                  setState(() {
+                    tabController.animateTo(index);
+                    ref.read(categoryProvider.notifier).update((state) => category[index]);
+                  });
+
+
                 },
+
                 tabs: const [
                   Tab(child: Text('전체', style: TextStyle(fontSize: 16))),
                   Tab(child: Text('자유게시판', style: TextStyle(fontSize: 16))),
                   Tab(child: Text('세차라이프', style: TextStyle(fontSize: 16))),
                   Tab(child: Text('질문게시판', style: TextStyle(fontSize: 16))),
                 ],
+                tabController: tabController,
               ),
             ),
           ),
         ),
         floatingActionButton: _floatingActionButton(context),
-        child: const TabBarView(
+        child: TabBarView(
+          controller: tabController,
           physics: NeverScrollableScrollPhysics(),
           children: [
             /// 전체 탭 화면

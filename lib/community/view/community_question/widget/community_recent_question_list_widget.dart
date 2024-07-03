@@ -6,6 +6,7 @@ import '../../../../common/component/rounded_container.dart';
 import '../../../../common/component/rounded_image.dart';
 import '../../../../common/const/sizes.dart';
 import '../../../../common/utils/helpers/helper_functions.dart';
+import '../../../provider/category_provider.dart';
 import '../../../provider/hot_all_community_provider.dart';
 import '../../community_detail_screen.dart';
 import '../../community_recent_screen.dart';
@@ -49,9 +50,10 @@ class _TCommunityRecentQuestionListWidgetState extends ConsumerState<TCommunityR
               ],
             ),
             TextButton(
-              onPressed: () {
+              onPressed: () async {
+                await ref.read(categoryProvider.notifier).update((state) => "질문게시판");
                 widget.tabController(
-                    2,2
+                    2,3
                 );
               },
               child: Row(

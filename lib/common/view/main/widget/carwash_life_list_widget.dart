@@ -45,7 +45,7 @@ class _CarWashLifeListWidgetState extends ConsumerState<CarWashLifeListWidget> {
             ),
             TextButton(
               onPressed: () async {
-                //await ref.read(categoryProvider.notifier).update((state) => "자유게시판");
+                await ref.read(categoryProvider.notifier).update((state) => "자유게시판");
                 widget.tabController(
                   2,2
                 );

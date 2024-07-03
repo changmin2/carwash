@@ -73,7 +73,6 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
           backgroundColor: Colors.white,
           onTap: (int index) {
             _tabController.animateTo(index);
-
           },
           currentIndex: _selectIndex,
           items: const [

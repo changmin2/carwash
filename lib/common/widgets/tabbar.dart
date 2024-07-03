@@ -5,16 +5,19 @@ import 'package:flutter/material.dart';
 class TTabBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget> tabs;
   final ValueChanged onTap;
+  final TabController tabController;
 
-  const TTabBar({
+  TTabBar({
     super.key,
     required this.tabs,
     required this.onTap,
+    required this.tabController
   });
 
   @override
   Widget build(BuildContext context) {
     return TabBar(
+      controller: tabController,
       tabAlignment: TabAlignment.center,
       tabs: tabs,
       isScrollable: true,
