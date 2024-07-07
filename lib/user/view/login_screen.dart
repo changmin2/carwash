@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/const/text_strings.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:http/http.dart' as http;
 import 'package:carwash/user/model/user_model.dart';
 import 'package:carwash/user/view/signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_naver_login/flutter_naver_login.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../common/const/colors.dart';
@@ -38,6 +41,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   final _idFormKey = GlobalKey<FormState>();
   final _psFormKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -222,6 +226,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                   const SizedBox(width: TSizes.spaceBtwItems),
+                  Card(
+                    elevation: 5.0,
+                    shape: const CircleBorder(),
+                    clipBehavior: Clip.antiAlias,
+                    child: Ink.image(
+                      image: const AssetImage('asset/img/kakao_login.png'),
+                      width: 50,
+                      height: 50,
+                      child: InkWell(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(35.0),
+                        ),
+                        onTap: () async {
+                          signInWithKakao();
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: TSizes.spaceBtwItems),
                   Platform.isIOS
                       ? Card(
                           elevation: 5.0,
@@ -263,7 +286,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   void _login_naver() async {
     final NaverLoginResult res = await FlutterNaverLogin.logIn();
-    //final NaverLoginResult result = await FlutterNaverLogin.logIn();
+
     ref.read(userMeProvider.notifier).snslogin(
           username: res.account.id,
           password: res.account.mobile.toString() + res.account.id,
@@ -272,25 +295,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         );
   }
 
-  void _login_apple_before() async {
-    final appleCredential = await SignInWithApple.getAppleIDCredential(
-      scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ],
-      webAuthenticationOptions: WebAuthenticationOptions(
-        clientId: "carwash.example.com",
-        redirectUri: Uri.parse(
-          "https://carwashChangMin.glitch.me/callbacks/sign_in_with_apple",
-        ),
-      ),
-    );
-    print(appleCredential.state);
-    print(appleCredential.givenName);
-    print(appleCredential.userIdentifier);
-    print(appleCredential.email);
-    print(appleCredential.identityToken);
-  }
 
   Future<UserCredential> _login_apple() async {
     final appleCredential = await SignInWithApple.getAppleIDCredential(
@@ -309,5 +313,41 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     // Sign in the user with Firebase. If the nonce we generated earlier does
     // not match the nonce in `appleCredential.identityToken`, sign in will fail.
     return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+  }
+
+  void signInWithKakao() async {
+    try {
+      bool isInstalled = await isKakaoTalkInstalled();
+
+      OAuthToken token = isInstalled
+          ? await UserApi.instance.loginWithKakaoTalk()
+          : await UserApi.instance.loginWithKakaoAccount();
+
+      final url = Uri.https('kapi.kakao.com', '/v2/user/me');
+
+      final response = await http.get(
+        url,
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer ${token.accessToken}'
+        },
+      );
+
+      final profileInfo = json.decode(response.body);
+
+      var _nickname = profileInfo['properties']['nickname'];
+      var _userId = profileInfo['kakao_account']['email'];
+      var _password = 'kakao' + profileInfo['id'].toString();
+
+      ref.read(userMeProvider.notifier).snslogin(
+        username: _userId,
+        password: _password,
+        context: context,
+        nickname: _nickname,
+      );
+
+
+    } catch (error) {
+      print('카카오톡으로 로그인 실패 $error');
+    }
   }
 }

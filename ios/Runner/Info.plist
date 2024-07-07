@@ -31,6 +31,16 @@
 				</array>
 			</dict>
 		</array>
+		<key>CFBundleURLTypes</key>
+            <array>
+              <dict>
+              <key>CFBundleURLSchemes</key>
+              <array>
+                <!-- kakao login -->
+                <string>7d131476e9dd71890bf99ffa94dec12d</string>
+              </array>
+              </dict>
+            </array>
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>FLTEnableImpeller</key>
