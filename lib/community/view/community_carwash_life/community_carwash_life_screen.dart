@@ -18,13 +18,20 @@ class TCommunityCarWashLifeScreen extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.only(top: TSizes.defalutSpace),
-      child: PaginationListView(
-        provider: communityProvider,
-        itemBuilder: <CommunityModel>(_, index, community) {
-          return TCommunityCarWashLifeListWidget(
-            model: community,
+      child: RefreshIndicator(
+        onRefresh: () async {
+          ref.read(communityProvider.notifier).paginate(
+            forceRefetch: true,
           );
         },
+        child: PaginationListView(
+          provider: communityProvider,
+          itemBuilder: <CommunityModel>(_, index, community) {
+            return TCommunityCarWashLifeListWidget(
+              model: community,
+            );
+          },
+        ),
       ),
     );
   }

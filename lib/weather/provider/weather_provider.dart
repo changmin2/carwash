@@ -75,7 +75,7 @@ class WeatherStateNotifier extends StateNotifier<Map<String,dynamic>>{
         jsonDecode(res.toString())["results"][1]['region']['area2']['name'];
         var myJson_si =
         jsonDecode(res.toString())["results"][1]['region']['area1']['name'];
-
+        //print(jsonDecode(res.toString())["results"][1]['region']['area3']['name']);
         gusi = [myJson_si, myJson_gu];
       }
 

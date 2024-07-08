@@ -16,13 +16,20 @@ class TCommunityQuestionScreen extends ConsumerWidget {
     ref.watch(communityProvider);
     return Padding(
       padding: const EdgeInsets.all(TSizes.defalutSpace),
-      child: PaginationListView(
-          provider: communityProvider,
-          itemBuilder: <CommunityModel>(_,index,community){
-            return TCommunityQuestionListWidget(
-              model: community
-            );
-          }),
+      child: RefreshIndicator(
+        onRefresh: () async {
+          ref.read(communityProvider.notifier).paginate(
+            forceRefetch: true,
+          );
+        },
+        child: PaginationListView(
+            provider: communityProvider,
+            itemBuilder: <CommunityModel>(_,index,community){
+              return TCommunityQuestionListWidget(
+                model: community
+              );
+            }),
+      ),
     );
   }
 }

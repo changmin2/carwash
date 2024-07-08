@@ -25,100 +25,107 @@ class TCommunityFreeScreen extends ConsumerWidget {
     return hot.isNotEmpty
         ? Padding(
             padding: const EdgeInsets.all(TSizes.defalutSpace),
-            child: PaginationListView(
-              provider: communityProvider,
-              itemBuilder: <CommunityModel>(_, index, community) {
-                if (index == 0) {
-                  return Column(
-                    children: [
-                      /// HOT 자유게시판
-                      /// HOT section header
-                      const TCommunitySectionHeading(
-                        firstTitle: 'HOT',
-                        firstTitleColor: Colors.red,
-                        secondTitle: '자유게시판',
-                      ),
-
-                      const SizedBox(height: TSizes.spaceBtwItems),
-
-                      hot.isNotEmpty
-                          ?
-
-                          /// HOT 전체 리스트
-                          SizedBox(
-                              height: 170,
-                              child: ListView.builder(
-                                itemCount: hot.length,
-                                scrollDirection: Axis.horizontal,
-                                itemBuilder: (BuildContext context, int index) {
-                                  var imgs = '';
-                                  hot[index].imgUrls?.length != 0 ? imgs = hot[index].imgUrls!.split('[')[1].split(']')[0].split(",")[0] : null;
-
-                                  return hot[index].category == "자유게시판"
-                                      ? Padding(
-                                          padding: const EdgeInsets.only(right: TSizes.sm),
-                                          child: TCommunityFreeHotCard(
-                                            imageUrl: imgs == '' ? 'asset/img/no_image.png' : imgs,
-                                            title: hot[index].title,
-                                            model: hot[index],
-                                            isNetworkImage: imgs == '' ? false : true,
-                                          ),
-                                        )
-                                      : Container();
-                                },
-                              ),
-                            )
-                          : Container(),
-
-                      const SizedBox(height: TSizes.spaceBtwItems),
-
-                      const Divider(thickness: 0.5),
-
-                      const SizedBox(height: TSizes.spaceBtwItems),
-
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent, //전체영역 클릭
-                        onTap: () {
-                          context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
-                        },
-                        child: TCommunityFreeListWidget(
-                          hotYn: hotLists.contains(community.id) ? true : false,
-                          hashtag: community.hastag,
-                          date: community.createDate.split("T")[0],
-                          title: community.title,
-                          imageUrl: 'asset/img/profile_image.png',
-                          nickName: community.creator,
-                          likeCount: community.favorite,
-                          replyCount: community.commentCnt,
-                        ),
-                      )
-                    ],
-                  );
-                }
-
-                return GestureDetector(
-                  behavior: HitTestBehavior.translucent, //전체영역 클릭
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => CommunityDetailScreen(
-                          id: community.id,
-                        )
-                      ),
-                    );
-                  },
-                  child: TCommunityFreeListWidget(
-                    hotYn: hotLists.contains(community.id) ? true : false,
-                    hashtag: community.hastag,
-                    date: community.createDate.split("T")[0],
-                    title: community.title,
-                    imageUrl: 'asset/img/profile_image.png',
-                    nickName: community.creator,
-                    likeCount: community.favorite,
-                    replyCount: community.commentCnt,
-                  ),
+            child: RefreshIndicator(
+              onRefresh: () async {
+                ref.read(communityProvider.notifier).paginate(
+                  forceRefetch: true,
                 );
               },
+              child: PaginationListView(
+                provider: communityProvider,
+                itemBuilder: <CommunityModel>(_, index, community) {
+                  if (index == 0) {
+                    return Column(
+                      children: [
+                        /// HOT 자유게시판
+                        /// HOT section header
+                        const TCommunitySectionHeading(
+                          firstTitle: 'HOT',
+                          firstTitleColor: Colors.red,
+                          secondTitle: '자유게시판',
+                        ),
+
+                        const SizedBox(height: TSizes.spaceBtwItems),
+
+                        hot.isNotEmpty
+                            ?
+
+                            /// HOT 전체 리스트
+                            SizedBox(
+                                height: 170,
+                                child: ListView.builder(
+                                  itemCount: hot.length,
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    var imgs = '';
+                                    hot[index].imgUrls?.length != 0 ? imgs = hot[index].imgUrls!.split('[')[1].split(']')[0].split(",")[0] : null;
+
+                                    return hot[index].category == "자유게시판"
+                                        ? Padding(
+                                            padding: const EdgeInsets.only(right: TSizes.sm),
+                                            child: TCommunityFreeHotCard(
+                                              imageUrl: imgs == '' ? 'asset/img/no_image.png' : imgs,
+                                              title: hot[index].title,
+                                              model: hot[index],
+                                              isNetworkImage: imgs == '' ? false : true,
+                                            ),
+                                          )
+                                        : Container();
+                                  },
+                                ),
+                              )
+                            : Container(),
+
+                        const SizedBox(height: TSizes.spaceBtwItems),
+
+                        const Divider(thickness: 0.5),
+
+                        const SizedBox(height: TSizes.spaceBtwItems),
+
+                        GestureDetector(
+                          behavior: HitTestBehavior.translucent, //전체영역 클릭
+                          onTap: () {
+                            context.goNamed(CommunityDetailScreen.routeName, pathParameters: {'id': community.id.toString()});
+                          },
+                          child: TCommunityFreeListWidget(
+                            hotYn: hotLists.contains(community.id) ? true : false,
+                            hashtag: community.hastag,
+                            date: community.createDate.split("T")[0],
+                            title: community.title,
+                            imageUrl: 'asset/img/profile_image.png',
+                            nickName: community.creator,
+                            likeCount: community.favorite,
+                            replyCount: community.commentCnt,
+                          ),
+                        )
+                      ],
+                    );
+                  }
+
+                  return GestureDetector(
+                    behavior: HitTestBehavior.translucent, //전체영역 클릭
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => CommunityDetailScreen(
+                            id: community.id,
+                          )
+                        ),
+                      );
+                    },
+                    child: TCommunityFreeListWidget(
+                      hotYn: hotLists.contains(community.id) ? true : false,
+                      hashtag: community.hastag,
+                      date: community.createDate.split("T")[0],
+                      title: community.title,
+                      imageUrl: 'asset/img/profile_image.png',
+                      nickName: community.creator,
+                      likeCount: community.favorite,
+                      replyCount: community.commentCnt,
+                    ),
+                  );
+                },
+              ),
             ),
           )
         : Padding(

@@ -100,6 +100,7 @@ class PaginationProvider<T extends IModelWithId,U extends IBasePaginationReposit
         }
         //나머지 상황 데이터를 유지하지 않아도됨
         else{
+
           state = CursorPaginationLoading();
         }
       }
