@@ -8,9 +8,9 @@ part of 'search_model.dart';
 
 SearchModel _$SearchModelFromJson(Map<String, dynamic> json) => SearchModel(
       lastBuildDate: json['lastBuildDate'] as String,
-      total: json['total'] as int,
-      start: json['start'] as int,
-      display: json['display'] as int,
+      total: (json['total'] as num).toInt(),
+      start: (json['start'] as num).toInt(),
+      display: (json['display'] as num).toInt(),
       items: (json['items'] as List<dynamic>)
           .map((e) => Item.fromJson(e as Map<String, dynamic>))
           .toList(),

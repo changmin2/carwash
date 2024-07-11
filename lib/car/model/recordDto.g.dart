@@ -7,7 +7,7 @@ part of 'recordDto.dart';
 // **************************************************************************
 
 recordDto _$recordDtoFromJson(Map<String, dynamic> json) => recordDto(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       memberId: json['memberId'] as String,
       imgUrl: json['imgUrl'] as String,
       washList: json['washList'] as String,

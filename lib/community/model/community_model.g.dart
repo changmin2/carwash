@@ -8,17 +8,17 @@ part of 'community_model.dart';
 
 CommunityModel _$CommunityModelFromJson(Map<String, dynamic> json) =>
     CommunityModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       content: json['content'] as String,
       creator: json['creator'] as String,
-      hits: json['hits'] as int,
-      favorite: json['favorite'] as int,
+      hits: (json['hits'] as num).toInt(),
+      favorite: (json['favorite'] as num).toInt(),
       category: json['category'] as String,
       createDate: json['createDate'] as String,
       hastag: json['hastag'] as String? ?? '',
       imgUrls: json['imgUrls'] as String? ?? '',
-      commentCnt: json['commentCnt'] as int,
+      commentCnt: (json['commentCnt'] as num).toInt(),
     );
 
 Map<String, dynamic> _$CommunityModelToJson(CommunityModel instance) =>

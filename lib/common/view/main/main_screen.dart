@@ -1,3 +1,7 @@
+
+
+import 'dart:io';
+
 import 'package:carwash/car/provider/myrecord_provider.dart';
 import 'package:carwash/common/component/rounded_container.dart';
 import 'package:carwash/common/component/rounded_image.dart';
@@ -13,6 +17,7 @@ import 'package:carwash/common/view/main/widget/recent_carwash_list_widget.dart'
 import 'package:carwash/community/provider/hot_all_community_provider.dart';
 import 'package:carwash/user/provider/favorite_provider.dart';
 import 'package:carwash/user/view/profile/profile_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -38,12 +43,34 @@ class MainScreen extends ConsumerStatefulWidget {
 
 class _MainScreenState extends ConsumerState<MainScreen> {
 
+  var user;
+
+  Future<void> setFirebaseToken() async {
+    final FirebaseMessaging fcm = FirebaseMessaging.instance;
+    String? token;
+    if (Platform.isAndroid) {
+      token = await fcm.getToken();
+
+    } else if (Platform.isIOS) {
+      token = await fcm.getAPNSToken();
+
+    }
+    print(token);
+    await ref.read(userMeProvider.notifier).setFirebaseToken(token!);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     ref.read(WeatherProvider.notifier).getWeather();
     ref.read(MyRecordProvider.notifier).getMyRecord();
+    user = ref.read(userMeProvider) as UserModel;
+
+    //기존 유저들의 기기 토큰 값을 가져오기 위해 함수 실행
+    if(user.firebaseToken == ''){
+      setFirebaseToken();
+    }
   }
 
   @override
@@ -61,7 +88,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     ref.read(favoriteProvider.notifier).getFavorites();
     ref.read(hotAllCommunityProvider.notifier).getHotAll();
 
-    final user = ref.read(userMeProvider) as UserModel;
     final record = ref.watch(recentRecordProvider(user.username));
 
     var diffDay;

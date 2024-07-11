@@ -36,6 +36,7 @@ class WeatherStateNotifier extends StateNotifier<Map<String,dynamic>>{
     if(state.length!=0){
       return;
     }else{
+
       var times = ['09','12','24'];
 
       Position position;

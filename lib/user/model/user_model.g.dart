@@ -11,6 +11,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       password: json['password'] as String,
       nickname: json['nickname'] as String,
       intro: json['intro'] as String,
+      firebaseToken: json['firebaseToken'] as String? ?? '',
+      rcvAlarmYn: json['rcvAlarmYn'] as String? ?? '',
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -18,4 +20,6 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'password': instance.password,
       'nickname': instance.nickname,
       'intro': instance.intro,
+      'firebaseToken': instance.firebaseToken,
+      'rcvAlarmYn': instance.rcvAlarmYn,
     };

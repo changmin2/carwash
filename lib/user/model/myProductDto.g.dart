@@ -12,7 +12,7 @@ MyProductDto _$MyProductDtoFromJson(Map<String, dynamic> json) => MyProductDto(
       cycle: json['cycle'] as String?,
       imgUrl: json['imgUrl'] as String?,
       link: json['link'] as String?,
-      id: json['id'] as int?,
+      id: (json['id'] as num?)?.toInt(),
       memberId: json['memberId'] as String?,
     );
 

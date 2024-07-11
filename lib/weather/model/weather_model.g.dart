@@ -8,8 +8,8 @@ part of 'weather_model.dart';
 
 WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) => WeatherModel(
       cod: json['cod'] as String,
-      message: json['message'] as int,
-      cnt: json['cnt'] as int,
+      message: (json['message'] as num).toInt(),
+      cnt: (json['cnt'] as num).toInt(),
       list: (json['list'] as List<dynamic>)
           .map((e) => WeatherInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -43,7 +43,7 @@ WeatherMain _$WeatherMainFromJson(Map<String, dynamic> json) => WeatherMain(
       feels_like: (json['feels_like'] as num).toDouble(),
       temp_min: (json['temp_min'] as num).toDouble(),
       temp_max: (json['temp_max'] as num).toDouble(),
-      humidity: json['humidity'] as int,
+      humidity: (json['humidity'] as num).toInt(),
     );
 
 Map<String, dynamic> _$WeatherMainToJson(WeatherMain instance) =>

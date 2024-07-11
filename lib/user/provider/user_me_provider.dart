@@ -1,3 +1,4 @@
+import 'package:carwash/user/model/firebaseTokenDto.dart';
 import 'package:carwash/user/provider/loginCheck_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -136,8 +137,6 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
     ]);
     await FlutterNaverLogin.logOut();
     await FirebaseAuth.instance.signOut();
-    //await storage.delete(key: REFRESH_TOKEN_KEY);
-    //await storage.delete(key: ACCESS_TOKEN_KEY);
   }
 
   Future<void> withDrawl() async{
@@ -150,4 +149,13 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
     ]);
   }
 
+  Future<void> setFirebaseToken(String token) async {
+    UserModel pState =state as UserModel;
+    pState.firebaseToken = token;
+    state = pState;
+    print('전달토큰');
+    print(token);
+    await userMeRepository.setFirebaseToken(FirebaseTokenDto(firebaseToken: token));
+
+  }
 }

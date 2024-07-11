@@ -7,8 +7,8 @@ part of 'comment_model.dart';
 // **************************************************************************
 
 CommentModel _$CommentModelFromJson(Map<String, dynamic> json) => CommentModel(
-      comment_id: json['comment_id'] as int,
-      id: json['id'] as int,
+      comment_id: (json['comment_id'] as num).toInt(),
+      id: (json['id'] as num).toInt(),
       creator: json['creator'] as String,
       content: json['content'] as String,
       createDate: DateTime.parse(json['createDate'] as String),
@@ -28,7 +28,7 @@ Map<String, dynamic> _$CommentModelToJson(CommentModel instance) =>
     };
 
 Recomment _$RecommentFromJson(Map<String, dynamic> json) => Recomment(
-      recomment_id: json['recomment_id'] as int,
+      recomment_id: (json['recomment_id'] as num).toInt(),
       creator: json['creator'] as String,
       content: json['content'] as String,
       createDate: DateTime.parse(json['createDate'] as String),

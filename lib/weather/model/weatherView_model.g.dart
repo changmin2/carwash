@@ -13,7 +13,7 @@ WeatherViewModel _$WeatherViewModelFromJson(Map<String, dynamic> json) =>
       dt_txt: json['dt_txt'] as String,
       m_weather: json['m_weather'] as String,
       a_weather: json['a_weather'] as String,
-      humidity: json['humidity'] as int,
+      humidity: (json['humidity'] as num).toInt(),
       gu: json['gu'] as String? ?? "",
       si: json['si'] as String? ?? "",
     );

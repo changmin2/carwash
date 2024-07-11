@@ -20,12 +20,16 @@ class UserModel extends UserModelBase{
   final String password;
   final String nickname;
   final String intro;
+  String? firebaseToken;
+  String? rcvAlarmYn;
 
   UserModel({
     required this.username,
     required this.password,
     required this.nickname,
-    required this.intro
+    required this.intro,
+    this.firebaseToken = '',
+    this.rcvAlarmYn = ''
   });
 
 

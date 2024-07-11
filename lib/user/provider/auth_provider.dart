@@ -11,6 +11,7 @@ import 'package:carwash/common/view/root_tap.dart';
 import 'package:carwash/community/view/community_detail_screen.dart';
 import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -125,11 +126,9 @@ class AuthProviderNotifier extends ChangeNotifier {
   //토큰이 존재하는지 확인하고
   //로그인 스크린으로 보내줄지
   //홈스크린으로 보내줄지 확인하는 과정이 필요
+  //이 함수에 async를 붙여버리면 메인화면 로드할 때 딜레이가 생겨버림
   FutureOr<String?> redirectLogic(BuildContext context, GoRouterState state) {
-    // final weather =  ref.read(WeatherProvider);
-    // if(weather.length == 0){
-    //   ref.read(WeatherProvider.notifier).getWeather();
-    // }
+
     ref.read(MyRecordProvider);
     final UserModelBase? user = ref.read(userMeProvider);
 
@@ -150,7 +149,7 @@ class AuthProviderNotifier extends ChangeNotifier {
     //사용자 정보가 있는상태면
     //로그인 중이거나 현재 위치가 SplashScreen이면
     //홈으로 이동
-    if (user is UserModel) {
+    if (user is UserModel)  {
       return logginIn || state.location == '/splash' ? '/' : null;
     }
 

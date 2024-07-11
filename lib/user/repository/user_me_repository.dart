@@ -1,4 +1,5 @@
 import 'package:carwash/user/model/edit_request.dart';
+import 'package:carwash/user/model/firebaseTokenDto.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/http.dart';
@@ -43,6 +44,14 @@ abstract class UserMeRepository{
   })
   Future<String> edit(
       @Body() EditRequest editRequest
+  );
+
+  @POST('/setFirebaseToken')
+  @Headers({
+    'accessToken':'true'
+  })
+  Future<void> setFirebaseToken(
+      @Body() FirebaseTokenDto firebaseTokenDto
   );
 
 }
