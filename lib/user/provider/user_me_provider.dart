@@ -153,8 +153,7 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
     UserModel pState =state as UserModel;
     pState.firebaseToken = token;
     state = pState;
-    print('전달토큰');
-    print(token);
+
     await userMeRepository.setFirebaseToken(FirebaseTokenDto(firebaseToken: token));
 
   }

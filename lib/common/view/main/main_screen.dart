@@ -54,7 +54,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     } else if (Platform.isIOS) {
       token = await fcm.getAPNSToken();
     }
-    await ref.read(userMeProvider.notifier).setFirebaseToken(token !);
+    if(user.firebaseToken == '' || user.firebaseToken != token){
+      await ref.read(userMeProvider.notifier).setFirebaseToken(token !);
+    }
   }
 
   @override
@@ -66,9 +68,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     user = ref.read(userMeProvider) as UserModel;
 
     //기존 유저들의 기기 토큰 값을 가져오기 위해 함수 실행
-    if(user.firebaseToken == ''){
-      setFirebaseToken();
-    }
+    setFirebaseToken();
   }
 
   @override
