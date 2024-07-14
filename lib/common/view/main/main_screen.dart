@@ -53,10 +53,9 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 
     } else if (Platform.isIOS) {
       token = await fcm.getAPNSToken();
-
     }
     print(token);
-    await ref.read(userMeProvider.notifier).setFirebaseToken(token!);
+    await ref.read(userMeProvider.notifier).setFirebaseToken(token !);
   }
 
   @override
