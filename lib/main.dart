@@ -7,10 +7,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'common/provider/go_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'firebase_options.dart';
+
+late AndroidNotificationChannel channel;
+late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 void main() async{
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
@@ -18,8 +22,8 @@ void main() async{
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   initializeNotification();
   await initializeDateFormatting();
+  print(await FirebaseMessaging.instance.getToken());
   KakaoSdk.init(nativeAppKey: '7d131476e9dd71890bf99ffa94dec12d'); // 이 줄을 runApp 위에 추가한다.
-
   runApp(
       const ProviderScope(child: _App())
   );
@@ -56,20 +60,49 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async{
 void initializeNotification() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  final flutterLocalNotificationPlugin = FlutterLocalNotificationsPlugin();
-  await flutterLocalNotificationPlugin
-    .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
-    ?.createNotificationChannel(const AndroidNotificationChannel(
-      'high_importance_channle','hight_importance_launcher',importance: Importance.max
-  ));
+  channel = const AndroidNotificationChannel(
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    description:
+    'This channel is used for important notifications.', // description
+    importance: Importance.high,
+  );
 
-  await flutterLocalNotificationPlugin.initialize(const InitializationSettings(
-    android: AndroidInitializationSettings("@mipmap/ic_launcher"),
-  ));
+  var initialzationSettingsAndroid =
+  AndroidInitializationSettings('@mipmap/ic_launcher');
+
+  var initialzationSettingsIOS =  DarwinInitializationSettings(
+
+    requestAlertPermission: false,
+
+    requestBadgePermission: false,
+
+    requestSoundPermission: false,
+
+  );
+
+  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+      AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
+  var initializationSettings = InitializationSettings(
+      android: initialzationSettingsAndroid,iOS: initialzationSettingsIOS);
+
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+  );
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
-    sound: true
+    sound: true,
   );
+
+
+
 }
+
+

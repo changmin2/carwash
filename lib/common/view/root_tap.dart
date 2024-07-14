@@ -4,9 +4,12 @@ import 'package:carwash/common/view/main/main_screen.dart';
 import 'package:carwash/community/view/community_screen.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
 import 'package:carwash/user/view/profile/profile_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../main.dart';
 import '../const/colors.dart';
 
 class RootTab extends ConsumerStatefulWidget {
@@ -24,6 +27,34 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
 
   @override
   void initState() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      RemoteNotification? notification = message.notification;
+      AndroidNotification? android = message.notification?.android;
+      var androidNotiDetails = AndroidNotificationDetails(
+        channel.id,
+        channel.name,
+        channelDescription: channel.description,
+      );
+      var iOSNotiDetails = const DarwinNotificationDetails(
+        presentAlert: true,
+        presentBadge: true,
+        presentSound: true,
+      );
+      var details =
+      NotificationDetails(android: androidNotiDetails,iOS: iOSNotiDetails);
+      if (notification != null) {
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          details,
+        );
+      }
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      print(message);
+    });
     super.initState();
 
     _tabController = TabController(
@@ -36,6 +67,7 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
     _tabController.addListener(tabListener);
     _tabController.animateTo(_selectIndex);
   }
+
 
   @override
   void dispose() {
