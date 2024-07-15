@@ -27,34 +27,6 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
 
   @override
   void initState() {
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-      RemoteNotification? notification = message.notification;
-      AndroidNotification? android = message.notification?.android;
-      var androidNotiDetails = AndroidNotificationDetails(
-        channel.id,
-        channel.name,
-        channelDescription: channel.description,
-      );
-      var iOSNotiDetails = const DarwinNotificationDetails(
-        presentAlert: true,
-        presentBadge: true,
-        presentSound: true,
-      );
-      var details =
-      NotificationDetails(android: androidNotiDetails,iOS: iOSNotiDetails);
-      if (notification != null) {
-        flutterLocalNotificationsPlugin.show(
-          notification.hashCode,
-          notification.title,
-          notification.body,
-          details,
-        );
-      }
-    });
-
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      print(message);
-    });
     super.initState();
 
     _tabController = TabController(

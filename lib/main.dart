@@ -13,49 +13,13 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'firebase_options.dart';
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print('Handling a background message ${message.messageId}');
+}
+
 late AndroidNotificationChannel channel;
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
-void main() async{
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-  await WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  initializeNotification();
-  await initializeDateFormatting();
-  print(await FirebaseMessaging.instance.getToken());
-  KakaoSdk.init(nativeAppKey: '7d131476e9dd71890bf99ffa94dec12d'); // 이 줄을 runApp 위에 추가한다.
-  runApp(
-      const ProviderScope(child: _App())
-  );
-}
-
-class _App extends ConsumerWidget {
-  const _App({Key? key}) : super(key: key);
-
-
-  @override
-  Widget build(BuildContext context,WidgetRef ref) {
-
-    final router = ref.watch(routerProvider);
-    //SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-    // final state = ref.watch(secureStorageProvider);
-    // state.deleteAll();
-    return MaterialApp.router(
-      // 시스템 설정에 따른 Theme
-      // themeMode: ThemeMode.system,
-      theme: TAppTheme.lightTheme,
-      // darkTheme: TAppTheme.darkTheme,
-      debugShowCheckedModeBanner: false,
-      routerDelegate: router.routerDelegate,
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
-    );
-  }
-}
-
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async{
-  print("백그라운드 메시지 처리... ${message.notification!.body}");
-}
 
 void initializeNotification() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -71,14 +35,10 @@ void initializeNotification() async {
   var initialzationSettingsAndroid =
   AndroidInitializationSettings('@mipmap/ic_launcher');
 
-  var initialzationSettingsIOS =  DarwinInitializationSettings(
-
-    requestAlertPermission: false,
-
-    requestBadgePermission: false,
-
-    requestSoundPermission: false,
-
+  var initialzationSettingsIOS = DarwinInitializationSettings(
+    requestSoundPermission: true,
+    requestBadgePermission: true,
+    requestAlertPermission: true,
   );
 
   flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -89,7 +49,7 @@ void initializeNotification() async {
       ?.createNotificationChannel(channel);
 
   var initializationSettings = InitializationSettings(
-      android: initialzationSettingsAndroid,iOS: initialzationSettingsIOS);
+      android: initialzationSettingsAndroid, iOS: initialzationSettingsIOS);
 
   await flutterLocalNotificationsPlugin.initialize(
     initializationSettings,
@@ -101,8 +61,83 @@ void initializeNotification() async {
     sound: true,
   );
 
-
-
 }
+
+void _permissionWithNotification() async {
+
+  if (await Permission.notification.isDenied &&
+      !await Permission.notification.isPermanentlyDenied) {
+    await [Permission.notification].request();
+  }
+}
+
+void main() async{
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+  await WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  initializeNotification();
+
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+    RemoteNotification? notification = message.notification;
+    AndroidNotification? android = message.notification?.android;
+    var androidNotiDetails = AndroidNotificationDetails(
+      channel.id,
+      channel.name,
+      channelDescription: channel.description,
+    );
+    var iOSNotiDetails =  const DarwinNotificationDetails(
+
+    );
+    var details =
+    NotificationDetails(android: androidNotiDetails, iOS: iOSNotiDetails);
+    if (notification != null) {
+      flutterLocalNotificationsPlugin.show(
+        notification.hashCode,
+        notification.title,
+        notification.body,
+        details,
+      );
+    }
+  });
+
+  FirebaseMessaging.onMessageOpenedApp.listen((message) {
+    print(message);
+  });
+
+
+  //푸쉬알림설정 끝
+  await initializeDateFormatting();
+
+  KakaoSdk.init(nativeAppKey: '7d131476e9dd71890bf99ffa94dec12d'); // 이 줄을 runApp 위에 추가한다.
+  runApp(
+      const ProviderScope(child: _App())
+  );
+}
+
+class _App extends ConsumerWidget {
+  const _App({Key? key}) : super(key: key);
+
+
+  @override
+  Widget build(BuildContext context,WidgetRef ref) {
+
+    final router = ref.watch(routerProvider);
+
+    return MaterialApp.router(
+      // 시스템 설정에 따른 Theme
+      // themeMode: ThemeMode.system,
+      theme: TAppTheme.lightTheme,
+      // darkTheme: TAppTheme.darkTheme,
+      debugShowCheckedModeBanner: false,
+      routerDelegate: router.routerDelegate,
+      routeInformationParser: router.routeInformationParser,
+      routeInformationProvider: router.routeInformationProvider,
+    );
+  }
+}
+
+
+
+
 
 

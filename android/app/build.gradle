@@ -59,8 +59,8 @@ android {
         // 2023-12-15.RSY.네이버 아이디 로그인을 위해 19 -> 21로 변경함.
         //minSdkVersion 19
         minSdkVersion 21
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode 19
+        targetSdkVersion 33
+        versionCode 22
         versionName flutterVersionName
         multiDexEnabled true
     }
