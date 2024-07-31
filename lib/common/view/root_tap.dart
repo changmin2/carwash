@@ -24,6 +24,7 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
   late TabController _tabController;
   int _selectIndex = 0;
   int _nowscreen = 0;
+  var messageString = "";
 
   @override
   void initState() {
@@ -38,6 +39,28 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
     );
     _tabController.addListener(tabListener);
     _tabController.animateTo(_selectIndex);
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      RemoteNotification? notification = message.notification;
+      if (notification != null) {
+        FlutterLocalNotificationsPlugin().show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          const NotificationDetails(
+            android: AndroidNotificationDetails(
+              'high_importance_channel',
+              'high_importance_notification',
+              importance: Importance.max,
+            ),
+          ),
+        );
+        setState(() {
+          messageString = message.notification!.body!;
+          print("Foreground 메시지 수신: $messageString");
+        });
+      }
+    });
+    super.initState();
   }
 
 

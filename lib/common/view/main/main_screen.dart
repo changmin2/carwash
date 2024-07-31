@@ -52,7 +52,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       token = await fcm.getToken();
 
     } else if (Platform.isIOS) {
-      token = await fcm.getAPNSToken();
+      token = await fcm.getToken();
     }
     print(token! + "  토큰정보");
     if(user.firebaseToken == '' || user.firebaseToken != token){

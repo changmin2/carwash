@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:carwash/common/theme/theme.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 //import 'package:firebase_core/firebase_core.dart';
@@ -14,101 +17,38 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  print('Handling a background message ${message.messageId}');
+  print("백그라운드 메시지 처리.. ${message.notification!.body!}");
 }
-
-late AndroidNotificationChannel channel;
-late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
 
 void initializeNotification() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-  channel = const AndroidNotificationChannel(
-    'high_importance_channel', // id
-    'High Importance Notifications', // title
-    description:
-    'This channel is used for important notifications.', // description
-    importance: Importance.high,
-  );
-
-  var initialzationSettingsAndroid =
-  AndroidInitializationSettings('@mipmap/ic_launcher');
-
-  var initialzationSettingsIOS = DarwinInitializationSettings(
-    requestSoundPermission: true,
-    requestBadgePermission: true,
-    requestAlertPermission: true,
-  );
-
-  flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
+  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
       AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
-
-  var initializationSettings = InitializationSettings(
-      android: initialzationSettingsAndroid, iOS: initialzationSettingsIOS);
-
-  await flutterLocalNotificationsPlugin.initialize(
-    initializationSettings,
-  );
-
+      ?.createNotificationChannel(const AndroidNotificationChannel(
+      'high_importance_channel', 'high_importance_notification',
+      importance: Importance.max));
+  await flutterLocalNotificationsPlugin.initialize(const InitializationSettings(
+    android: AndroidInitializationSettings("@mipmap/ic_launcher"),
+  ));
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
     sound: true,
   );
-
-}
-
-void _permissionWithNotification() async {
-
-  if (await Permission.notification.isDenied &&
-      !await Permission.notification.isPermanentlyDenied) {
-    await [Permission.notification].request();
-  }
 }
 
 void main() async{
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
   await WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await initializeDateFormatting();
+  KakaoSdk.init(nativeAppKey: '7d131476e9dd71890bf99ffa94dec12d'); // 이 줄을 runApp 위에 추가한다.
+
+  //푸쉬알림설정
   initializeNotification();
 
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-    RemoteNotification? notification = message.notification;
-    AndroidNotification? android = message.notification?.android;
-    var androidNotiDetails = AndroidNotificationDetails(
-      channel.id,
-      channel.name,
-      channelDescription: channel.description,
-    );
-    var iOSNotiDetails =  const DarwinNotificationDetails(
-
-    );
-    var details =
-    NotificationDetails(android: androidNotiDetails, iOS: iOSNotiDetails);
-    if (notification != null) {
-      flutterLocalNotificationsPlugin.show(
-        notification.hashCode,
-        notification.title,
-        notification.body,
-        details,
-      );
-    }
-  });
-
-  FirebaseMessaging.onMessageOpenedApp.listen((message) {
-    print(message);
-  });
-
-
-  //푸쉬알림설정 끝
-  await initializeDateFormatting();
-
-  KakaoSdk.init(nativeAppKey: '7d131476e9dd71890bf99ffa94dec12d'); // 이 줄을 runApp 위에 추가한다.
   runApp(
       const ProviderScope(child: _App())
   );
