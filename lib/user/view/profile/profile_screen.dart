@@ -31,6 +31,7 @@ class UserProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
+
   @override
   Widget build(BuildContext context) {
     var record = ref.read(MyRecordProvider);
@@ -110,6 +111,29 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                   ),
 
                   const TSettingsMenuTile(icon: Iconsax.notification_1, title: "문의사항은 아래의 이메일로 문의해주세요.", subTitle: 'dlckdals9467@naver.com'),
+                  //푸쉬 알림 수신 설정
+                  ListTile(
+                    leading: Icon(
+                      Iconsax.alarm,
+                      size: 28,
+                      color: PRIMARY_COLOR,
+                    ),
+                    title: Row(
+                        children : [
+                          Text("푸쉬 알림 수신", style: Theme.of(context).textTheme.titleMedium),
+                          const SizedBox(width: 20),
+                          Switch(
+                              value: state.rcvAlarmYn == "Y" ? true : false,
+                              activeColor: PRIMARY_COLOR,
+                              onChanged: (value) async {
+                                await ref.read(userMeProvider.notifier).updateAlarmYn();
+                                setState(() {
+
+                                });
+                              }),
+                        ]
+                    ),
+                  ),
 
                   //const SizedBox(height: TSizes.spaceBtwSections),
 

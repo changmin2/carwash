@@ -157,4 +157,12 @@ class UserMeStateNotifier extends StateNotifier<UserModelBase?>{
     await userMeRepository.setFirebaseToken(FirebaseTokenDto(firebaseToken: token));
 
   }
+
+  Future<void> updateAlarmYn() async {
+    UserModel pState = state as UserModel;
+    pState.rcvAlarmYn = pState.rcvAlarmYn == "Y" ? "N" : "Y";
+    state = pState;
+
+    await userMeRepository.updateAlarmYn();
+  }
 }

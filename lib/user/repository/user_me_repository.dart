@@ -54,4 +54,10 @@ abstract class UserMeRepository{
       @Body() FirebaseTokenDto firebaseTokenDto
   );
 
+  @POST('/updateAlarmYn')
+  @Headers({
+    'accessToken':'true'
+  })
+  Future<void> updateAlarmYn();
+
 }
