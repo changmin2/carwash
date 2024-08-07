@@ -236,6 +236,6 @@ SPEC CHECKSUMS:
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   url_launcher_ios: bbd758c6e7f9fd7b5b1d4cde34d2b95fcce5e812
 
-PODFILE CHECKSUM: fff3348f19d060f45045a9c9fbca3a264147c2f7
+PODFILE CHECKSUM: c4dadb9ae55d4ccd92ec30351401d0c2afcaccb1
 
 COCOAPODS: 1.15.2

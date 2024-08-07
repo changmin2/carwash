@@ -29,9 +29,19 @@ void initializeNotification() async {
       ?.createNotificationChannel(const AndroidNotificationChannel(
       'high_importance_channel', 'high_importance_notification',
       importance: Importance.max));
-  await flutterLocalNotificationsPlugin.initialize(const InitializationSettings(
+
+  IOSInitializationSettings iosInitializationSettings =
+  IOSInitializationSettings(
+    requestAlertPermission: true,
+    requestBadgePermission: true,
+    requestSoundPermission: true
+  );
+
+  await flutterLocalNotificationsPlugin.initialize( InitializationSettings(
     android: AndroidInitializationSettings("@mipmap/ic_launcher"),
+    iOS: iosInitializationSettings
   ));
+
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
