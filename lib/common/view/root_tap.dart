@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carwash/car/view/carwash_record_screen.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/view/main/main_screen.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../main.dart';
 import '../const/colors.dart';
 
@@ -29,7 +32,7 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
   @override
   void initState() {
     super.initState();
-
+    _requestPermission();
     _tabController = TabController(
       length: 4,
       vsync: this,
@@ -124,5 +127,39 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
         ),
       ),
     );
+  }
+}
+
+//각종 권한 요청
+Future<void> _requestPermission() async {
+
+  if (Platform.isIOS) {
+    // iOS에서 알림 권한 요청 코드
+
+    final IOSFlutterLocalNotificationsPlugin? iosImplementation = FlutterLocalNotificationsPlugin().resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
+
+    if (iosImplementation != null) {
+      bool? result = await iosImplementation.requestPermissions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+      if (result != null && result) {
+        print('Notification permission granted.');
+      } else {
+        print('Notification permission denied.');
+      }
+    }
+  } else if (Platform.isAndroid) {
+    await Permission.notification.request();
+    // Android에서 알림 권한 요청 코드
+    PermissionStatus status = await Permission.notification.status;
+    if (status.isGranted) {
+      // 권한이 허용되었을 때 추가 작업 수행
+    } else if (status.isDenied || status.isPermanentlyDenied) {
+      // 권한이 거부되었거나 영구적으로 거부된 경우
+    } else {
+      await Permission.notification.request();
+    }
   }
 }

@@ -6,6 +6,8 @@ import 'package:carwash/common/const/colors.dart';
 import 'package:carwash/common/const/sizes.dart';
 import 'package:carwash/common/layout/default_layout_v2.dart';
 import 'package:carwash/common/utils/helpers/helper_functions.dart';
+import 'package:carwash/firebase/model/fcmMessageDto.dart';
+import 'package:carwash/firebase/repository/firebase_repository.dart';
 import 'package:carwash/user/model/user_model.dart';
 import 'package:carwash/user/provider/myProduct_provider.dart';
 import 'package:carwash/user/provider/user_me_provider.dart';
@@ -31,7 +33,8 @@ class UserProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
-
+  var _sendTitle   = '';
+  var _sendMessage = '';
   @override
   Widget build(BuildContext context) {
     var record = ref.read(MyRecordProvider);
@@ -134,6 +137,68 @@ class _UserProfileScreenState extends ConsumerState<UserProfileScreen> {
                         ]
                     ),
                   ),
+                  state.username == 'superadmin1'
+                  ?
+                  GestureDetector(
+                      onTap: (){
+                        showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            builder: (BuildContext context){
+                              final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+                              return Padding(
+                                padding: EdgeInsets.only(bottom: bottomInset),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Form(
+                                      child: TextFormField(
+                                        onSaved: (value){
+                                          _sendTitle = value as String;
+                                        },
+                                        onChanged: (value){
+                                          _sendTitle = value as String;
+                                        },
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: '제목을 입력해주세요'
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Form(
+                                      child: TextFormField(
+                                        onSaved: (value){
+                                          _sendMessage = value as String;
+                                        },
+                                        onChanged: (value){
+                                          _sendMessage = value as String;
+                                        },
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: '메세지를 입력해주세요'
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    ElevatedButton(
+                                        onPressed: (){
+                                          FcmMessageDto dto = new FcmMessageDto(title: _sendTitle, body: _sendMessage);
+                                          ref.read(firebaseRepositoryProvider).sendTotalUser(
+                                            dto
+                                          );
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('전송'))
+                                  ],
+                                ),
+                              );
+                            }
+                        );
+                      },
+                      child: TSettingsMenuTile(icon: Iconsax.send_21, title: "전체 푸쉬 알림 보내기", subTitle: '관리자 전용'))
+                  :Container(),
+
 
                   //const SizedBox(height: TSizes.spaceBtwSections),
 

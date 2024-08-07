@@ -39,6 +39,7 @@ void initializeNotification() async {
   );
 }
 
+
 void main() async{
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
   await WidgetsFlutterBinding.ensureInitialized();
