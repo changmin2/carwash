@@ -40,24 +40,33 @@ class WeatherStateNotifier extends StateNotifier<Map<String,dynamic>>{
       var times = ['09','12','24'];
 
       Position position;
-      Position? lastPosition = await Geolocator.getLastKnownPosition();
+      double absLongtitude;
+      double absLatitude;
+      try{
+
+        Position? lastPosition = await Geolocator.getLastKnownPosition();
 
 
-      if(lastPosition != null){
+        if(lastPosition != null){
 
-        position = lastPosition;
-      }else{
-        position =  await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.low);
+          position = lastPosition;
+        }else{
+          position =  await Geolocator.getCurrentPosition(
+              desiredAccuracy: LocationAccuracy.low);
+        }
+
+        //지역 이름 가져오기 시작
+        absLongtitude = position.longitude.abs();
+        absLatitude = position.latitude.abs();
+      }catch(e){
+
+        absLongtitude = 128.861599;
+        absLatitude = 35.262303;
       }
 
-      //지역 이름 가져오기 시작
-      Dio dio = Dio();
-      double absLongtitude = position.longitude.abs();
-      //테스트 유알엘
-      //var reverseGocdoeUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=128.861599,35.262303&sourcecrs=epsg:4326&output=json";
       //실제 유알엘
-      var reverseGocdoeUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=${absLongtitude},${position.latitude}&sourcecrs=epsg:4326&output=json";
+      var reverseGocdoeUrl = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?request=coordsToaddr&coords=${absLongtitude},${absLatitude}&sourcecrs=epsg:4326&output=json";
+      Dio dio = Dio();
 
       var res = await dio.get(
         reverseGocdoeUrl,
@@ -83,8 +92,8 @@ class WeatherStateNotifier extends StateNotifier<Map<String,dynamic>>{
 
       //끝
 
-      var pstate = await repository.readWeather(lat: position.latitude,
-          lon: position.longitude,
+      var pstate = await repository.readWeather(lat: absLatitude,
+          lon: absLongtitude,
           appid: openWeatherApiKey);
       List<WeatherViewModel> weatherViewModel = [];
 
