@@ -1,24 +1,27 @@
+import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:carwash/common/theme/theme.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'common/provider/go_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'firebase_options.dart';
 
+//! Notification을 위한 StreamController 전역 변수 선언
+StreamController<String> streamController = StreamController.broadcast();
+
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("백그라운드 메시지 처리.. ${message.notification!.body!}");
 }
+
 
 void initializeNotification() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -30,24 +33,47 @@ void initializeNotification() async {
       'high_importance_channel', 'high_importance_notification',
       importance: Importance.max));
 
-  IOSInitializationSettings iosInitializationSettings =
-  IOSInitializationSettings(
-    requestAlertPermission: true,
-    requestBadgePermission: true,
-    requestSoundPermission: true
-  );
+  DarwinInitializationSettings iosInitializationSettings =
+          const DarwinInitializationSettings(
+              requestAlertPermission: true,
+              requestBadgePermission: true,
+              requestSoundPermission: true
+          );
+  // IOSInitializationSettings iosInitializationSettings =
+  // IOSInitializationSettings(
+  //   requestAlertPermission: true,
+  //   requestBadgePermission: true,
+  //   requestSoundPermission: true
+  // );
 
-  await flutterLocalNotificationsPlugin.initialize( InitializationSettings(
-    android: AndroidInitializationSettings("@mipmap/ic_launcher"),
-    iOS: iosInitializationSettings
-  ));
+  await flutterLocalNotificationsPlugin.initialize(
+      InitializationSettings(
+          android: AndroidInitializationSettings("@mipmap/ic_launcher"),
+          iOS: iosInitializationSettings
+      ),
+
+      //앱이 켜져있을때 푸쉬 알림 클릭시 해당 경로로 이동 설정
+      onDidReceiveNotificationResponse: (NotificationResponse details) async {
+        print('onDidReceiveNotificationResponse - payload: ${details.payload}');
+
+        final payload = details.payload ?? '';
+
+        final parsedJson = jsonDecode(jsonEncode(payload));
+
+        if(payload!=''){
+
+        }
+      }
+  );
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
     sound: true,
   );
+
 }
+
 
 
 void main() async{
@@ -86,7 +112,6 @@ class _App extends ConsumerWidget {
     );
   }
 }
-
 
 
 

@@ -45,6 +45,8 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       RemoteNotification? notification = message.notification;
+      String? route = message.data['routeId'];
+
       if(Platform.isIOS){
 
       }else{
@@ -53,17 +55,19 @@ class _RootTabState extends ConsumerState<RootTab> with SingleTickerProviderStat
             notification.hashCode,
             notification.title,
             notification.body,
-            const NotificationDetails(
+            NotificationDetails(
               android: AndroidNotificationDetails(
                 'high_importance_channel',
                 'high_importance_notification',
                 importance: Importance.max,
               ),
             ),
+            payload: route
           );
           setState(() {
             messageString = message.notification!.body!;
             print("Foreground 메시지 수신: $messageString");
+
           });
         }
       }
