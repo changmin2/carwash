@@ -2,11 +2,15 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:carwash/common/theme/theme.dart';
+import 'package:carwash/community/view/community_screen_bak.dart';
+import 'package:carwash/firebase/provider/pushRoute_provider.dart';
+import 'package:carwash/user/view/splash_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
@@ -16,7 +20,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 //! Notification을 위한 StreamController 전역 변수 선언
-StreamController<String> streamController = StreamController.broadcast();
+String pushRoute = '';
+final streamController = StreamController<String>();
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("백그라운드 메시지 처리.. ${message.notification!.body!}");
@@ -61,7 +66,8 @@ void initializeNotification() async {
         final parsedJson = jsonDecode(jsonEncode(payload));
 
         if(payload!=''){
-
+          pushRoute = payload;
+          streamController.add(payload);
         }
       }
   );
@@ -73,6 +79,8 @@ void initializeNotification() async {
   );
 
 }
+
+
 
 
 
@@ -93,7 +101,6 @@ void main() async{
 
 class _App extends ConsumerWidget {
   const _App({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {

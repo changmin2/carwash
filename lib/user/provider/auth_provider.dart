@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../community/view/community_register_screen.dart';
+import '../../firebase/provider/pushRoute_provider.dart';
 import '../model/user_model.dart';
 import '../view/login_screen.dart';
 import '../view/profile/profile_screen.dart';
@@ -128,7 +129,7 @@ class AuthProviderNotifier extends ChangeNotifier {
   //홈스크린으로 보내줄지 확인하는 과정이 필요
   //이 함수에 async를 붙여버리면 메인화면 로드할 때 딜레이가 생겨버림
   FutureOr<String?> redirectLogic(BuildContext context, GoRouterState state) {
-
+    print('redirectLogic 실행');
     ref.read(MyRecordProvider);
     final UserModelBase? user = ref.read(userMeProvider);
 
